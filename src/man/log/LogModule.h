@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include "log_header.h"
+#include "log_sf.h"
 
 namespace man {
     namespace log {
@@ -26,14 +27,12 @@ namespace man {
             LogBase(std::string name);
             virtual ~LogBase();
             
-            
         protected:
             // Note that inheriting classes still need to implement this!
             virtual void run_() = 0;
             
             //encodes type and from fields usually.  Currently the only way the client/server can tell what kind of data we've sent.
             std::string description;
-            //bool isImageLogger;
         };
         
         //Different types store their data different ways.
@@ -43,7 +42,7 @@ namespace man {
             std::string buffer;
             msg.SerializeToString(&buffer);
             
-            nblog::NBlog(SMALL_BUFFER, 0, clock(), description.c_str(), buffer.length(), (uint8_t *) buffer.data());
+            nblog::NBlog(NBL_SMALL_BUFFER, 0, clock(), description.c_str(), buffer.length(), (uint8_t *) buffer.data());
             //printf("[%i]", buffer.length());
         }
         template<> inline void logMessage<messages::YUVImage>(messages::YUVImage msg, std::string description) {
@@ -53,7 +52,7 @@ namespace man {
             char buf[1000];
             snprintf(buf, 1000, "%s width=%i height=%i encoding=[Y8(U8/V8)]", description.c_str(), msg.width()/2, msg.height());
             
-            nblog::NBlog(IMAGE_BUFFER, 0, clock(), buf, bytes, (uint8_t *) msg.pixelAddress(0, 0));
+            nblog::NBlog(NBL_IMAGE_BUFFER, 0, clock(), buf, bytes, (uint8_t *) msg.pixelAddress(0, 0));
             
             //printf("[i%i]", bytes);
 
@@ -67,8 +66,9 @@ namespace man {
              * @brief Takes an OutPortal and wires it to this new module so that
              *        we can log its output.
              */
-            LogModule(portals::OutPortal<T>* out, std::string name) : LogBase(name)
+            LogModule(int fi, portals::OutPortal<T>* out, std::string name) : LogBase(name)
             {
+                f_index = fi;
                 input.wireTo(out);
             }
             
@@ -78,11 +78,14 @@ namespace man {
             
             //Called at the end of every diagram run.
             virtual void run_() {
-                input.latch();
-                logMessage<T>(input.message(), description);
+                if (nbsf::flags[f_index]) {
+                    input.latch();
+                    logMessage<T>(input.message(), description);
+                }
             }
             
             portals::InPortal<T> input;
+            int f_index;
         };
         
     }

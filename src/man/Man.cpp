@@ -7,6 +7,7 @@
 #include "Camera.h"
 
 #include "log/log_header.h"
+#include "log/log_sf.h"
 
 #ifndef OFFLINE
 SET_POOL_SIZE(messages::WorldModel,  24);
@@ -50,35 +51,9 @@ namespace man {
     {
         setModuleDescription("The Northern Bites' soccer player.");
         
-        /*
-         log threads should have low CPU time if nothing is being logged.
-         
-         That being said, should probably not init (i.e. start threads)
-         if not necessary.
-         */
-        printf("nblog::log_process_init()\n");
-        nblog::log_process_init();
-        
         /** Sensors **/
         sensorsThread.addModule(sensors);
-#ifdef LOG_SENSORS
-        sensorsThread.log<messages::JointAngles>(&sensors.jointsOutput_,
-                                                 "JointAngles from=jointsOutput");
-        sensorsThread.log<messages::JointAngles>(&sensors.temperatureOutput_,
-                                                 "JointAngles from=temperatureOutput");
-        sensorsThread.log<messages::ButtonState>(&sensors.chestboardButtonOutput_,
-                                                 "ButtonState from=chestboardButtonOutput");
-        sensorsThread.log<messages::FootBumperState>(&sensors.footbumperOutput_,
-                                                     "FootBumperState from=footbumperOutput");
-        sensorsThread.log<messages::InertialState>(&sensors.inertialsOutput_,
-                                                   "InertialState from=inertialsOutput");
-        sensorsThread.log<messages::SonarState>(&sensors.sonarsOutput_,
-                                                "SonarState from=sonarsOutput");
-        sensorsThread.log<messages::FSR>(&sensors.fsrOutput_,
-                                         "FSR from=fsrOutput");
-        sensorsThread.log<messages::BatteryState>(&sensors.batteryOutput_,
-                                                  "BatteryState from=batteryOutput");
-#endif
+
         sensorsThread.addModule(jointEnactor);
         sensorsThread.addModule(motion);
         sensorsThread.addModule(arms);
@@ -113,28 +88,13 @@ namespace man {
         guardian.batteryInput.wireTo(&sensors.batteryOutput_, true);
         guardian.motionStatusIn.wireTo(&motion.motionStatusOutput_, true);
         audio.audioIn.wireTo(&guardian.audioOutput);
-#ifdef LOG_GUARDIAN
-        guardianThread.log<messages::StiffnessControl>(
-                                                       &guardian.stiffnessControlOutput,
-                                                       "StiffnessControl from=stiffnessControlOutput");
-        guardianThread.log<messages::FeetOnGround>(
-                                                   &guardian.feetOnGroundOutput,
-                                                   "FeetOnGround from=feetOnGroundOutput");
-        guardianThread.log<messages::FallStatus>(
-                                                 &guardian.fallStatusOutput,
-                                                 "FallStatus from=fallStatusOutput");
-        guardianThread.log<messages::AudioCommand>(
-                                                   &guardian.audioOutput,
-                                                   "AudioCommand from=audioOutput");
-#endif
+
         
         /** Comm **/
         commThread.addModule(comm);
         comm._worldModelInput.wireTo(&behaviors.myWorldModelOut, true);
         comm._gcResponseInput.wireTo(&gamestate.gcResponseOutput, true);
-#ifdef LOG_COMM
-        commThread.log<messages::GameState>(&comm._gameStateOutput, "GameState from=gameStateOutput");
-#endif
+
         
         /** Cognition **/
         
@@ -228,48 +188,94 @@ namespace man {
         
         leds.ledCommandsIn.wireTo(&behaviors.ledCommandOut);
         
-#ifdef LOG_LOCATION
-        cognitionThread.log<messages::RobotLocation>(&localization.output, "RobotLocation from=cognition");
-#endif
+#ifdef USE_LOGGING
+        /*
+         log threads should have low CPU time if nothing is being logged.
+         
+         That being said, should probably not init (i.e. start threads)
+         if not necessary.
+         */
+        printf("nblog::log_main_init()\n");
+        nblog::log_main_init();
         
-#ifdef LOG_ODOMETRY
-        cognitionThread.log<messages::RobotLocation>(&motion.odometryOutput_, "RobotLocation from=odometryOutput");
-#endif
+        /*
+         SPECIFIC MODULE LOGGING
+         */
+//#ifdef LOG_SENSORS
+        sensorsThread.log<messages::JointAngles>((nbsf::SENSORS), &sensors.jointsOutput_,
+                                                 "proto-JointAngles from=jointsOutput");
+        sensorsThread.log<messages::JointAngles>((nbsf::SENSORS), &sensors.temperatureOutput_,
+                                                 "proto-JointAngles from=temperatureOutput");
+        sensorsThread.log<messages::ButtonState>((nbsf::SENSORS), &sensors.chestboardButtonOutput_,
+                                                 "proto-ButtonState from=chestboardButtonOutput");
+        sensorsThread.log<messages::FootBumperState>((nbsf::SENSORS), &sensors.footbumperOutput_,
+                                                     "proto-FootBumperState from=footbumperOutput");
+        sensorsThread.log<messages::InertialState>((nbsf::SENSORS), &sensors.inertialsOutput_,
+                                                   "proto-InertialState from=inertialsOutput");
+        sensorsThread.log<messages::SonarState>((nbsf::SENSORS), &sensors.sonarsOutput_,
+                                                "proto-SonarState from=sonarsOutput");
+        sensorsThread.log<messages::FSR>((nbsf::SENSORS), &sensors.fsrOutput_,
+                                         "proto-FSR from=fsrOutput");
+        sensorsThread.log<messages::BatteryState>((nbsf::SENSORS), &sensors.batteryOutput_,
+                                                  "proto-BatteryState from=batteryOutput");
+//#endif
         
-#ifdef LOG_OBSERVATIONS
-        cognitionThread.log<messages::VisionField>(&vision.vision_field, "VisionField from=observations");
-#endif
+//#ifdef LOG_GUARDIAN
+        guardianThread.log<messages::StiffnessControl>((nbsf::GUARDIAN), &guardian.stiffnessControlOutput,
+                                                       "proto-StiffnessControl from=stiffnessControlOutput");
+        guardianThread.log<messages::FeetOnGround>((nbsf::GUARDIAN), &guardian.feetOnGroundOutput,
+                                                   "proto-FeetOnGround from=feetOnGroundOutput");
+        guardianThread.log<messages::FallStatus>((nbsf::GUARDIAN), &guardian.fallStatusOutput,
+                                                 "proto-FallStatus from=fallStatusOutput");
+        guardianThread.log<messages::AudioCommand>((nbsf::GUARDIAN), &guardian.audioOutput,
+                                                   "proto-AudioCommand from=audioOutput");
+//#endif
         
-#ifdef LOG_LOCALIZATION
-        cognitionThread.log<messages::ParticleSwarm>(&localization.particleOutput, "ParticleSwarm from=localization");
-#endif
+//#ifdef LOG_LOCATION
+        cognitionThread.log<messages::RobotLocation>((nbsf::LOCATION), &localization.output, "proto-RobotLocation from=cognition");
+//#endif
         
-#ifdef LOG_BALLTRACK
-        cognitionThread.log<messages::FilteredBall>(&ballTrack.ballLocationOutput, "FilteredBall from=ballLocationOutput");
-        cognitionThread.log<messages::VisionBall>(&vision.vision_ball, "VisionBall from=vision_ball");
-#endif
+//#ifdef LOG_ODOMETRY
+        cognitionThread.log<messages::RobotLocation>((nbsf::ODOMETRY), &motion.odometryOutput_, "proto-RobotLocation from=odometryOutput");
+//#endif
         
-#ifdef LOG_IMAGES
-        cognitionThread.log<messages::YUVImage>(&topTranscriber.imageOut,
-                                                     "YUVImage from=top");
-        cognitionThread.log<messages::YUVImage>(&bottomTranscriber.imageOut,
-                                                     "YUVImage from=bot");
-#endif
+//#ifdef LOG_OBSERVATIONS
+        cognitionThread.log<messages::VisionField>((nbsf::OBSERVATIONS), &vision.vision_field, "proto-VisionField from=observations");
+//#endif
         
-#ifdef LOG_VISION
-        cognitionThread.log<messages::VisionField>(&vision.vision_field,
-                                                   "VisionField from=vision");
-        cognitionThread.log<messages::VisionBall>(&vision.vision_ball,
-                                                  "VisionBall from=vision");
-        cognitionThread.log<messages::VisionRobot>(&vision.vision_robot,
-                                                   "VisionRobot from=vision");
-        cognitionThread.log<messages::VisionObstacle>(&vision.vision_obstacle,
-                                                      "VisionObstacle from=vision");
-        cognitionThread.log<messages::JointAngles>(&vision.joint_angles_out,
-                                                   "JointAngles from=vision");
-        cognitionThread.log<messages::InertialState>(&vision.inertial_state_out,
-                                                     "InertialState from=vision");
-#endif
+//#ifdef LOG_LOCALIZATION
+        cognitionThread.log<messages::ParticleSwarm>((nbsf::LOCALIZATION), &localization.particleOutput, "proto-ParticleSwarm from=localization");
+//#endif
+        
+//#ifdef LOG_BALLTRACK
+        cognitionThread.log<messages::FilteredBall>((nbsf::BALLTRACK), &ballTrack.ballLocationOutput, "proto-FilteredBall from=ballLocationOutput");
+        cognitionThread.log<messages::VisionBall>((nbsf::BALLTRACK), &vision.vision_ball, "proto-VisionBall from=vision_ball");
+//#endif
+        
+//#ifdef LOG_IMAGES
+        cognitionThread.log<messages::YUVImage>((nbsf::IMAGES), &topTranscriber.imageOut,
+                                                "YUVImage from=top");
+        cognitionThread.log<messages::YUVImage>((nbsf::IMAGES), &bottomTranscriber.imageOut,
+                                                "YUVImage from=bot");
+//#endif
+        
+//#ifdef LOG_VISION
+        cognitionThread.log<messages::VisionField>((nbsf::VISION), &vision.vision_field,
+                                                   "proto-VisionField from=vision");
+        cognitionThread.log<messages::VisionBall>((nbsf::VISION), &vision.vision_ball,
+                                                  "proto-VisionBall from=vision");
+        cognitionThread.log<messages::VisionRobot>((nbsf::VISION), &vision.vision_robot,
+                                                   "proto-VisionRobot from=vision");
+        cognitionThread.log<messages::VisionObstacle>((nbsf::VISION), &vision.vision_obstacle,
+                                                      "proto-VisionObstacle from=vision");
+        cognitionThread.log<messages::JointAngles>((nbsf::VISION), &vision.joint_angles_out,
+                                                   "proto-JointAngles from=vision");
+        cognitionThread.log<messages::InertialState>((nbsf::VISION), &vision.inertial_state_out,
+                                                     "proto-InertialState from=vision");
+//#endif
+        
+        
+#endif //USE_LOGGING
         
 #ifdef USE_TIME_PROFILING
         Profiler::getInstance()->profileFrames(1400);
