@@ -3,8 +3,10 @@ package nbclient.gui.utilitypanes;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
+import behavior_sim.*;
+
 public class UtilityManager {
-	public static Class[] utilities = {HardlyWorking.class, YUVColors.class};
+	public static Class[] utilities = {HardlyWorking.class, YUVColors.class, World.class};
 	
 	private static HashMap<Class<? extends UtilityParent>, UtilityParent> map = setupMap();
 	private static HashMap<Class<? extends UtilityParent>, UtilityParent> setupMap() {
