@@ -9,11 +9,14 @@ package behavior_sim;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.JTextField;
+
 public abstract class SimObject
 {
     protected float x, y, radius;
     protected Location home;
     protected Color color;
+    protected JTextField listener;
 
     public SimObject()
     {
@@ -51,6 +54,7 @@ public abstract class SimObject
     {
         x += xCoord;
         y += yCoord;
+        notifyListener();
     }
 
     // move to the given coordinates
@@ -58,6 +62,7 @@ public abstract class SimObject
     {
         x = xCoord;
         y = yCoord;
+        notifyListener();
     }
 
     // move to the given location
@@ -65,6 +70,7 @@ public abstract class SimObject
     {
         x = location.x;
         y = location.y;
+        notifyListener();
     }
 
     // send the object to the place it was initialized
@@ -98,4 +104,9 @@ public abstract class SimObject
         g2.setColor(color);
         g2.fillOval((int)(x-radius), (int)(y-radius), (int)(2*radius), (int)(2*radius));
     }
+
+    // LISTENER
+    public void registerListener(JTextField l) { listener = l; }
+    protected void notifyListener() { listener.setText((String.valueOf((int)x) + 
+                                            ", " + String.valueOf((int)y))); }
 }

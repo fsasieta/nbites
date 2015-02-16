@@ -6,7 +6,6 @@ package behavior_sim;
 
 import javax.swing.*;
 
-import java.awt.Dimension;
 import java.awt.Container;
 
 import java.awt.event.ActionListener;
@@ -20,6 +19,7 @@ public class Gui extends JFrame
     private static final int frameHeight = 800;
 
     private static World fieldPanel;
+    private static JTabbedPane tabs;
 
     public static void createAndShowGUI() {
         // this frame holds everything else
@@ -29,27 +29,10 @@ public class Gui extends JFrame
 
         // the field/world state
         fieldPanel = new World();
-        fieldPanel.setPreferredSize(new Dimension((int)fieldPanel.field.FIELD_WIDTH,
-                                                (int)fieldPanel.field.FIELD_HEIGHT));
 
-        // the controls, buttons, etc.
-        JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
-        addControls(controlPanel);
-
-        // Ball information panel
-        JPanel ballInfo = new JPanel();
-        ballInfo.setLayout(new BoxLayout(ballInfo, BoxLayout.Y_AXIS));
-        JTextField bX = new JTextField();
-        JTextField bY = new JTextField();
-        ballInfo.add(bX);
-        ballInfo.add(bY);
-        bX.setText(String.valueOf(fieldPanel.ball.getX()));
-        bY.setText(String.valueOf(fieldPanel.ball.getY()));
-
-        JTabbedPane tabs = new JTabbedPane();
-        tabs.addTab("Controls", controlPanel);
-        tabs.addTab("Ball Info", ballInfo);
+        tabs = new JTabbedPane();
+        tabs.addTab("Controls", controlPanel());
+        tabs.addTab("Ball Info", ballInfo());
 
         // layout non-sense. simply keeps things where they should be
         SpringLayout layout = new SpringLayout();
@@ -70,8 +53,10 @@ public class Gui extends JFrame
     }
 
     // add all of the user interface controls
-    public static void addControls(JPanel controls)
+    public static JPanel controlPanel()
     {
+        JPanel controls = new JPanel();
+        controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
         // left team
         final JLabel team1 = new JLabel("Left Team");
         controls.add(team1);
@@ -99,7 +84,7 @@ public class Gui extends JFrame
         for (int i = 0; i < cb2.size(); i++) controls.add(cb2.get(i));
 
         // this button sends the information to the World about what players
-        // should be on the field
+        // should be on the field. Reset set field by unchecking everything
         final JButton setField = new JButton("Set Field");
         setField.addActionListener(new ActionListener(){ 
         @Override
@@ -107,33 +92,75 @@ public class Gui extends JFrame
             {
                 boolean[] team = new boolean[cb1.size() + cb2.size()];
 
+                // reset the info tabs
+                tabs.removeAll();
+                tabs.addTab("Controls", controlPanel());
+                tabs.addTab("Ball Info", ballInfo());
+
                 for (int i = 0; i < cb1.size(); i++)
                 {
-                    if (cb1.get(i).isSelected()) 
-                        team[i] = true;
-                    if (cb2.get(i).isSelected())
-                        team[i + cb1.size()] = true;
+                    if (cb1.get(i).isSelected()) team[i] = true;
+                    if (cb2.get(i).isSelected()) team[i + cb1.size()] = true;
                     else if (!cb1.get(i).isSelected())
                     {
                         team[i] = false;
                         team[i + cb1.size()] = false;
                     }
                 }
+                
                 fieldPanel.buildTeam(team);
+
+                // make info tabs for the players on the field
+                int index = 0;
+                for (int i = 0; i < team.length; i++)
+                {
+                    if (team[i])
+                    {
+                        tabs.addTab("Player " + String.valueOf(i), playerInfo(index));
+                        index++;
+                    }
+                }
             }
         });
         controls.add(setField);
 
-        // tells the World to reset the state of the field
-        final JButton reset = new JButton("Reset");
-        reset.addActionListener(new ActionListener(){ 
-        @Override
-        public void actionPerformed(ActionEvent e)
-            {
-                fieldPanel.reset();
-            }
-        });
-        controls.add(reset); 
+        return controls; 
+    }
+
+    // Ball information panel
+    public static JPanel ballInfo()
+    {
+        JPanel ballInfo = new JPanel();
+        ballInfo.setLayout(new BoxLayout(ballInfo, BoxLayout.Y_AXIS));
+
+        JLabel position = new JLabel("Ball Location (x, y)");
+
+        JTextField bLoc = new JTextField();
+        fieldPanel.ball.registerListener(bLoc); // gets updates from the ball
+        bLoc.setText("Set for kickoff");
+
+        ballInfo.add(position);
+        ballInfo.add(bLoc);
+
+        return ballInfo;
+    }
+
+    // player inforrmation panel
+    public static JPanel playerInfo(int num)
+    {
+        JPanel playerInfo = new JPanel();
+        playerInfo.setLayout(new BoxLayout(playerInfo, BoxLayout.Y_AXIS));
+
+        JLabel position = new JLabel("Player Location (x, y)");
+
+        JTextField pLoc = new JTextField();
+        fieldPanel.p.get(num).registerListener(pLoc); // gets updates from the ball
+        pLoc.setText("Set for kick off");
+
+        playerInfo.add(position);
+        playerInfo.add(pLoc);
+
+        return playerInfo;
     }
 
     public static void main(String[] args) 

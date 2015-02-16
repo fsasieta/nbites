@@ -7,6 +7,8 @@ package behavior_sim;
 
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -27,7 +29,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     public FieldConstants field;    // the field
     public Ball ball;              // the ball
 
-    private ArrayList<Player> p;    // all of the players
+    public ArrayList<Player> p;    // all of the players
     private ArrayList<Location> startPos;    // the start postitions of the players
     private Post[] posts;           // the goal posts
 
@@ -65,6 +67,10 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
         ballMove = false;
         playerMove = -1;
+
+        // for the GUI
+        setPreferredSize(new Dimension((int)field.FIELD_WIDTH,
+                                        (int)field.FIELD_HEIGHT));
     }
 
     // draws the state of the field
@@ -119,8 +125,16 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     {
         if ((ball.getX() <= field.MY_GOALBOX_LEFT_X &&
             ball.getY() >= field.MY_GOALBOX_BOTTOM_Y &&
-            ball.getY() <= field.MY_GOALBOX_TOP_Y))
+            ball.getY() <= field.MY_GOALBOX_TOP_Y) ||
+            (ball.getX() >= field.OPP_GOALBOX_RIGHT_X &&
+            ball.getY() >= field.OPP_GOALBOX_BOTTOM_Y &&
+            ball.getY() <= field.OPP_GOALBOX_TOP_Y))
         {
+            // take drag control of objects away
+            playerMove = -1;
+            ballMove = false;
+
+            // reset the field
             ball.goHome();
             for (int i = 0; i < p.size(); i++) p.get(i).goHome();
         }          

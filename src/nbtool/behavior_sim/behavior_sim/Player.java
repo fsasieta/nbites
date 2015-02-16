@@ -38,12 +38,14 @@ public class Player extends SimObject
     {
         super.move(xCoord, yCoord);
         h += heading;
+        notifyListener();
     }
 
     public void moveTo(float xCoord, float yCoord, float heading)
     {
         super.moveTo(xCoord, yCoord);
         h = heading;
+        notifyListener();
     }
 
     // heading specific functions
