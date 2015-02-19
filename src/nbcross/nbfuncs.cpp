@@ -58,6 +58,10 @@ int CrossBright_func() {
     return 0;
 }
 
+// void Behaviors_func() {
+//     printf("Behaviors_func");
+// }
+
 void register_funcs() {
     
     /*test func 1*/
@@ -80,6 +84,13 @@ void register_funcs() {
     CrossBright.args = {sYUVImage};
     CrossBright.func = CrossBright_func;
     FUNCS.push_back(CrossBright);
+
+    // //Behaviors
+    // nbfunc_t Behaviors;
+    // Behaviors.name = "Behaviors";
+    // //Behaviors.args = {}; // TODO
+    // Behaviors.func = Behaviors_func;
+    // FUNCS.push_back(Behaviors);
 }
 
 

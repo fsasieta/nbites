@@ -1,9 +1,11 @@
-package behavior_sim;
+package nbtool.behavior_sim.src;
 
 /*
     This is where the state of the world is held. The field and all objects/players are
     created here. The world can be updated via mouse commands.
 */
+
+// TODO make kickoff positions depending who scored
 
 import javax.swing.JPanel;
 
@@ -22,6 +24,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 {
     private int numPlayers = 0;     // number of players on the field
     private final int numPosts = 4; // number of goal posts
+    private final int teamSize = 4; // max players per team
 
     private int playerMove;   // tracks which player should move on mouse drag
     private boolean ballMove;       // whether or not the ball should be moved on mouse drag
@@ -30,11 +33,14 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     public Ball ball;              // the ball
 
     public ArrayList<Player> p;    // all of the players
-    private ArrayList<Location> startPos;    // the start postitions of the players
+    private Location[] leftKickoff;    // left team kickoff positions
+    private Location[] rightKickoff;    // right team kickoff positions
     private Post[] posts;           // the goal posts
 
     public World()
     {
+        BehaviorInterpreter intp = new BehaviorInterpreter();
+
         // Mouse listeners
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -43,16 +49,24 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         ball = new Ball(field.MIDFIELD_X, field.MIDFIELD_Y);
 
         p = new ArrayList<Player>();
-        // the start positions from field constants
-        startPos =  new ArrayList<Location>();
-        startPos.add(field.EVEN_DEFENDER_KICKOFF_L);
-        startPos.add(field.ODD_DEFENDER_KICKOFF_L);
-        startPos.add(field.EVEN_CHASER_KICKOFF_L);
-        startPos.add(field.ODD_CHASER_KICKOFF_L);
-        startPos.add(field.EVEN_DEFENDER_KICKOFF_R);
-        startPos.add(field.ODD_DEFENDER_KICKOFF_R);
-        startPos.add(field.EVEN_CHASER_KICKOFF_R);
-        startPos.add(field.ODD_CHASER_KICKOFF_R);
+
+        // the start positions for the left team kickoff
+        leftKickoff =  new Location[2*teamSize];
+        leftKickoff[0] = field.EVEN_DEFENDER_HOME_L;
+        leftKickoff[1] = field.ODD_DEFENDER_HOME_L;
+        leftKickoff[2] = field.EVEN_CHASER_KICKOFF_L;
+        leftKickoff[3] = field.ODD_CHASER_HOME_L;
+        leftKickoff[4] = field.EVEN_DEFENDER_HOME_R;
+        leftKickoff[5] = field.ODD_DEFENDER_HOME_R;
+        leftKickoff[6] = field.EVEN_CHASER_HOME_R;
+        leftKickoff[7] = field.ODD_CHASER_HOME_R;
+        // start positions for the right team kickoff
+        rightKickoff = new Location[2*teamSize];
+        // copy leftKickOff to rightKickoff
+        System.arraycopy(leftKickoff, 0, rightKickoff, 0, 2*teamSize);
+        // switch who takes the kickoff
+        rightKickoff[2] = field.EVEN_CHASER_HOME_L;
+        rightKickoff[6] = field.EVEN_CHASER_KICKOFF_R;
 
         // the posts postitions from field constants
         posts = new Post[numPosts];
@@ -95,7 +109,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     }
 
     // The given array determines which players will be on the field.
-    // It is important that the team array indexed the same as the startPos array
+    // It is important that the team array indexed the same as the leftKickoff array
     public void buildTeam(boolean[] team)
     {
         reset();  // clear the field
@@ -104,7 +118,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         {
             if(team[i])
             {
-                p.add(new Player(startPos.get(i)));
+                p.add(new Player(leftKickoff[i]));
                 numPlayers++;
             }
         }
@@ -123,12 +137,9 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     // if there was a goal, return to initial positions
     public void goal()
     {
-        if ((ball.getX() <= field.MY_GOALBOX_LEFT_X &&
+        if (ball.getX() <= field.MY_GOALBOX_LEFT_X &&
             ball.getY() >= field.MY_GOALBOX_BOTTOM_Y &&
-            ball.getY() <= field.MY_GOALBOX_TOP_Y) ||
-            (ball.getX() >= field.OPP_GOALBOX_RIGHT_X &&
-            ball.getY() >= field.OPP_GOALBOX_BOTTOM_Y &&
-            ball.getY() <= field.OPP_GOALBOX_TOP_Y))
+            ball.getY() <= field.MY_GOALBOX_TOP_Y)
         {
             // take drag control of objects away
             playerMove = -1;
@@ -137,6 +148,20 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
             // reset the field
             ball.goHome();
             for (int i = 0; i < p.size(); i++) p.get(i).goHome();
+            //for (int i = 0; i < p.size(); i++) p.get(i).moveTo(leftKickoff[i]);
+        }
+        else if (ball.getX() >= field.OPP_GOALBOX_RIGHT_X &&
+                ball.getY() >= field.OPP_GOALBOX_BOTTOM_Y &&
+                ball.getY() <= field.OPP_GOALBOX_TOP_Y)
+        {
+            // take drag control of objects away
+            playerMove = -1;
+            ballMove = false;
+
+            // reset the field
+            ball.goHome();
+            for (int i = 0; i < p.size(); i++) p.get(i).goHome();
+            //for (int i = 0; i < p.size(); i++) p.get(i).moveTo(rightKickoff[i]);
         }          
     }
 

@@ -1,4 +1,4 @@
-package behavior_sim;
+package nbtool.behavior_sim.src;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -134,22 +134,26 @@ public class FieldConstants
     public final float HEADING_DOWN = -90.0f;
 
     // kick off positions
-    public final Location ODD_DEFENDER_KICKOFF_L = new Location((MY_GOALBOX_RIGHT_X + 50),
+    public final Location ODD_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),
                                                         MY_GOALBOX_BOTTOM_Y); 
-    public final Location EVEN_DEFENDER_KICKOFF_L = new Location((MY_GOALBOX_RIGHT_X + 50),
+    public final Location EVEN_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),
                                                     MY_GOALBOX_TOP_Y);
-    public final Location ODD_CHASER_KICKOFF_L = new Location((CENTER_FIELD_X - 45),
+    public final Location ODD_CHASER_HOME_L = new Location((CENTER_FIELD_X - 45),
                                                 (OPP_GOALBOX_BOTTOM_Y - 100));
+    public final Location EVEN_CHASER_HOME_L = new Location((CENTER_FIELD_X - CENTER_CIRCLE_RADIUS - 20),
+                                                                CENTER_FIELD_Y);
     public final Location EVEN_CHASER_KICKOFF_L = new Location((CENTER_FIELD_X - 45),
                                                 CENTER_FIELD_Y);
-    public final Location ODD_DEFENDER_KICKOFF_R = new Location((2*MIDFIELD_X) - ODD_DEFENDER_KICKOFF_L.x,
-                                                                ODD_DEFENDER_KICKOFF_L.y);
-    public final Location EVEN_DEFENDER_KICKOFF_R = new Location((2*MIDFIELD_X) - EVEN_DEFENDER_KICKOFF_L.x,
-                                                                EVEN_DEFENDER_KICKOFF_L.y);
-    public final Location ODD_CHASER_KICKOFF_R = new Location((2*MIDFIELD_X) - ODD_CHASER_KICKOFF_L.x,
-                                                                ODD_CHASER_KICKOFF_L.y);
-    public final Location EVEN_CHASER_KICKOFF_R = new Location((CENTER_FIELD_X + CENTER_CIRCLE_RADIUS + 20),
+    public final Location ODD_DEFENDER_HOME_R = new Location((2*MIDFIELD_X) - ODD_DEFENDER_HOME_L.x,
+                                                                ODD_DEFENDER_HOME_L.y);
+    public final Location EVEN_DEFENDER_HOME_R = new Location((2*MIDFIELD_X) - EVEN_DEFENDER_HOME_L.x,
+                                                                EVEN_DEFENDER_HOME_L.y);
+    public final Location ODD_CHASER_HOME_R = new Location((2*MIDFIELD_X) - ODD_CHASER_HOME_L.x,
+                                                                ODD_CHASER_HOME_L.y);
+    public final Location EVEN_CHASER_HOME_R = new Location((CENTER_FIELD_X + CENTER_CIRCLE_RADIUS + 20),
                                                                 CENTER_FIELD_Y);
+    public final Location EVEN_CHASER_KICKOFF_R = new Location((CENTER_FIELD_X + 45),
+                                                CENTER_FIELD_Y);
 
     public void drawField(Graphics2D g2)
     {

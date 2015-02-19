@@ -1,4 +1,4 @@
-package behavior_sim;
+package nbtool.behavior_sim.src;
 
 // A very basic SimObject
 
@@ -13,6 +13,6 @@ public class Ball extends SimObject
     protected void setRadiusAndColor()
     {
         color = Color.red;
-        radius = 2.5f;
+        radius = 3.0f;
     }
 }

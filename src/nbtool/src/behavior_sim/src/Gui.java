@@ -1,4 +1,4 @@
-package behavior_sim;
+package nbtool.behavior_sim.src;
 
 /*
     Here is where all of the gui and dispalys happen. 
@@ -7,6 +7,7 @@ package behavior_sim;
 import javax.swing.*;
 
 import java.awt.Container;
+import java.awt.Dimension;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class Gui extends JFrame
 {
-    private static final int frameWidth = 1200;
+    private static final int frameWidth = 1400;
     private static final int frameHeight = 800;
 
     private static World fieldPanel;
@@ -41,6 +42,7 @@ public class Gui extends JFrame
         layout.putConstraint(SpringLayout.NORTH, fieldPanel, 10, SpringLayout.NORTH, cP);
         layout.putConstraint(SpringLayout.WEST, fieldPanel, 10, SpringLayout.WEST, cP);
         layout.putConstraint(SpringLayout.NORTH, tabs, 10, SpringLayout.NORTH, cP);
+        layout.putConstraint(SpringLayout.EAST, cP, 5, SpringLayout.EAST, tabs);
 
         // add the field and controls to the frame
         cP.add(fieldPanel);

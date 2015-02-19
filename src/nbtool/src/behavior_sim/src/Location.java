@@ -1,4 +1,4 @@
-package behavior_sim;
+package nbtool.behavior_sim.src;
 
 public class Location
 {

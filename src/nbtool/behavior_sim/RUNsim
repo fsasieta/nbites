@@ -1,6 +1,0 @@
-#!/bin/bash 
-
-javac behavior_sim/Gui.java
-java behavior_sim.Gui
-
-rm behavior_sim/*.class

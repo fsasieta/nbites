@@ -1,0 +1,7 @@
+#!/bin/bash 
+
+cd ../..
+javac nbtool/behavior_sim/src/Gui.java
+java nbtool.behavior_sim.src.Gui
+
+rm nbtool/behavior_sim/src/*.class

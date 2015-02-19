@@ -1,4 +1,4 @@
-package behavior_sim;
+package nbtool.behavior_sim.src;
 
 // A Sim object that also tracks the heading, which is specific to players
 
