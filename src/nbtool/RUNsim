@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BIN=$NBITES_DIR/build/nbtool
+CROSS=$NBITES_DIR/src/nbcross
+
+rm -rf $BIN
+#might need to make build dir too on some systems
+mkdir $BIN
+
+find ./src -name *.java > _tempFiles
+javac -d $BIN @_tempFiles
+
+rm _tempFiles
+
+cd $CROSS
+make nbcross &
+
+cd $BIN
+java -ea behavior_sim.Gui

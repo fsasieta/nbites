@@ -9,6 +9,7 @@
 #include "nbfuncs.h"
 #include <assert.h>
 #include <vector>
+#include "BallModel.pb.h"
 
 std::vector<nbfunc_t> FUNCS;
 
@@ -19,7 +20,9 @@ std::vector<logio::log_t> rets;
 const char sYUVImage[] = "YUVImage";
 const char sParticleSwarm_pbuf[] = "ParticleSwarm";
 const char sParticle_pbuf[] = "Particle";
+const char sBallModel_pbuf[] = "BallModel";
 const char sTest[] = "test";
+
 
 const char stext[] = "text";//No current sources for this data type.
 
@@ -58,9 +61,22 @@ int CrossBright_func() {
     return 0;
 }
 
-// void Behaviors_func() {
-//     printf("Behaviors_func");
-// }
+int Behaviors_func() {
+    assert(args.size() == 1);
+    logio::log_t log = args[0];
+
+    const std::string testData((const char*)log.data, log.dlen);
+    messages::FilteredBall filtBall;
+    if (filtBall.ParseFromString(testData))
+    {
+        std::cout << "Ball x: " << filtBall.x() << 
+                    " Ball y: " << filtBall.y() << std::endl;
+    }
+
+    printf("Workin dat thang");
+    
+    return 0;
+}
 
 void register_funcs() {
     
@@ -85,12 +101,13 @@ void register_funcs() {
     CrossBright.func = CrossBright_func;
     FUNCS.push_back(CrossBright);
 
-    // //Behaviors
-    // nbfunc_t Behaviors;
-    // Behaviors.name = "Behaviors";
-    // //Behaviors.args = {}; // TODO
-    // Behaviors.func = Behaviors_func;
-    // FUNCS.push_back(Behaviors);
+    //Behaviors
+    nbfunc_t Behaviors;
+    Behaviors.name = "Behaviors";
+    Behaviors.args = {sBallModel_pbuf};
+    Behaviors.func = Behaviors_func;
+    FUNCS.push_back(Behaviors);
+
 }
 
 

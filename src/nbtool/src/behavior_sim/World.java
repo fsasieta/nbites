@@ -1,4 +1,4 @@
-package nbtool.behavior_sim.src;
+package behavior_sim;
 
 /*
     This is where the state of the world is held. The field and all objects/players are
@@ -18,13 +18,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseListener;
 
-import java.util.ArrayList;
-
 public class World extends JPanel implements MouseMotionListener, MouseListener 
 {
-    private int numPlayers = 0;     // number of players on the field
-    private final int numPosts = 4; // number of goal posts
-    private final int teamSize = 4; // max players per team
+    private final int NUM_POSTS = 4; // number of goal posts
+    private final int TEAM_SIZE = 4; // max players per team
+    private final int NUM_PLAYERS = 2*TEAM_SIZE;     // max number of players on the field
 
     private int playerMove;   // tracks which player should move on mouse drag
     private boolean ballMove;       // whether or not the ball should be moved on mouse drag
@@ -32,15 +30,13 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     public FieldConstants field;    // the field
     public Ball ball;              // the ball
 
-    public ArrayList<Player> p;    // all of the players
+    public Player[] players;    // all of the players
     private Location[] leftKickoff;    // left team kickoff positions
     private Location[] rightKickoff;    // right team kickoff positions
     private Post[] posts;           // the goal posts
 
     public World()
     {
-        BehaviorInterpreter intp = new BehaviorInterpreter();
-
         // Mouse listeners
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -48,10 +44,10 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         field = new FieldConstants();
         ball = new Ball(field.MIDFIELD_X, field.MIDFIELD_Y);
 
-        p = new ArrayList<Player>();
+        players = new Player[NUM_PLAYERS];
 
         // the start positions for the left team kickoff
-        leftKickoff =  new Location[2*teamSize];
+        leftKickoff =  new Location[2*TEAM_SIZE];
         leftKickoff[0] = field.EVEN_DEFENDER_HOME_L;
         leftKickoff[1] = field.ODD_DEFENDER_HOME_L;
         leftKickoff[2] = field.EVEN_CHASER_KICKOFF_L;
@@ -61,15 +57,15 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         leftKickoff[6] = field.EVEN_CHASER_HOME_R;
         leftKickoff[7] = field.ODD_CHASER_HOME_R;
         // start positions for the right team kickoff
-        rightKickoff = new Location[2*teamSize];
+        rightKickoff = new Location[2*TEAM_SIZE];
         // copy leftKickOff to rightKickoff
-        System.arraycopy(leftKickoff, 0, rightKickoff, 0, 2*teamSize);
+        System.arraycopy(leftKickoff, 0, rightKickoff, 0, 2*TEAM_SIZE);
         // switch who takes the kickoff
         rightKickoff[2] = field.EVEN_CHASER_HOME_L;
         rightKickoff[6] = field.EVEN_CHASER_KICKOFF_R;
 
         // the posts postitions from field constants
-        posts = new Post[numPosts];
+        posts = new Post[NUM_POSTS];
         posts[0] = new Post(field.MY_GOALBOX_LEFT_X, 
                             field.MY_GOALBOX_BOTTOM_Y);
         posts[1] = new Post(field.MY_GOALBOX_LEFT_X, 
@@ -82,6 +78,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         ballMove = false;
         playerMove = -1;
 
+        BehaviorInterpreter intp = new BehaviorInterpreter(this);
+
         // for the GUI
         setPreferredSize(new Dimension((int)field.FIELD_WIDTH,
                                         (int)field.FIELD_HEIGHT));
@@ -92,8 +90,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     {
         field.drawField(g2);        // draw the field
         ball.draw(g2);              // draw the ball
-        for (int i = 0; i < numPlayers; i ++) p.get(i).draw(g2);    // draw the players
-        for (int i = 0; i < numPosts; i++) posts[i].draw(g2);       // draw the posts
+        for (int i = 0; i < NUM_PLAYERS; i ++) if (players[i] != null) players[i].draw(g2);  // draw the players
+        for (int i = 0; i < NUM_POSTS; i++) posts[i].draw(g2);       // draw the posts
 
         // Check if there was a goal. Done here because every field update
         // calls this function
@@ -116,11 +114,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // match the team array to start positions
         for (int i = 0; i < team.length; i++)
         {
-            if(team[i])
-            {
-                p.add(new Player(leftKickoff[i]));
-                numPlayers++;
-            }
+            if(team[i]) players[i] = new Player(leftKickoff[i]);
         }
         repaint();
     }
@@ -129,8 +123,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     public void reset()
     {
         ball.moveTo(field.MIDFIELD_X, field.MIDFIELD_Y);
-        p.clear();
-        numPlayers = 0;
+        players = new Player[NUM_PLAYERS];
         repaint();
     }
 
@@ -147,8 +140,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
             // reset the field
             ball.goHome();
-            for (int i = 0; i < p.size(); i++) p.get(i).goHome();
-            //for (int i = 0; i < p.size(); i++) p.get(i).moveTo(leftKickoff[i]);
+            //for (int i = 0; i < NUM_PLAYERS; i++) if (players[i] != null) players[i].goHome();
+            for (int i = 0; i < NUM_PLAYERS; i++) if (players[i] != null) players[i].moveTo(leftKickoff[i]);
         }
         else if (ball.getX() >= field.OPP_GOALBOX_RIGHT_X &&
                 ball.getY() >= field.OPP_GOALBOX_BOTTOM_Y &&
@@ -160,8 +153,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
             // reset the field
             ball.goHome();
-            for (int i = 0; i < p.size(); i++) p.get(i).goHome();
-            //for (int i = 0; i < p.size(); i++) p.get(i).moveTo(rightKickoff[i]);
+            // for (int i = 0; i < NUM_PLAYERS; i++) if (players[i] != null) players[i].goHome();
+            for (int i = 0; i < NUM_PLAYERS; i++) if (players[i] != null) players[i].moveTo(rightKickoff[i]);
         }          
     }
 
@@ -170,9 +163,9 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     public void mousePressed(MouseEvent e)
     {
         if (ball.contains(e.getX(), e.getY())) ballMove = true;
-        for (int i = 0; i < numPlayers; i++)
+        for (int i = 0; i < NUM_PLAYERS; i++)
         {
-            if (p.get(i) != null && p.get(i).contains(e.getX(), e.getY()))
+            if (players[i] != null && players[i].contains(e.getX(), e.getY()))
             {
                 playerMove = i;
                 break;
@@ -194,21 +187,21 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     {
         if (ballMove) ball.moveTo(e.getX(), e.getY());
         
-        if (playerMove != -1) p.get(playerMove).moveTo(e.getX(), e.getY());
+        if (playerMove != -1) players[playerMove].moveTo(e.getX(), e.getY());
 
         // check if the ball is colliding with an object. if so, move it
         // on the outward normal to that object
 
-        for (int i = 0; i < numPlayers; i++)
+        for (int i = 0; i < NUM_PLAYERS; i++)
         {
-            if (p.get(i).contains(ball.getLocation()))
+            if (players[i] != null && players[i].contains(ball.getLocation()))
             {
-                float xDist = ball.getX() - p.get(i).getX();
-                float yDist = ball.getY() - p.get(i).getY();
+                float xDist = ball.getX() - players[i].getX();
+                float yDist = ball.getY() - players[i].getY();
                 ball.move(xDist, yDist);
             }
         }
-        for (int i = 0; i < numPosts; i++)
+        for (int i = 0; i < NUM_POSTS; i++)
         {
             if (posts[i].contains(ball.getLocation()))
             {
@@ -221,22 +214,12 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         repaint();
     }
 
-    // create a new player on double clicks
     @Override
-    public void mouseClicked(MouseEvent e)
-    {
-        if (e.getClickCount() == 2)
-        {
-            numPlayers++;
-            p.add(new Player(e.getX(), e.getY()));
-            repaint();
-        }
-    } 
-
+    public void mouseClicked(MouseEvent e) {} 
     @Override
     public void mouseMoved(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e){}
+    public void mouseExited(MouseEvent e) {}
     @Override
-    public void mouseEntered(MouseEvent e){}   
+    public void mouseEntered(MouseEvent e) {}   
 }

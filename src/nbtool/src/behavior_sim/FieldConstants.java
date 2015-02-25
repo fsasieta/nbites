@@ -1,4 +1,4 @@
-package nbtool.behavior_sim.src;
+package behavior_sim;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

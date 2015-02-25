@@ -1,4 +1,4 @@
-package nbtool.behavior_sim.src;
+package behavior_sim;
 /*
     Abstract class that all field objects (ball, players, posts) inherit from.
     The objects can be moved, tell you if they contain a point and be drawn as

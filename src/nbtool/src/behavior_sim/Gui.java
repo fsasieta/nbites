@@ -1,4 +1,4 @@
-package nbtool.behavior_sim.src;
+package behavior_sim;
 
 /*
     Here is where all of the gui and dispalys happen. 
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class Gui extends JFrame
 {
-    private static final int frameWidth = 1400;
-    private static final int frameHeight = 800;
+    private static final int frameWidth = 1200;
+    private static final int frameHeight = 700;
 
     private static World fieldPanel;
     private static JTabbedPane tabs;
@@ -27,9 +27,13 @@ public class Gui extends JFrame
         JFrame mainFrame = new Gui();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cP = mainFrame.getContentPane();
-
+        
         // the field/world state
         fieldPanel = new World();
+
+        JScrollPane scrollField = new JScrollPane(fieldPanel, 
+                                            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                                            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         tabs = new JTabbedPane();
         tabs.addTab("Controls", controlPanel());
@@ -38,14 +42,15 @@ public class Gui extends JFrame
         // layout non-sense. simply keeps things where they should be
         SpringLayout layout = new SpringLayout();
         cP.setLayout(layout);
-        layout.putConstraint(SpringLayout.WEST, tabs, 10, SpringLayout.EAST, fieldPanel);
-        layout.putConstraint(SpringLayout.NORTH, fieldPanel, 10, SpringLayout.NORTH, cP);
-        layout.putConstraint(SpringLayout.WEST, fieldPanel, 10, SpringLayout.WEST, cP);
+        layout.putConstraint(SpringLayout.WEST, tabs, 10, SpringLayout.EAST, scrollField);
+        layout.putConstraint(SpringLayout.NORTH, scrollField, 10, SpringLayout.NORTH, cP);
+        layout.putConstraint(SpringLayout.WEST, scrollField, 10, SpringLayout.WEST, cP);
+        layout.putConstraint(SpringLayout.SOUTH, cP, 10, SpringLayout.SOUTH, scrollField);
         layout.putConstraint(SpringLayout.NORTH, tabs, 10, SpringLayout.NORTH, cP);
         layout.putConstraint(SpringLayout.EAST, cP, 5, SpringLayout.EAST, tabs);
 
         // add the field and controls to the frame
-        cP.add(fieldPanel);
+        cP.add(scrollField);
         cP.add(tabs);
         
         mainFrame.pack();
@@ -156,7 +161,7 @@ public class Gui extends JFrame
         JLabel position = new JLabel("Player Location (x, y)");
 
         JTextField pLoc = new JTextField();
-        fieldPanel.p.get(num).registerListener(pLoc); // gets updates from the ball
+        fieldPanel.players[num].registerListener(pLoc); // gets updates from the ball
         pLoc.setText("Set for kick off");
 
         playerInfo.add(position);

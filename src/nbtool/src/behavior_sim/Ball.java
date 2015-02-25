@@ -1,4 +1,4 @@
-package nbtool.behavior_sim.src;
+package behavior_sim;
 
 // A very basic SimObject
 
