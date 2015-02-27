@@ -7,6 +7,7 @@ import java.awt.Color;
 public class Player extends SimObject
 {
     private float h;
+    private int num;
 
     public Player() { super(); }
     
@@ -14,18 +15,28 @@ public class Player extends SimObject
     {
         super(xCoord, yCoord);
         h = 0.0f;
+        num = 0;
     }
 
     public Player(float xCoord, float yCoord, float heading)
     {
         super(xCoord, yCoord);
         h = heading;
+        num = 0;
     }
 
     public Player(Location location)
     {
         super(location);
         h = 0.0f;
+        num = 0;
+    }
+
+    public Player(Location location, int n)
+    {
+        super(location);
+        h = 0.0f;
+        num = n;
     }
 
     public void setRadiusAndColor()
@@ -38,14 +49,14 @@ public class Player extends SimObject
     {
         super.move(xCoord, yCoord);
         h += heading;
-        notifyListener();
+        this.notifyListener();
     }
 
     public void moveTo(float xCoord, float yCoord, float heading)
     {
         super.moveTo(xCoord, yCoord);
         h = heading;
-        notifyListener();
+        this.notifyListener();
     }
 
     // heading specific functions

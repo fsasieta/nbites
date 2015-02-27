@@ -68,8 +68,9 @@ int Behaviors_func() {
     messages::FilteredBall filtBall;
     if (filtBall.ParseFromString(testData))
     {
-        std::cout << "Ball x: " << filtBall.x() << 
-                    " Ball y: " << filtBall.y() << std::endl;
+        // std::cout << "Ball x: " << filtBall.rel_x() << 
+        //             " Ball y: " << filtBall.rel_y() << std::endl;
+        std::cout << "Bearing " << filtBall.bearing() << std::endl;
     }
 
     printf("Workin dat thang");

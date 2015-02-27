@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,22 +23,29 @@ public class Gui extends JFrame
     private static World fieldPanel;
     private static JTabbedPane tabs;
 
+    private static Timer timer;
+
     public static void createAndShowGUI() {
         // this frame holds everything else
         JFrame mainFrame = new Gui();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cP = mainFrame.getContentPane();
         
-        // the field/world state
+        // make the field/world state a scrollable panel
         fieldPanel = new World();
-
         JScrollPane scrollField = new JScrollPane(fieldPanel, 
                                             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                                             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        // Control and info tabs
         tabs = new JTabbedPane();
         tabs.addTab("Controls", controlPanel());
         tabs.addTab("Ball Info", ballInfo());
+
+        // Game timer
+        final JLabel time = new JLabel("10:00");
+        time.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+        timer = makeTimer(time);
 
         // layout non-sense. simply keeps things where they should be
         SpringLayout layout = new SpringLayout();
@@ -45,13 +53,16 @@ public class Gui extends JFrame
         layout.putConstraint(SpringLayout.WEST, tabs, 10, SpringLayout.EAST, scrollField);
         layout.putConstraint(SpringLayout.NORTH, scrollField, 10, SpringLayout.NORTH, cP);
         layout.putConstraint(SpringLayout.WEST, scrollField, 10, SpringLayout.WEST, cP);
-        layout.putConstraint(SpringLayout.SOUTH, cP, 10, SpringLayout.SOUTH, scrollField);
+        layout.putConstraint(SpringLayout.NORTH, time, 5, SpringLayout.SOUTH, scrollField);
         layout.putConstraint(SpringLayout.NORTH, tabs, 10, SpringLayout.NORTH, cP);
         layout.putConstraint(SpringLayout.EAST, cP, 5, SpringLayout.EAST, tabs);
+        layout.putConstraint(SpringLayout.SOUTH, cP, 5, SpringLayout.SOUTH, time);
+        layout.putConstraint(SpringLayout.WEST, time, 500, SpringLayout.WEST, cP);
 
         // add the field and controls to the frame
         cP.add(scrollField);
         cP.add(tabs);
+        cP.add(time);
         
         mainFrame.pack();
         mainFrame.setResizable(true);
@@ -93,7 +104,7 @@ public class Gui extends JFrame
         // this button sends the information to the World about what players
         // should be on the field. Reset set field by unchecking everything
         final JButton setField = new JButton("Set Field");
-        setField.addActionListener(new ActionListener(){ 
+        setField.addActionListener(new ActionListener() { 
         @Override
         public void actionPerformed(ActionEvent e)
             {
@@ -118,18 +129,38 @@ public class Gui extends JFrame
                 fieldPanel.buildTeam(team);
 
                 // make info tabs for the players on the field
-                int index = 0;
                 for (int i = 0; i < team.length; i++)
                 {
                     if (team[i])
                     {
-                        tabs.addTab("Player " + String.valueOf(i), playerInfo(index));
-                        index++;
+                        tabs.addTab("Player " + String.valueOf(i), 
+                                    playerInfo(i));
                     }
                 }
             }
-        });
+        } );
+
+        // starts the simulation
+        final JButton startSim = new JButton("Start Sim");
+        startSim.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+                fieldPanel.startSim(); 
+                timer.start();
+            } 
+        } );
+
+        // ends the simulation
+        final JButton endSim = new JButton("End Sim");
+        endSim.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+                fieldPanel.endSim();
+                timer.stop(); 
+            } 
+        } );
+        
         controls.add(setField);
+        controls.add(startSim);
+        controls.add(endSim);
 
         return controls; 
     }
@@ -164,10 +195,27 @@ public class Gui extends JFrame
         fieldPanel.players[num].registerListener(pLoc); // gets updates from the ball
         pLoc.setText("Set for kick off");
 
+        JButton flip = new JButton("Flip");
+
         playerInfo.add(position);
         playerInfo.add(pLoc);
+        playerInfo.add(flip);
 
         return playerInfo;
+    }
+
+    public static Timer makeTimer(final JLabel time)
+    {
+        return new Timer(1000, new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                fieldPanel.time--; 
+                int minutes = fieldPanel.time/60;
+                int seconds = fieldPanel.time % 60;
+                time.setText(minutes + ":" + String.format("%02d", seconds));       
+            }
+        });
     }
 
     public static void main(String[] args) 

@@ -9,21 +9,21 @@ package behavior_sim;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 public abstract class SimObject
 {
     protected float x, y, radius;
     protected Location home;
     protected Color color;
-    protected JTextField listener;
+    protected JTextComponent listener;
 
     public SimObject()
     {
         x = 0.0f;
         y = 0.0f;
         home = new Location(x,y);
-        setRadiusAndColor();
+        this.setRadiusAndColor();
     }
     
     public SimObject(float xCoord, float yCoord)
@@ -31,7 +31,7 @@ public abstract class SimObject
         x = xCoord;
         y = yCoord;
         home = new Location(x,y);
-        setRadiusAndColor();
+        this.setRadiusAndColor();
     }
 
     public SimObject(Location location)
@@ -39,7 +39,7 @@ public abstract class SimObject
         x = location.x;
         y = location.y;
         home = new Location(x,y);
-        setRadiusAndColor();
+        this.setRadiusAndColor();
     } 
 
     // Probably want to override this in sub-classes
@@ -54,7 +54,7 @@ public abstract class SimObject
     {
         x += xCoord;
         y += yCoord;
-        notifyListener();
+        this.notifyListener();
     }
 
     // move to the given coordinates
@@ -62,7 +62,7 @@ public abstract class SimObject
     {
         x = xCoord;
         y = yCoord;
-        notifyListener();
+        this.notifyListener();
     }
 
     // move to the given location
@@ -70,11 +70,11 @@ public abstract class SimObject
     {
         x = location.x;
         y = location.y;
-        notifyListener();
+        this.notifyListener();
     }
 
     // send the object to the place it was initialized
-    public void goHome() { moveTo(home); }
+    public void goHome() { this.moveTo(home); }
 
     // getters
     public float getX() { return x; }
@@ -106,7 +106,7 @@ public abstract class SimObject
     }
 
     // LISTENER
-    public void registerListener(JTextField l) { listener = l; }
+    public void registerListener(JTextComponent l) { listener = l; }
     protected void notifyListener() { listener.setText((String.valueOf((int)x) + 
                                             ", " + String.valueOf((int)y))); }
 }
