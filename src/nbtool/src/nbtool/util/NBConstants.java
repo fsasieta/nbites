@@ -10,7 +10,7 @@ import nbtool.data.Log;
 
 public class NBConstants {
 	
-	public static final int VERSION = 6;
+	public static final int VERSION = 5;
 	
 	public static final String PROTOBUF_TYPE_PREFIX = "proto-";
 	
