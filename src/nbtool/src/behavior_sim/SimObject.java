@@ -8,6 +8,7 @@ package behavior_sim;
 */
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.text.JTextComponent;
 
@@ -16,7 +17,8 @@ public abstract class SimObject
     protected float x, y, radius;
     protected Location home;
     protected Color color;
-    protected JTextComponent listener;
+    protected ArrayList<JTextComponent> listeners = 
+                            new ArrayList<JTextComponent>();
 
     public SimObject()
     {
@@ -42,6 +44,14 @@ public abstract class SimObject
         this.setRadiusAndColor();
     } 
 
+    public SimObject(SimObject simObj)
+    {
+        x = simObj.x;
+        y = simObj.y;
+        home = new Location(x,y);
+        this.setRadiusAndColor();
+    }
+
     // Probably want to override this in sub-classes
     protected void setRadiusAndColor()
     {
@@ -54,7 +64,7 @@ public abstract class SimObject
     {
         x += xCoord;
         y += yCoord;
-        this.notifyListener();
+        if (!listeners.isEmpty()) this.notifyListeners();
     }
 
     // move to the given coordinates
@@ -62,7 +72,7 @@ public abstract class SimObject
     {
         x = xCoord;
         y = yCoord;
-        this.notifyListener();
+        if (!listeners.isEmpty()) this.notifyListeners();
     }
 
     // move to the given location
@@ -70,8 +80,18 @@ public abstract class SimObject
     {
         x = location.x;
         y = location.y;
-        this.notifyListener();
+        if (!listeners.isEmpty()) this.notifyListeners();
     }
+
+    public float distanceTo(Location location)
+    {
+        float xDist = location.x - x;
+        float yDist = location.y - y;
+        return (float)Math.sqrt(xDist*xDist + yDist*yDist);
+    }
+
+    public float flipX() { return FieldConstants.FIELD_WIDTH - x; }
+    public float flipY() { return FieldConstants.FIELD_HEIGHT - y; }
 
     // send the object to the place it was initialized
     public void goHome() { this.moveTo(home); }
@@ -106,7 +126,10 @@ public abstract class SimObject
     }
 
     // LISTENER
-    public void registerListener(JTextComponent l) { listener = l; }
-    protected void notifyListener() { listener.setText((String.valueOf((int)x) + 
-                                            ", " + String.valueOf((int)y))); }
+    public void registerListener(JTextComponent l) { listeners.add(l); }
+    protected void notifyListeners() 
+    { 
+        listeners.get(0).setText((String.valueOf((int)x) + 
+                                        ", " + String.valueOf((int)y))); 
+    }
 }

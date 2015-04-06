@@ -13,7 +13,7 @@ javac -d $BIN @_tempFiles
 rm _tempFiles
 
 cd $CROSS
-make nbcross &
+make nbcross -j4 &
 
 cd $BIN
 java -ea behavior_sim.Gui

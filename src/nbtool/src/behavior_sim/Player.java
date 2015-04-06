@@ -39,6 +39,13 @@ public class Player extends SimObject
         num = n;
     }
 
+    public Player (Player player)
+    {
+        super(player);
+        h = player.getH();
+        num = player.getNum();
+    }
+
     public void setRadiusAndColor()
     {
         radius = 7.5f;
@@ -49,18 +56,43 @@ public class Player extends SimObject
     {
         super.move(xCoord, yCoord);
         h += heading;
-        this.notifyListener();
+        this.notifyListeners();
     }
 
     public void moveTo(float xCoord, float yCoord, float heading)
     {
         super.moveTo(xCoord, yCoord);
         h = heading;
-        this.notifyListener();
+        this.notifyListeners();
     }
 
     // heading specific functions
     public void turn(float heading) { h += heading; }
     public void turnTo(float heading) { h = heading; }
     public float getH() { return h; }
+    public float flipH() { return h + (float)Math.PI; }
+    public float bearingTo(Location loc)
+    {
+        float yDist = loc.y - y;
+        return h - (float)Math.asin(yDist/distanceTo(loc));
+    }
+
+    public int getNum() { return num; }
+    public int team() { return num/FieldConstants.TEAM_SIZE;}
+
+    protected void notifyListeners()
+    {
+        if (listeners.isEmpty()) return;
+        super.notifyListeners();
+        if (num / FieldConstants.TEAM_SIZE >= 1)
+        {
+            listeners.get(1).setText((String.valueOf((int)this.flipX()) + 
+                                            ", " + String.valueOf((int)y))); 
+        }
+        else
+        {
+            listeners.get(1).setText((String.valueOf((int)x) + 
+                                            ", " + String.valueOf((int)flipY())));
+        }
+    }
 }

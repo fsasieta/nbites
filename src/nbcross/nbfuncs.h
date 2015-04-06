@@ -14,6 +14,23 @@
 
 #include "../man/log/logio.h"
 
+#include "Common.h"
+#include "RoboGrams.h"
+
+#include "GameState.pb.h"
+#include "BallModel.pb.h"
+#include "LedCommand.pb.h"
+#include "WorldModel.pb.h"
+#include "PMotion.pb.h"
+#include "MotionStatus.pb.h"
+#include "VisionField.pb.h"
+#include "VisionRobot.pb.h"
+#include "ButtonState.pb.h"
+#include "FallStatus.pb.h"
+#include "RobotLocation.pb.h"
+#include "StiffnessControl.pb.h"
+#include "Obstacle.pb.h"
+
 typedef struct {
     const char * name;
     int (*func)(void) ;

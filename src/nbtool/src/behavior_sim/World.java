@@ -20,6 +20,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 {
     public int time;   // track how much time is left
     public int half;   // which half is it
+    public int state;   // game state
+    public int kickOffTeam;     // who is kicking off
 
     private int playerMove;   // tracks which player should move on mouse drag
     private boolean ballMove;       // whether or not the ball should be moved on mouse drag
@@ -45,7 +47,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         leftKickoff =  new Location[2*FieldConstants.TEAM_SIZE];
         for (int i = 0; i < leftKickoff.length; i++)
         {
-            leftKickoff[i] = KickOffPostions.values()[i].loc;
+            leftKickoff[i] = Enums.KickOffPositions.values()[i].loc;
         }
 
         // start positions for the right team kickoff
@@ -60,7 +62,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         posts = new Post[FieldConstants.NUM_POSTS];
         for (int i = 0; i < posts.length; i++)
         {
-                posts[i] = new Post(PostLocations.values()[i].loc);
+                posts[i] = new Post(Enums.PostLocations.values()[i].loc);
         }
 
         ballMove = false;
@@ -68,6 +70,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
         time = FieldConstants.TIME_PER_HALF;
         half = 1;
+        state = Enums.States.valueOf("STATE_PLAYING").state;    // todo
+        kickOffTeam = Enums.Teams.valueOf("MY_TEAM").team;
 
         bIntp = new BehaviorInterpreter();
 
@@ -126,6 +130,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
             ball.getY() >= FieldConstants.MY_GOALBOX_BOTTOM_Y &&
             ball.getY() <= FieldConstants.MY_GOALBOX_TOP_Y)
         {
+            kickOffTeam = Enums.Teams.valueOf("MY_TEAM").team;
+
             // take drag control of objects away
             playerMove = -1;
             ballMove = false;
@@ -139,6 +145,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
                 ball.getY() >= FieldConstants.OPP_GOALBOX_BOTTOM_Y &&
                 ball.getY() <= FieldConstants.OPP_GOALBOX_TOP_Y)
         {
+            kickOffTeam = Enums.Teams.valueOf("OPP_TEAM").team; 
+
             // take drag control of objects away
             playerMove = -1;
             ballMove = false;
@@ -219,36 +227,4 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     public void mouseExited(MouseEvent e) {}
     @Override
     public void mouseEntered(MouseEvent e) {}   
-
-    private enum KickOffPostions
-    {
-        EDHL (FieldConstants.EVEN_DEFENDER_HOME_L),
-        ODHL (FieldConstants.ODD_DEFENDER_HOME_L),
-        ECKL (FieldConstants.EVEN_CHASER_KICKOFF_L),
-        OCHL (FieldConstants.ODD_CHASER_HOME_L),
-        EDHR (FieldConstants.EVEN_DEFENDER_HOME_R),
-        ODHR (FieldConstants.ODD_DEFENDER_HOME_R),
-        ECHR (FieldConstants.EVEN_CHASER_HOME_R),
-        OCHR (FieldConstants.ODD_CHASER_HOME_R);
-        
-        public Location loc;
-
-        KickOffPostions(final Location loc) { this.loc = loc; }
-    }
-
-    private enum PostLocations
-    {
-        LB (new Location(FieldConstants.MY_GOALBOX_LEFT_X, 
-                            FieldConstants.MY_GOALBOX_BOTTOM_Y)),
-        LT (new Location(FieldConstants.MY_GOALBOX_LEFT_X, 
-                            FieldConstants.MY_GOALBOX_TOP_Y)),
-        RB (new Location(FieldConstants.OPP_GOALBOX_RIGHT_X, 
-                            FieldConstants.OPP_GOALBOX_BOTTOM_Y)),
-        RT (new Location(FieldConstants.OPP_GOALBOX_RIGHT_X, 
-                            FieldConstants.OPP_GOALBOX_TOP_Y));
-        
-        public Location loc;
-
-        PostLocations(final Location loc) { this.loc = loc; }
-    }
 }

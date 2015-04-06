@@ -81,10 +81,18 @@ include_directories( ${SHARE_DIR}/include )
 add_subdirectory( ${SHARE_DIR}/portals ${CMAKE_CURRENT_BINARY_DIR}/portals )
 include_directories( ${SHARE_DIR}/portals )
 
+find_package( PythonLibs   REQUIRED )
+include_directories( ${PYTHON_INCLUDE_DIR} )
+
 # Compile messages into messages folder
 add_subdirectory( ${SHARE_DIR}/messages ${CMAKE_CURRENT_BINARY_DIR}/messages )
 include_directories( ${CMAKE_CURRENT_BINARY_DIR}/messages )
 include_directories( ${SHARE_DIR}/messages )
+
+MESSAGE( "FOUND PYTHON AT: " ${PYTHON_INCLUDE_DIR})
+
+find_package( PROTOBUF REQUIRED )
+include_directories ( SYSTEM ${PROTOBUF_INCLUDE_DIR} )
 
 # If protobuf libs don't exist yet, make sure they build before man
 if( BUILD_PROTOBUF )
@@ -96,6 +104,7 @@ include_directories( ${MAN_DIR}/support )
 add_subdirectory( ${MAN_DIR}/support ${CMAKE_CURRENT_BINARY_DIR}/man/support)
 
 add_subdirectory( ${MAN_DIR}/balltrack ${CMAKE_CURRENT_BINARY_DIR}/man/balltrack)
+add_subdirectory( ${MAN_DIR}/behaviors ${CMAKE_CURRENT_BINARY_DIR}/man/behaviors)
 add_subdirectory( ${MAN_DIR}/comm ${CMAKE_CURRENT_BINARY_DIR}/man/comm)
 add_subdirectory( ${MAN_DIR}/sharedball ${CMAKE_CURRENT_BINARY_DIR}/man/sharedball)
 add_subdirectory( ${MAN_DIR}/image ${CMAKE_CURRENT_BINARY_DIR}/man/image)
@@ -108,10 +117,12 @@ add_subdirectory( ${MAN_DIR}/log ${CMAKE_CURRENT_BINARY_DIR}/man/log)
 set( NBCROSS_SRCS
   main.cpp
   nbfuncs.cpp
+  SimulatorModule.cpp
 )
 
 set( NBCROSS_HEADERS
   nbfuncs.h
+  SimulatorModule.h
 )
 
 add_library(nbcross
@@ -126,12 +137,21 @@ add_executable( nbcross_tool
   ${NBCROSS_SRCS}
   ${NBCROSS_HEADERS} )
 
-target_link_libraries( nbcross_tool
+#install(
+# FILES ${NBITES_DIR}/src/nbtool/src/behavior_sim/Switch.py
+# DESTINATION ${NBITES_DIR}/build/nbcross/install/lib/python/players/
+# CONFIGURATIONS "" Debug Release
+# )
+
+target_link_libraries( 
+  nbcross_tool
   portals
   messages
+  behaviors
   image # man image
   vision # man vision
   comm # man comm
   sharedball # man sharedball
   log
+  support
   )

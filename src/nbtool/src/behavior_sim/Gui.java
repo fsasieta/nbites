@@ -175,7 +175,7 @@ public class Gui extends JFrame
 
         JTextField bLoc = new JTextField();
         fieldPanel.ball.registerListener(bLoc); // gets updates from the ball
-        bLoc.setText("Set for kickoff");
+        //bLoc.setText("Set for kickoff");
 
         ballInfo.add(position);
         ballInfo.add(bLoc);
@@ -189,16 +189,22 @@ public class Gui extends JFrame
         JPanel playerInfo = new JPanel();
         playerInfo.setLayout(new BoxLayout(playerInfo, BoxLayout.Y_AXIS));
 
-        JLabel position = new JLabel("Player Location (x, y)");
+        JLabel gCoords = new JLabel("GUI Coords");
+        JTextField gLoc = new JTextField();
+        fieldPanel.players[num].registerListener(gLoc);
+        gLoc.setText("Set for kick off");
 
-        JTextField pLoc = new JTextField();
-        fieldPanel.players[num].registerListener(pLoc); // gets updates from the ball
-        pLoc.setText("Set for kick off");
+        JLabel rCoords = new JLabel("Player's Reference Frame Coords");
+        JTextField rLoc = new JTextField();
+        fieldPanel.players[num].registerListener(rLoc);
+        rLoc.setText("Set for kick off");
 
         JButton flip = new JButton("Flip");
 
-        playerInfo.add(position);
-        playerInfo.add(pLoc);
+        playerInfo.add(gCoords);
+        playerInfo.add(gLoc);
+        playerInfo.add(rCoords);
+        playerInfo.add(rLoc);
         playerInfo.add(flip);
 
         return playerInfo;

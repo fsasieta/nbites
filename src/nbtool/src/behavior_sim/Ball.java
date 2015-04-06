@@ -9,6 +9,7 @@ public class Ball extends SimObject
     public Ball() { super(); }
     public Ball(float xCoord, float yCoord) { super(xCoord, yCoord); }
     public Ball(Location location) { super(location); }
+    public Ball(Ball ball) { super(ball); }
 
     protected void setRadiusAndColor()
     {

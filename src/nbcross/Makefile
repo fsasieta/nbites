@@ -6,7 +6,8 @@ SRC_DIR      = $(PROJECT_DIR)/src/nbcross
 GEN_MAKEFILE = $(BIN_DIR)/Makefile
 
 TOOLCHAIN    = ../share/cmake/generic.cmake
-FLAGS        = -DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN)
+INSTALL_PREFIX = install/
+FLAGS        = -DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN) -DCMAKE_INSTALL_PREFIX=install/
 
 EXECUTABLE = nbcross_tool
 #LOC_EXECUTABLE = loc_tool
@@ -16,6 +17,10 @@ EXECUTABLE = nbcross_tool
 #PLAYBOOK_EXECUTABLE = playbook_tool
 #SIM_EXECUTABLE = sim_tool
 #INSTALLER_EXECUTABLE = installer_tool
+
+.PHONY: sim
+sim: $(BUILD_DIR)/Makefile
+	$(MAKE) install -C $(BUILD_DIR) --no-print-directory;
 
 .PHONY: build_nbcross
 build_nbcross:
