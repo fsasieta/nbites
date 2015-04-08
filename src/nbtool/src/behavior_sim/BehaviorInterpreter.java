@@ -109,15 +109,15 @@ public class BehaviorInterpreter implements CppFuncListener
     {
         callThread = new Thread() {
             public void run() { 
-                // while (runSim) 
-                // {
-                //     sendMessages();
-                //     // time delay before next call
-                //     try { callThread.sleep(1000); }
-                //     catch (InterruptedException e) { 
-                //         System.out.println("Thread interrupted."); 
-                //     }
-                // }
+                while (runSim) 
+                {
+                    sendMessages();
+                    // time delay before next call
+                    try { callThread.sleep(1000); }
+                    catch (InterruptedException e) { 
+                        System.out.println("Thread interrupted."); 
+                    }
+                }
                 sendMessages();
                 return; 
             }

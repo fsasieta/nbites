@@ -16,20 +16,7 @@
 
 #include "Common.h"
 #include "RoboGrams.h"
-
-#include "GameState.pb.h"
-#include "BallModel.pb.h"
-#include "LedCommand.pb.h"
-#include "WorldModel.pb.h"
-#include "PMotion.pb.h"
-#include "MotionStatus.pb.h"
-#include "VisionField.pb.h"
-#include "VisionRobot.pb.h"
-#include "ButtonState.pb.h"
-#include "FallStatus.pb.h"
-#include "RobotLocation.pb.h"
-#include "StiffnessControl.pb.h"
-#include "Obstacle.pb.h"
+#include "Simulator.h"
 
 typedef struct {
     const char * name;
@@ -42,6 +29,7 @@ extern std::vector<nbfunc_t> FUNCS;
 
 extern std::vector<logio::log_t> args;
 extern std::vector<logio::log_t> rets;
+extern Simulator *sim;
 
 void register_funcs();
 void check_arguments(int func_index); //Checks that the arguments in <std::vector args> match

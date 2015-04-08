@@ -8,14 +8,14 @@
 #include "nbfuncs.h"
 #include <assert.h>
 #include <vector>
-
-#include "behaviors/BehaviorsModule.h"
-#include "SimulatorModule.h"
+#include <stdlib.h>
 
 std::vector<nbfunc_t> FUNCS;
 
 std::vector<logio::log_t> args;
 std::vector<logio::log_t> rets;
+
+Simulator *sim;
 
 //Common arg types -- used to check arg types and for human readability.
 const char sYUVImage[] = "YUVImage";
@@ -77,68 +77,7 @@ int Behaviors_func() {
 
     assert(args.size() == ARG_SIZE);
 
-    // The Protobufs
-    messages::RobotLocation localizationPB;
-    messages::FilteredBall filteredBallPB;
-    messages::GameState gameStatePB;
-    messages::VisionField visionFieldPB;
-    messages::VisionRobot visionRobotPB;
-    messages::VisionObstacle visionObstaclePB;
-    messages::FallStatus fallStatusPB;
-    messages::MotionStatus motionStatusPB;
-    messages::RobotLocation odometryPB;
-    messages::JointAngles jointsPB;
-    messages::StiffStatus stiffStatusPB;
-    messages::FieldObstacles obstaclePB;
-    messages::SharedBall sharedBallPB;
-    messages::RobotLocation sharedFlipPB;
-
-    // The data strings from the arguments
-    const std::string pBufString0((const char*)args[0].data, args[0].dlen);
-    const std::string pBufString1((const char*)args[1].data, args[1].dlen);
-    const std::string pBufString2((const char*)args[2].data, args[2].dlen);
-    const std::string pBufString3((const char*)args[3].data, args[3].dlen);
-    const std::string pBufString4((const char*)args[4].data, args[4].dlen);
-    const std::string pBufString5((const char*)args[5].data, args[5].dlen);
-    const std::string pBufString6((const char*)args[6].data, args[6].dlen);
-    const std::string pBufString7((const char*)args[7].data, args[7].dlen);
-    const std::string pBufString8((const char*)args[8].data, args[8].dlen);
-    const std::string pBufString9((const char*)args[9].data, args[9].dlen);
-    const std::string pBufString10((const char*)args[10].data, args[10].dlen);
-    const std::string pBufString11((const char*)args[11].data, args[11].dlen);
-    const std::string pBufString12((const char*)args[12].data, args[12].dlen);
-    const std::string pBufString13((const char*)args[13].data, args[13].dlen);
-
-    // Parse the Protobufs
-    localizationPB.ParseFromString(pBufString0);
-    filteredBallPB.ParseFromString(pBufString1);
-    gameStatePB.ParseFromString(pBufString2);
-    visionFieldPB.ParseFromString(pBufString3);
-    visionRobotPB.ParseFromString(pBufString4);
-    visionObstaclePB.ParseFromString(pBufString5);
-    fallStatusPB.ParseFromString(pBufString6);
-    motionStatusPB.ParseFromString(pBufString7);
-    odometryPB.ParseFromString(pBufString8);
-    jointsPB.ParseFromString(pBufString9);
-    stiffStatusPB.ParseFromString(pBufString10);
-    obstaclePB.ParseFromString(pBufString11);
-    sharedBallPB.ParseFromString(pBufString12);
-    sharedFlipPB.ParseFromString(pBufString13);
-
-    SimulatorModule simulator(localizationPB, filteredBallPB, gameStatePB, 
-                                        visionFieldPB, visionRobotPB, visionObstaclePB, 
-                                        fallStatusPB, motionStatusPB, odometryPB, jointsPB, 
-                                        stiffStatusPB, obstaclePB, sharedBallPB, sharedFlipPB);
-    simulator.run();
-
-    // const std::string testData((const char*)log.data, log.dlen);
-    // messages::FilteredBall filtBall;
-    //  if (filtBall.ParseFromString(testData))
-    //  {
-    //      std::cout << "Ball x: " << filtBall.x() << 
-    //                  " Ball y: " << filtBall.y() << 
-    //                  " Ball Dist: " << filtBall.distance();
-    //  } 
+    sim->run(args);
 
     return 0;
 }
@@ -187,6 +126,8 @@ void register_funcs() {
                     };
     Behaviors.func = Behaviors_func;
     FUNCS.push_back(Behaviors);
+
+    sim = new Simulator;
 }
 
 
