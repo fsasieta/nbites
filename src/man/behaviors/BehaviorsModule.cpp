@@ -316,8 +316,10 @@ void BehaviorsModule::modifySysPath ()
 {
     // Enter the current working directory into the python module path
     const char *cwd = "/home/nao/nbites/lib";
+    const char *cwd2 = "/home/dnav/nbites/build/nbcross/install/lib";
 
     std::cout << "  Adding " << cwd << " to sys.path" << std::endl;
+    std::cout << "  Adding " << cwd2 << " to sys.path" << std::endl;
 
     PyObject *sys_module = PyImport_ImportModule("sys");
     if (sys_module == NULL) {
@@ -333,6 +335,8 @@ void BehaviorsModule::modifySysPath ()
         PyObject *dict = PyModule_GetDict(sys_module);
         PyObject *path = PyDict_GetItemString(dict, "path");
         PyList_Append(path, PyString_FromString(cwd));
+        path = PyDict_GetItemString(dict, "path");
+        PyList_Append(path, PyString_FromString(cwd2));
         Py_DECREF(sys_module);
     }
 }

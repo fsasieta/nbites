@@ -117,12 +117,12 @@ add_subdirectory( ${MAN_DIR}/log ${CMAKE_CURRENT_BINARY_DIR}/man/log)
 set( NBCROSS_SRCS
   main.cpp
   nbfuncs.cpp
-  SimulatorModule.cpp
+  Simulator.cpp
 )
 
 set( NBCROSS_HEADERS
   nbfuncs.h
-  SimulatorModule.h
+  Simulator.h
 )
 
 add_library(nbcross
@@ -137,11 +137,12 @@ add_executable( nbcross_tool
   ${NBCROSS_SRCS}
   ${NBCROSS_HEADERS} )
 
-#install(
-# FILES ${NBITES_DIR}/src/nbtool/src/behavior_sim/Switch.py
-# DESTINATION ${NBITES_DIR}/build/nbcross/install/lib/python/players/
-# CONFIGURATIONS "" Debug Release
-# )
+# always be pBrunswick
+install(
+  FILES ${NBITES_DIR}/src/nbtool/src/behavior_sim/Switch.py
+  DESTINATION ${NBITES_DIR}/build/nbcross/install/lib/python/players/
+  CONFIGURATIONS "" Debug Release
+)
 
 target_link_libraries( 
   nbcross_tool

@@ -18,9 +18,9 @@ foreach(PROTO_FILE ${PROTO_FILES})
   ${GENERATED_FILE_DIR}/${PROTO_NAME}.pb.h
   ${GENERATED_FILE_DIR}/${PROTO_NAME}.pb.cc)
 
-  if( NOT OFFLINE )
-    set(WRAPPED_FILES ${WRAPPED_FILES} ${GENERATED_FILE_DIR}/${PROTO_NAME}.boost.pb.cpp)
-  endif( NOT OFFLINE )
+  # if( NOT OFFLINE )
+  set(WRAPPED_FILES ${WRAPPED_FILES} ${GENERATED_FILE_DIR}/${PROTO_NAME}.boost.pb.cpp)
+  # endif( NOT OFFLINE )
 
 endforeach(PROTO_FILE ${PROTO_FILES})
 
@@ -35,14 +35,14 @@ add_custom_command(
 
 # Note that we only want to generate py messages if we're going to run
 # on the robot... we can't compile them offline for now
-if( NOT OFFLINE )
+# if( NOT OFFLINE )
 add_custom_command(
   OUTPUT ${WRAPPED_FILES}
   COMMAND autowrap/wrapifier.py -o ${GENERATED_FILE_DIR} ${PROTO_FILES}
   DEPENDS ${PROTO_FILES}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-endif( NOT OFFLINE )
+# endif( NOT OFFLINE )
 
 set( PROTOS_SRCS ${GENERATED_SRC_FILES} )
 set( MESSAGE_SRCS Images.cpp )
