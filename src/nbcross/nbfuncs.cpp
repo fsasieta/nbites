@@ -15,13 +15,16 @@ std::vector<nbfunc_t> FUNCS;
 std::vector<logio::log_t> args;
 std::vector<logio::log_t> rets;
 
-Simulator *sim;
+std::vector<Simulator *> sims;
+
+int pIndex = 0;
 
 //Common arg types -- used to check arg types and for human readability.
 const char sYUVImage[] = "YUVImage";
 const char sParticleSwarm_pbuf[] = "ParticleSwarm";
 const char sParticle_pbuf[] = "Particle";
 const char sTest[] = "test";
+const char sInt[] = "int";
 const char sRobotLocation_pbuf[] = "RobotLocation";
 const char sFilteredBall_pbuf[] = "FilteredBall";
 const char sGameState_pbuf[] = "GameState";
@@ -73,11 +76,28 @@ int CrossBright_func() {
 }
 
 int Behaviors_func() {
-    const int ARG_SIZE = 14;
+    assert(args.size() == 14);
 
-    assert(args.size() == ARG_SIZE);
-
+    Simulator *sim = sims.at(pIndex);
     sim->run(args);
+
+    logio::log_t bodyMotion = logio::copyLog(&sim->bodyMotion);
+    rets.push_back(bodyMotion);
+
+    pIndex = (pIndex + 1) % sims.size();
+
+    return 0;
+}
+
+int InitSim_func() {
+    assert(args.size() == 1);
+
+    sims.clear();
+
+    for (int i = 0; i < static_cast<int>(*args[0].data); i++){
+        Simulator *sim = new Simulator;
+        sims.push_back(sim);
+    }
 
     return 0;
 }
@@ -127,7 +147,13 @@ void register_funcs() {
     Behaviors.func = Behaviors_func;
     FUNCS.push_back(Behaviors);
 
-    sim = new Simulator;
+    //InitSim
+    nbfunc_t InitSim;
+    InitSim.name = "InitSim";
+    InitSim.args = {sInt};
+    InitSim.func = InitSim_func;
+    FUNCS.push_back(InitSim);
 }
+
 
 

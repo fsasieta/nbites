@@ -66,6 +66,22 @@ public class Player extends SimObject
         this.notifyListeners();
     }
 
+    public void moveRel(float relX, float relY, float relH)
+    {
+        h += relH;
+        h %= (float)Math.PI;
+
+        // 2D rotation
+        float xDist = relX * (float)Math.cos(-h) - 
+                        relY * (float)Math.sin(-h);
+
+        float yDist = relY * (float)Math.cos(-h) + 
+                        relX * (float)Math.sin(-h);
+
+        super.move(xDist, yDist);
+        this.notifyListeners();
+    }
+
     // heading specific functions
     public void turn(float heading) { h += heading; }
     public void turnTo(float heading) { h = heading; }

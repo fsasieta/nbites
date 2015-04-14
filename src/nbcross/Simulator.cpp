@@ -1,7 +1,8 @@
 #include "Simulator.h"
+#include <typeinfo>
 
 Simulator::Simulator()
-: behaviors(0,4)
+: behaviors(0, 4)
 {
 
 }
@@ -10,6 +11,16 @@ void Simulator::run(std::vector<logio::log_t> pbufs)
 {
     behaviors.reset();
 
+    prepareMessages(pbufs);
+    sendMessages();
+
+    behaviors.run();
+
+    getMotionCommands();
+}
+
+void Simulator::prepareMessages(std::vector<logio::log_t> pbufs)
+{
     // The data strings from the arguments
     const std::string pBufString0((const char*)pbufs[0].data, pbufs[0].dlen);
     const std::string pBufString1((const char*)pbufs[1].data, pbufs[1].dlen);
@@ -72,7 +83,10 @@ void Simulator::run(std::vector<logio::log_t> pbufs)
     sharedBallMg = portals::Message<messages::SharedBall>(&sharedBallPB);
     sharedFlipMg = portals::Message<messages::RobotLocation>(&sharedFlipPB);
     model = portals::Message<messages::WorldModel>(0);
+}
 
+void Simulator::sendMessages()
+{
     behaviors.localizationIn.setMessage(localizationMg);
     behaviors.filteredBallIn.setMessage(filteredBallMg);
     behaviors.gameStateIn.setMessage(gameStateMg);
@@ -90,30 +104,31 @@ void Simulator::run(std::vector<logio::log_t> pbufs)
 
     //TODO
     for (int i = 0; i < 5; i++) { behaviors.worldModelIn[i].setMessage(model); }
+}
 
-    std::cout << "Should RUn" << std::endl;
+void Simulator::getMotionCommands()
+{
+    messages::HeadMotionCommand hmc = 
+        *behaviors.headMotionCommandOut.getMessage(true).get();
 
-    behaviors.run();
-    
-    portals::InPortal<messages::MotionCommand> motionCommand;
-    motionCommand.setMessage(behaviors.bodyMotionCommandOut.getMessage(true).get());
-    
-    std::cout << motionCommand.message().dest().gain() << std::endl;
+    int hmcSize = hmc.ByteSize();
+    uint8_t hmcBytes[hmcSize];
+    hmc.SerializeToArray(hmcBytes, hmcSize);
+    char hmcDesc[] = "type=HeadMotionCommand";
 
-    // std::cout << motionCommand.message().speed().x_percent() <<
-    // ", " << motionCommand.message().speed().y_percent() << ", " <<
-    // motionCommand.message().speed().h_percent() << std::endl;
+    headMotion.data = hmcBytes;
+    headMotion.dlen = hmcSize;
+    headMotion.desc = hmcDesc;
 
-    // portals::InPortal<messages::HeadMotionCommand> headMotionCommand;
-    // headMotionCommand.setMessage(behaviors.headMotionCommandOut.getMessage(true).get());
+    messages::MotionCommand bmc = 
+        *behaviors.bodyMotionCommandOut.getMessage(true).get();
 
-    // float temp = headMotionCommand.message().scripted_command().command_size();
-    // std::cout << temp << std::endl;
-    // messages::HeadJointCommand hjc = headMotionCommand.message().scripted_command().command(0);
+    int bmcSize = bmc.ByteSize();
+    uint8_t bmcBytes[bmcSize];
+    bmc.SerializeToArray(bmcBytes, bmcSize);
+    char bmcDesc[] = "type=MotionCommand";
 
-    // std::cout << hjc.angles().head_yaw() << std::endl;
-
-
-    // TODO
-    // portals::InPortal<messages::VisionBall> visionBallIn;
+    bodyMotion.data = bmcBytes;
+    bodyMotion.dlen = bmcSize;
+    bodyMotion.desc = bmcDesc;
 }

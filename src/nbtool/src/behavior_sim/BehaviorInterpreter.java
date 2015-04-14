@@ -2,12 +2,14 @@ package behavior_sim;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import nbtool.data.Log;
 import nbtool.io.CppIO;
 import nbtool.io.CppIO.CppFuncCall;
 import nbtool.io.CppIO.CppFuncListener;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import messages.*;
 
     // TODO eventually all of the protobufs need to be set
@@ -15,14 +17,11 @@ import messages.*;
 
     // TODO, info needs to be passed differently for the right team (symmetric flip)
 
-        // gameState, 
-        // visionField, visionRobot, visionObstacle, fallStatus, 
-        // motionStatus, odometry, joints, stiffStatus, obstacle, 
-        // sharedFlip, worldModel
-
 public class BehaviorInterpreter implements CppFuncListener
 {
     private boolean runSim;    // should the sim keep running?
+
+    private LinkedList<Integer> pQ;     // player index who's behavior's are being run
 
     private Ball ball;
     private Player[] players;
@@ -35,9 +34,18 @@ public class BehaviorInterpreter implements CppFuncListener
         CppIO.ref();        // open an nbcross connection
 
         runSim = false;     // shouldn't be running yet
+
+        pQ = new LinkedList();
     }
 
-    public void run(World world)
+    public void run()
+    {
+        runSim = true;  // now it can run
+        System.out.println("sending");
+        this.sendMessagesInSeparateThread();        
+    }
+
+    public void initAndRun(World world)
     {
         runSim = true;  // now it can run
 
@@ -45,6 +53,20 @@ public class BehaviorInterpreter implements CppFuncListener
         this.world = world;
         ball = world.ball;
         players = world.players;
+
+        // find the number of active players
+        int numPlayers = 0;
+        for (Player p : players) { if (p != null) { numPlayers++ ; } }
+        byte[] byteArray = {(byte)numPlayers};
+        Log log = new Log("type=int", byteArray);
+
+        CppFuncCall initSim = new CppFuncCall();
+        initSim.index = CppIO.current.indexOfFunc("InitSim");
+        initSim.name = "InitSim";
+        initSim.args = new ArrayList<Log>(Arrays.asList(log));
+        initSim.listener = this;        
+
+        CppIO.current.tryAddCall(initSim);
 
         this.sendMessagesInSeparateThread();
     }
@@ -59,7 +81,9 @@ public class BehaviorInterpreter implements CppFuncListener
         for (int i = 0; i < players.length; i++)
         {
             if (players[i] != null)
-            {
+            {   
+                pQ.add(i);
+
                 Player player = new Player(players[i]); // make a copy so we can edit it
                 Ball b = new Ball(ball);
                 if (player.team() == Enums.Teams.valueOf("MY_TEAM").team) // left team needs to be flipped on y
@@ -88,7 +112,7 @@ public class BehaviorInterpreter implements CppFuncListener
                 protobufs.add(new Log("type=Obstacle", this.setObstacle().toByteArray()));
                 protobufs.add(new Log("type=SharedBall", this.setSharedBall(b).toByteArray()));
                 protobufs.add(new Log("type=RobotLocation", this.setSharedFlip().toByteArray()));
-
+                
                 // create the function call
                 CppFuncCall funcCall = new CppFuncCall();
                 funcCall.index = CppIO.current.indexOfFunc("Behaviors");
@@ -113,7 +137,7 @@ public class BehaviorInterpreter implements CppFuncListener
                 {
                     sendMessages();
                     // time delay before next call
-                    try { callThread.sleep(1000); }
+                    try { callThread.sleep(200); }
                     catch (InterruptedException e) { 
                         System.out.println("Thread interrupted."); 
                     }
@@ -128,6 +152,67 @@ public class BehaviorInterpreter implements CppFuncListener
     @Override
     public void returned(int ret, Log... out) 
     {
+        if (out.length == 0) return;
+
+        int pIndex = pQ.remove();
+
+        PMotion.MotionCommand bmc = PMotion.MotionCommand.newBuilder().build();
+        try
+        { 
+            bmc = PMotion.MotionCommand.parseFrom(out[0].bytes);
+            
+            float normalizer = 1;
+
+            //System.out.println(bmc.getType());
+
+            switch(bmc.getType())
+            {
+                case DESTINATION_WALK:
+                    normalizer = (bmc.getDest().getRelX() + 
+                        bmc.getDest().getRelY());
+                    
+                    if (players[pIndex].team() == Enums.Teams.valueOf("MY_TEAM").team)
+                        players[pIndex].moveRel(bmc.getDest().getRelX()/normalizer, 
+                                                -bmc.getDest().getRelY()/normalizer,
+                                                -bmc.getDest().getRelH()/5);
+                    else players[pIndex].moveRel(-bmc.getDest().getRelX()/normalizer, 
+                                                bmc.getDest().getRelY()/normalizer,
+                                                bmc.getDest().getRelH()/5);
+
+                    world.repaint();
+                    break;
+
+                case WALK_COMMAND:
+                    if (players[pIndex].team() == Enums.Teams.valueOf("MY_TEAM").team)
+                        players[pIndex].moveRel(4*bmc.getSpeed().getXPercent(), 
+                                                -4*bmc.getSpeed().getYPercent(), 
+                                                -bmc.getSpeed().getHPercent()/10);
+                    else players[pIndex].moveRel(-4*bmc.getSpeed().getXPercent(), 
+                                                4*bmc.getSpeed().getYPercent(), 
+                                                bmc.getSpeed().getHPercent()/10);
+
+                    world.repaint();
+                    break;
+
+                case ODOMETRY_WALK:
+                    normalizer = (bmc.getOdometryDest().getRelX() + 
+                        bmc.getOdometryDest().getRelY());
+                    
+                    if (players[pIndex].team() == Enums.Teams.valueOf("MY_TEAM").team)
+                        players[pIndex].moveRel(bmc.getOdometryDest().getRelX()/normalizer, 
+                                                -bmc.getOdometryDest().getRelY()/normalizer,
+                                                -bmc.getOdometryDest().getRelH()/5);
+                    else players[pIndex].moveRel(-bmc.getOdometryDest().getRelX()/normalizer, 
+                                                bmc.getOdometryDest().getRelY()/normalizer,
+                                                bmc.getOdometryDest().getRelH()/5);
+
+                    world.repaint();
+                    break;
+            } 
+        }
+        catch(InvalidProtocolBufferException ipbe){
+            System.out.println("Received Invalid Protobuf");
+        }
     }
 
     private RobotLocationOuterClass.RobotLocation setLocalization(Player p)
@@ -147,6 +232,7 @@ public class BehaviorInterpreter implements CppFuncListener
                             .setVis(this.setVisionBall())
                             .setDistance(p.distanceTo(b.getLocation()))
                             .setBearing(p.bearingTo(b.getLocation()))
+                            .setBearingDeg((float)Math.toDegrees(p.bearingTo(b.getLocation())))
                             .setRelX(b.getX() - p.getX())
                             .setRelY(b.getY() - p.getY())
                             .setX(b.getX())

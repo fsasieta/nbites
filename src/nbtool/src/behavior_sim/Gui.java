@@ -158,9 +158,19 @@ public class Gui extends JFrame
             } 
         } );
         
+        // ends the simulation
+        final JButton resumeSim = new JButton("Resume Sim");
+        resumeSim.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+                fieldPanel.resumeSim();
+                timer.start(); 
+            } 
+        } );
+
         controls.add(setField);
         controls.add(startSim);
         controls.add(endSim);
+        controls.add(resumeSim);
 
         return controls; 
     }

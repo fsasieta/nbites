@@ -26,6 +26,15 @@ public:
     Simulator();
     void run(std::vector<logio::log_t> pbufs);
 
+public:
+    logio::log_t bodyMotion;
+    logio::log_t headMotion;
+
+private:
+    void prepareMessages(std::vector<logio::log_t> pbufs);
+    void sendMessages();
+    void getMotionCommands();
+
 private:
     portals::Message<messages::RobotLocation> localizationMg;
     portals::Message<messages::FilteredBall> filteredBallMg;
@@ -42,6 +51,9 @@ private:
     portals::Message<messages::SharedBall> sharedBallMg;
     portals::Message<messages::RobotLocation> sharedFlipMg;
     portals::Message<messages::WorldModel> model;
+
+    portals::InPortal<messages::MotionCommand> motionCommand;
+    //portals::InPortal<messages::HeadMotionCommand> headMotionCommand;
 
     man::behaviors::BehaviorsModule behaviors;
 };

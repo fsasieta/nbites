@@ -159,9 +159,12 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     }
 
     // run the interpreter
-    public void startSim() { bIntp.run(this); }
+    public void startSim() { bIntp.initAndRun(this); }
     //ends the interpreter
     public void endSim() { bIntp.end(); }
+    // resume paused sim
+    public void resumeSim() { bIntp.run(); }
+
 
     // find out if the ball or any player has been pressed
     @Override
@@ -197,25 +200,25 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // check if the ball is colliding with an object. if so, move it
         // on the outward normal to that object
 
-        for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++)
-        {
-            if (players[i] != null && players[i].contains(ball.getLocation()))
-            {
-                float xDist = ball.getX() - players[i].getX();
-                float yDist = ball.getY() - players[i].getY();
-                ball.move(xDist, yDist);
-            }
-        }
-        for (int i = 0; i < FieldConstants.NUM_POSTS; i++)
-        {
-            if (posts[i].contains(ball.getLocation()))
-            {
-                float xDist = ball.getX() - posts[i].getX();
-                float yDist = ball.getY() - posts[i].getY();
-                ball.move(xDist, yDist);
-                break;
-            }
-        }
+        // for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++)
+        // {
+        //     if (players[i] != null && players[i].contains(ball.getLocation()))
+        //     {
+        //         float xDist = ball.getX() - players[i].getX();
+        //         float yDist = ball.getY() - players[i].getY();
+        //         ball.move(xDist, yDist);
+        //     }
+        // }
+        // for (int i = 0; i < FieldConstants.NUM_POSTS; i++)
+        // {
+        //     if (posts[i].contains(ball.getLocation()))
+        //     {
+        //         float xDist = ball.getX() - posts[i].getX();
+        //         float yDist = ball.getY() - posts[i].getY();
+        //         ball.move(xDist, yDist);
+        //         break;
+        //     }
+        // }
         this.repaint();
     }
 
