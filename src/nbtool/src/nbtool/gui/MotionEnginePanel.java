@@ -25,7 +25,7 @@ import javax.swing.event.*;
 import javax.swing.BorderFactory;
 
 
-import nbtool.data.BotStats;
+//import nbtool.data.BotStats;
 import nbtool.data.Log;
 import nbtool.data.SessionMaster;
 import nbtool.io.CommandIO;
@@ -45,7 +45,11 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
     private JPanel canvas;
     private JButton start;
     private JButton stop;
-    private JSlider paramSlider;
+    //Names of Slider based on robot parameters
+    //Look in bhwalk/~/ WalkCommand.
+    //h is for rot, not up. No haters please,
+    //I didnt choose the letter
+    private JSlider xSlider, ySlider, hSlider;
     private JScrollPane sp;
     private JComboBox<String> modes;
 
@@ -71,16 +75,43 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
         canvas.add(stop);
         
         //orientation,min,max, and init val
-        paramSlider = new JSlider(JSlider.HORIZONTAL,0,100, 50);
-        paramSlider.addChangeListener(this);
-        paramSlider.setMinorTickSpacing(1);
-        paramSlider.setPaintTicks(true);
-        paramSlider.setPaintLabels(true);
-        Hashtable labeltable = new Hashtable();
-        labeltable.put (new Integer (0), new JLabel("0"));
-        labeltable.put (new Integer (100), new JLabel("100"));
-        canvas.add(paramSlider);
+        //same deal for other sliders.
+
+        JLabel wLabel = new JLabel("Walking parameters");
+        canvas.add(wLabel);
+
+        xSlider = new JSlider(JSlider.HORIZONTAL,0,100, 50);
+        xSlider.addChangeListener(this);
+        xSlider.setMinorTickSpacing(1);
+        xSlider.setPaintTicks(true);
+        xSlider.setPaintLabels(true);
+        Hashtable xlabeltable = new Hashtable();
+        xlabeltable.put (new Integer (0), new JLabel("0"));
+        xlabeltable.put (new Integer (100), new JLabel("100"));
+        canvas.add(xSlider);
         
+
+        ySlider = new JSlider(JSlider.HORIZONTAL,0,100, 50);
+        ySlider.addChangeListener(this);
+        ySlider.setMinorTickSpacing(1);
+        ySlider.setPaintTicks(true);
+        ySlider.setPaintLabels(true);
+        Hashtable ylabeltable = new Hashtable();
+        ylabeltable.put (new Integer (0), new JLabel("0"));
+        ylabeltable.put (new Integer (100), new JLabel("100"));
+        canvas.add(ySlider);
+        
+        hSlider = new JSlider(JSlider.HORIZONTAL,0,100, 50);
+        hSlider.addChangeListener(this);
+        hSlider.setMinorTickSpacing(1);
+        hSlider.setPaintTicks(true);
+        hSlider.setPaintLabels(true);
+        Hashtable hlabeltable = new Hashtable();
+        hlabeltable.put (new Integer (0), new JLabel("0"));
+        hlabeltable.put (new Integer (100), new JLabel("100"));
+        canvas.add(hSlider);
+        
+
         //In case we get a lot of components in the tab.
         sp = new JScrollPane();
 		sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -110,16 +141,31 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
     public void stateChanged(ChangeEvent e){
         JSlider source = (JSlider) e.getSource();
         if(!source.getValueIsAdjusting()){
-            int value = (int) source.getValue();
-            if(value == 0 ){
-                System.out.println("Slider is at zero");
+            int valueY = (int) ySlider.getValue();
+            int valueX = (int) xSlider.getValue();
+            int valueH = (int) hSlider.getValue();
+            
+            if(valueX == 0 ){
+                System.out.println("xSlider is at zero");
             }
-            else if(value == 100){
-                System.out.println("Slider is at max");
+            else if(valueX == 100){
+                System.out.println("xSlider is at max");
             }
-            else{
-                System.out.println("Slider stopped at value:"+value);
+            else{System.out.println("xSlider stopped at value:" + valueX);}
+            if(valueY == 0 ){
+                System.out.println("xSlider is at zero");
             }
+            else if(valueY == 100){
+                System.out.println("hSlider is at max");
+            }
+            else{System.out.println("hSlider stopped at value:"+valueY);}
+            if(valueH == 0 ){
+                System.out.println("hSlider is at zero");
+            }
+            else if(valueH == 100){
+                System.out.println("hSlider is at max");
+            }
+            else{System.out.println("hSlider stopped at value:" + valueH);}
         }
     }
     
@@ -146,16 +192,20 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
 		stop.setBounds(0, y + 3, d1.width, d1.height);
 		y += (d1.height > d2.height ? d1.height : d2.height) + 9;
 
-        paramSlider.getPreferredSize();
-        paramSlider.setBounds(0, y+3, 3 * d1.width, d1.height);
-        //paramSlider.setBorder(BorderFactory.createEmptyBorder( 2*y, y+3, y-3,y));
-        
+        xSlider.getPreferredSize();
+        xSlider.setBounds(0, y+3, 3 * d1.width, d1.height);
+        y += (d1.height > d2.height ? d1.height : d2.height) + 9;
+
+        ySlider.getPreferredSize();
+        ySlider.setBounds(0, y+3, 3 * d1.width, d1.height);
+        y += (d1.height > d2.height ? d1.height : d2.height) + 9;
+
+        hSlider.getPreferredSize();
+        hSlider.setBounds(0, y+3, 3 * d1.width, d1.height);
+        y += (d1.height > d2.height ? d1.height : d2.height) + 9;
+
+        //xSlider.setBorder(BorderFactory.createEmptyBorder( 2*y, y+3, y-3,y));
 		
         canvas.setPreferredSize(new Dimension(max_x, y));
     }
-    
-
-
-
 }
-
