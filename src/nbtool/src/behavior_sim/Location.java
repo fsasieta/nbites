@@ -15,4 +15,13 @@ public class Location
         x = xCoord;
         y = yCoord;
     }
-}
+
+    public void rotate(float rad)
+    {
+            x = x * (float)Math.cos(rad) - 
+                            y * (float)Math.sin(rad);
+
+            y = y * (float)Math.cos(rad) + 
+                            x * (float)Math.sin(rad);
+    }
+} 

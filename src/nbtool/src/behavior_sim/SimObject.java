@@ -14,7 +14,7 @@ import javax.swing.text.JTextComponent;
 
 public abstract class SimObject
 {
-    protected float x, y, radius;
+    public float x, y, radius;
     protected Location home;
     protected Color color;
     protected ArrayList<JTextComponent> listeners = 
@@ -117,7 +117,6 @@ public abstract class SimObject
                 yCoord >= (y-radius) && yCoord <= (y+radius));
     }
 
-
     // draw the object
     public void draw(Graphics2D g2)
     {
@@ -127,6 +126,7 @@ public abstract class SimObject
 
     // LISTENER
     public void registerListener(JTextComponent l) { listeners.add(l); }
+    public void deleteListeners() { listeners.clear(); }
     protected void notifyListeners() 
     { 
         listeners.get(0).setText((String.valueOf((int)x) + 

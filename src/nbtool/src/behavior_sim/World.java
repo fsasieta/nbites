@@ -31,6 +31,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     private Location[] leftKickoff;    // left team kickoff positions
     private Location[] rightKickoff;    // right team kickoff positions
     private Post[] posts;           // the goal posts
+    private Kick kick;
 
     private BehaviorInterpreter bIntp;  // the interpreter
 
@@ -67,6 +68,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
         ballMove = false;
         playerMove = -1;
+        kick = new Kick();
 
         time = FieldConstants.TIME_PER_HALF;
         half = 1;
@@ -91,6 +93,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // Check if there was a goal. Done here because every field update
         // calls this function
         goal();
+        kick();
     }
 
     // paints the world to the World JPanel
@@ -109,7 +112,13 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // match the team array to start positions
         for (int i = 0; i < team.length; i++)
         {
-            if(team[i]) players[i] = new Player(leftKickoff[i], i);
+            if(team[i]) 
+                {
+                    if (i/FieldConstants.TEAM_SIZE == 0)
+                        players[i] = new Player(leftKickoff[i], i, 0.0f);
+                    else
+                        players[i] = new Player(leftKickoff[i], i, (float)Math.PI);
+                }
         }
         this.repaint();
     }
@@ -126,9 +135,9 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
     // if there was a goal, return to initial positions
     public void goal()
     {
-        if (ball.getX() <= FieldConstants.MY_GOALBOX_LEFT_X &&
-            ball.getY() >= FieldConstants.MY_GOALBOX_BOTTOM_Y &&
-            ball.getY() <= FieldConstants.MY_GOALBOX_TOP_Y)
+        if (ball.x <= FieldConstants.MY_GOALBOX_LEFT_X &&
+            ball.y >= FieldConstants.MY_GOALBOX_BOTTOM_Y &&
+            ball.y <= FieldConstants.MY_GOALBOX_TOP_Y)
         {
             kickOffTeam = Enums.Teams.valueOf("MY_TEAM").team;
 
@@ -141,9 +150,9 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
             for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++) 
                 if (players[i] != null) players[i].moveTo(leftKickoff[i]);
         }
-        else if (ball.getX() >= FieldConstants.OPP_GOALBOX_RIGHT_X &&
-                ball.getY() >= FieldConstants.OPP_GOALBOX_BOTTOM_Y &&
-                ball.getY() <= FieldConstants.OPP_GOALBOX_TOP_Y)
+        else if (ball.x >= FieldConstants.OPP_GOALBOX_RIGHT_X &&
+                ball.y >= FieldConstants.OPP_GOALBOX_BOTTOM_Y &&
+                ball.y <= FieldConstants.OPP_GOALBOX_TOP_Y)
         {
             kickOffTeam = Enums.Teams.valueOf("OPP_TEAM").team; 
 
@@ -156,6 +165,22 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
             for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++) 
                 if (players[i] != null) players[i].moveTo(rightKickoff[i]);
         }          
+    }
+
+    public void kick()
+    {
+        if (kick.dist <= 0) return;
+
+        ball.move(kick.moveVect.x, kick.moveVect.y);
+
+        kick.dist -= 2;
+    }
+
+    public void kick(int pIndex, float h, int dir, float dist)
+    {
+        if (kick.kicker == pIndex && (kick.time - time) < 6) return;
+
+        kick = new Kick(h, dir, dist, pIndex, time);
     }
 
     // run the interpreter
@@ -204,8 +229,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // {
         //     if (players[i] != null && players[i].contains(ball.getLocation()))
         //     {
-        //         float xDist = ball.getX() - players[i].getX();
-        //         float yDist = ball.getY() - players[i].getY();
+        //         float xDist = ball.x - players[i].x;
+        //         float yDist = ball.y - players[i].y;
         //         ball.move(xDist, yDist);
         //     }
         // }
@@ -213,8 +238,8 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // {
         //     if (posts[i].contains(ball.getLocation()))
         //     {
-        //         float xDist = ball.getX() - posts[i].getX();
-        //         float yDist = ball.getY() - posts[i].getY();
+        //         float xDist = ball.x - posts[i].x;
+        //         float yDist = ball.y - posts[i].y;
         //         ball.move(xDist, yDist);
         //         break;
         //     }

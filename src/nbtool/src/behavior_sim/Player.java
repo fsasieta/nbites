@@ -3,11 +3,13 @@ package behavior_sim;
 // A Sim object that also tracks the heading, which is specific to players
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class Player extends SimObject
 {
-    private float h;
-    private int num;
+    public float h;
+    public int num;
+    public boolean team;
 
     public Player() { super(); }
     
@@ -16,6 +18,7 @@ public class Player extends SimObject
         super(xCoord, yCoord);
         h = 0.0f;
         num = 0;
+        team = true;
     }
 
     public Player(float xCoord, float yCoord, float heading)
@@ -23,6 +26,7 @@ public class Player extends SimObject
         super(xCoord, yCoord);
         h = heading;
         num = 0;
+        team = true;
     }
 
     public Player(Location location)
@@ -30,20 +34,23 @@ public class Player extends SimObject
         super(location);
         h = 0.0f;
         num = 0;
+        team = true;
     }
 
-    public Player(Location location, int n)
+    public Player(Location location, int n, float heading)
     {
         super(location);
-        h = 0.0f;
+        h = heading;
         num = n;
+        team = num/FieldConstants.TEAM_SIZE == 0;
     }
 
     public Player (Player player)
     {
         super(player);
-        h = player.getH();
-        num = player.getNum();
+        h = player.h;
+        num = player.num;
+        team = player.team;
     }
 
     public void setRadiusAndColor()
@@ -68,15 +75,22 @@ public class Player extends SimObject
 
     public void moveRel(float relX, float relY, float relH)
     {
+        relX = (float)Math.abs(relX);
         h += relH;
-        h %= (float)Math.PI;
 
-        // 2D rotation
-        float xDist = relX * (float)Math.cos(-h) - 
-                        relY * (float)Math.sin(-h);
+        if (h < -Math.PI) h = (float)Math.PI*2 - h;
+        else if (h > Math.PI) h = h - (float)Math.PI*2;
 
-        float yDist = relY * (float)Math.cos(-h) + 
-                        relX * (float)Math.sin(-h);
+        // Location moveVect = new Location(relX, relY);
+        // moveVect.rotate(h);
+
+        // float xDist = moveVect.x;
+        // float yDist = moveVect.y;
+        float xDist = relX * (float)Math.cos(h) - 
+                        relY * (float)Math.sin(h);
+
+        float yDist = relY * (float)Math.cos(h) + 
+                        relX * (float)Math.sin(h);
 
         super.move(xDist, yDist);
         this.notifyListeners();
@@ -86,15 +100,43 @@ public class Player extends SimObject
     public void turn(float heading) { h += heading; }
     public void turnTo(float heading) { h = heading; }
     public float getH() { return h; }
-    public float flipH() { return h + (float)Math.PI; }
+    public float flipH() 
+    { 
+        if (h <= 0) h += 2*(-(float)Math.PI/2 - h);
+        else h += 2*((float)Math.PI/2 - h);
+        return h;
+    }
     public float bearingTo(Location loc)
     {
+        float xDist = loc.x - x;
         float yDist = loc.y - y;
-        return h - (float)Math.asin(yDist/distanceTo(loc));
+        float bearing = (float)Math.atan(yDist/xDist) - h;
+
+        if (xDist < 0)
+        {
+            if (yDist > 0) bearing += Math.PI;
+            else bearing -= Math.PI;
+        }
+
+        System.out.println("Heading: " + h);
+        System.out.println("Bearing: " + bearing);
+        return bearing;
     }
 
     public int getNum() { return num; }
     public int team() { return num/FieldConstants.TEAM_SIZE;}
+
+    public void draw(Graphics2D g2)
+    {
+        super.draw(g2);
+
+        g2.setColor(Color.black);
+
+        int xDist = (int)(20 * Math.cos(h) + x);
+        int yDist = (int)(20 * Math.sin(h) + y);     
+
+        g2.drawLine((int)x, (int)y, xDist, yDist); 
+    }
 
     protected void notifyListeners()
     {

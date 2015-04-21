@@ -113,6 +113,7 @@ public class Gui extends JFrame
                 // reset the info tabs
                 tabs.removeAll();
                 tabs.addTab("Controls", controlPanel());
+                fieldPanel.ball.deleteListeners();
                 tabs.addTab("Ball Info", ballInfo());
 
                 for (int i = 0; i < cb1.size(); i++)
@@ -185,7 +186,7 @@ public class Gui extends JFrame
 
         JTextField bLoc = new JTextField();
         fieldPanel.ball.registerListener(bLoc); // gets updates from the ball
-        //bLoc.setText("Set for kickoff");
+        bLoc.setText("Set for kickoff");
 
         ballInfo.add(position);
         ballInfo.add(bLoc);

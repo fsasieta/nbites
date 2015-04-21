@@ -86,15 +86,16 @@ public class BehaviorInterpreter implements CppFuncListener
 
                 Player player = new Player(players[i]); // make a copy so we can edit it
                 Ball b = new Ball(ball);
-                if (player.team() == Enums.Teams.valueOf("MY_TEAM").team) // left team needs to be flipped on y
+                if (player.team) // left team needs to be flipped on y
                 {
-                    player.moveTo(player.getX(), player.flipY());
-                    b.moveTo(b.getX(), b.flipY());
+                    player.moveTo(player.x, player.flipY(), -player.h);
+                    b.moveTo(b.x, b.flipY());
                 }
                 else
                 {
-                    player.moveTo(player.flipX(), player.getY());
-                    b.moveTo(b.flipX(), b.getY());
+                    float heading = player.h;
+                    player.moveTo(player.flipX(), player.y, player.flipH());
+                    b.moveTo(b.flipX(), b.y);
                 }
 
                 ArrayList<Log> protobufs = new ArrayList<Log>();
@@ -137,7 +138,7 @@ public class BehaviorInterpreter implements CppFuncListener
                 {
                     sendMessages();
                     // time delay before next call
-                    try { callThread.sleep(200); }
+                    try { callThread.sleep(100); }
                     catch (InterruptedException e) { 
                         System.out.println("Thread interrupted."); 
                     }
@@ -163,27 +164,62 @@ public class BehaviorInterpreter implements CppFuncListener
             
             float normalizer = 1;
 
-            //System.out.println(bmc.getType());
+            // System.out.println(bmc.getType());
 
             switch(bmc.getType())
             {
                 case DESTINATION_WALK:
-                    normalizer = (bmc.getDest().getRelX() + 
-                        bmc.getDest().getRelY());
-                    
-                    if (players[pIndex].team() == Enums.Teams.valueOf("MY_TEAM").team)
-                        players[pIndex].moveRel(bmc.getDest().getRelX()/normalizer, 
-                                                -bmc.getDest().getRelY()/normalizer,
-                                                -bmc.getDest().getRelH()/5);
-                    else players[pIndex].moveRel(-bmc.getDest().getRelX()/normalizer, 
-                                                bmc.getDest().getRelY()/normalizer,
-                                                bmc.getDest().getRelH()/5);
+                    PMotion.DestinationWalk dest = bmc.getDest();
+
+                    int kick = dest.getKick().getKickType();
+                    if (kick != 0)
+                    {
+                        float heading = players[pIndex].h;
+                        if (players[pIndex].team) heading *= -1;
+
+                        switch(kick)
+                        {
+                            case 2:
+                                world.kick(pIndex, heading, 0, 50);
+                                break;
+                            case 3:
+                                world.kick(pIndex, heading, 0, 50);
+                                break;
+                            case 4:
+                                world.kick(pIndex, heading, -1, 50);
+                                break;
+                            case 5:
+                                world.kick(pIndex, heading, 1, 50);
+                                break;
+                            case 6:
+                                break;
+                            case 7:
+                                break;
+                        }
+                    }
+
+                    else
+                    {
+                        // System.out.println(dest.getRelX() + ", " + dest.getRelY() + ", " + dest.getRelH());
+
+                        float relX = dest.getRelX();
+                        float relY = dest.getRelY();
+                        normalizer = (float)Math.pow(relX*relX + relY*relY, 0.5);
+                        
+                        if (players[pIndex].team)
+                            players[pIndex].moveRel(relX/normalizer, 
+                                                    -relY/normalizer,
+                                                    -dest.getRelH()/5);
+                        else players[pIndex].moveRel(-relX/normalizer, 
+                                                    relY/normalizer,
+                                                    dest.getRelH()/5);
+                    }
 
                     world.repaint();
                     break;
 
                 case WALK_COMMAND:
-                    if (players[pIndex].team() == Enums.Teams.valueOf("MY_TEAM").team)
+                    if (players[pIndex].team)
                         players[pIndex].moveRel(4*bmc.getSpeed().getXPercent(), 
                                                 -4*bmc.getSpeed().getYPercent(), 
                                                 -bmc.getSpeed().getHPercent()/10);
@@ -198,7 +234,7 @@ public class BehaviorInterpreter implements CppFuncListener
                     normalizer = (bmc.getOdometryDest().getRelX() + 
                         bmc.getOdometryDest().getRelY());
                     
-                    if (players[pIndex].team() == Enums.Teams.valueOf("MY_TEAM").team)
+                    if (players[pIndex].team)
                         players[pIndex].moveRel(bmc.getOdometryDest().getRelX()/normalizer, 
                                                 -bmc.getOdometryDest().getRelY()/normalizer,
                                                 -bmc.getOdometryDest().getRelH()/5);
@@ -218,25 +254,30 @@ public class BehaviorInterpreter implements CppFuncListener
     private RobotLocationOuterClass.RobotLocation setLocalization(Player p)
     {
         return RobotLocationOuterClass.RobotLocation.newBuilder()
-                            .setX(p.getX())
-                            .setY(p.getY())
-                            .setH(p.getH())
+                            .setX(p.x)
+                            .setY(p.y)
+                            .setH(p.h)
                             .setUncert(0.0f)    // TODO how is this calculated
                             .build();
     }
 
     private BallModel.FilteredBall setFilteredBall(Player p, Ball b)
     {
+        float bearing = p.bearingTo(b.getLocation());
+        
+        Location relBall = new Location(b.x - p.x, b.y - p.y);
+        relBall.rotate(p.h);
+
         // DONE
         return BallModel.FilteredBall.newBuilder()
                             .setVis(this.setVisionBall())
                             .setDistance(p.distanceTo(b.getLocation()))
-                            .setBearing(p.bearingTo(b.getLocation()))
-                            .setBearingDeg((float)Math.toDegrees(p.bearingTo(b.getLocation())))
-                            .setRelX(b.getX() - p.getX())
-                            .setRelY(b.getY() - p.getY())
-                            .setX(b.getX())
-                            .setY(b.getY())
+                            .setBearing(bearing)
+                            .setBearingDeg((float)Math.toDegrees(bearing))
+                            .setRelX(b.x - p.x)
+                            .setRelY(b.y - p.y)
+                            .setX(b.x)
+                            .setY(b.y)
                             .build();
     }
 
@@ -255,7 +296,7 @@ public class BehaviorInterpreter implements CppFuncListener
     private GameStateOuterClass.GameState setGameState(Player p)
     {
         int kickOffTeam;
-        if (p.team() == Enums.Teams.valueOf("MY_TEAM").team) 
+        if (p.team) 
             kickOffTeam = world.kickOffTeam;
         else
             kickOffTeam = Enums.Teams.swap(world.kickOffTeam);
@@ -366,10 +407,10 @@ public class BehaviorInterpreter implements CppFuncListener
     {
         // DONE
         return BallModel.SharedBall.newBuilder()
-                            .setX(b.getX())
-                            .setY(b.getY())
+                            .setX(b.x)
+                            .setY(b.y)
                             .setBallOn(true)
-                            .setReliability(4)  // # players seeing the ball
+                            .setReliability(4)  // TODO # players seeing the ball
                             .build();
     }
 
