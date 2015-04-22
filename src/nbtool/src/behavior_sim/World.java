@@ -112,14 +112,9 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
         // match the team array to start positions
         for (int i = 0; i < team.length; i++)
         {
-            if(team[i]) 
-                {
-                    if (i/FieldConstants.TEAM_SIZE == 0)
-                        players[i] = new Player(leftKickoff[i], i, 0.0f);
-                    else
-                        players[i] = new Player(leftKickoff[i], i, (float)Math.PI);
-                }
+            if(team[i]) players[i] = new Player(leftKickoff[i], i, 0.0f);
         }
+        
         this.repaint();
     }
 

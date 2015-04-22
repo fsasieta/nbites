@@ -86,17 +86,9 @@ public class BehaviorInterpreter implements CppFuncListener
 
                 Player player = new Player(players[i]); // make a copy so we can edit it
                 Ball b = new Ball(ball);
-                if (player.team) // left team needs to be flipped on y
-                {
-                    player.moveTo(player.x, player.flipY(), -player.h);
-                    b.moveTo(b.x, b.flipY());
-                }
-                else
-                {
-                    float heading = player.h;
-                    player.moveTo(player.flipX(), player.y, player.flipH());
-                    b.moveTo(b.flipX(), b.y);
-                }
+
+                if (player.team) b.moveTo(b.x, b.flipY());
+                else b.moveTo(b.flipX(), b.y);
 
                 ArrayList<Log> protobufs = new ArrayList<Log>();
                 protobufs.add(new Log("type=RobotLocation", this.setLocalization(player).toByteArray()));
@@ -164,8 +156,6 @@ public class BehaviorInterpreter implements CppFuncListener
             
             float normalizer = 1;
 
-            // System.out.println(bmc.getType());
-
             switch(bmc.getType())
             {
                 case DESTINATION_WALK:
@@ -175,7 +165,6 @@ public class BehaviorInterpreter implements CppFuncListener
                     if (kick != 0)
                     {
                         float heading = players[pIndex].h;
-                        if (players[pIndex].team) heading *= -1;
 
                         switch(kick)
                         {
@@ -200,33 +189,23 @@ public class BehaviorInterpreter implements CppFuncListener
 
                     else
                     {
-                        // System.out.println(dest.getRelX() + ", " + dest.getRelY() + ", " + dest.getRelH());
-
                         float relX = dest.getRelX();
                         float relY = dest.getRelY();
                         normalizer = (float)Math.pow(relX*relX + relY*relY, 0.5);
                         
-                        if (players[pIndex].team)
-                            players[pIndex].moveRel(relX/normalizer, 
-                                                    -relY/normalizer,
-                                                    -dest.getRelH()/5);
-                        else players[pIndex].moveRel(-relX/normalizer, 
-                                                    relY/normalizer,
-                                                    dest.getRelH()/5);
+                        players[pIndex].moveRel(relX/normalizer, 
+                                                relY/normalizer,
+                                                dest.getRelH()/5);
                     }
 
                     world.repaint();
                     break;
 
                 case WALK_COMMAND:
-                    if (players[pIndex].team)
-                        players[pIndex].moveRel(4*bmc.getSpeed().getXPercent(), 
-                                                -4*bmc.getSpeed().getYPercent(), 
-                                                -bmc.getSpeed().getHPercent()/10);
-                    else players[pIndex].moveRel(-4*bmc.getSpeed().getXPercent(), 
-                                                4*bmc.getSpeed().getYPercent(), 
-                                                bmc.getSpeed().getHPercent()/10);
-
+                    players[pIndex].moveRel(4*bmc.getSpeed().getXPercent(), 
+                                            4*bmc.getSpeed().getYPercent(), 
+                                            bmc.getSpeed().getHPercent()/10);
+                    
                     world.repaint();
                     break;
 
@@ -234,13 +213,9 @@ public class BehaviorInterpreter implements CppFuncListener
                     normalizer = (bmc.getOdometryDest().getRelX() + 
                         bmc.getOdometryDest().getRelY());
                     
-                    if (players[pIndex].team)
-                        players[pIndex].moveRel(bmc.getOdometryDest().getRelX()/normalizer, 
-                                                -bmc.getOdometryDest().getRelY()/normalizer,
-                                                -bmc.getOdometryDest().getRelH()/5);
-                    else players[pIndex].moveRel(-bmc.getOdometryDest().getRelX()/normalizer, 
-                                                bmc.getOdometryDest().getRelY()/normalizer,
-                                                bmc.getOdometryDest().getRelH()/5);
+                    players[pIndex].moveRel(bmc.getOdometryDest().getRelX()/normalizer, 
+                                            -bmc.getOdometryDest().getRelY()/normalizer,
+                                            -bmc.getOdometryDest().getRelH()/5);
 
                     world.repaint();
                     break;

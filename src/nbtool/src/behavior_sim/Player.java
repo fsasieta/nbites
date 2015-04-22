@@ -78,14 +78,9 @@ public class Player extends SimObject
         relX = (float)Math.abs(relX);
         h += relH;
 
-        if (h < -Math.PI) h = (float)Math.PI*2 - h;
+        if (h < -Math.PI) h = (float)Math.PI*2 + h;
         else if (h > Math.PI) h = h - (float)Math.PI*2;
 
-        // Location moveVect = new Location(relX, relY);
-        // moveVect.rotate(h);
-
-        // float xDist = moveVect.x;
-        // float yDist = moveVect.y;
         float xDist = relX * (float)Math.cos(h) - 
                         relY * (float)Math.sin(h);
 
@@ -118,8 +113,9 @@ public class Player extends SimObject
             else bearing -= Math.PI;
         }
 
-        System.out.println("Heading: " + h);
-        System.out.println("Bearing: " + bearing);
+        if (bearing < -Math.PI) bearing = (float)Math.PI*2 + bearing;
+        else if (bearing > Math.PI) bearing = bearing - (float)Math.PI*2;
+
         return bearing;
     }
 
@@ -128,14 +124,38 @@ public class Player extends SimObject
 
     public void draw(Graphics2D g2)
     {
-        super.draw(g2);
+        g2.setColor(color);
+
+        int xCoord;
+        int yCoord;
+        float heading;
+
+        if (team) 
+        {
+            xCoord = (int)x;
+            yCoord = (int)(this.flipY());
+            heading = -h;
+        }
+
+        else 
+        {
+            xCoord = (int)(this.flipX());
+            yCoord = (int)y;
+            if (h <= 0) heading = -(float)Math.PI - h;
+            else heading = (float)Math.PI - h;
+        }
+
+        g2.fillOval(xCoord - (int)radius, 
+                    yCoord - (int)radius, 
+                    (int)(2*radius), 
+                    (int)(2*radius));
 
         g2.setColor(Color.black);
 
-        int xDist = (int)(20 * Math.cos(h) + x);
-        int yDist = (int)(20 * Math.sin(h) + y);     
+        int xDist = (int)(20 * Math.cos(heading) + xCoord);
+        int yDist = (int)(20 * Math.sin(heading) + yCoord);     
 
-        g2.drawLine((int)x, (int)y, xDist, yDist); 
+        g2.drawLine(xCoord, yCoord, xDist, yDist); 
     }
 
     protected void notifyListeners()

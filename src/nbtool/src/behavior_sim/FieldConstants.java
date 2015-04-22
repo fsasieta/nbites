@@ -141,15 +141,15 @@ public class FieldConstants
 
     // kick off positions
     public static final Location ODD_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),
-                                                        FIELD_HEIGHT - MY_GOALBOX_BOTTOM_Y); 
+                                                        MY_GOALBOX_BOTTOM_Y); 
     public static final Location EVEN_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),
-                                                        FIELD_HEIGHT - MY_GOALBOX_TOP_Y);
+                                                        MY_GOALBOX_TOP_Y);
     public static final Location ODD_CHASER_HOME_L = new Location((CENTER_FIELD_X - 45),
-                                                        FIELD_HEIGHT - (OPP_GOALBOX_BOTTOM_Y - 100));
+                                                        (OPP_GOALBOX_BOTTOM_Y - 100));
     public static final Location EVEN_CHASER_HOME_L = new Location((CENTER_FIELD_X - CENTER_CIRCLE_RADIUS - 20),
-                                                        FIELD_HEIGHT - CENTER_FIELD_Y);
+                                                        CENTER_FIELD_Y);
     public static final Location EVEN_CHASER_KICKOFF_L = new Location((CENTER_FIELD_X - 45),
-                                                        FIELD_HEIGHT - CENTER_FIELD_Y);
+                                                        CENTER_FIELD_Y);
     public static final Location ODD_DEFENDER_HOME_R = new Location(FIELD_WIDTH - (MY_GOALBOX_RIGHT_X + 50),
                                                         MY_GOALBOX_BOTTOM_Y); 
     public static final Location EVEN_DEFENDER_HOME_R = new Location(FIELD_WIDTH - (MY_GOALBOX_RIGHT_X + 50),

@@ -8,10 +8,10 @@ public class Enums
         ODHL (FieldConstants.ODD_DEFENDER_HOME_L),
         ECKL (FieldConstants.EVEN_CHASER_KICKOFF_L),
         OCHL (FieldConstants.ODD_CHASER_HOME_L),
-        EDHR (FieldConstants.EVEN_DEFENDER_HOME_R),
-        ODHR (FieldConstants.ODD_DEFENDER_HOME_R),
-        ECHR (FieldConstants.EVEN_CHASER_HOME_R),
-        OCHR (FieldConstants.ODD_CHASER_HOME_R);
+        EDHR (FieldConstants.EVEN_DEFENDER_HOME_L),
+        ODHR (FieldConstants.ODD_DEFENDER_HOME_L),
+        ECHR (FieldConstants.EVEN_CHASER_HOME_L),
+        OCHR (FieldConstants.ODD_CHASER_HOME_L);
         
         public Location loc;
 
