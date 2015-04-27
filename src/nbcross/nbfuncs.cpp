@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <vector>
 #include <stdlib.h>
+#include <chrono>
 
 std::vector<nbfunc_t> FUNCS;
 
@@ -16,6 +17,7 @@ std::vector<logio::log_t> args;
 std::vector<logio::log_t> rets;
 
 std::vector<Simulator *> sims;
+portals::Message<messages::WorldModel> comm[10];
 
 int pIndex = 0;
 
@@ -75,29 +77,44 @@ int CrossBright_func() {
     return 0;
 }
 
+// TODO MAKE A COMM ARRAY
 int Behaviors_func() {
+    // std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+
     assert(args.size() == 14);
 
     Simulator *sim = sims.at(pIndex);
+    int pNum = sim->pNum;
+
+    std::cout << pNum <<std::endl;
+    sim->setWorldModels(comm);
     sim->run(args);
 
     logio::log_t bodyMotion = logio::copyLog(&sim->bodyMotion);
     rets.push_back(bodyMotion);
 
+    comm[pNum-1] = sim->myWM;
+
     pIndex = (pIndex + 1) % sims.size();
+
+    // std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+
+    // std::chrono::duration<double> timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(end-start);
+    // std::cout << "Behaviors time: " << 1000*timeSpan.count() << std::endl;
 
     return 0;
 }
 
+// TODO this should be changed to one call per player and be sent the playerNum
 int InitSim_func() {
     assert(args.size() == 1);
 
-    sims.clear();
+    int pNum = static_cast<int>(*args[0].data);
+    std::cout << pNum << std::endl;
+    Simulator *sim = new Simulator(pNum + 2);
+    sims.push_back(sim);
 
-    for (int i = 0; i < static_cast<int>(*args[0].data); i++){
-        Simulator *sim = new Simulator;
-        sims.push_back(sim);
-    }
+    for (int i = 0; i < 10; i++) { comm[i] = portals::Message<messages::WorldModel>(0); }
 
     return 0;
 }
@@ -142,7 +159,7 @@ void register_funcs() {
                         sStiffStatus_pbuf,
                         sObstacle_pbuf,
                         sSharedBall_pbuf,
-                        sRobotLocation_pbuf
+                        sRobotLocation_pbuf,
                     };
     Behaviors.func = Behaviors_func;
     FUNCS.push_back(Behaviors);

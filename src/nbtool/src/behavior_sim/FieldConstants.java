@@ -140,7 +140,7 @@ public class FieldConstants
     public static final float HEADING_DOWN = -90.0f;
 
     // kick off positions
-    public static final Location ODD_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),
+    public static final Location ODD_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 51),
                                                         MY_GOALBOX_BOTTOM_Y); 
     public static final Location EVEN_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),
                                                         MY_GOALBOX_TOP_Y);

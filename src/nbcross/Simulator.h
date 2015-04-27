@@ -23,17 +23,20 @@
 class Simulator
 {
 public:
-    Simulator();
+    Simulator(int pNum);
     void run(std::vector<logio::log_t> pbufs);
+    void setWorldModels(portals::Message<messages::WorldModel> wm[]);
 
 public:
     logio::log_t bodyMotion;
     logio::log_t headMotion;
+    portals::Message<messages::WorldModel> myWM;
+
+    int pNum;
 
 private:
-    void prepareMessages(std::vector<logio::log_t> pbufs);
-    void sendMessages();
-    void getMotionCommands();
+    void sendMessages(std::vector<logio::log_t> pbufs);
+    void getMotionCommandsAndComm();
 
 private:
     portals::Message<messages::RobotLocation> localizationMg;
@@ -52,8 +55,8 @@ private:
     portals::Message<messages::RobotLocation> sharedFlipMg;
     portals::Message<messages::WorldModel> model;
 
-    portals::InPortal<messages::MotionCommand> motionCommand;
-    //portals::InPortal<messages::HeadMotionCommand> headMotionCommand;
+    messages::HeadMotionCommand hmc;
+    messages::MotionCommand bmc;
 
     man::behaviors::BehaviorsModule behaviors;
 };

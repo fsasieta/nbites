@@ -1,25 +1,29 @@
 #include "Simulator.h"
 #include <typeinfo>
 
-Simulator::Simulator()
-: behaviors(0, 4)
+Simulator::Simulator(int playerNum)
+: behaviors(0, playerNum)
 {
-
+    pNum = playerNum;
 }
 
 void Simulator::run(std::vector<logio::log_t> pbufs)
 {
     behaviors.reset();
 
-    prepareMessages(pbufs);
-    sendMessages();
+    sendMessages(pbufs);
 
     behaviors.run();
 
-    getMotionCommands();
+    getMotionCommandsAndComm();
 }
 
-void Simulator::prepareMessages(std::vector<logio::log_t> pbufs)
+void Simulator::setWorldModels(portals::Message<messages::WorldModel> wm[])
+{
+    for (int i(0); i < 5; i++) { behaviors.worldModelIn[i].setMessage(wm[i]); }
+}
+
+void Simulator::sendMessages(std::vector<logio::log_t> pbufs)
 {
     // The data strings from the arguments
     const std::string pBufString0((const char*)pbufs[0].data, pbufs[0].dlen);
@@ -68,48 +72,59 @@ void Simulator::prepareMessages(std::vector<logio::log_t> pbufs)
     sharedBallPB.ParseFromString(pBufString12);
     sharedFlipPB.ParseFromString(pBufString13);
 
+
+    // TODO TRYING TO FIX MESSAGE OVERFLOWS
+
+    // std::cout << "WAIT FOR OVERFLOW" << std::endl;
+
     localizationMg = portals::Message<messages::RobotLocation>(&localizationPB);
-    filteredBallMg = portals::Message<messages::FilteredBall>(&filteredBallPB);
-    gameStateMg = portals::Message<messages::GameState>(&gameStatePB);
-    visionFieldMg = portals::Message<messages::VisionField>(&visionFieldPB);
-    visionRobotMg = portals::Message<messages::VisionRobot>(&visionRobotPB);
-    visionObstacleMg = portals::Message<messages::VisionObstacle>(&visionObstaclePB);
-    fallStatusMg = portals::Message<messages::FallStatus>(&fallStatusPB);
-    motionStatusMg = portals::Message<messages::MotionStatus>(&motionStatusPB);
-    odometryMg = portals::Message<messages::RobotLocation>(&odometryPB);
-    jointsMg = portals::Message<messages::JointAngles>(&jointsPB);
-    stiffStatusMg = portals::Message<messages::StiffStatus>(&stiffStatusPB);
-    obstacleMg = portals::Message<messages::FieldObstacles>(&obstaclePB);
-    sharedBallMg = portals::Message<messages::SharedBall>(&sharedBallPB);
-    sharedFlipMg = portals::Message<messages::RobotLocation>(&sharedFlipPB);
-    model = portals::Message<messages::WorldModel>(0);
-}
-
-void Simulator::sendMessages()
-{
     behaviors.localizationIn.setMessage(localizationMg);
-    behaviors.filteredBallIn.setMessage(filteredBallMg);
-    behaviors.gameStateIn.setMessage(gameStateMg);
-    behaviors.visionFieldIn.setMessage(visionFieldMg);
-    behaviors.visionRobotIn.setMessage(visionRobotMg);
-    behaviors.visionObstacleIn.setMessage(visionObstacleMg);
-    behaviors.fallStatusIn.setMessage(fallStatusMg);
-    behaviors.motionStatusIn.setMessage(motionStatusMg);
-    behaviors.odometryIn.setMessage(odometryMg);
-    behaviors.jointsIn.setMessage(jointsMg);
-    behaviors.stiffStatusIn.setMessage(stiffStatusMg);
-    behaviors.obstacleIn.setMessage(obstacleMg);
-    behaviors.sharedBallIn.setMessage(sharedBallMg);
-    behaviors.sharedFlipIn.setMessage(sharedFlipMg);
 
-    //TODO
-    for (int i = 0; i < 5; i++) { behaviors.worldModelIn[i].setMessage(model); }
+    filteredBallMg = portals::Message<messages::FilteredBall>(&filteredBallPB);
+    behaviors.filteredBallIn.setMessage(filteredBallMg);
+
+    gameStateMg = portals::Message<messages::GameState>(&gameStatePB);
+    behaviors.gameStateIn.setMessage(gameStateMg);
+
+    visionFieldMg = portals::Message<messages::VisionField>(&visionFieldPB);
+    behaviors.visionFieldIn.setMessage(visionFieldMg);
+
+    visionRobotMg = portals::Message<messages::VisionRobot>(&visionRobotPB);
+    behaviors.visionRobotIn.setMessage(visionRobotMg);
+
+    visionObstacleMg = portals::Message<messages::VisionObstacle>(&visionObstaclePB);
+    behaviors.visionObstacleIn.setMessage(visionObstacleMg);
+
+    fallStatusMg = portals::Message<messages::FallStatus>(&fallStatusPB);
+    behaviors.fallStatusIn.setMessage(fallStatusMg);
+
+    motionStatusMg = portals::Message<messages::MotionStatus>(&motionStatusPB);
+    behaviors.motionStatusIn.setMessage(motionStatusMg);
+
+    localizationMg = portals::Message<messages::RobotLocation>(&odometryPB);
+    behaviors.odometryIn.setMessage(localizationMg);
+
+    // std::cout << "DID WE OVERFLOW?" << std::endl;
+
+    jointsMg = portals::Message<messages::JointAngles>(&jointsPB);
+    behaviors.jointsIn.setMessage(jointsMg);
+
+    stiffStatusMg = portals::Message<messages::StiffStatus>(&stiffStatusPB);
+    behaviors.stiffStatusIn.setMessage(stiffStatusMg);
+
+    obstacleMg = portals::Message<messages::FieldObstacles>(&obstaclePB);
+    behaviors.obstacleIn.setMessage(obstacleMg);
+
+    sharedBallMg = portals::Message<messages::SharedBall>(&sharedBallPB);
+    behaviors.sharedBallIn.setMessage(sharedBallMg);
+
+    localizationMg = portals::Message<messages::RobotLocation>(&sharedFlipPB);
+    behaviors.sharedFlipIn.setMessage(localizationMg);
 }
 
-void Simulator::getMotionCommands()
+void Simulator::getMotionCommandsAndComm()
 {
-    messages::HeadMotionCommand hmc = 
-        *behaviors.headMotionCommandOut.getMessage(true).get();
+    hmc = *behaviors.headMotionCommandOut.getMessage(true).get();
 
     int hmcSize = hmc.ByteSize();
     uint8_t hmcBytes[hmcSize];
@@ -120,8 +135,7 @@ void Simulator::getMotionCommands()
     headMotion.dlen = hmcSize;
     headMotion.desc = hmcDesc;
 
-    messages::MotionCommand bmc = 
-        *behaviors.bodyMotionCommandOut.getMessage(true).get();
+    bmc = *behaviors.bodyMotionCommandOut.getMessage(true).get();
 
     int bmcSize = bmc.ByteSize();
     uint8_t bmcBytes[bmcSize];
@@ -131,4 +145,7 @@ void Simulator::getMotionCommands()
     bodyMotion.data = bmcBytes;
     bodyMotion.dlen = bmcSize;
     bodyMotion.desc = bmcDesc;
+
+    messages::WorldModel wm = *behaviors.myWorldModelOut.getMessage(true).get();
+    myWM = portals::Message<messages::WorldModel>(&wm);
 }

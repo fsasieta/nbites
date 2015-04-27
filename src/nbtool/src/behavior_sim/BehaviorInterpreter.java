@@ -15,8 +15,6 @@ import messages.*;
     // TODO eventually all of the protobufs need to be set
     // in a realistic way, not just giving perfect data
 
-    // TODO, info needs to be passed differently for the right team (symmetric flip)
-
 public class BehaviorInterpreter implements CppFuncListener
 {
     private boolean runSim;    // should the sim keep running?
@@ -28,6 +26,12 @@ public class BehaviorInterpreter implements CppFuncListener
     private World world;
 
     private Thread callThread;
+
+    private long tBM;   // time to build messages
+    private long tFC;    // time func call
+    private long tGUI;  // time to update GUI
+    private long tTot; // total run time
+
 
     public BehaviorInterpreter() 
     { 
@@ -41,7 +45,6 @@ public class BehaviorInterpreter implements CppFuncListener
     public void run()
     {
         runSim = true;  // now it can run
-        System.out.println("sending");
         this.sendMessagesInSeparateThread();        
     }
 
@@ -54,19 +57,22 @@ public class BehaviorInterpreter implements CppFuncListener
         ball = world.ball;
         players = world.players;
 
-        // find the number of active players
-        int numPlayers = 0;
-        for (Player p : players) { if (p != null) { numPlayers++ ; } }
-        byte[] byteArray = {(byte)numPlayers};
-        Log log = new Log("type=int", byteArray);
+        for (Player p : players) 
+        { 
+            if (p != null) 
+            {
+                byte[] byteArray = {(byte)p.num};
+                Log log = new Log("type=int", byteArray);
 
-        CppFuncCall initSim = new CppFuncCall();
-        initSim.index = CppIO.current.indexOfFunc("InitSim");
-        initSim.name = "InitSim";
-        initSim.args = new ArrayList<Log>(Arrays.asList(log));
-        initSim.listener = this;        
+                CppFuncCall initSim = new CppFuncCall();
+                initSim.index = CppIO.current.indexOfFunc("InitSim");
+                initSim.name = "InitSim";
+                initSim.args = new ArrayList<Log>(Arrays.asList(log));
+                initSim.listener = this;        
 
-        CppIO.current.tryAddCall(initSim);
+                CppIO.current.tryAddCall(initSim);
+            }
+        }
 
         this.sendMessagesInSeparateThread();
     }
@@ -77,6 +83,8 @@ public class BehaviorInterpreter implements CppFuncListener
     // prepares and send the world state info as Protobufs to C++
     private void sendMessages()
     {
+        tTot = System.nanoTime();
+        tBM = System.nanoTime();
         // each player calls its own BehaviorsModule
         for (int i = 0; i < players.length; i++)
         {
@@ -113,6 +121,8 @@ public class BehaviorInterpreter implements CppFuncListener
                 funcCall.args = protobufs;
                 funcCall.listener = this;        
 
+                // System.out.println("Build Time: " + (System.nanoTime() - tBM)/1000000.);
+                tFC = System.nanoTime();
                 CppIO.current.tryAddCall(funcCall);     // execute the function call
             }
 
@@ -129,8 +139,10 @@ public class BehaviorInterpreter implements CppFuncListener
                 while (runSim) 
                 {
                     sendMessages();
+                    // runSim = false;
+                    // return;
                     // time delay before next call
-                    try { callThread.sleep(100); }
+                    try { callThread.sleep(600); }
                     catch (InterruptedException e) { 
                         System.out.println("Thread interrupted."); 
                     }
@@ -145,6 +157,9 @@ public class BehaviorInterpreter implements CppFuncListener
     @Override
     public void returned(int ret, Log... out) 
     {
+        // System.out.println("Func Call Time: " + (System.nanoTime() - tFC)/1000000.);
+        tGUI = System.nanoTime();
+
         if (out.length == 0) return;
 
         int pIndex = pQ.remove();
@@ -224,6 +239,9 @@ public class BehaviorInterpreter implements CppFuncListener
         catch(InvalidProtocolBufferException ipbe){
             System.out.println("Received Invalid Protobuf");
         }
+
+        // System.out.println("GUI time: " + (System.nanoTime() - tGUI)/1000000.);
+        // System.out.println("Total time: " + (System.nanoTime() - tTot)/1000000.);
     }
 
     private RobotLocationOuterClass.RobotLocation setLocalization(Player p)
@@ -267,7 +285,6 @@ public class BehaviorInterpreter implements CppFuncListener
                             .build();
     }
 
-    // TODO set team
     private GameStateOuterClass.GameState setGameState(Player p)
     {
         int kickOffTeam;
@@ -298,6 +315,7 @@ public class BehaviorInterpreter implements CppFuncListener
                                                 .addPlayer(1,this.setRobotInfo())
                                                 .addPlayer(2,this.setRobotInfo())
                                                 .addPlayer(3,this.setRobotInfo())
+                                                .addPlayer(4,this.setRobotInfo())
                                                 .build();
 
         return teamInfo;

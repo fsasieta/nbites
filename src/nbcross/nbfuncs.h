@@ -30,6 +30,7 @@ extern std::vector<nbfunc_t> FUNCS;
 extern std::vector<logio::log_t> args;
 extern std::vector<logio::log_t> rets;
 extern std::vector<Simulator *> sims;
+extern portals::Message<messages::WorldModel> comm[];
 
 void register_funcs();
 void check_arguments(int func_index); //Checks that the arguments in <std::vector args> match

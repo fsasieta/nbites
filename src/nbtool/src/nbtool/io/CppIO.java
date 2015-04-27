@@ -157,7 +157,7 @@ public class CppIO implements Runnable {
 			}
 			
 			if (_c != null) {
-				U.w("CppIO: beginning call to: " + _c.name);
+				// U.w("CppIO: beginning call to: " + _c.name);
 				final CppFuncCall c = _c;
 				dos.writeInt(1);
 				dos.flush();
@@ -169,16 +169,16 @@ public class CppIO implements Runnable {
 				}
 				dos.flush();
 				
-				U.w("Sent call.");
+				// U.w("Sent call.");
 				
 				final int ret = dis.readInt();
 				int num_out = dis.readInt();
-				U.w("CppIO: function finished call, num out: " + num_out);
+				// U.w("CppIO: function finished call, num out: " + num_out);
 				final ArrayList<Log> outs = new ArrayList<Log>();
 				for (int i = 0; i < num_out; ++i) {
 					Log nl = CommonIO.readLog(dis);
 					nl.source = SOURCE.DERIVED;
-					U.w("CppIO: got out: " + nl.description);
+					// U.w("CppIO: got out: " + nl.description);
 					outs.add(nl);
 				}
 				
@@ -230,7 +230,7 @@ public class CppIO implements Runnable {
 			calls.add(c);
 		}
 		
-		U.w("CppIO: added call to function: " + c.name);
+		// U.w("CppIO: added call to function: " + c.name);
 		return true;
 	}
 	

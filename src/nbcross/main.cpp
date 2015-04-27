@@ -142,16 +142,16 @@ int main(int argc, const char * argv[]) {
         }
         
         assert(args.size() == FUNCS[findex].args.size());
-        printf("calling function [%s]"
-               "\n-------------------------------------------\n", FUNCS[findex].name);
+        // printf("calling function [%s]"
+        //       "\n-------------------------------------------\n", FUNCS[findex].name);
         //Clear ret logs, call function.
         for (int i = 0; i < rets.size(); ++i) {free(rets[i].desc); free(rets[i].data);}
         rets.clear();
         int ret = FUNCS[findex].func();
         
-        printf("\n-------------------------------------------\n");
+        // printf("\n-------------------------------------------\n");
         
-        printf("function returned with ret:%i, sending %lu output logs.\n", ret, rets.size());
+        // printf("function returned with ret:%i, sending %lu output logs.\n", ret, rets.size());
         net_order = htonl(ret);
         CHECK_RET(logio::send_exact(fd, 4, &net_order));
         net_order = htonl(rets.size());
@@ -168,7 +168,7 @@ int main(int argc, const char * argv[]) {
             return 1;
         }
         
-        printf("function call completed\n");
+        // printf("function call completed\n");
     }
     
     return 0;
