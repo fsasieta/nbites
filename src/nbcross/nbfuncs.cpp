@@ -77,7 +77,6 @@ int CrossBright_func() {
     return 0;
 }
 
-// TODO MAKE A COMM ARRAY
 int Behaviors_func() {
     // std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
 
@@ -86,7 +85,6 @@ int Behaviors_func() {
     Simulator *sim = sims.at(pIndex);
     int pNum = sim->pNum;
 
-    std::cout << pNum <<std::endl;
     sim->setWorldModels(comm);
     sim->run(args);
 
@@ -105,16 +103,23 @@ int Behaviors_func() {
     return 0;
 }
 
-// TODO this should be changed to one call per player and be sent the playerNum
 int InitSim_func() {
     assert(args.size() == 1);
 
     int pNum = static_cast<int>(*args[0].data);
-    std::cout << pNum << std::endl;
-    Simulator *sim = new Simulator(pNum + 2);
-    sims.push_back(sim);
+    
+    if (pNum == 100) {
+        sims.clear();
+        pIndex = 0;
+    }
 
-    for (int i = 0; i < 10; i++) { comm[i] = portals::Message<messages::WorldModel>(0); }
+    else {
+        Simulator *sim = new Simulator(pNum + 2);
+        sims.push_back(sim);
+
+        portals::Message<messages::WorldModel> defaultModel(0);
+        for (int i = 0; i < 10; i++) { comm[i] = defaultModel; }
+    }
 
     return 0;
 }

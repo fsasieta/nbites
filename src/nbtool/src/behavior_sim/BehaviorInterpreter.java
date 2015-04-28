@@ -57,6 +57,17 @@ public class BehaviorInterpreter implements CppFuncListener
         ball = world.ball;
         players = world.players;
 
+        byte[] bArray = {(byte)100};
+        Log logg = new Log("type=int", bArray);
+
+        CppFuncCall clearSim = new CppFuncCall();
+        clearSim.index = CppIO.current.indexOfFunc("InitSim");
+        clearSim.name = "InitSim";
+        clearSim.args = new ArrayList<Log>(Arrays.asList(logg));
+        clearSim.listener = this;        
+
+        CppIO.current.tryAddCall(clearSim);
+
         for (Player p : players) 
         { 
             if (p != null) 
