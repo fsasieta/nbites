@@ -39,12 +39,23 @@ import nbtool.util.NBConstants.STATUS;
 import nbtool.util.P;
 import nbtool.util.U;
 
+/* TO DO:
+ * Add a text box to input the place where I want the robot to go
+ * i.e. if I want it to go to certain x,y position in the field,
+ * then add a couple of text boxes indicating this.
+ * Maybe some kind of box input will be better UX.
+ * Need to figure out size of the field. (6 x 9 meters)
+ *
+ * This view acts as both a view and a controller.
+ * Bad MVC, but it works (sort of)
+ */
 public class MotionEnginePanel extends JPanel implements ActionListener,
-                                                         ChangeListener {
+                                                         ChangeListener 
+                                                        (MotionStreamer streamer){
 
     private JPanel canvas;
-    private JButton start;
-    private JButton stop;
+    private JButton start, stop;
+    private JLabel robPositionLab, walkParamLab;
     //Names of Slider based on robot parameters
     //Look in bhwalk/~/ WalkCommand.
     //h is for rot, not up. No haters please,
@@ -74,12 +85,13 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
         stop.addActionListener(this);
         canvas.add(stop);
         
+        walkParamLab = new JLabel("Walking parameters");
+        robPositionLab = new JLabel("Robot Position in the field.");
+        canvas.add(robPositionLab);
+        canvas.add(walkParamLab);
+        
         //orientation,min,max, and init val
         //same deal for other sliders.
-
-        JLabel wLabel = new JLabel("Walking parameters");
-        canvas.add(wLabel);
-
         xSlider = new JSlider(JSlider.HORIZONTAL,0,100, 50);
         xSlider.addChangeListener(this);
         xSlider.setMinorTickSpacing(1);
@@ -138,12 +150,22 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
         else{}
     }
 
+    //Need to call appropiate function here
+    //
     public void stateChanged(ChangeEvent e){
         JSlider source = (JSlider) e.getSource();
         if(!source.getValueIsAdjusting()){
-            int valueY = (int) ySlider.getValue();
             int valueX = (int) xSlider.getValue();
+            int valueY = (int) ySlider.getValue();
             int valueH = (int) hSlider.getValue();
+            
+
+            //Sends parameters to class that handles
+            //rest of motion movmt and msgs.
+            //this gets upadated everytime this method is called
+            //Declared in MotionStreamer.java
+            streamer.walkMotion(valueX, valueY, valueH);
+
             
             if(valueX == 0 ){
                 System.out.println("xSlider is at zero");
@@ -153,12 +175,12 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
             }
             else{System.out.println("xSlider stopped at value:" + valueX);}
             if(valueY == 0 ){
-                System.out.println("xSlider is at zero");
+                System.out.println("ySlider is at zero");
             }
             else if(valueY == 100){
-                System.out.println("hSlider is at max");
+                System.out.println("ySlider is at max");
             }
-            else{System.out.println("hSlider stopped at value:"+valueY);}
+            else{System.out.println("ySlider stopped at value:"+valueY);}
             if(valueH == 0 ){
                 System.out.println("hSlider is at zero");
             }
@@ -190,19 +212,27 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
         //stop button
         d1 = start.getPreferredSize();
 		stop.setBounds(0, y + 3, d1.width, d1.height);
-		y += (d1.height > d2.height ? d1.height : d2.height) + 9;
+		y += (d1.height > d2.height ? d1.height : d2.height) + 3;
 
+        //label for the walk motion sliders
+        walkParamLab.setBounds(0, y + 3, d1.width * 3 , d1.height);
+        y += (d1.height > d2.height ? d1.height : d2.height) + 3;
+
+        //Sliders
         xSlider.getPreferredSize();
-        xSlider.setBounds(0, y+3, 3 * d1.width, d1.height);
+        xSlider.setBounds(0, y + 5, 3 * d1.width, d1.height);
         y += (d1.height > d2.height ? d1.height : d2.height) + 9;
 
         ySlider.getPreferredSize();
-        ySlider.setBounds(0, y+3, 3 * d1.width, d1.height);
+        ySlider.setBounds(0, y + 5, 3 * d1.width, d1.height);
         y += (d1.height > d2.height ? d1.height : d2.height) + 9;
 
         hSlider.getPreferredSize();
-        hSlider.setBounds(0, y+3, 3 * d1.width, d1.height);
+        hSlider.setBounds(0, y + 5, 3 * d1.width, d1.height);
         y += (d1.height > d2.height ? d1.height : d2.height) + 9;
+        
+        //Label for other stuff
+        robPositionLab.setBounds(0, y + 3, d1.width *3, d1.height);
 
         //xSlider.setBorder(BorderFactory.createEmptyBorder( 2*y, y+3, y-3,y));
 		
