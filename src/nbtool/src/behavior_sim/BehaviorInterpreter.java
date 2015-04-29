@@ -218,6 +218,7 @@ public class BehaviorInterpreter implements CppFuncListener
                         float relX = dest.getRelX();
                         float relY = dest.getRelY();
                         normalizer = (float)Math.pow(relX*relX + relY*relY, 0.5);
+                        if (normalizer == 0) normalizer = 1;
                         
                         players[pIndex].moveRel(relX/normalizer, 
                                                 relY/normalizer,
