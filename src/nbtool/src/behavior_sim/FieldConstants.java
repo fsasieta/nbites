@@ -8,8 +8,9 @@ public class FieldConstants
 {
     // FOR SIM
     public static final int NUM_POSTS = 4; // number of goal posts
-    public static final int TEAM_SIZE = 4; // max players per team
+    public static final int TEAM_SIZE = 4; // max players per team <no goalies>
     public static final int NUM_PLAYERS = 2*TEAM_SIZE;     // max number of players on the field
+    public static final int NUM_PLAYERS_PER_TEAM = 5;       // with goalies
     public static final int TIME_PER_HALF = 600;   // 10 minute half
 
     public static final float FIELD_WHITE_WIDTH = 900.f;
@@ -138,6 +139,23 @@ public class FieldConstants
     public static final float HEADING_UP = 90.0f;
     public static final float HEADING_LEFT = 180.0f;
     public static final float HEADING_DOWN = -90.0f;
+
+    // Simulator constants
+
+    // time between run calls
+    public static final int RUN_SPEED = 400;
+
+    // kick distances
+    public static final int M_STRAIGHT_DIST = 70;
+    public static final int M_CHIP_DIST = 70;
+    public static final int M_SIDE_DIST = 100;
+
+    // walk speeds
+    public static final int WC_SPEED = 4;
+    public static final float WC_SPEED_H = .1f;
+    public static final float DEST_SPEED_H = .05f;
+
+    public static final int KICK_SPEED = 5;
 
     // kick off positions
     public static final Location ODD_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),

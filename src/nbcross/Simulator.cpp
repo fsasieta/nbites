@@ -2,7 +2,7 @@
 #include <typeinfo>
 
 Simulator::Simulator(int playerNum)
-: behaviors(0, playerNum)
+: behaviors(0, playerNum%5)
 {
     pNum = playerNum;
 }
@@ -20,7 +20,10 @@ void Simulator::run(std::vector<logio::log_t> pbufs)
 
 void Simulator::setWorldModels(portals::Message<messages::WorldModel> wm[])
 {
-    for (int i(0); i < 5; i++) { behaviors.worldModelIn[i].setMessage(wm[i]); }
+    if (pNum < 5)
+        for (int i(0); i < 5; i++) { behaviors.worldModelIn[i].setMessage(wm[i]); }
+    else
+        for (int i(5); i < 10; i++) { behaviors.worldModelIn[i].setMessage(wm[i]); }
 }
 
 void Simulator::sendMessages(std::vector<logio::log_t> pbufs)

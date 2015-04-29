@@ -153,7 +153,7 @@ public class BehaviorInterpreter implements CppFuncListener
                     // runSim = false;
                     // return;
                     // time delay before next call
-                    try { callThread.sleep(600); }
+                    try { callThread.sleep(FieldConstants.RUN_SPEED); }
                     catch (InterruptedException e) { 
                         System.out.println("Thread interrupted."); 
                     }
@@ -194,21 +194,23 @@ public class BehaviorInterpreter implements CppFuncListener
 
                         switch(kick)
                         {
+                            case 0:
+                                world.kick(pIndex, heading, -1, FieldConstants.M_SIDE_DIST);
+                                break;
+                            case 1:
+                                world.kick(pIndex, heading, 1, FieldConstants.M_SIDE_DIST);
+                                break;
                             case 2:
-                                world.kick(pIndex, heading, 0, 50);
+                                world.kick(pIndex, heading, 0, FieldConstants.M_STRAIGHT_DIST);
                                 break;
                             case 3:
-                                world.kick(pIndex, heading, 0, 50);
+                                world.kick(pIndex, heading, 0, FieldConstants.M_STRAIGHT_DIST);
                                 break;
                             case 4:
-                                world.kick(pIndex, heading, -1, 50);
+                                world.kick(pIndex, heading, -2, FieldConstants.M_CHIP_DIST);
                                 break;
                             case 5:
-                                world.kick(pIndex, heading, 1, 50);
-                                break;
-                            case 6:
-                                break;
-                            case 7:
+                                world.kick(pIndex, heading, 2, FieldConstants.M_CHIP_DIST);
                                 break;
                         }
                     }
@@ -217,21 +219,25 @@ public class BehaviorInterpreter implements CppFuncListener
                     {
                         float relX = dest.getRelX();
                         float relY = dest.getRelY();
+                        float relH = dest.getRelH();
+
+                        if (relH != 0) relH = relH/(float)Math.abs(relH)*FieldConstants.DEST_SPEED_H;
+
                         normalizer = (float)Math.pow(relX*relX + relY*relY, 0.5);
                         if (normalizer == 0) normalizer = 1;
                         
                         players[pIndex].moveRel(relX/normalizer, 
                                                 relY/normalizer,
-                                                dest.getRelH()/5);
+                                                relH);
                     }
 
                     world.repaint();
                     break;
 
                 case WALK_COMMAND:
-                    players[pIndex].moveRel(4*bmc.getSpeed().getXPercent(), 
-                                            4*bmc.getSpeed().getYPercent(), 
-                                            bmc.getSpeed().getHPercent()/10);
+                    players[pIndex].moveRel(FieldConstants.WC_SPEED*bmc.getSpeed().getXPercent(), 
+                                            FieldConstants.WC_SPEED*bmc.getSpeed().getYPercent(), 
+                                            bmc.getSpeed().getHPercent()*FieldConstants.WC_SPEED_H);
                     
                     world.repaint();
                     break;
@@ -242,7 +248,7 @@ public class BehaviorInterpreter implements CppFuncListener
                     
                     players[pIndex].moveRel(bmc.getOdometryDest().getRelX()/normalizer, 
                                             -bmc.getOdometryDest().getRelY()/normalizer,
-                                            -bmc.getOdometryDest().getRelH()/5);
+                                            -bmc.getOdometryDest().getRelH()*FieldConstants.DEST_SPEED_H);
 
                     world.repaint();
                     break;

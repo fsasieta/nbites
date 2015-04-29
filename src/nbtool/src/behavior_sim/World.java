@@ -168,14 +168,14 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
         ball.move(kick.moveVect.x, kick.moveVect.y);
 
-        kick.dist -= 2;
+        kick.dist -= FieldConstants.KICK_SPEED;
     }
 
     public void kick(int pIndex, float h, int dir, float dist)
     {
         if (kick.kicker == pIndex && (kick.time - time) < 6) return;
 
-        kick = new Kick(h, dir, dist, pIndex, time);
+        kick = new Kick(h, dir, dist, pIndex, time, FieldConstants.KICK_SPEED);
     }
 
     // run the interpreter
