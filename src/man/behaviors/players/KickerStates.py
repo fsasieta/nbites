@@ -31,7 +31,9 @@ def gamePenalized(player):
 @superState('gameControllerResponder')
 def kick(player):
     if player.firstFrame():
-        player.executeMove(SweetMoves.ZELLVARRO_LEFT_KICK)
+        #Change the input to change the kick to be done when
+        #the home button is pressed.
+        player.executeMove(SweetMoves.LEFT_STRAIGHT_KICK)
 
     return player.stay()
 
