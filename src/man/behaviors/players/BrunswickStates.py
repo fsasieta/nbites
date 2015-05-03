@@ -198,6 +198,7 @@ def penaltyShotsGamePlaying(player):
         player.stand()
         player.brain.fallController.enabled = True
         player.inKickingState = False
+        player.inKickOffPlay = False
         player.shouldKickOff = False
         player.penaltyKicking = True
         player.brain.resetPenaltyKickLocalization()

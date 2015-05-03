@@ -62,6 +62,14 @@ RIGHT_SHORT_STRAIGHT_KICK = Kick("R_Short_Straight",
                                  x = 17.2, y = -3.6,
                                  dist = 300,
                                  move=SweetMoves.RIGHT_SHORT_STRAIGHT_KICK)
+PENALTY_KICK_LEFT =  Kick("L_P_Straight", 
+                     x = 17.2, y =  3.6, h = -23,
+                     dist = 300,
+                     move=SweetMoves.LEFT_SHORT_STRAIGHT_KICK)
+PENALTY_KICK_RIGHT =  Kick("R_P_Straight", 
+                     x = 17.2, y =  -3.6, h = -23,
+                     dist = 300,
+                     move=SweetMoves.RIGHT_SHORT_STRAIGHT_KICK)
 
 LEFT_BIG_KICK =  Kick("L_Big_Straight", 
                       x = 14.8, y =  4.5,
