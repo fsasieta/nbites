@@ -143,7 +143,7 @@ public class FieldConstants
     // Simulator constants
 
     // time between run calls
-    public static final int RUN_SPEED = 400;
+    public static final int RUN_SPEED = 100;
 
     // kick distances
     public static final int M_STRAIGHT_DIST = 70;

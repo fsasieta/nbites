@@ -75,8 +75,11 @@ public class Player extends SimObject
 
     public void moveRel(float relX, float relY, float relH)
     {
-        relX = (float)Math.abs(relX);
+        //relX = (float)Math.abs(relX);
+
         h += relH;
+
+        if (h < -(float)Math.PI/2 || h > (float)Math.PI/2) relX *= -1;
 
         if (h < -Math.PI) h = (float)Math.PI*2 + h;
         else if (h > Math.PI) h = h - (float)Math.PI*2;
