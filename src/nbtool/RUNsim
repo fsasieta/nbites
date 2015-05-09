@@ -2,6 +2,9 @@
 
 BIN=$NBITES_DIR/build/nbtool
 CROSS=$NBITES_DIR/src/nbcross
+BEHAVIORS=$NBITES_DIR/src/man/behaviors
+SIM=$NBITES_DIR/src/nbtool/src/behavior_sim
+PYTHON=$NBITES_DIR/build/nbcross/install/lib/python
 
 rm -rf $BIN
 #might need to make build dir too on some systems
@@ -11,6 +14,19 @@ find ./src -name *.java > _tempFiles
 javac -d $BIN @_tempFiles
 
 rm _tempFiles
+
+mkdir -p $PYTHON
+cd $PYTHON
+rm -Rf *
+cp $BEHAVIORS/*.py .
+cp -r $BEHAVIORS/headTracker .
+cp -r $BEHAVIORS/kickDecider .
+cp -r $BEHAVIORS/navigator .
+cp -r $BEHAVIORS/players .
+cp -r $BEHAVIORS/robots .
+cp -r $BEHAVIORS/typeDefs .
+cp -r $BEHAVIORS/util .
+cp $SIM/Switch.py $PYTHON/players
 
 cd $CROSS
 make nbcross -j4 &
