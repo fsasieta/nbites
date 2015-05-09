@@ -139,7 +139,7 @@ def createAndSendWalkVector(nav, x, y, theta):
     # Mark this message for sending
     command.timestamp = int(nav.brain.time * 1000)
 
-def executeMove(nav, sweetMove):
+def executeMove(nav, sweetMove, dist = 0, h = 0):
     """
     Method to enqueue a SweetMove
     Can either take in a head move or a body command
@@ -147,6 +147,9 @@ def executeMove(nav, sweetMove):
     """
     command = nav.brain.interface.bodyMotionCommand
     command.type = command.CommandType.SCRIPTED_MOVE #Scripted Move
+
+    command.script.dist = dist
+    command.script.h = h
 
     for position in sweetMove:
         if len(position) == 7:

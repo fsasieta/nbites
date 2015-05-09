@@ -46,13 +46,13 @@ class SoccerFSA(FSA.FSA):
 
         FSA.FSA.run(self)
 
-    def executeMove(self, sweetMove):
+    def executeMove(self, sweetMove, dist = 0, h = 0):
         """
         Method to do a SweetMove from the behavior
         Can either take in a head move or a body command
         (see SweetMove files for descriptions of command tuples)
         """
-        self.brain.nav.performSweetMove(sweetMove)
+        self.brain.nav.performSweetMove(sweetMove, dist = dist, h = h)
 
     def setWalk(self, x, y, theta):
         """

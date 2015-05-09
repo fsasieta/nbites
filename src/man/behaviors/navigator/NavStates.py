@@ -10,7 +10,7 @@ from random import random
 def scriptedMove(nav):
     '''State that we stay in while doing sweet moves'''
     if nav.firstFrame():
-        helper.executeMove(nav, scriptedMove.sweetMove)
+        helper.executeMove(nav, scriptedMove.sweetMove, scriptedMove.dist, scriptedMove.h)
         return nav.stay()
 
     if not nav.brain.interface.motionStatus.body_is_active:

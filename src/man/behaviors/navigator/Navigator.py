@@ -80,11 +80,13 @@ class Navigator(FSA.FSA):
     def run(self):
         FSA.FSA.run(self)
 
-    def performSweetMove(self, move):
+    def performSweetMove(self, move, dist = 0, h = 0):
         """
         Do a sweet ass move. Goes to stopped after done.
         """
         NavStates.scriptedMove.sweetMove = move
+        NavStates.scriptedMove.dist = dist
+        NavStates.scriptedMove.h = h
         self.switchTo('scriptedMove')
 
     def chaseBall(self, speed = FAST_SPEED, fast = False):

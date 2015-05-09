@@ -49,7 +49,7 @@ def executeKick(player):
 
     # TODO consider lowering this
     if player.counter == 30:
-        player.executeMove(executeKick.sweetMove)
+        player.executeMove(executeKick.sweetMove, player.kick.distance, player.kick.setupH)
         return player.stay()
 
     # TODO not ideal at all!

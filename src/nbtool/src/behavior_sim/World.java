@@ -142,6 +142,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
             // reset the field
             ball.goHome();
+            kick = new Kick();
             for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++) 
                 if (players[i] != null) players[i].moveTo(leftKickoff[i]);
         }
@@ -157,6 +158,7 @@ public class World extends JPanel implements MouseMotionListener, MouseListener
 
             // reset the field
             ball.goHome();
+            kick = new Kick();
             for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++) 
                 if (players[i] != null) players[i].moveTo(rightKickoff[i]);
         }          

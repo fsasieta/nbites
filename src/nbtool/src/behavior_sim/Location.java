@@ -18,10 +18,10 @@ public class Location
 
     public void rotate(float rad)
     {
-            x = x * (float)Math.cos(rad) - 
-                            y * (float)Math.sin(rad);
+            float initX = x;
+            
+            x = (x * (float)Math.cos(rad)) - (y * (float)Math.sin(rad));
 
-            y = y * (float)Math.cos(rad) + 
-                            x * (float)Math.sin(rad);
+            y = (y * (float)Math.cos(rad)) + (initX * (float)Math.sin(rad));
     }
 } 

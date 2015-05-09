@@ -8,122 +8,491 @@ public final class PMotion {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface MotionRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.MotionRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bool stop_body = 1;</code>
-     */
+  public interface MotionRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional bool stop_body = 1;
     boolean hasStopBody();
-    /**
-     * <code>optional bool stop_body = 1;</code>
-     */
     boolean getStopBody();
-
-    /**
-     * <code>optional bool stop_head = 2;</code>
-     */
+    
+    // optional bool stop_head = 2;
     boolean hasStopHead();
-    /**
-     * <code>optional bool stop_head = 2;</code>
-     */
     boolean getStopHead();
-
-    /**
-     * <code>optional bool reset_odometry = 3;</code>
-     */
+    
+    // optional bool reset_odometry = 3;
     boolean hasResetOdometry();
-    /**
-     * <code>optional bool reset_odometry = 3;</code>
-     */
     boolean getResetOdometry();
-
-    /**
-     * <code>optional bool remove_stiffness = 4;</code>
-     */
+    
+    // optional bool remove_stiffness = 4;
     boolean hasRemoveStiffness();
-    /**
-     * <code>optional bool remove_stiffness = 4;</code>
-     */
     boolean getRemoveStiffness();
-
-    /**
-     * <code>optional bool enable_stiffness = 5;</code>
-     */
+    
+    // optional bool enable_stiffness = 5;
     boolean hasEnableStiffness();
-    /**
-     * <code>optional bool enable_stiffness = 5;</code>
-     */
     boolean getEnableStiffness();
-
-    /**
-     * <code>optional bool reset_providers = 6;</code>
-     */
+    
+    // optional bool reset_providers = 6;
     boolean hasResetProviders();
-    /**
-     * <code>optional bool reset_providers = 6;</code>
-     */
     boolean getResetProviders();
-
-    /**
-     * <code>optional int64 timestamp = 7;</code>
-     */
+    
+    // optional int64 timestamp = 7;
     boolean hasTimestamp();
-    /**
-     * <code>optional int64 timestamp = 7;</code>
-     */
     long getTimestamp();
   }
-  /**
-   * Protobuf type {@code messages.MotionRequest}
-   */
   public static final class MotionRequest extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.MotionRequest)
-      MotionRequestOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements MotionRequestOrBuilder {
     // Use MotionRequest.newBuilder() to construct.
-    private MotionRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private MotionRequest(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private MotionRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private MotionRequest(boolean noInit) {}
+    
     private static final MotionRequest defaultInstance;
     public static MotionRequest getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public MotionRequest getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private MotionRequest(
-        com.google.protobuf.CodedInputStream input,
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return messages.PMotion.internal_static_messages_MotionRequest_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return messages.PMotion.internal_static_messages_MotionRequest_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional bool stop_body = 1;
+    public static final int STOP_BODY_FIELD_NUMBER = 1;
+    private boolean stopBody_;
+    public boolean hasStopBody() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public boolean getStopBody() {
+      return stopBody_;
+    }
+    
+    // optional bool stop_head = 2;
+    public static final int STOP_HEAD_FIELD_NUMBER = 2;
+    private boolean stopHead_;
+    public boolean hasStopHead() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public boolean getStopHead() {
+      return stopHead_;
+    }
+    
+    // optional bool reset_odometry = 3;
+    public static final int RESET_ODOMETRY_FIELD_NUMBER = 3;
+    private boolean resetOdometry_;
+    public boolean hasResetOdometry() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public boolean getResetOdometry() {
+      return resetOdometry_;
+    }
+    
+    // optional bool remove_stiffness = 4;
+    public static final int REMOVE_STIFFNESS_FIELD_NUMBER = 4;
+    private boolean removeStiffness_;
+    public boolean hasRemoveStiffness() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public boolean getRemoveStiffness() {
+      return removeStiffness_;
+    }
+    
+    // optional bool enable_stiffness = 5;
+    public static final int ENABLE_STIFFNESS_FIELD_NUMBER = 5;
+    private boolean enableStiffness_;
+    public boolean hasEnableStiffness() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public boolean getEnableStiffness() {
+      return enableStiffness_;
+    }
+    
+    // optional bool reset_providers = 6;
+    public static final int RESET_PROVIDERS_FIELD_NUMBER = 6;
+    private boolean resetProviders_;
+    public boolean hasResetProviders() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public boolean getResetProviders() {
+      return resetProviders_;
+    }
+    
+    // optional int64 timestamp = 7;
+    public static final int TIMESTAMP_FIELD_NUMBER = 7;
+    private long timestamp_;
+    public boolean hasTimestamp() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    
+    private void initFields() {
+      stopBody_ = false;
+      stopHead_ = false;
+      resetOdometry_ = false;
+      removeStiffness_ = false;
+      enableStiffness_ = false;
+      resetProviders_ = false;
+      timestamp_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBool(1, stopBody_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBool(2, stopHead_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(3, resetOdometry_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, removeStiffness_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBool(5, enableStiffness_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBool(6, resetProviders_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeInt64(7, timestamp_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, stopBody_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, stopHead_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, resetOdometry_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, removeStiffness_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, enableStiffness_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, resetProviders_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, timestamp_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static messages.PMotion.MotionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseFrom(
+        com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.MotionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.MotionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.MotionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(messages.PMotion.MotionRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.MotionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return messages.PMotion.internal_static_messages_MotionRequest_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return messages.PMotion.internal_static_messages_MotionRequest_fieldAccessorTable;
+      }
+      
+      // Construct using messages.PMotion.MotionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        stopBody_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        stopHead_ = false;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        resetOdometry_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        removeStiffness_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        enableStiffness_ = false;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        resetProviders_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        timestamp_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return messages.PMotion.MotionRequest.getDescriptor();
+      }
+      
+      public messages.PMotion.MotionRequest getDefaultInstanceForType() {
+        return messages.PMotion.MotionRequest.getDefaultInstance();
+      }
+      
+      public messages.PMotion.MotionRequest build() {
+        messages.PMotion.MotionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private messages.PMotion.MotionRequest buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.MotionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public messages.PMotion.MotionRequest buildPartial() {
+        messages.PMotion.MotionRequest result = new messages.PMotion.MotionRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.stopBody_ = stopBody_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.stopHead_ = stopHead_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.resetOdometry_ = resetOdometry_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.removeStiffness_ = removeStiffness_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.enableStiffness_ = enableStiffness_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.resetProviders_ = resetProviders_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.timestamp_ = timestamp_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof messages.PMotion.MotionRequest) {
+          return mergeFrom((messages.PMotion.MotionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(messages.PMotion.MotionRequest other) {
+        if (other == messages.PMotion.MotionRequest.getDefaultInstance()) return this;
+        if (other.hasStopBody()) {
+          setStopBody(other.getStopBody());
+        }
+        if (other.hasStopHead()) {
+          setStopHead(other.getStopHead());
+        }
+        if (other.hasResetOdometry()) {
+          setResetOdometry(other.getResetOdometry());
+        }
+        if (other.hasRemoveStiffness()) {
+          setRemoveStiffness(other.getRemoveStiffness());
+        }
+        if (other.hasEnableStiffness()) {
+          setEnableStiffness(other.getEnableStiffness());
+        }
+        if (other.hasResetProviders()) {
+          setResetProviders(other.getResetProviders());
+        }
+        if (other.hasTimestamp()) {
+          setTimestamp(other.getTimestamp());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              done = true;
-              break;
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                done = true;
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
               }
               break;
             }
@@ -164,991 +533,250 @@ public final class PMotion {
             }
           }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
       }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return messages.PMotion.internal_static_messages_MotionRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_MotionRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.MotionRequest.class, messages.PMotion.MotionRequest.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<MotionRequest> PARSER =
-        new com.google.protobuf.AbstractParser<MotionRequest>() {
-      public MotionRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MotionRequest(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<MotionRequest> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int STOP_BODY_FIELD_NUMBER = 1;
-    private boolean stopBody_;
-    /**
-     * <code>optional bool stop_body = 1;</code>
-     */
-    public boolean hasStopBody() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional bool stop_body = 1;</code>
-     */
-    public boolean getStopBody() {
-      return stopBody_;
-    }
-
-    public static final int STOP_HEAD_FIELD_NUMBER = 2;
-    private boolean stopHead_;
-    /**
-     * <code>optional bool stop_head = 2;</code>
-     */
-    public boolean hasStopHead() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional bool stop_head = 2;</code>
-     */
-    public boolean getStopHead() {
-      return stopHead_;
-    }
-
-    public static final int RESET_ODOMETRY_FIELD_NUMBER = 3;
-    private boolean resetOdometry_;
-    /**
-     * <code>optional bool reset_odometry = 3;</code>
-     */
-    public boolean hasResetOdometry() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional bool reset_odometry = 3;</code>
-     */
-    public boolean getResetOdometry() {
-      return resetOdometry_;
-    }
-
-    public static final int REMOVE_STIFFNESS_FIELD_NUMBER = 4;
-    private boolean removeStiffness_;
-    /**
-     * <code>optional bool remove_stiffness = 4;</code>
-     */
-    public boolean hasRemoveStiffness() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional bool remove_stiffness = 4;</code>
-     */
-    public boolean getRemoveStiffness() {
-      return removeStiffness_;
-    }
-
-    public static final int ENABLE_STIFFNESS_FIELD_NUMBER = 5;
-    private boolean enableStiffness_;
-    /**
-     * <code>optional bool enable_stiffness = 5;</code>
-     */
-    public boolean hasEnableStiffness() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional bool enable_stiffness = 5;</code>
-     */
-    public boolean getEnableStiffness() {
-      return enableStiffness_;
-    }
-
-    public static final int RESET_PROVIDERS_FIELD_NUMBER = 6;
-    private boolean resetProviders_;
-    /**
-     * <code>optional bool reset_providers = 6;</code>
-     */
-    public boolean hasResetProviders() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional bool reset_providers = 6;</code>
-     */
-    public boolean getResetProviders() {
-      return resetProviders_;
-    }
-
-    public static final int TIMESTAMP_FIELD_NUMBER = 7;
-    private long timestamp_;
-    /**
-     * <code>optional int64 timestamp = 7;</code>
-     */
-    public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
-    /**
-     * <code>optional int64 timestamp = 7;</code>
-     */
-    public long getTimestamp() {
-      return timestamp_;
-    }
-
-    private void initFields() {
-      stopBody_ = false;
-      stopHead_ = false;
-      resetOdometry_ = false;
-      removeStiffness_ = false;
-      enableStiffness_ = false;
-      resetProviders_ = false;
-      timestamp_ = 0L;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, stopBody_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBool(2, stopHead_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(3, resetOdometry_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, removeStiffness_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBool(5, enableStiffness_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBool(6, resetProviders_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeInt64(7, timestamp_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, stopBody_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, stopHead_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, resetOdometry_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, removeStiffness_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, enableStiffness_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, resetProviders_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, timestamp_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static messages.PMotion.MotionRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.MotionRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static messages.PMotion.MotionRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.MotionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(messages.PMotion.MotionRequest prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code messages.MotionRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.MotionRequest)
-        messages.PMotion.MotionRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return messages.PMotion.internal_static_messages_MotionRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_MotionRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.MotionRequest.class, messages.PMotion.MotionRequest.Builder.class);
-      }
-
-      // Construct using messages.PMotion.MotionRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        stopBody_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        stopHead_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        resetOdometry_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        removeStiffness_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        enableStiffness_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        resetProviders_ = false;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_MotionRequest_descriptor;
-      }
-
-      public messages.PMotion.MotionRequest getDefaultInstanceForType() {
-        return messages.PMotion.MotionRequest.getDefaultInstance();
-      }
-
-      public messages.PMotion.MotionRequest build() {
-        messages.PMotion.MotionRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public messages.PMotion.MotionRequest buildPartial() {
-        messages.PMotion.MotionRequest result = new messages.PMotion.MotionRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.stopBody_ = stopBody_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.stopHead_ = stopHead_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.resetOdometry_ = resetOdometry_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.removeStiffness_ = removeStiffness_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.enableStiffness_ = enableStiffness_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.resetProviders_ = resetProviders_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.timestamp_ = timestamp_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof messages.PMotion.MotionRequest) {
-          return mergeFrom((messages.PMotion.MotionRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(messages.PMotion.MotionRequest other) {
-        if (other == messages.PMotion.MotionRequest.getDefaultInstance()) return this;
-        if (other.hasStopBody()) {
-          setStopBody(other.getStopBody());
-        }
-        if (other.hasStopHead()) {
-          setStopHead(other.getStopHead());
-        }
-        if (other.hasResetOdometry()) {
-          setResetOdometry(other.getResetOdometry());
-        }
-        if (other.hasRemoveStiffness()) {
-          setRemoveStiffness(other.getRemoveStiffness());
-        }
-        if (other.hasEnableStiffness()) {
-          setEnableStiffness(other.getEnableStiffness());
-        }
-        if (other.hasResetProviders()) {
-          setResetProviders(other.getResetProviders());
-        }
-        if (other.hasTimestamp()) {
-          setTimestamp(other.getTimestamp());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        messages.PMotion.MotionRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.MotionRequest) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+      
       private int bitField0_;
-
+      
+      // optional bool stop_body = 1;
       private boolean stopBody_ ;
-      /**
-       * <code>optional bool stop_body = 1;</code>
-       */
       public boolean hasStopBody() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional bool stop_body = 1;</code>
-       */
       public boolean getStopBody() {
         return stopBody_;
       }
-      /**
-       * <code>optional bool stop_body = 1;</code>
-       */
       public Builder setStopBody(boolean value) {
         bitField0_ |= 0x00000001;
         stopBody_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool stop_body = 1;</code>
-       */
       public Builder clearStopBody() {
         bitField0_ = (bitField0_ & ~0x00000001);
         stopBody_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional bool stop_head = 2;
       private boolean stopHead_ ;
-      /**
-       * <code>optional bool stop_head = 2;</code>
-       */
       public boolean hasStopHead() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional bool stop_head = 2;</code>
-       */
       public boolean getStopHead() {
         return stopHead_;
       }
-      /**
-       * <code>optional bool stop_head = 2;</code>
-       */
       public Builder setStopHead(boolean value) {
         bitField0_ |= 0x00000002;
         stopHead_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool stop_head = 2;</code>
-       */
       public Builder clearStopHead() {
         bitField0_ = (bitField0_ & ~0x00000002);
         stopHead_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional bool reset_odometry = 3;
       private boolean resetOdometry_ ;
-      /**
-       * <code>optional bool reset_odometry = 3;</code>
-       */
       public boolean hasResetOdometry() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional bool reset_odometry = 3;</code>
-       */
       public boolean getResetOdometry() {
         return resetOdometry_;
       }
-      /**
-       * <code>optional bool reset_odometry = 3;</code>
-       */
       public Builder setResetOdometry(boolean value) {
         bitField0_ |= 0x00000004;
         resetOdometry_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool reset_odometry = 3;</code>
-       */
       public Builder clearResetOdometry() {
         bitField0_ = (bitField0_ & ~0x00000004);
         resetOdometry_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional bool remove_stiffness = 4;
       private boolean removeStiffness_ ;
-      /**
-       * <code>optional bool remove_stiffness = 4;</code>
-       */
       public boolean hasRemoveStiffness() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional bool remove_stiffness = 4;</code>
-       */
       public boolean getRemoveStiffness() {
         return removeStiffness_;
       }
-      /**
-       * <code>optional bool remove_stiffness = 4;</code>
-       */
       public Builder setRemoveStiffness(boolean value) {
         bitField0_ |= 0x00000008;
         removeStiffness_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool remove_stiffness = 4;</code>
-       */
       public Builder clearRemoveStiffness() {
         bitField0_ = (bitField0_ & ~0x00000008);
         removeStiffness_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional bool enable_stiffness = 5;
       private boolean enableStiffness_ ;
-      /**
-       * <code>optional bool enable_stiffness = 5;</code>
-       */
       public boolean hasEnableStiffness() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional bool enable_stiffness = 5;</code>
-       */
       public boolean getEnableStiffness() {
         return enableStiffness_;
       }
-      /**
-       * <code>optional bool enable_stiffness = 5;</code>
-       */
       public Builder setEnableStiffness(boolean value) {
         bitField0_ |= 0x00000010;
         enableStiffness_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool enable_stiffness = 5;</code>
-       */
       public Builder clearEnableStiffness() {
         bitField0_ = (bitField0_ & ~0x00000010);
         enableStiffness_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional bool reset_providers = 6;
       private boolean resetProviders_ ;
-      /**
-       * <code>optional bool reset_providers = 6;</code>
-       */
       public boolean hasResetProviders() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      /**
-       * <code>optional bool reset_providers = 6;</code>
-       */
       public boolean getResetProviders() {
         return resetProviders_;
       }
-      /**
-       * <code>optional bool reset_providers = 6;</code>
-       */
       public Builder setResetProviders(boolean value) {
         bitField0_ |= 0x00000020;
         resetProviders_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool reset_providers = 6;</code>
-       */
       public Builder clearResetProviders() {
         bitField0_ = (bitField0_ & ~0x00000020);
         resetProviders_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional int64 timestamp = 7;
       private long timestamp_ ;
-      /**
-       * <code>optional int64 timestamp = 7;</code>
-       */
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
-      /**
-       * <code>optional int64 timestamp = 7;</code>
-       */
       public long getTimestamp() {
         return timestamp_;
       }
-      /**
-       * <code>optional int64 timestamp = 7;</code>
-       */
       public Builder setTimestamp(long value) {
         bitField0_ |= 0x00000040;
         timestamp_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 timestamp = 7;</code>
-       */
       public Builder clearTimestamp() {
         bitField0_ = (bitField0_ & ~0x00000040);
         timestamp_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.MotionRequest)
     }
-
+    
     static {
       defaultInstance = new MotionRequest(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.MotionRequest)
   }
-
-  public interface MotionCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.MotionCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-     */
+  
+  public interface MotionCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .messages.MotionCommand.CommandType type = 1;
     boolean hasType();
-    /**
-     * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-     */
     messages.PMotion.MotionCommand.CommandType getType();
-
-    /**
-     * <code>optional .messages.ScriptedMove script = 2;</code>
-     */
+    
+    // optional .messages.ScriptedMove script = 2;
     boolean hasScript();
-    /**
-     * <code>optional .messages.ScriptedMove script = 2;</code>
-     */
     messages.PMotion.ScriptedMove getScript();
-    /**
-     * <code>optional .messages.ScriptedMove script = 2;</code>
-     */
     messages.PMotion.ScriptedMoveOrBuilder getScriptOrBuilder();
-
-    /**
-     * <code>optional .messages.DestinationWalk dest = 3;</code>
-     */
+    
+    // optional .messages.DestinationWalk dest = 3;
     boolean hasDest();
-    /**
-     * <code>optional .messages.DestinationWalk dest = 3;</code>
-     */
     messages.PMotion.DestinationWalk getDest();
-    /**
-     * <code>optional .messages.DestinationWalk dest = 3;</code>
-     */
     messages.PMotion.DestinationWalkOrBuilder getDestOrBuilder();
-
-    /**
-     * <code>optional .messages.WalkCommand speed = 4;</code>
-     */
+    
+    // optional .messages.WalkCommand speed = 4;
     boolean hasSpeed();
-    /**
-     * <code>optional .messages.WalkCommand speed = 4;</code>
-     */
     messages.PMotion.WalkCommand getSpeed();
-    /**
-     * <code>optional .messages.WalkCommand speed = 4;</code>
-     */
     messages.PMotion.WalkCommandOrBuilder getSpeedOrBuilder();
-
-    /**
-     * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-     */
+    
+    // optional .messages.OdometryWalk odometry_dest = 5;
     boolean hasOdometryDest();
-    /**
-     * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-     */
     messages.PMotion.OdometryWalk getOdometryDest();
-    /**
-     * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-     */
     messages.PMotion.OdometryWalkOrBuilder getOdometryDestOrBuilder();
-
-    /**
-     * <code>optional int64 timestamp = 6;</code>
-     */
+    
+    // optional int64 timestamp = 6;
     boolean hasTimestamp();
-    /**
-     * <code>optional int64 timestamp = 6;</code>
-     */
     long getTimestamp();
   }
-  /**
-   * Protobuf type {@code messages.MotionCommand}
-   */
   public static final class MotionCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.MotionCommand)
-      MotionCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements MotionCommandOrBuilder {
     // Use MotionCommand.newBuilder() to construct.
-    private MotionCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private MotionCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private MotionCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private MotionCommand(boolean noInit) {}
+    
     private static final MotionCommand defaultInstance;
     public static MotionCommand getDefaultInstance() {
       return defaultInstance;
     }
 
-    public MotionCommand getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private MotionCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              int rawValue = input.readEnum();
-              messages.PMotion.MotionCommand.CommandType value = messages.PMotion.MotionCommand.CommandType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                type_ = value;
-              }
-              break;
-            }
-            case 18: {
-              messages.PMotion.ScriptedMove.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = script_.toBuilder();
-              }
-              script_ = input.readMessage(messages.PMotion.ScriptedMove.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(script_);
-                script_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              messages.PMotion.DestinationWalk.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = dest_.toBuilder();
-              }
-              dest_ = input.readMessage(messages.PMotion.DestinationWalk.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(dest_);
-                dest_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 34: {
-              messages.PMotion.WalkCommand.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = speed_.toBuilder();
-              }
-              speed_ = input.readMessage(messages.PMotion.WalkCommand.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(speed_);
-                speed_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000008;
-              break;
-            }
-            case 42: {
-              messages.PMotion.OdometryWalk.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                subBuilder = odometryDest_.toBuilder();
-              }
-              odometryDest_ = input.readMessage(messages.PMotion.OdometryWalk.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(odometryDest_);
-                odometryDest_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000010;
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              timestamp_ = input.readInt64();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+    
+    public MotionCommand getDefaultInstanceForType() {
+      return defaultInstance;
     }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_MotionCommand_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_MotionCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.MotionCommand.class, messages.PMotion.MotionCommand.Builder.class);
+      return messages.PMotion.internal_static_messages_MotionCommand_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<MotionCommand> PARSER =
-        new com.google.protobuf.AbstractParser<MotionCommand>() {
-      public MotionCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MotionCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<MotionCommand> getParserForType() {
-      return PARSER;
-    }
-
-    /**
-     * Protobuf enum {@code messages.MotionCommand.CommandType}
-     */
+    
     public enum CommandType
         implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>DESTINATION_WALK = 0;</code>
-       */
       DESTINATION_WALK(0, 0),
-      /**
-       * <code>WALK_COMMAND = 1;</code>
-       */
       WALK_COMMAND(1, 1),
-      /**
-       * <code>SCRIPTED_MOVE = 2;</code>
-       */
       SCRIPTED_MOVE(2, 2),
-      /**
-       * <code>ODOMETRY_WALK = 3;</code>
-       */
       ODOMETRY_WALK(3, 3),
       ;
-
-      /**
-       * <code>DESTINATION_WALK = 0;</code>
-       */
+      
       public static final int DESTINATION_WALK_VALUE = 0;
-      /**
-       * <code>WALK_COMMAND = 1;</code>
-       */
       public static final int WALK_COMMAND_VALUE = 1;
-      /**
-       * <code>SCRIPTED_MOVE = 2;</code>
-       */
       public static final int SCRIPTED_MOVE_VALUE = 2;
-      /**
-       * <code>ODOMETRY_WALK = 3;</code>
-       */
       public static final int ODOMETRY_WALK_VALUE = 3;
-
-
+      
+      
       public final int getNumber() { return value; }
-
+      
       public static CommandType valueOf(int value) {
         switch (value) {
           case 0: return DESTINATION_WALK;
@@ -1158,7 +786,7 @@ public final class PMotion {
           default: return null;
         }
       }
-
+      
       public static com.google.protobuf.Internal.EnumLiteMap<CommandType>
           internalGetValueMap() {
         return internalValueMap;
@@ -1170,7 +798,7 @@ public final class PMotion {
                 return CommandType.valueOf(number);
               }
             };
-
+      
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(index);
@@ -1183,9 +811,11 @@ public final class PMotion {
           getDescriptor() {
         return messages.PMotion.MotionCommand.getDescriptor().getEnumTypes().get(0);
       }
-
-      private static final CommandType[] VALUES = values();
-
+      
+      private static final CommandType[] VALUES = {
+        DESTINATION_WALK, WALK_COMMAND, SCRIPTED_MOVE, ODOMETRY_WALK, 
+      };
+      
       public static CommandType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
@@ -1194,133 +824,91 @@ public final class PMotion {
         }
         return VALUES[desc.getIndex()];
       }
-
+      
       private final int index;
       private final int value;
-
+      
       private CommandType(int index, int value) {
         this.index = index;
         this.value = value;
       }
-
+      
       // @@protoc_insertion_point(enum_scope:messages.MotionCommand.CommandType)
     }
-
+    
     private int bitField0_;
+    // optional .messages.MotionCommand.CommandType type = 1;
     public static final int TYPE_FIELD_NUMBER = 1;
     private messages.PMotion.MotionCommand.CommandType type_;
-    /**
-     * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-     */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-     */
     public messages.PMotion.MotionCommand.CommandType getType() {
       return type_;
     }
-
+    
+    // optional .messages.ScriptedMove script = 2;
     public static final int SCRIPT_FIELD_NUMBER = 2;
     private messages.PMotion.ScriptedMove script_;
-    /**
-     * <code>optional .messages.ScriptedMove script = 2;</code>
-     */
     public boolean hasScript() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional .messages.ScriptedMove script = 2;</code>
-     */
     public messages.PMotion.ScriptedMove getScript() {
       return script_;
     }
-    /**
-     * <code>optional .messages.ScriptedMove script = 2;</code>
-     */
     public messages.PMotion.ScriptedMoveOrBuilder getScriptOrBuilder() {
       return script_;
     }
-
+    
+    // optional .messages.DestinationWalk dest = 3;
     public static final int DEST_FIELD_NUMBER = 3;
     private messages.PMotion.DestinationWalk dest_;
-    /**
-     * <code>optional .messages.DestinationWalk dest = 3;</code>
-     */
     public boolean hasDest() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional .messages.DestinationWalk dest = 3;</code>
-     */
     public messages.PMotion.DestinationWalk getDest() {
       return dest_;
     }
-    /**
-     * <code>optional .messages.DestinationWalk dest = 3;</code>
-     */
     public messages.PMotion.DestinationWalkOrBuilder getDestOrBuilder() {
       return dest_;
     }
-
+    
+    // optional .messages.WalkCommand speed = 4;
     public static final int SPEED_FIELD_NUMBER = 4;
     private messages.PMotion.WalkCommand speed_;
-    /**
-     * <code>optional .messages.WalkCommand speed = 4;</code>
-     */
     public boolean hasSpeed() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional .messages.WalkCommand speed = 4;</code>
-     */
     public messages.PMotion.WalkCommand getSpeed() {
       return speed_;
     }
-    /**
-     * <code>optional .messages.WalkCommand speed = 4;</code>
-     */
     public messages.PMotion.WalkCommandOrBuilder getSpeedOrBuilder() {
       return speed_;
     }
-
+    
+    // optional .messages.OdometryWalk odometry_dest = 5;
     public static final int ODOMETRY_DEST_FIELD_NUMBER = 5;
     private messages.PMotion.OdometryWalk odometryDest_;
-    /**
-     * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-     */
     public boolean hasOdometryDest() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    /**
-     * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-     */
     public messages.PMotion.OdometryWalk getOdometryDest() {
       return odometryDest_;
     }
-    /**
-     * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-     */
     public messages.PMotion.OdometryWalkOrBuilder getOdometryDestOrBuilder() {
       return odometryDest_;
     }
-
+    
+    // optional int64 timestamp = 6;
     public static final int TIMESTAMP_FIELD_NUMBER = 6;
     private long timestamp_;
-    /**
-     * <code>optional int64 timestamp = 6;</code>
-     */
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
-    /**
-     * <code>optional int64 timestamp = 6;</code>
-     */
     public long getTimestamp() {
       return timestamp_;
     }
-
+    
     private void initFields() {
       type_ = messages.PMotion.MotionCommand.CommandType.DESTINATION_WALK;
       script_ = messages.PMotion.ScriptedMove.getDefaultInstance();
@@ -1332,13 +920,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -1362,12 +949,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1397,106 +984,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.MotionCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.MotionCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.MotionCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.MotionCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.MotionCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.MotionCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.MotionCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.MotionCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.MotionCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.MotionCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.MotionCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.MotionCommand}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.MotionCommand)
-        messages.PMotion.MotionCommandOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.MotionCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_MotionCommand_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_MotionCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.MotionCommand.class, messages.PMotion.MotionCommand.Builder.class);
+        return messages.PMotion.internal_static_messages_MotionCommand_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.MotionCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1511,7 +1105,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         type_ = messages.PMotion.MotionCommand.CommandType.DESTINATION_WALK;
@@ -1544,20 +1138,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_MotionCommand_descriptor;
+        return messages.PMotion.MotionCommand.getDescriptor();
       }
-
+      
       public messages.PMotion.MotionCommand getDefaultInstanceForType() {
         return messages.PMotion.MotionCommand.getDefaultInstance();
       }
-
+      
       public messages.PMotion.MotionCommand build() {
         messages.PMotion.MotionCommand result = buildPartial();
         if (!result.isInitialized()) {
@@ -1565,7 +1159,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.MotionCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.MotionCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.MotionCommand buildPartial() {
         messages.PMotion.MotionCommand result = new messages.PMotion.MotionCommand(this);
         int from_bitField0_ = bitField0_;
@@ -1614,7 +1218,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.MotionCommand) {
           return mergeFrom((messages.PMotion.MotionCommand)other);
@@ -1623,7 +1227,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.MotionCommand other) {
         if (other == messages.PMotion.MotionCommand.getDefaultInstance()) return this;
         if (other.hasType()) {
@@ -1647,46 +1251,100 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.MotionCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.MotionCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              messages.PMotion.MotionCommand.CommandType value = messages.PMotion.MotionCommand.CommandType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = value;
+              }
+              break;
+            }
+            case 18: {
+              messages.PMotion.ScriptedMove.Builder subBuilder = messages.PMotion.ScriptedMove.newBuilder();
+              if (hasScript()) {
+                subBuilder.mergeFrom(getScript());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setScript(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              messages.PMotion.DestinationWalk.Builder subBuilder = messages.PMotion.DestinationWalk.newBuilder();
+              if (hasDest()) {
+                subBuilder.mergeFrom(getDest());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setDest(subBuilder.buildPartial());
+              break;
+            }
+            case 34: {
+              messages.PMotion.WalkCommand.Builder subBuilder = messages.PMotion.WalkCommand.newBuilder();
+              if (hasSpeed()) {
+                subBuilder.mergeFrom(getSpeed());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setSpeed(subBuilder.buildPartial());
+              break;
+            }
+            case 42: {
+              messages.PMotion.OdometryWalk.Builder subBuilder = messages.PMotion.OdometryWalk.newBuilder();
+              if (hasOdometryDest()) {
+                subBuilder.mergeFrom(getOdometryDest());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setOdometryDest(subBuilder.buildPartial());
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              timestamp_ = input.readInt64();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional .messages.MotionCommand.CommandType type = 1;
       private messages.PMotion.MotionCommand.CommandType type_ = messages.PMotion.MotionCommand.CommandType.DESTINATION_WALK;
-      /**
-       * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-       */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-       */
       public messages.PMotion.MotionCommand.CommandType getType() {
         return type_;
       }
-      /**
-       * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-       */
       public Builder setType(messages.PMotion.MotionCommand.CommandType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -1696,28 +1354,20 @@ public final class PMotion {
         onChanged();
         return this;
       }
-      /**
-       * <code>optional .messages.MotionCommand.CommandType type = 1;</code>
-       */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
         type_ = messages.PMotion.MotionCommand.CommandType.DESTINATION_WALK;
         onChanged();
         return this;
       }
-
+      
+      // optional .messages.ScriptedMove script = 2;
       private messages.PMotion.ScriptedMove script_ = messages.PMotion.ScriptedMove.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.ScriptedMove, messages.PMotion.ScriptedMove.Builder, messages.PMotion.ScriptedMoveOrBuilder> scriptBuilder_;
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public boolean hasScript() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public messages.PMotion.ScriptedMove getScript() {
         if (scriptBuilder_ == null) {
           return script_;
@@ -1725,9 +1375,6 @@ public final class PMotion {
           return scriptBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public Builder setScript(messages.PMotion.ScriptedMove value) {
         if (scriptBuilder_ == null) {
           if (value == null) {
@@ -1741,9 +1388,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public Builder setScript(
           messages.PMotion.ScriptedMove.Builder builderForValue) {
         if (scriptBuilder_ == null) {
@@ -1755,9 +1399,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public Builder mergeScript(messages.PMotion.ScriptedMove value) {
         if (scriptBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
@@ -1774,9 +1415,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public Builder clearScript() {
         if (scriptBuilder_ == null) {
           script_ = messages.PMotion.ScriptedMove.getDefaultInstance();
@@ -1787,17 +1425,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public messages.PMotion.ScriptedMove.Builder getScriptBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getScriptFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       public messages.PMotion.ScriptedMoveOrBuilder getScriptOrBuilder() {
         if (scriptBuilder_ != null) {
           return scriptBuilder_.getMessageOrBuilder();
@@ -1805,35 +1437,27 @@ public final class PMotion {
           return script_;
         }
       }
-      /**
-       * <code>optional .messages.ScriptedMove script = 2;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.ScriptedMove, messages.PMotion.ScriptedMove.Builder, messages.PMotion.ScriptedMoveOrBuilder> 
           getScriptFieldBuilder() {
         if (scriptBuilder_ == null) {
           scriptBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.ScriptedMove, messages.PMotion.ScriptedMove.Builder, messages.PMotion.ScriptedMoveOrBuilder>(
-                  getScript(),
+                  script_,
                   getParentForChildren(),
                   isClean());
           script_ = null;
         }
         return scriptBuilder_;
       }
-
+      
+      // optional .messages.DestinationWalk dest = 3;
       private messages.PMotion.DestinationWalk dest_ = messages.PMotion.DestinationWalk.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.DestinationWalk, messages.PMotion.DestinationWalk.Builder, messages.PMotion.DestinationWalkOrBuilder> destBuilder_;
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public boolean hasDest() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public messages.PMotion.DestinationWalk getDest() {
         if (destBuilder_ == null) {
           return dest_;
@@ -1841,9 +1465,6 @@ public final class PMotion {
           return destBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public Builder setDest(messages.PMotion.DestinationWalk value) {
         if (destBuilder_ == null) {
           if (value == null) {
@@ -1857,9 +1478,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public Builder setDest(
           messages.PMotion.DestinationWalk.Builder builderForValue) {
         if (destBuilder_ == null) {
@@ -1871,9 +1489,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public Builder mergeDest(messages.PMotion.DestinationWalk value) {
         if (destBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
@@ -1890,9 +1505,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public Builder clearDest() {
         if (destBuilder_ == null) {
           dest_ = messages.PMotion.DestinationWalk.getDefaultInstance();
@@ -1903,17 +1515,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public messages.PMotion.DestinationWalk.Builder getDestBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
         return getDestFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       public messages.PMotion.DestinationWalkOrBuilder getDestOrBuilder() {
         if (destBuilder_ != null) {
           return destBuilder_.getMessageOrBuilder();
@@ -1921,35 +1527,27 @@ public final class PMotion {
           return dest_;
         }
       }
-      /**
-       * <code>optional .messages.DestinationWalk dest = 3;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.DestinationWalk, messages.PMotion.DestinationWalk.Builder, messages.PMotion.DestinationWalkOrBuilder> 
           getDestFieldBuilder() {
         if (destBuilder_ == null) {
           destBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.DestinationWalk, messages.PMotion.DestinationWalk.Builder, messages.PMotion.DestinationWalkOrBuilder>(
-                  getDest(),
+                  dest_,
                   getParentForChildren(),
                   isClean());
           dest_ = null;
         }
         return destBuilder_;
       }
-
+      
+      // optional .messages.WalkCommand speed = 4;
       private messages.PMotion.WalkCommand speed_ = messages.PMotion.WalkCommand.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.WalkCommand, messages.PMotion.WalkCommand.Builder, messages.PMotion.WalkCommandOrBuilder> speedBuilder_;
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public boolean hasSpeed() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public messages.PMotion.WalkCommand getSpeed() {
         if (speedBuilder_ == null) {
           return speed_;
@@ -1957,9 +1555,6 @@ public final class PMotion {
           return speedBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public Builder setSpeed(messages.PMotion.WalkCommand value) {
         if (speedBuilder_ == null) {
           if (value == null) {
@@ -1973,9 +1568,6 @@ public final class PMotion {
         bitField0_ |= 0x00000008;
         return this;
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public Builder setSpeed(
           messages.PMotion.WalkCommand.Builder builderForValue) {
         if (speedBuilder_ == null) {
@@ -1987,9 +1579,6 @@ public final class PMotion {
         bitField0_ |= 0x00000008;
         return this;
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public Builder mergeSpeed(messages.PMotion.WalkCommand value) {
         if (speedBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008) &&
@@ -2006,9 +1595,6 @@ public final class PMotion {
         bitField0_ |= 0x00000008;
         return this;
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public Builder clearSpeed() {
         if (speedBuilder_ == null) {
           speed_ = messages.PMotion.WalkCommand.getDefaultInstance();
@@ -2019,17 +1605,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public messages.PMotion.WalkCommand.Builder getSpeedBuilder() {
         bitField0_ |= 0x00000008;
         onChanged();
         return getSpeedFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       public messages.PMotion.WalkCommandOrBuilder getSpeedOrBuilder() {
         if (speedBuilder_ != null) {
           return speedBuilder_.getMessageOrBuilder();
@@ -2037,35 +1617,27 @@ public final class PMotion {
           return speed_;
         }
       }
-      /**
-       * <code>optional .messages.WalkCommand speed = 4;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.WalkCommand, messages.PMotion.WalkCommand.Builder, messages.PMotion.WalkCommandOrBuilder> 
           getSpeedFieldBuilder() {
         if (speedBuilder_ == null) {
           speedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.WalkCommand, messages.PMotion.WalkCommand.Builder, messages.PMotion.WalkCommandOrBuilder>(
-                  getSpeed(),
+                  speed_,
                   getParentForChildren(),
                   isClean());
           speed_ = null;
         }
         return speedBuilder_;
       }
-
+      
+      // optional .messages.OdometryWalk odometry_dest = 5;
       private messages.PMotion.OdometryWalk odometryDest_ = messages.PMotion.OdometryWalk.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.OdometryWalk, messages.PMotion.OdometryWalk.Builder, messages.PMotion.OdometryWalkOrBuilder> odometryDestBuilder_;
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public boolean hasOdometryDest() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public messages.PMotion.OdometryWalk getOdometryDest() {
         if (odometryDestBuilder_ == null) {
           return odometryDest_;
@@ -2073,9 +1645,6 @@ public final class PMotion {
           return odometryDestBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public Builder setOdometryDest(messages.PMotion.OdometryWalk value) {
         if (odometryDestBuilder_ == null) {
           if (value == null) {
@@ -2089,9 +1658,6 @@ public final class PMotion {
         bitField0_ |= 0x00000010;
         return this;
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public Builder setOdometryDest(
           messages.PMotion.OdometryWalk.Builder builderForValue) {
         if (odometryDestBuilder_ == null) {
@@ -2103,9 +1669,6 @@ public final class PMotion {
         bitField0_ |= 0x00000010;
         return this;
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public Builder mergeOdometryDest(messages.PMotion.OdometryWalk value) {
         if (odometryDestBuilder_ == null) {
           if (((bitField0_ & 0x00000010) == 0x00000010) &&
@@ -2122,9 +1685,6 @@ public final class PMotion {
         bitField0_ |= 0x00000010;
         return this;
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public Builder clearOdometryDest() {
         if (odometryDestBuilder_ == null) {
           odometryDest_ = messages.PMotion.OdometryWalk.getDefaultInstance();
@@ -2135,17 +1695,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public messages.PMotion.OdometryWalk.Builder getOdometryDestBuilder() {
         bitField0_ |= 0x00000010;
         onChanged();
         return getOdometryDestFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       public messages.PMotion.OdometryWalkOrBuilder getOdometryDestOrBuilder() {
         if (odometryDestBuilder_ != null) {
           return odometryDestBuilder_.getMessageOrBuilder();
@@ -2153,367 +1707,308 @@ public final class PMotion {
           return odometryDest_;
         }
       }
-      /**
-       * <code>optional .messages.OdometryWalk odometry_dest = 5;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.OdometryWalk, messages.PMotion.OdometryWalk.Builder, messages.PMotion.OdometryWalkOrBuilder> 
           getOdometryDestFieldBuilder() {
         if (odometryDestBuilder_ == null) {
           odometryDestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.OdometryWalk, messages.PMotion.OdometryWalk.Builder, messages.PMotion.OdometryWalkOrBuilder>(
-                  getOdometryDest(),
+                  odometryDest_,
                   getParentForChildren(),
                   isClean());
           odometryDest_ = null;
         }
         return odometryDestBuilder_;
       }
-
+      
+      // optional int64 timestamp = 6;
       private long timestamp_ ;
-      /**
-       * <code>optional int64 timestamp = 6;</code>
-       */
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      /**
-       * <code>optional int64 timestamp = 6;</code>
-       */
       public long getTimestamp() {
         return timestamp_;
       }
-      /**
-       * <code>optional int64 timestamp = 6;</code>
-       */
       public Builder setTimestamp(long value) {
         bitField0_ |= 0x00000020;
         timestamp_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 timestamp = 6;</code>
-       */
       public Builder clearTimestamp() {
         bitField0_ = (bitField0_ & ~0x00000020);
         timestamp_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.MotionCommand)
     }
-
+    
     static {
       defaultInstance = new MotionCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.MotionCommand)
   }
-
-  public interface ScriptedMoveOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.ScriptedMove)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
+  
+  public interface ScriptedMoveOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .messages.BodyJointCommand command = 1;
     java.util.List<messages.PMotion.BodyJointCommand> 
         getCommandList();
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     messages.PMotion.BodyJointCommand getCommand(int index);
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     int getCommandCount();
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     java.util.List<? extends messages.PMotion.BodyJointCommandOrBuilder> 
         getCommandOrBuilderList();
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     messages.PMotion.BodyJointCommandOrBuilder getCommandOrBuilder(
         int index);
+    
+    // optional float dist = 2;
+    boolean hasDist();
+    float getDist();
+    
+    // optional float h = 3;
+    boolean hasH();
+    float getH();
   }
-  /**
-   * Protobuf type {@code messages.ScriptedMove}
-   */
   public static final class ScriptedMove extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.ScriptedMove)
-      ScriptedMoveOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements ScriptedMoveOrBuilder {
     // Use ScriptedMove.newBuilder() to construct.
-    private ScriptedMove(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private ScriptedMove(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private ScriptedMove(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private ScriptedMove(boolean noInit) {}
+    
     private static final ScriptedMove defaultInstance;
     public static ScriptedMove getDefaultInstance() {
       return defaultInstance;
     }
-
-    public ScriptedMove getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private ScriptedMove(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                command_ = new java.util.ArrayList<messages.PMotion.BodyJointCommand>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              command_.add(input.readMessage(messages.PMotion.BodyJointCommand.PARSER, extensionRegistry));
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          command_ = java.util.Collections.unmodifiableList(command_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+
+    public ScriptedMove getDefaultInstanceForType() {
+      return defaultInstance;
     }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_ScriptedMove_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_ScriptedMove_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.ScriptedMove.class, messages.PMotion.ScriptedMove.Builder.class);
+      return messages.PMotion.internal_static_messages_ScriptedMove_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<ScriptedMove> PARSER =
-        new com.google.protobuf.AbstractParser<ScriptedMove>() {
-      public ScriptedMove parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ScriptedMove(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ScriptedMove> getParserForType() {
-      return PARSER;
-    }
-
+    
+    private int bitField0_;
+    // repeated .messages.BodyJointCommand command = 1;
     public static final int COMMAND_FIELD_NUMBER = 1;
     private java.util.List<messages.PMotion.BodyJointCommand> command_;
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     public java.util.List<messages.PMotion.BodyJointCommand> getCommandList() {
       return command_;
     }
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     public java.util.List<? extends messages.PMotion.BodyJointCommandOrBuilder> 
         getCommandOrBuilderList() {
       return command_;
     }
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     public int getCommandCount() {
       return command_.size();
     }
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     public messages.PMotion.BodyJointCommand getCommand(int index) {
       return command_.get(index);
     }
-    /**
-     * <code>repeated .messages.BodyJointCommand command = 1;</code>
-     */
     public messages.PMotion.BodyJointCommandOrBuilder getCommandOrBuilder(
         int index) {
       return command_.get(index);
     }
-
+    
+    // optional float dist = 2;
+    public static final int DIST_FIELD_NUMBER = 2;
+    private float dist_;
+    public boolean hasDist() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public float getDist() {
+      return dist_;
+    }
+    
+    // optional float h = 3;
+    public static final int H_FIELD_NUMBER = 3;
+    private float h_;
+    public boolean hasH() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public float getH() {
+      return h_;
+    }
+    
     private void initFields() {
       command_ = java.util.Collections.emptyList();
+      dist_ = 0F;
+      h_ = 0F;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
       for (int i = 0; i < command_.size(); i++) {
         output.writeMessage(1, command_.get(i));
       }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeFloat(2, dist_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(3, h_);
+      }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       for (int i = 0; i < command_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, command_.get(i));
       }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, dist_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, h_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.ScriptedMove parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.ScriptedMove parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.ScriptedMove parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.ScriptedMove parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.ScriptedMove prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.ScriptedMove}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.ScriptedMove)
-        messages.PMotion.ScriptedMoveOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.ScriptedMoveOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_ScriptedMove_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_ScriptedMove_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.ScriptedMove.class, messages.PMotion.ScriptedMove.Builder.class);
+        return messages.PMotion.internal_static_messages_ScriptedMove_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.ScriptedMove.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2525,7 +2020,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         if (commandBuilder_ == null) {
@@ -2534,22 +2029,26 @@ public final class PMotion {
         } else {
           commandBuilder_.clear();
         }
+        dist_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        h_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_ScriptedMove_descriptor;
+        return messages.PMotion.ScriptedMove.getDescriptor();
       }
-
+      
       public messages.PMotion.ScriptedMove getDefaultInstanceForType() {
         return messages.PMotion.ScriptedMove.getDefaultInstance();
       }
-
+      
       public messages.PMotion.ScriptedMove build() {
         messages.PMotion.ScriptedMove result = buildPartial();
         if (!result.isInitialized()) {
@@ -2557,10 +2056,21 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.ScriptedMove buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.ScriptedMove result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.ScriptedMove buildPartial() {
         messages.PMotion.ScriptedMove result = new messages.PMotion.ScriptedMove(this);
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (commandBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             command_ = java.util.Collections.unmodifiableList(command_);
@@ -2570,10 +2080,19 @@ public final class PMotion {
         } else {
           result.command_ = commandBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.dist_ = dist_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.h_ = h_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.ScriptedMove) {
           return mergeFrom((messages.PMotion.ScriptedMove)other);
@@ -2582,7 +2101,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.ScriptedMove other) {
         if (other == messages.PMotion.ScriptedMove.getDefaultInstance()) return this;
         if (commandBuilder_ == null) {
@@ -2611,33 +2130,66 @@ public final class PMotion {
             }
           }
         }
+        if (other.hasDist()) {
+          setDist(other.getDist());
+        }
+        if (other.hasH()) {
+          setH(other.getH());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.ScriptedMove parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.ScriptedMove) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              messages.PMotion.BodyJointCommand.Builder subBuilder = messages.PMotion.BodyJointCommand.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addCommand(subBuilder.buildPartial());
+              break;
+            }
+            case 21: {
+              bitField0_ |= 0x00000002;
+              dist_ = input.readFloat();
+              break;
+            }
+            case 29: {
+              bitField0_ |= 0x00000004;
+              h_ = input.readFloat();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // repeated .messages.BodyJointCommand command = 1;
       private java.util.List<messages.PMotion.BodyJointCommand> command_ =
         java.util.Collections.emptyList();
       private void ensureCommandIsMutable() {
@@ -2646,13 +2198,10 @@ public final class PMotion {
           bitField0_ |= 0x00000001;
          }
       }
-
+      
       private com.google.protobuf.RepeatedFieldBuilder<
           messages.PMotion.BodyJointCommand, messages.PMotion.BodyJointCommand.Builder, messages.PMotion.BodyJointCommandOrBuilder> commandBuilder_;
-
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
+      
       public java.util.List<messages.PMotion.BodyJointCommand> getCommandList() {
         if (commandBuilder_ == null) {
           return java.util.Collections.unmodifiableList(command_);
@@ -2660,9 +2209,6 @@ public final class PMotion {
           return commandBuilder_.getMessageList();
         }
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public int getCommandCount() {
         if (commandBuilder_ == null) {
           return command_.size();
@@ -2670,9 +2216,6 @@ public final class PMotion {
           return commandBuilder_.getCount();
         }
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public messages.PMotion.BodyJointCommand getCommand(int index) {
         if (commandBuilder_ == null) {
           return command_.get(index);
@@ -2680,9 +2223,6 @@ public final class PMotion {
           return commandBuilder_.getMessage(index);
         }
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder setCommand(
           int index, messages.PMotion.BodyJointCommand value) {
         if (commandBuilder_ == null) {
@@ -2697,9 +2237,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder setCommand(
           int index, messages.PMotion.BodyJointCommand.Builder builderForValue) {
         if (commandBuilder_ == null) {
@@ -2711,9 +2248,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder addCommand(messages.PMotion.BodyJointCommand value) {
         if (commandBuilder_ == null) {
           if (value == null) {
@@ -2727,9 +2261,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder addCommand(
           int index, messages.PMotion.BodyJointCommand value) {
         if (commandBuilder_ == null) {
@@ -2744,9 +2275,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder addCommand(
           messages.PMotion.BodyJointCommand.Builder builderForValue) {
         if (commandBuilder_ == null) {
@@ -2758,9 +2286,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder addCommand(
           int index, messages.PMotion.BodyJointCommand.Builder builderForValue) {
         if (commandBuilder_ == null) {
@@ -2772,24 +2297,17 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder addAllCommand(
           java.lang.Iterable<? extends messages.PMotion.BodyJointCommand> values) {
         if (commandBuilder_ == null) {
           ensureCommandIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, command_);
+          super.addAll(values, command_);
           onChanged();
         } else {
           commandBuilder_.addAllMessages(values);
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder clearCommand() {
         if (commandBuilder_ == null) {
           command_ = java.util.Collections.emptyList();
@@ -2800,9 +2318,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public Builder removeCommand(int index) {
         if (commandBuilder_ == null) {
           ensureCommandIsMutable();
@@ -2813,16 +2328,10 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public messages.PMotion.BodyJointCommand.Builder getCommandBuilder(
           int index) {
         return getCommandFieldBuilder().getBuilder(index);
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public messages.PMotion.BodyJointCommandOrBuilder getCommandOrBuilder(
           int index) {
         if (commandBuilder_ == null) {
@@ -2830,9 +2339,6 @@ public final class PMotion {
           return commandBuilder_.getMessageOrBuilder(index);
         }
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public java.util.List<? extends messages.PMotion.BodyJointCommandOrBuilder> 
            getCommandOrBuilderList() {
         if (commandBuilder_ != null) {
@@ -2841,24 +2347,15 @@ public final class PMotion {
           return java.util.Collections.unmodifiableList(command_);
         }
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public messages.PMotion.BodyJointCommand.Builder addCommandBuilder() {
         return getCommandFieldBuilder().addBuilder(
             messages.PMotion.BodyJointCommand.getDefaultInstance());
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public messages.PMotion.BodyJointCommand.Builder addCommandBuilder(
           int index) {
         return getCommandFieldBuilder().addBuilder(
             index, messages.PMotion.BodyJointCommand.getDefaultInstance());
       }
-      /**
-       * <code>repeated .messages.BodyJointCommand command = 1;</code>
-       */
       public java.util.List<messages.PMotion.BodyJointCommand.Builder> 
            getCommandBuilderList() {
         return getCommandFieldBuilder().getBuilderList();
@@ -2877,226 +2374,128 @@ public final class PMotion {
         }
         return commandBuilder_;
       }
-
+      
+      // optional float dist = 2;
+      private float dist_ ;
+      public boolean hasDist() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public float getDist() {
+        return dist_;
+      }
+      public Builder setDist(float value) {
+        bitField0_ |= 0x00000002;
+        dist_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDist() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        dist_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional float h = 3;
+      private float h_ ;
+      public boolean hasH() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public float getH() {
+        return h_;
+      }
+      public Builder setH(float value) {
+        bitField0_ |= 0x00000004;
+        h_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearH() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        h_ = 0F;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:messages.ScriptedMove)
     }
-
+    
     static {
       defaultInstance = new ScriptedMove(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.ScriptedMove)
   }
-
-  public interface BodyJointCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.BodyJointCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float time = 1;</code>
-     */
+  
+  public interface BodyJointCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float time = 1;
     boolean hasTime();
-    /**
-     * <code>optional float time = 1;</code>
-     */
     float getTime();
-
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
+    
+    // optional .messages.JointAngles angles = 2;
     boolean hasAngles();
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     messages.PMotion.JointAngles getAngles();
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     messages.PMotion.JointAnglesOrBuilder getAnglesOrBuilder();
-
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
+    
+    // optional .messages.JointAngles stiffness = 3;
     boolean hasStiffness();
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     messages.PMotion.JointAngles getStiffness();
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     messages.PMotion.JointAnglesOrBuilder getStiffnessOrBuilder();
-
-    /**
-     * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-     */
+    
+    // optional .messages.BodyJointCommand.InterpolationType interpolation = 4;
     boolean hasInterpolation();
-    /**
-     * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-     */
     messages.PMotion.BodyJointCommand.InterpolationType getInterpolation();
   }
-  /**
-   * Protobuf type {@code messages.BodyJointCommand}
-   */
   public static final class BodyJointCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.BodyJointCommand)
-      BodyJointCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements BodyJointCommandOrBuilder {
     // Use BodyJointCommand.newBuilder() to construct.
-    private BodyJointCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private BodyJointCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private BodyJointCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private BodyJointCommand(boolean noInit) {}
+    
     private static final BodyJointCommand defaultInstance;
     public static BodyJointCommand getDefaultInstance() {
       return defaultInstance;
     }
 
-    public BodyJointCommand getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private BodyJointCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 13: {
-              bitField0_ |= 0x00000001;
-              time_ = input.readFloat();
-              break;
-            }
-            case 18: {
-              messages.PMotion.JointAngles.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = angles_.toBuilder();
-              }
-              angles_ = input.readMessage(messages.PMotion.JointAngles.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(angles_);
-                angles_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              messages.PMotion.JointAngles.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = stiffness_.toBuilder();
-              }
-              stiffness_ = input.readMessage(messages.PMotion.JointAngles.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(stiffness_);
-                stiffness_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-              messages.PMotion.BodyJointCommand.InterpolationType value = messages.PMotion.BodyJointCommand.InterpolationType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(4, rawValue);
-              } else {
-                bitField0_ |= 0x00000008;
-                interpolation_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+    
+    public BodyJointCommand getDefaultInstanceForType() {
+      return defaultInstance;
     }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_BodyJointCommand_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_BodyJointCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.BodyJointCommand.class, messages.PMotion.BodyJointCommand.Builder.class);
+      return messages.PMotion.internal_static_messages_BodyJointCommand_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<BodyJointCommand> PARSER =
-        new com.google.protobuf.AbstractParser<BodyJointCommand>() {
-      public BodyJointCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new BodyJointCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BodyJointCommand> getParserForType() {
-      return PARSER;
-    }
-
-    /**
-     * Protobuf enum {@code messages.BodyJointCommand.InterpolationType}
-     */
+    
     public enum InterpolationType
         implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>SMOOTH = 0;</code>
-       */
       SMOOTH(0, 0),
-      /**
-       * <code>LINEAR = 1;</code>
-       */
       LINEAR(1, 1),
       ;
-
-      /**
-       * <code>SMOOTH = 0;</code>
-       */
+      
       public static final int SMOOTH_VALUE = 0;
-      /**
-       * <code>LINEAR = 1;</code>
-       */
       public static final int LINEAR_VALUE = 1;
-
-
+      
+      
       public final int getNumber() { return value; }
-
+      
       public static InterpolationType valueOf(int value) {
         switch (value) {
           case 0: return SMOOTH;
@@ -3104,7 +2503,7 @@ public final class PMotion {
           default: return null;
         }
       }
-
+      
       public static com.google.protobuf.Internal.EnumLiteMap<InterpolationType>
           internalGetValueMap() {
         return internalValueMap;
@@ -3116,7 +2515,7 @@ public final class PMotion {
                 return InterpolationType.valueOf(number);
               }
             };
-
+      
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(index);
@@ -3129,9 +2528,11 @@ public final class PMotion {
           getDescriptor() {
         return messages.PMotion.BodyJointCommand.getDescriptor().getEnumTypes().get(0);
       }
-
-      private static final InterpolationType[] VALUES = values();
-
+      
+      private static final InterpolationType[] VALUES = {
+        SMOOTH, LINEAR, 
+      };
+      
       public static InterpolationType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
@@ -3140,91 +2541,65 @@ public final class PMotion {
         }
         return VALUES[desc.getIndex()];
       }
-
+      
       private final int index;
       private final int value;
-
+      
       private InterpolationType(int index, int value) {
         this.index = index;
         this.value = value;
       }
-
+      
       // @@protoc_insertion_point(enum_scope:messages.BodyJointCommand.InterpolationType)
     }
-
+    
     private int bitField0_;
+    // optional float time = 1;
     public static final int TIME_FIELD_NUMBER = 1;
     private float time_;
-    /**
-     * <code>optional float time = 1;</code>
-     */
     public boolean hasTime() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional float time = 1;</code>
-     */
     public float getTime() {
       return time_;
     }
-
+    
+    // optional .messages.JointAngles angles = 2;
     public static final int ANGLES_FIELD_NUMBER = 2;
     private messages.PMotion.JointAngles angles_;
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     public boolean hasAngles() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     public messages.PMotion.JointAngles getAngles() {
       return angles_;
     }
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     public messages.PMotion.JointAnglesOrBuilder getAnglesOrBuilder() {
       return angles_;
     }
-
+    
+    // optional .messages.JointAngles stiffness = 3;
     public static final int STIFFNESS_FIELD_NUMBER = 3;
     private messages.PMotion.JointAngles stiffness_;
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     public boolean hasStiffness() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     public messages.PMotion.JointAngles getStiffness() {
       return stiffness_;
     }
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     public messages.PMotion.JointAnglesOrBuilder getStiffnessOrBuilder() {
       return stiffness_;
     }
-
+    
+    // optional .messages.BodyJointCommand.InterpolationType interpolation = 4;
     public static final int INTERPOLATION_FIELD_NUMBER = 4;
     private messages.PMotion.BodyJointCommand.InterpolationType interpolation_;
-    /**
-     * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-     */
     public boolean hasInterpolation() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-     */
     public messages.PMotion.BodyJointCommand.InterpolationType getInterpolation() {
       return interpolation_;
     }
-
+    
     private void initFields() {
       time_ = 0F;
       angles_ = messages.PMotion.JointAngles.getDefaultInstance();
@@ -3234,13 +2609,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -3258,12 +2632,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3285,106 +2659,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.BodyJointCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.BodyJointCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.BodyJointCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.BodyJointCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.BodyJointCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.BodyJointCommand}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.BodyJointCommand)
-        messages.PMotion.BodyJointCommandOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.BodyJointCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_BodyJointCommand_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_BodyJointCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.BodyJointCommand.class, messages.PMotion.BodyJointCommand.Builder.class);
+        return messages.PMotion.internal_static_messages_BodyJointCommand_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.BodyJointCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3397,7 +2778,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         time_ = 0F;
@@ -3418,20 +2799,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_BodyJointCommand_descriptor;
+        return messages.PMotion.BodyJointCommand.getDescriptor();
       }
-
+      
       public messages.PMotion.BodyJointCommand getDefaultInstanceForType() {
         return messages.PMotion.BodyJointCommand.getDefaultInstance();
       }
-
+      
       public messages.PMotion.BodyJointCommand build() {
         messages.PMotion.BodyJointCommand result = buildPartial();
         if (!result.isInitialized()) {
@@ -3439,7 +2820,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.BodyJointCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.BodyJointCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.BodyJointCommand buildPartial() {
         messages.PMotion.BodyJointCommand result = new messages.PMotion.BodyJointCommand(this);
         int from_bitField0_ = bitField0_;
@@ -3472,7 +2863,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.BodyJointCommand) {
           return mergeFrom((messages.PMotion.BodyJointCommand)other);
@@ -3481,7 +2872,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.BodyJointCommand other) {
         if (other == messages.PMotion.BodyJointCommand.getDefaultInstance()) return this;
         if (other.hasTime()) {
@@ -3499,74 +2890,102 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.BodyJointCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.BodyJointCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 13: {
+              bitField0_ |= 0x00000001;
+              time_ = input.readFloat();
+              break;
+            }
+            case 18: {
+              messages.PMotion.JointAngles.Builder subBuilder = messages.PMotion.JointAngles.newBuilder();
+              if (hasAngles()) {
+                subBuilder.mergeFrom(getAngles());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setAngles(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              messages.PMotion.JointAngles.Builder subBuilder = messages.PMotion.JointAngles.newBuilder();
+              if (hasStiffness()) {
+                subBuilder.mergeFrom(getStiffness());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setStiffness(subBuilder.buildPartial());
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+              messages.PMotion.BodyJointCommand.InterpolationType value = messages.PMotion.BodyJointCommand.InterpolationType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
+                interpolation_ = value;
+              }
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional float time = 1;
       private float time_ ;
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public boolean hasTime() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public float getTime() {
         return time_;
       }
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public Builder setTime(float value) {
         bitField0_ |= 0x00000001;
         time_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public Builder clearTime() {
         bitField0_ = (bitField0_ & ~0x00000001);
         time_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional .messages.JointAngles angles = 2;
       private messages.PMotion.JointAngles angles_ = messages.PMotion.JointAngles.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> anglesBuilder_;
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public boolean hasAngles() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public messages.PMotion.JointAngles getAngles() {
         if (anglesBuilder_ == null) {
           return angles_;
@@ -3574,9 +2993,6 @@ public final class PMotion {
           return anglesBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder setAngles(messages.PMotion.JointAngles value) {
         if (anglesBuilder_ == null) {
           if (value == null) {
@@ -3590,9 +3006,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder setAngles(
           messages.PMotion.JointAngles.Builder builderForValue) {
         if (anglesBuilder_ == null) {
@@ -3604,9 +3017,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder mergeAngles(messages.PMotion.JointAngles value) {
         if (anglesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
@@ -3623,9 +3033,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder clearAngles() {
         if (anglesBuilder_ == null) {
           angles_ = messages.PMotion.JointAngles.getDefaultInstance();
@@ -3636,17 +3043,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public messages.PMotion.JointAngles.Builder getAnglesBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getAnglesFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public messages.PMotion.JointAnglesOrBuilder getAnglesOrBuilder() {
         if (anglesBuilder_ != null) {
           return anglesBuilder_.getMessageOrBuilder();
@@ -3654,35 +3055,27 @@ public final class PMotion {
           return angles_;
         }
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> 
           getAnglesFieldBuilder() {
         if (anglesBuilder_ == null) {
           anglesBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder>(
-                  getAngles(),
+                  angles_,
                   getParentForChildren(),
                   isClean());
           angles_ = null;
         }
         return anglesBuilder_;
       }
-
+      
+      // optional .messages.JointAngles stiffness = 3;
       private messages.PMotion.JointAngles stiffness_ = messages.PMotion.JointAngles.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> stiffnessBuilder_;
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public boolean hasStiffness() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public messages.PMotion.JointAngles getStiffness() {
         if (stiffnessBuilder_ == null) {
           return stiffness_;
@@ -3690,9 +3083,6 @@ public final class PMotion {
           return stiffnessBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder setStiffness(messages.PMotion.JointAngles value) {
         if (stiffnessBuilder_ == null) {
           if (value == null) {
@@ -3706,9 +3096,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder setStiffness(
           messages.PMotion.JointAngles.Builder builderForValue) {
         if (stiffnessBuilder_ == null) {
@@ -3720,9 +3107,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder mergeStiffness(messages.PMotion.JointAngles value) {
         if (stiffnessBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
@@ -3739,9 +3123,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder clearStiffness() {
         if (stiffnessBuilder_ == null) {
           stiffness_ = messages.PMotion.JointAngles.getDefaultInstance();
@@ -3752,17 +3133,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public messages.PMotion.JointAngles.Builder getStiffnessBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
         return getStiffnessFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public messages.PMotion.JointAnglesOrBuilder getStiffnessOrBuilder() {
         if (stiffnessBuilder_ != null) {
           return stiffnessBuilder_.getMessageOrBuilder();
@@ -3770,39 +3145,28 @@ public final class PMotion {
           return stiffness_;
         }
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> 
           getStiffnessFieldBuilder() {
         if (stiffnessBuilder_ == null) {
           stiffnessBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder>(
-                  getStiffness(),
+                  stiffness_,
                   getParentForChildren(),
                   isClean());
           stiffness_ = null;
         }
         return stiffnessBuilder_;
       }
-
+      
+      // optional .messages.BodyJointCommand.InterpolationType interpolation = 4;
       private messages.PMotion.BodyJointCommand.InterpolationType interpolation_ = messages.PMotion.BodyJointCommand.InterpolationType.SMOOTH;
-      /**
-       * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public boolean hasInterpolation() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public messages.PMotion.BodyJointCommand.InterpolationType getInterpolation() {
         return interpolation_;
       }
-      /**
-       * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public Builder setInterpolation(messages.PMotion.BodyJointCommand.InterpolationType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -3812,286 +3176,137 @@ public final class PMotion {
         onChanged();
         return this;
       }
-      /**
-       * <code>optional .messages.BodyJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public Builder clearInterpolation() {
         bitField0_ = (bitField0_ & ~0x00000008);
         interpolation_ = messages.PMotion.BodyJointCommand.InterpolationType.SMOOTH;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.BodyJointCommand)
     }
-
+    
     static {
       defaultInstance = new BodyJointCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.BodyJointCommand)
   }
-
-  public interface DestinationWalkOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.DestinationWalk)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
+  
+  public interface DestinationWalkOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float rel_x = 1;
     boolean hasRelX();
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
     float getRelX();
-
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
+    
+    // optional float rel_y = 2;
     boolean hasRelY();
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
     float getRelY();
-
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
+    
+    // optional float rel_h = 3;
     boolean hasRelH();
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
     float getRelH();
-
-    /**
-     * <code>optional float gain = 4;</code>
-     */
+    
+    // optional float gain = 4;
     boolean hasGain();
-    /**
-     * <code>optional float gain = 4;</code>
-     */
     float getGain();
-
-    /**
-     * <code>optional .messages.MotionKick kick = 5;</code>
-     */
+    
+    // optional .messages.MotionKick kick = 5;
     boolean hasKick();
-    /**
-     * <code>optional .messages.MotionKick kick = 5;</code>
-     */
     messages.PMotion.MotionKick getKick();
-    /**
-     * <code>optional .messages.MotionKick kick = 5;</code>
-     */
     messages.PMotion.MotionKickOrBuilder getKickOrBuilder();
   }
-  /**
-   * Protobuf type {@code messages.DestinationWalk}
-   */
   public static final class DestinationWalk extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.DestinationWalk)
-      DestinationWalkOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements DestinationWalkOrBuilder {
     // Use DestinationWalk.newBuilder() to construct.
-    private DestinationWalk(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private DestinationWalk(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private DestinationWalk(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final DestinationWalk defaultInstance;
-    public static DestinationWalk getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public DestinationWalk getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    private DestinationWalk(boolean noInit) {}
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private DestinationWalk(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 13: {
-              bitField0_ |= 0x00000001;
-              relX_ = input.readFloat();
-              break;
-            }
-            case 21: {
-              bitField0_ |= 0x00000002;
-              relY_ = input.readFloat();
-              break;
-            }
-            case 29: {
-              bitField0_ |= 0x00000004;
-              relH_ = input.readFloat();
-              break;
-            }
-            case 37: {
-              bitField0_ |= 0x00000008;
-              gain_ = input.readFloat();
-              break;
-            }
-            case 42: {
-              messages.PMotion.MotionKick.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                subBuilder = kick_.toBuilder();
-              }
-              kick_ = input.readMessage(messages.PMotion.MotionKick.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(kick_);
-                kick_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000010;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+
+    private static final DestinationWalk defaultInstance;
+    public static DestinationWalk getDefaultInstance() {
+      return defaultInstance;
     }
+    
+    public DestinationWalk getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_DestinationWalk_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_DestinationWalk_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.DestinationWalk.class, messages.PMotion.DestinationWalk.Builder.class);
+      return messages.PMotion.internal_static_messages_DestinationWalk_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<DestinationWalk> PARSER =
-        new com.google.protobuf.AbstractParser<DestinationWalk>() {
-      public DestinationWalk parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DestinationWalk(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DestinationWalk> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
+    // optional float rel_x = 1;
     public static final int REL_X_FIELD_NUMBER = 1;
     private float relX_;
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
     public boolean hasRelX() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
     public float getRelX() {
       return relX_;
     }
-
+    
+    // optional float rel_y = 2;
     public static final int REL_Y_FIELD_NUMBER = 2;
     private float relY_;
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
     public boolean hasRelY() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
     public float getRelY() {
       return relY_;
     }
-
+    
+    // optional float rel_h = 3;
     public static final int REL_H_FIELD_NUMBER = 3;
     private float relH_;
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
     public boolean hasRelH() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
     public float getRelH() {
       return relH_;
     }
-
+    
+    // optional float gain = 4;
     public static final int GAIN_FIELD_NUMBER = 4;
     private float gain_;
-    /**
-     * <code>optional float gain = 4;</code>
-     */
     public boolean hasGain() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional float gain = 4;</code>
-     */
     public float getGain() {
       return gain_;
     }
-
+    
+    // optional .messages.MotionKick kick = 5;
     public static final int KICK_FIELD_NUMBER = 5;
     private messages.PMotion.MotionKick kick_;
-    /**
-     * <code>optional .messages.MotionKick kick = 5;</code>
-     */
     public boolean hasKick() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    /**
-     * <code>optional .messages.MotionKick kick = 5;</code>
-     */
     public messages.PMotion.MotionKick getKick() {
       return kick_;
     }
-    /**
-     * <code>optional .messages.MotionKick kick = 5;</code>
-     */
     public messages.PMotion.MotionKickOrBuilder getKickOrBuilder() {
       return kick_;
     }
-
+    
     private void initFields() {
       relX_ = 0F;
       relY_ = 0F;
@@ -4102,13 +3317,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -4129,12 +3343,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -4160,106 +3374,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.DestinationWalk parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.DestinationWalk parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.DestinationWalk parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.DestinationWalk parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.DestinationWalk prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.DestinationWalk}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.DestinationWalk)
-        messages.PMotion.DestinationWalkOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.DestinationWalkOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_DestinationWalk_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_DestinationWalk_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.DestinationWalk.class, messages.PMotion.DestinationWalk.Builder.class);
+        return messages.PMotion.internal_static_messages_DestinationWalk_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.DestinationWalk.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4271,7 +3492,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         relX_ = 0F;
@@ -4290,20 +3511,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_DestinationWalk_descriptor;
+        return messages.PMotion.DestinationWalk.getDescriptor();
       }
-
+      
       public messages.PMotion.DestinationWalk getDefaultInstanceForType() {
         return messages.PMotion.DestinationWalk.getDefaultInstance();
       }
-
+      
       public messages.PMotion.DestinationWalk build() {
         messages.PMotion.DestinationWalk result = buildPartial();
         if (!result.isInitialized()) {
@@ -4311,7 +3532,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.DestinationWalk buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.DestinationWalk result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.DestinationWalk buildPartial() {
         messages.PMotion.DestinationWalk result = new messages.PMotion.DestinationWalk(this);
         int from_bitField0_ = bitField0_;
@@ -4344,7 +3575,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.DestinationWalk) {
           return mergeFrom((messages.PMotion.DestinationWalk)other);
@@ -4353,7 +3584,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.DestinationWalk other) {
         if (other == messages.PMotion.DestinationWalk.getDefaultInstance()) return this;
         if (other.hasRelX()) {
@@ -4374,170 +3605,160 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.DestinationWalk parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.DestinationWalk) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 13: {
+              bitField0_ |= 0x00000001;
+              relX_ = input.readFloat();
+              break;
+            }
+            case 21: {
+              bitField0_ |= 0x00000002;
+              relY_ = input.readFloat();
+              break;
+            }
+            case 29: {
+              bitField0_ |= 0x00000004;
+              relH_ = input.readFloat();
+              break;
+            }
+            case 37: {
+              bitField0_ |= 0x00000008;
+              gain_ = input.readFloat();
+              break;
+            }
+            case 42: {
+              messages.PMotion.MotionKick.Builder subBuilder = messages.PMotion.MotionKick.newBuilder();
+              if (hasKick()) {
+                subBuilder.mergeFrom(getKick());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setKick(subBuilder.buildPartial());
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional float rel_x = 1;
       private float relX_ ;
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public boolean hasRelX() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public float getRelX() {
         return relX_;
       }
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public Builder setRelX(float value) {
         bitField0_ |= 0x00000001;
         relX_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public Builder clearRelX() {
         bitField0_ = (bitField0_ & ~0x00000001);
         relX_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float rel_y = 2;
       private float relY_ ;
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public boolean hasRelY() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public float getRelY() {
         return relY_;
       }
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public Builder setRelY(float value) {
         bitField0_ |= 0x00000002;
         relY_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public Builder clearRelY() {
         bitField0_ = (bitField0_ & ~0x00000002);
         relY_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float rel_h = 3;
       private float relH_ ;
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public boolean hasRelH() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public float getRelH() {
         return relH_;
       }
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public Builder setRelH(float value) {
         bitField0_ |= 0x00000004;
         relH_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public Builder clearRelH() {
         bitField0_ = (bitField0_ & ~0x00000004);
         relH_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float gain = 4;
       private float gain_ ;
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public boolean hasGain() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public float getGain() {
         return gain_;
       }
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public Builder setGain(float value) {
         bitField0_ |= 0x00000008;
         gain_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public Builder clearGain() {
         bitField0_ = (bitField0_ & ~0x00000008);
         gain_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional .messages.MotionKick kick = 5;
       private messages.PMotion.MotionKick kick_ = messages.PMotion.MotionKick.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.MotionKick, messages.PMotion.MotionKick.Builder, messages.PMotion.MotionKickOrBuilder> kickBuilder_;
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public boolean hasKick() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public messages.PMotion.MotionKick getKick() {
         if (kickBuilder_ == null) {
           return kick_;
@@ -4545,9 +3766,6 @@ public final class PMotion {
           return kickBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public Builder setKick(messages.PMotion.MotionKick value) {
         if (kickBuilder_ == null) {
           if (value == null) {
@@ -4561,9 +3779,6 @@ public final class PMotion {
         bitField0_ |= 0x00000010;
         return this;
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public Builder setKick(
           messages.PMotion.MotionKick.Builder builderForValue) {
         if (kickBuilder_ == null) {
@@ -4575,9 +3790,6 @@ public final class PMotion {
         bitField0_ |= 0x00000010;
         return this;
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public Builder mergeKick(messages.PMotion.MotionKick value) {
         if (kickBuilder_ == null) {
           if (((bitField0_ & 0x00000010) == 0x00000010) &&
@@ -4594,9 +3806,6 @@ public final class PMotion {
         bitField0_ |= 0x00000010;
         return this;
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public Builder clearKick() {
         if (kickBuilder_ == null) {
           kick_ = messages.PMotion.MotionKick.getDefaultInstance();
@@ -4607,17 +3816,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public messages.PMotion.MotionKick.Builder getKickBuilder() {
         bitField0_ |= 0x00000010;
         onChanged();
         return getKickFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       public messages.PMotion.MotionKickOrBuilder getKickOrBuilder() {
         if (kickBuilder_ != null) {
           return kickBuilder_.getMessageOrBuilder();
@@ -4625,123 +3828,423 @@ public final class PMotion {
           return kick_;
         }
       }
-      /**
-       * <code>optional .messages.MotionKick kick = 5;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.MotionKick, messages.PMotion.MotionKick.Builder, messages.PMotion.MotionKickOrBuilder> 
           getKickFieldBuilder() {
         if (kickBuilder_ == null) {
           kickBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.MotionKick, messages.PMotion.MotionKick.Builder, messages.PMotion.MotionKickOrBuilder>(
-                  getKick(),
+                  kick_,
                   getParentForChildren(),
                   isClean());
           kick_ = null;
         }
         return kickBuilder_;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.DestinationWalk)
     }
-
+    
     static {
       defaultInstance = new DestinationWalk(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.DestinationWalk)
   }
-
-  public interface OdometryWalkOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.OdometryWalk)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
+  
+  public interface OdometryWalkOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float rel_x = 1;
     boolean hasRelX();
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
     float getRelX();
-
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
+    
+    // optional float rel_y = 2;
     boolean hasRelY();
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
     float getRelY();
-
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
+    
+    // optional float rel_h = 3;
     boolean hasRelH();
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
     float getRelH();
-
-    /**
-     * <code>optional float gain = 4;</code>
-     */
+    
+    // optional float gain = 4;
     boolean hasGain();
-    /**
-     * <code>optional float gain = 4;</code>
-     */
     float getGain();
   }
-  /**
-   * Protobuf type {@code messages.OdometryWalk}
-   */
   public static final class OdometryWalk extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.OdometryWalk)
-      OdometryWalkOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements OdometryWalkOrBuilder {
     // Use OdometryWalk.newBuilder() to construct.
-    private OdometryWalk(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private OdometryWalk(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private OdometryWalk(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private OdometryWalk(boolean noInit) {}
+    
     private static final OdometryWalk defaultInstance;
     public static OdometryWalk getDefaultInstance() {
       return defaultInstance;
     }
 
-    public OdometryWalk getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private OdometryWalk(
-        com.google.protobuf.CodedInputStream input,
+    
+    public OdometryWalk getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return messages.PMotion.internal_static_messages_OdometryWalk_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return messages.PMotion.internal_static_messages_OdometryWalk_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional float rel_x = 1;
+    public static final int REL_X_FIELD_NUMBER = 1;
+    private float relX_;
+    public boolean hasRelX() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public float getRelX() {
+      return relX_;
+    }
+    
+    // optional float rel_y = 2;
+    public static final int REL_Y_FIELD_NUMBER = 2;
+    private float relY_;
+    public boolean hasRelY() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public float getRelY() {
+      return relY_;
+    }
+    
+    // optional float rel_h = 3;
+    public static final int REL_H_FIELD_NUMBER = 3;
+    private float relH_;
+    public boolean hasRelH() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public float getRelH() {
+      return relH_;
+    }
+    
+    // optional float gain = 4;
+    public static final int GAIN_FIELD_NUMBER = 4;
+    private float gain_;
+    public boolean hasGain() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public float getGain() {
+      return gain_;
+    }
+    
+    private void initFields() {
+      relX_ = 0F;
+      relY_ = 0F;
+      relH_ = 0F;
+      gain_ = 0F;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeFloat(1, relX_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(2, relY_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeFloat(3, relH_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeFloat(4, gain_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(1, relX_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, relY_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, relH_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(4, gain_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static messages.PMotion.OdometryWalk parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(
+        com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.OdometryWalk parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.OdometryWalk parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(messages.PMotion.OdometryWalk prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.OdometryWalkOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return messages.PMotion.internal_static_messages_OdometryWalk_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return messages.PMotion.internal_static_messages_OdometryWalk_fieldAccessorTable;
+      }
+      
+      // Construct using messages.PMotion.OdometryWalk.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        relX_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        relY_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        relH_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        gain_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return messages.PMotion.OdometryWalk.getDescriptor();
+      }
+      
+      public messages.PMotion.OdometryWalk getDefaultInstanceForType() {
+        return messages.PMotion.OdometryWalk.getDefaultInstance();
+      }
+      
+      public messages.PMotion.OdometryWalk build() {
+        messages.PMotion.OdometryWalk result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private messages.PMotion.OdometryWalk buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.OdometryWalk result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public messages.PMotion.OdometryWalk buildPartial() {
+        messages.PMotion.OdometryWalk result = new messages.PMotion.OdometryWalk(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.relX_ = relX_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.relY_ = relY_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.relH_ = relH_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.gain_ = gain_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof messages.PMotion.OdometryWalk) {
+          return mergeFrom((messages.PMotion.OdometryWalk)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(messages.PMotion.OdometryWalk other) {
+        if (other == messages.PMotion.OdometryWalk.getDefaultInstance()) return this;
+        if (other.hasRelX()) {
+          setRelX(other.getRelX());
+        }
+        if (other.hasRelY()) {
+          setRelY(other.getRelY());
+        }
+        if (other.hasRelH()) {
+          setRelH(other.getRelH());
+        }
+        if (other.hasGain()) {
+          setGain(other.getGain());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              done = true;
-              break;
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                done = true;
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
               }
               break;
             }
@@ -4767,706 +4270,186 @@ public final class PMotion {
             }
           }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
       }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return messages.PMotion.internal_static_messages_OdometryWalk_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_OdometryWalk_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.OdometryWalk.class, messages.PMotion.OdometryWalk.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<OdometryWalk> PARSER =
-        new com.google.protobuf.AbstractParser<OdometryWalk>() {
-      public OdometryWalk parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new OdometryWalk(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<OdometryWalk> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int REL_X_FIELD_NUMBER = 1;
-    private float relX_;
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
-    public boolean hasRelX() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional float rel_x = 1;</code>
-     */
-    public float getRelX() {
-      return relX_;
-    }
-
-    public static final int REL_Y_FIELD_NUMBER = 2;
-    private float relY_;
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
-    public boolean hasRelY() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional float rel_y = 2;</code>
-     */
-    public float getRelY() {
-      return relY_;
-    }
-
-    public static final int REL_H_FIELD_NUMBER = 3;
-    private float relH_;
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
-    public boolean hasRelH() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional float rel_h = 3;</code>
-     */
-    public float getRelH() {
-      return relH_;
-    }
-
-    public static final int GAIN_FIELD_NUMBER = 4;
-    private float gain_;
-    /**
-     * <code>optional float gain = 4;</code>
-     */
-    public boolean hasGain() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional float gain = 4;</code>
-     */
-    public float getGain() {
-      return gain_;
-    }
-
-    private void initFields() {
-      relX_ = 0F;
-      relY_ = 0F;
-      relH_ = 0F;
-      gain_ = 0F;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeFloat(1, relX_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeFloat(2, relY_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeFloat(3, relH_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeFloat(4, gain_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(1, relX_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, relY_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(3, relH_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, gain_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static messages.PMotion.OdometryWalk parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.OdometryWalk parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static messages.PMotion.OdometryWalk parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.OdometryWalk parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(messages.PMotion.OdometryWalk prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code messages.OdometryWalk}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.OdometryWalk)
-        messages.PMotion.OdometryWalkOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return messages.PMotion.internal_static_messages_OdometryWalk_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_OdometryWalk_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.OdometryWalk.class, messages.PMotion.OdometryWalk.Builder.class);
-      }
-
-      // Construct using messages.PMotion.OdometryWalk.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        relX_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        relY_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        relH_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        gain_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_OdometryWalk_descriptor;
-      }
-
-      public messages.PMotion.OdometryWalk getDefaultInstanceForType() {
-        return messages.PMotion.OdometryWalk.getDefaultInstance();
-      }
-
-      public messages.PMotion.OdometryWalk build() {
-        messages.PMotion.OdometryWalk result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public messages.PMotion.OdometryWalk buildPartial() {
-        messages.PMotion.OdometryWalk result = new messages.PMotion.OdometryWalk(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.relX_ = relX_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.relY_ = relY_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.relH_ = relH_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.gain_ = gain_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof messages.PMotion.OdometryWalk) {
-          return mergeFrom((messages.PMotion.OdometryWalk)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(messages.PMotion.OdometryWalk other) {
-        if (other == messages.PMotion.OdometryWalk.getDefaultInstance()) return this;
-        if (other.hasRelX()) {
-          setRelX(other.getRelX());
-        }
-        if (other.hasRelY()) {
-          setRelY(other.getRelY());
-        }
-        if (other.hasRelH()) {
-          setRelH(other.getRelH());
-        }
-        if (other.hasGain()) {
-          setGain(other.getGain());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        messages.PMotion.OdometryWalk parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.OdometryWalk) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+      
       private int bitField0_;
-
+      
+      // optional float rel_x = 1;
       private float relX_ ;
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public boolean hasRelX() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public float getRelX() {
         return relX_;
       }
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public Builder setRelX(float value) {
         bitField0_ |= 0x00000001;
         relX_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float rel_x = 1;</code>
-       */
       public Builder clearRelX() {
         bitField0_ = (bitField0_ & ~0x00000001);
         relX_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float rel_y = 2;
       private float relY_ ;
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public boolean hasRelY() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public float getRelY() {
         return relY_;
       }
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public Builder setRelY(float value) {
         bitField0_ |= 0x00000002;
         relY_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float rel_y = 2;</code>
-       */
       public Builder clearRelY() {
         bitField0_ = (bitField0_ & ~0x00000002);
         relY_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float rel_h = 3;
       private float relH_ ;
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public boolean hasRelH() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public float getRelH() {
         return relH_;
       }
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public Builder setRelH(float value) {
         bitField0_ |= 0x00000004;
         relH_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float rel_h = 3;</code>
-       */
       public Builder clearRelH() {
         bitField0_ = (bitField0_ & ~0x00000004);
         relH_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float gain = 4;
       private float gain_ ;
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public boolean hasGain() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public float getGain() {
         return gain_;
       }
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public Builder setGain(float value) {
         bitField0_ |= 0x00000008;
         gain_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float gain = 4;</code>
-       */
       public Builder clearGain() {
         bitField0_ = (bitField0_ & ~0x00000008);
         gain_ = 0F;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.OdometryWalk)
     }
-
+    
     static {
       defaultInstance = new OdometryWalk(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.OdometryWalk)
   }
-
-  public interface WalkCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.WalkCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float x_percent = 1;</code>
-     */
+  
+  public interface WalkCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float x_percent = 1;
     boolean hasXPercent();
-    /**
-     * <code>optional float x_percent = 1;</code>
-     */
     float getXPercent();
-
-    /**
-     * <code>optional float y_percent = 2;</code>
-     */
+    
+    // optional float y_percent = 2;
     boolean hasYPercent();
-    /**
-     * <code>optional float y_percent = 2;</code>
-     */
     float getYPercent();
-
-    /**
-     * <code>optional float h_percent = 3;</code>
-     */
+    
+    // optional float h_percent = 3;
     boolean hasHPercent();
-    /**
-     * <code>optional float h_percent = 3;</code>
-     */
     float getHPercent();
   }
-  /**
-   * Protobuf type {@code messages.WalkCommand}
-   */
   public static final class WalkCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.WalkCommand)
-      WalkCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements WalkCommandOrBuilder {
     // Use WalkCommand.newBuilder() to construct.
-    private WalkCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private WalkCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private WalkCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private WalkCommand(boolean noInit) {}
+    
     private static final WalkCommand defaultInstance;
     public static WalkCommand getDefaultInstance() {
       return defaultInstance;
     }
-
-    public WalkCommand getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private WalkCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 13: {
-              bitField0_ |= 0x00000001;
-              xPercent_ = input.readFloat();
-              break;
-            }
-            case 21: {
-              bitField0_ |= 0x00000002;
-              yPercent_ = input.readFloat();
-              break;
-            }
-            case 29: {
-              bitField0_ |= 0x00000004;
-              hPercent_ = input.readFloat();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+
+    public WalkCommand getDefaultInstanceForType() {
+      return defaultInstance;
     }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_WalkCommand_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_WalkCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.WalkCommand.class, messages.PMotion.WalkCommand.Builder.class);
+      return messages.PMotion.internal_static_messages_WalkCommand_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<WalkCommand> PARSER =
-        new com.google.protobuf.AbstractParser<WalkCommand>() {
-      public WalkCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new WalkCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<WalkCommand> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
+    // optional float x_percent = 1;
     public static final int X_PERCENT_FIELD_NUMBER = 1;
     private float xPercent_;
-    /**
-     * <code>optional float x_percent = 1;</code>
-     */
     public boolean hasXPercent() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional float x_percent = 1;</code>
-     */
     public float getXPercent() {
       return xPercent_;
     }
-
+    
+    // optional float y_percent = 2;
     public static final int Y_PERCENT_FIELD_NUMBER = 2;
     private float yPercent_;
-    /**
-     * <code>optional float y_percent = 2;</code>
-     */
     public boolean hasYPercent() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional float y_percent = 2;</code>
-     */
     public float getYPercent() {
       return yPercent_;
     }
-
+    
+    // optional float h_percent = 3;
     public static final int H_PERCENT_FIELD_NUMBER = 3;
     private float hPercent_;
-    /**
-     * <code>optional float h_percent = 3;</code>
-     */
     public boolean hasHPercent() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional float h_percent = 3;</code>
-     */
     public float getHPercent() {
       return hPercent_;
     }
-
+    
     private void initFields() {
       xPercent_ = 0F;
       yPercent_ = 0F;
@@ -5475,13 +4458,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -5496,12 +4478,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -5519,106 +4501,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.WalkCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.WalkCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.WalkCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.WalkCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.WalkCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.WalkCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.WalkCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.WalkCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.WalkCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.WalkCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.WalkCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.WalkCommand}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.WalkCommand)
-        messages.PMotion.WalkCommandOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.WalkCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_WalkCommand_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_WalkCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.WalkCommand.class, messages.PMotion.WalkCommand.Builder.class);
+        return messages.PMotion.internal_static_messages_WalkCommand_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.WalkCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5629,7 +4618,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         xPercent_ = 0F;
@@ -5640,20 +4629,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_WalkCommand_descriptor;
+        return messages.PMotion.WalkCommand.getDescriptor();
       }
-
+      
       public messages.PMotion.WalkCommand getDefaultInstanceForType() {
         return messages.PMotion.WalkCommand.getDefaultInstance();
       }
-
+      
       public messages.PMotion.WalkCommand build() {
         messages.PMotion.WalkCommand result = buildPartial();
         if (!result.isInitialized()) {
@@ -5661,7 +4650,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.WalkCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.WalkCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.WalkCommand buildPartial() {
         messages.PMotion.WalkCommand result = new messages.PMotion.WalkCommand(this);
         int from_bitField0_ = bitField0_;
@@ -5682,7 +4681,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.WalkCommand) {
           return mergeFrom((messages.PMotion.WalkCommand)other);
@@ -5691,7 +4690,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.WalkCommand other) {
         if (other == messages.PMotion.WalkCommand.getDefaultInstance()) return this;
         if (other.hasXPercent()) {
@@ -5706,291 +4705,196 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.WalkCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.WalkCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 13: {
+              bitField0_ |= 0x00000001;
+              xPercent_ = input.readFloat();
+              break;
+            }
+            case 21: {
+              bitField0_ |= 0x00000002;
+              yPercent_ = input.readFloat();
+              break;
+            }
+            case 29: {
+              bitField0_ |= 0x00000004;
+              hPercent_ = input.readFloat();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional float x_percent = 1;
       private float xPercent_ ;
-      /**
-       * <code>optional float x_percent = 1;</code>
-       */
       public boolean hasXPercent() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float x_percent = 1;</code>
-       */
       public float getXPercent() {
         return xPercent_;
       }
-      /**
-       * <code>optional float x_percent = 1;</code>
-       */
       public Builder setXPercent(float value) {
         bitField0_ |= 0x00000001;
         xPercent_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float x_percent = 1;</code>
-       */
       public Builder clearXPercent() {
         bitField0_ = (bitField0_ & ~0x00000001);
         xPercent_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float y_percent = 2;
       private float yPercent_ ;
-      /**
-       * <code>optional float y_percent = 2;</code>
-       */
       public boolean hasYPercent() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional float y_percent = 2;</code>
-       */
       public float getYPercent() {
         return yPercent_;
       }
-      /**
-       * <code>optional float y_percent = 2;</code>
-       */
       public Builder setYPercent(float value) {
         bitField0_ |= 0x00000002;
         yPercent_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float y_percent = 2;</code>
-       */
       public Builder clearYPercent() {
         bitField0_ = (bitField0_ & ~0x00000002);
         yPercent_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float h_percent = 3;
       private float hPercent_ ;
-      /**
-       * <code>optional float h_percent = 3;</code>
-       */
       public boolean hasHPercent() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional float h_percent = 3;</code>
-       */
       public float getHPercent() {
         return hPercent_;
       }
-      /**
-       * <code>optional float h_percent = 3;</code>
-       */
       public Builder setHPercent(float value) {
         bitField0_ |= 0x00000004;
         hPercent_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float h_percent = 3;</code>
-       */
       public Builder clearHPercent() {
         bitField0_ = (bitField0_ & ~0x00000004);
         hPercent_ = 0F;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.WalkCommand)
     }
-
+    
     static {
       defaultInstance = new WalkCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.WalkCommand)
   }
-
-  public interface MotionKickOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.MotionKick)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bool perform_motion_kick = 1;</code>
-     */
+  
+  public interface MotionKickOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional bool perform_motion_kick = 1;
     boolean hasPerformMotionKick();
-    /**
-     * <code>optional bool perform_motion_kick = 1;</code>
-     */
     boolean getPerformMotionKick();
-
-    /**
-     * <code>optional int32 kick_type = 2;</code>
-     */
+    
+    // optional int32 kick_type = 2;
     boolean hasKickType();
-    /**
-     * <code>optional int32 kick_type = 2;</code>
-     */
     int getKickType();
   }
-  /**
-   * Protobuf type {@code messages.MotionKick}
-   */
   public static final class MotionKick extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.MotionKick)
-      MotionKickOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements MotionKickOrBuilder {
     // Use MotionKick.newBuilder() to construct.
-    private MotionKick(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private MotionKick(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private MotionKick(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private MotionKick(boolean noInit) {}
+    
     private static final MotionKick defaultInstance;
     public static MotionKick getDefaultInstance() {
       return defaultInstance;
     }
-
-    public MotionKick getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private MotionKick(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              performMotionKick_ = input.readBool();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              kickType_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+
+    public MotionKick getDefaultInstanceForType() {
+      return defaultInstance;
     }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_MotionKick_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_MotionKick_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.MotionKick.class, messages.PMotion.MotionKick.Builder.class);
+      return messages.PMotion.internal_static_messages_MotionKick_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<MotionKick> PARSER =
-        new com.google.protobuf.AbstractParser<MotionKick>() {
-      public MotionKick parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MotionKick(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<MotionKick> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
+    // optional bool perform_motion_kick = 1;
     public static final int PERFORM_MOTION_KICK_FIELD_NUMBER = 1;
     private boolean performMotionKick_;
-    /**
-     * <code>optional bool perform_motion_kick = 1;</code>
-     */
     public boolean hasPerformMotionKick() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional bool perform_motion_kick = 1;</code>
-     */
     public boolean getPerformMotionKick() {
       return performMotionKick_;
     }
-
+    
+    // optional int32 kick_type = 2;
     public static final int KICK_TYPE_FIELD_NUMBER = 2;
     private int kickType_;
-    /**
-     * <code>optional int32 kick_type = 2;</code>
-     */
     public boolean hasKickType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 kick_type = 2;</code>
-     */
     public int getKickType() {
       return kickType_;
     }
-
+    
     private void initFields() {
       performMotionKick_ = false;
       kickType_ = 0;
@@ -5998,13 +4902,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -6016,12 +4919,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -6035,106 +4938,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.MotionKick parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.MotionKick parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.MotionKick parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.MotionKick parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.MotionKick parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.MotionKick parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.MotionKick parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.MotionKick parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.MotionKick parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.MotionKick parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.MotionKick prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.MotionKick}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.MotionKick)
-        messages.PMotion.MotionKickOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.MotionKickOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_MotionKick_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_MotionKick_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.MotionKick.class, messages.PMotion.MotionKick.Builder.class);
+        return messages.PMotion.internal_static_messages_MotionKick_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.MotionKick.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -6145,7 +5055,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         performMotionKick_ = false;
@@ -6154,20 +5064,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_MotionKick_descriptor;
+        return messages.PMotion.MotionKick.getDescriptor();
       }
-
+      
       public messages.PMotion.MotionKick getDefaultInstanceForType() {
         return messages.PMotion.MotionKick.getDefaultInstance();
       }
-
+      
       public messages.PMotion.MotionKick build() {
         messages.PMotion.MotionKick result = buildPartial();
         if (!result.isInitialized()) {
@@ -6175,7 +5085,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.MotionKick buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.MotionKick result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.MotionKick buildPartial() {
         messages.PMotion.MotionKick result = new messages.PMotion.MotionKick(this);
         int from_bitField0_ = bitField0_;
@@ -6192,7 +5112,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.MotionKick) {
           return mergeFrom((messages.PMotion.MotionKick)other);
@@ -6201,7 +5121,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.MotionKick other) {
         if (other == messages.PMotion.MotionKick.getDefaultInstance()) return this;
         if (other.hasPerformMotionKick()) {
@@ -6213,321 +5133,171 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.MotionKick parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.MotionKick) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              performMotionKick_ = input.readBool();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              kickType_ = input.readInt32();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional bool perform_motion_kick = 1;
       private boolean performMotionKick_ ;
-      /**
-       * <code>optional bool perform_motion_kick = 1;</code>
-       */
       public boolean hasPerformMotionKick() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional bool perform_motion_kick = 1;</code>
-       */
       public boolean getPerformMotionKick() {
         return performMotionKick_;
       }
-      /**
-       * <code>optional bool perform_motion_kick = 1;</code>
-       */
       public Builder setPerformMotionKick(boolean value) {
         bitField0_ |= 0x00000001;
         performMotionKick_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool perform_motion_kick = 1;</code>
-       */
       public Builder clearPerformMotionKick() {
         bitField0_ = (bitField0_ & ~0x00000001);
         performMotionKick_ = false;
         onChanged();
         return this;
       }
-
+      
+      // optional int32 kick_type = 2;
       private int kickType_ ;
-      /**
-       * <code>optional int32 kick_type = 2;</code>
-       */
       public boolean hasKickType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 kick_type = 2;</code>
-       */
       public int getKickType() {
         return kickType_;
       }
-      /**
-       * <code>optional int32 kick_type = 2;</code>
-       */
       public Builder setKickType(int value) {
         bitField0_ |= 0x00000002;
         kickType_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 kick_type = 2;</code>
-       */
       public Builder clearKickType() {
         bitField0_ = (bitField0_ & ~0x00000002);
         kickType_ = 0;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.MotionKick)
     }
-
+    
     static {
       defaultInstance = new MotionKick(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.MotionKick)
   }
-
-  public interface HeadMotionCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.HeadMotionCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-     */
+  
+  public interface HeadMotionCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .messages.HeadMotionCommand.CommandType type = 1;
     boolean hasType();
-    /**
-     * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-     */
     messages.PMotion.HeadMotionCommand.CommandType getType();
-
-    /**
-     * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-     */
+    
+    // optional .messages.PositionHeadCommand pos_command = 2;
     boolean hasPosCommand();
-    /**
-     * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-     */
     messages.PMotion.PositionHeadCommand getPosCommand();
-    /**
-     * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-     */
     messages.PMotion.PositionHeadCommandOrBuilder getPosCommandOrBuilder();
-
-    /**
-     * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-     */
+    
+    // optional .messages.ScriptedHeadCommand scripted_command = 3;
     boolean hasScriptedCommand();
-    /**
-     * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-     */
     messages.PMotion.ScriptedHeadCommand getScriptedCommand();
-    /**
-     * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-     */
     messages.PMotion.ScriptedHeadCommandOrBuilder getScriptedCommandOrBuilder();
-
-    /**
-     * <code>optional int64 timestamp = 4;</code>
-     */
+    
+    // optional int64 timestamp = 4;
     boolean hasTimestamp();
-    /**
-     * <code>optional int64 timestamp = 4;</code>
-     */
     long getTimestamp();
   }
-  /**
-   * Protobuf type {@code messages.HeadMotionCommand}
-   */
   public static final class HeadMotionCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.HeadMotionCommand)
-      HeadMotionCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements HeadMotionCommandOrBuilder {
     // Use HeadMotionCommand.newBuilder() to construct.
-    private HeadMotionCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private HeadMotionCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private HeadMotionCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private HeadMotionCommand(boolean noInit) {}
+    
     private static final HeadMotionCommand defaultInstance;
     public static HeadMotionCommand getDefaultInstance() {
       return defaultInstance;
     }
-
-    public HeadMotionCommand getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private HeadMotionCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              int rawValue = input.readEnum();
-              messages.PMotion.HeadMotionCommand.CommandType value = messages.PMotion.HeadMotionCommand.CommandType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                type_ = value;
-              }
-              break;
-            }
-            case 18: {
-              messages.PMotion.PositionHeadCommand.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = posCommand_.toBuilder();
-              }
-              posCommand_ = input.readMessage(messages.PMotion.PositionHeadCommand.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(posCommand_);
-                posCommand_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              messages.PMotion.ScriptedHeadCommand.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = scriptedCommand_.toBuilder();
-              }
-              scriptedCommand_ = input.readMessage(messages.PMotion.ScriptedHeadCommand.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(scriptedCommand_);
-                scriptedCommand_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              timestamp_ = input.readInt64();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+
+    public HeadMotionCommand getDefaultInstanceForType() {
+      return defaultInstance;
     }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_HeadMotionCommand_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_HeadMotionCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.HeadMotionCommand.class, messages.PMotion.HeadMotionCommand.Builder.class);
+      return messages.PMotion.internal_static_messages_HeadMotionCommand_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<HeadMotionCommand> PARSER =
-        new com.google.protobuf.AbstractParser<HeadMotionCommand>() {
-      public HeadMotionCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new HeadMotionCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<HeadMotionCommand> getParserForType() {
-      return PARSER;
-    }
-
-    /**
-     * Protobuf enum {@code messages.HeadMotionCommand.CommandType}
-     */
+    
     public enum CommandType
         implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>POS_HEAD_COMMAND = 0;</code>
-       *
-       * <pre>
-       * AKA set_head_command
-       * </pre>
-       */
       POS_HEAD_COMMAND(0, 0),
-      /**
-       * <code>SCRIPTED_HEAD_COMMAND = 1;</code>
-       */
       SCRIPTED_HEAD_COMMAND(1, 1),
       ;
-
-      /**
-       * <code>POS_HEAD_COMMAND = 0;</code>
-       *
-       * <pre>
-       * AKA set_head_command
-       * </pre>
-       */
+      
       public static final int POS_HEAD_COMMAND_VALUE = 0;
-      /**
-       * <code>SCRIPTED_HEAD_COMMAND = 1;</code>
-       */
       public static final int SCRIPTED_HEAD_COMMAND_VALUE = 1;
-
-
+      
+      
       public final int getNumber() { return value; }
-
+      
       public static CommandType valueOf(int value) {
         switch (value) {
           case 0: return POS_HEAD_COMMAND;
@@ -6535,7 +5305,7 @@ public final class PMotion {
           default: return null;
         }
       }
-
+      
       public static com.google.protobuf.Internal.EnumLiteMap<CommandType>
           internalGetValueMap() {
         return internalValueMap;
@@ -6547,7 +5317,7 @@ public final class PMotion {
                 return CommandType.valueOf(number);
               }
             };
-
+      
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(index);
@@ -6560,9 +5330,11 @@ public final class PMotion {
           getDescriptor() {
         return messages.PMotion.HeadMotionCommand.getDescriptor().getEnumTypes().get(0);
       }
-
-      private static final CommandType[] VALUES = values();
-
+      
+      private static final CommandType[] VALUES = {
+        POS_HEAD_COMMAND, SCRIPTED_HEAD_COMMAND, 
+      };
+      
       public static CommandType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
@@ -6571,91 +5343,65 @@ public final class PMotion {
         }
         return VALUES[desc.getIndex()];
       }
-
+      
       private final int index;
       private final int value;
-
+      
       private CommandType(int index, int value) {
         this.index = index;
         this.value = value;
       }
-
+      
       // @@protoc_insertion_point(enum_scope:messages.HeadMotionCommand.CommandType)
     }
-
+    
     private int bitField0_;
+    // optional .messages.HeadMotionCommand.CommandType type = 1;
     public static final int TYPE_FIELD_NUMBER = 1;
     private messages.PMotion.HeadMotionCommand.CommandType type_;
-    /**
-     * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-     */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-     */
     public messages.PMotion.HeadMotionCommand.CommandType getType() {
       return type_;
     }
-
+    
+    // optional .messages.PositionHeadCommand pos_command = 2;
     public static final int POS_COMMAND_FIELD_NUMBER = 2;
     private messages.PMotion.PositionHeadCommand posCommand_;
-    /**
-     * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-     */
     public boolean hasPosCommand() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-     */
     public messages.PMotion.PositionHeadCommand getPosCommand() {
       return posCommand_;
     }
-    /**
-     * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-     */
     public messages.PMotion.PositionHeadCommandOrBuilder getPosCommandOrBuilder() {
       return posCommand_;
     }
-
+    
+    // optional .messages.ScriptedHeadCommand scripted_command = 3;
     public static final int SCRIPTED_COMMAND_FIELD_NUMBER = 3;
     private messages.PMotion.ScriptedHeadCommand scriptedCommand_;
-    /**
-     * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-     */
     public boolean hasScriptedCommand() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-     */
     public messages.PMotion.ScriptedHeadCommand getScriptedCommand() {
       return scriptedCommand_;
     }
-    /**
-     * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-     */
     public messages.PMotion.ScriptedHeadCommandOrBuilder getScriptedCommandOrBuilder() {
       return scriptedCommand_;
     }
-
+    
+    // optional int64 timestamp = 4;
     public static final int TIMESTAMP_FIELD_NUMBER = 4;
     private long timestamp_;
-    /**
-     * <code>optional int64 timestamp = 4;</code>
-     */
     public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional int64 timestamp = 4;</code>
-     */
     public long getTimestamp() {
       return timestamp_;
     }
-
+    
     private void initFields() {
       type_ = messages.PMotion.HeadMotionCommand.CommandType.POS_HEAD_COMMAND;
       posCommand_ = messages.PMotion.PositionHeadCommand.getDefaultInstance();
@@ -6665,13 +5411,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -6689,12 +5434,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -6716,106 +5461,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.HeadMotionCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.HeadMotionCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.HeadMotionCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.HeadMotionCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.HeadMotionCommand}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.HeadMotionCommand)
-        messages.PMotion.HeadMotionCommandOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.HeadMotionCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_HeadMotionCommand_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_HeadMotionCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.HeadMotionCommand.class, messages.PMotion.HeadMotionCommand.Builder.class);
+        return messages.PMotion.internal_static_messages_HeadMotionCommand_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.HeadMotionCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -6828,7 +5580,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         type_ = messages.PMotion.HeadMotionCommand.CommandType.POS_HEAD_COMMAND;
@@ -6849,20 +5601,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_HeadMotionCommand_descriptor;
+        return messages.PMotion.HeadMotionCommand.getDescriptor();
       }
-
+      
       public messages.PMotion.HeadMotionCommand getDefaultInstanceForType() {
         return messages.PMotion.HeadMotionCommand.getDefaultInstance();
       }
-
+      
       public messages.PMotion.HeadMotionCommand build() {
         messages.PMotion.HeadMotionCommand result = buildPartial();
         if (!result.isInitialized()) {
@@ -6870,7 +5622,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.HeadMotionCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.HeadMotionCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.HeadMotionCommand buildPartial() {
         messages.PMotion.HeadMotionCommand result = new messages.PMotion.HeadMotionCommand(this);
         int from_bitField0_ = bitField0_;
@@ -6903,7 +5665,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.HeadMotionCommand) {
           return mergeFrom((messages.PMotion.HeadMotionCommand)other);
@@ -6912,7 +5674,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.HeadMotionCommand other) {
         if (other == messages.PMotion.HeadMotionCommand.getDefaultInstance()) return this;
         if (other.hasType()) {
@@ -6930,46 +5692,82 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.HeadMotionCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.HeadMotionCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              messages.PMotion.HeadMotionCommand.CommandType value = messages.PMotion.HeadMotionCommand.CommandType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = value;
+              }
+              break;
+            }
+            case 18: {
+              messages.PMotion.PositionHeadCommand.Builder subBuilder = messages.PMotion.PositionHeadCommand.newBuilder();
+              if (hasPosCommand()) {
+                subBuilder.mergeFrom(getPosCommand());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setPosCommand(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              messages.PMotion.ScriptedHeadCommand.Builder subBuilder = messages.PMotion.ScriptedHeadCommand.newBuilder();
+              if (hasScriptedCommand()) {
+                subBuilder.mergeFrom(getScriptedCommand());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setScriptedCommand(subBuilder.buildPartial());
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              timestamp_ = input.readInt64();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional .messages.HeadMotionCommand.CommandType type = 1;
       private messages.PMotion.HeadMotionCommand.CommandType type_ = messages.PMotion.HeadMotionCommand.CommandType.POS_HEAD_COMMAND;
-      /**
-       * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-       */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-       */
       public messages.PMotion.HeadMotionCommand.CommandType getType() {
         return type_;
       }
-      /**
-       * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-       */
       public Builder setType(messages.PMotion.HeadMotionCommand.CommandType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -6979,28 +5777,20 @@ public final class PMotion {
         onChanged();
         return this;
       }
-      /**
-       * <code>optional .messages.HeadMotionCommand.CommandType type = 1;</code>
-       */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
         type_ = messages.PMotion.HeadMotionCommand.CommandType.POS_HEAD_COMMAND;
         onChanged();
         return this;
       }
-
+      
+      // optional .messages.PositionHeadCommand pos_command = 2;
       private messages.PMotion.PositionHeadCommand posCommand_ = messages.PMotion.PositionHeadCommand.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.PositionHeadCommand, messages.PMotion.PositionHeadCommand.Builder, messages.PMotion.PositionHeadCommandOrBuilder> posCommandBuilder_;
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public boolean hasPosCommand() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public messages.PMotion.PositionHeadCommand getPosCommand() {
         if (posCommandBuilder_ == null) {
           return posCommand_;
@@ -7008,9 +5798,6 @@ public final class PMotion {
           return posCommandBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public Builder setPosCommand(messages.PMotion.PositionHeadCommand value) {
         if (posCommandBuilder_ == null) {
           if (value == null) {
@@ -7024,9 +5811,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public Builder setPosCommand(
           messages.PMotion.PositionHeadCommand.Builder builderForValue) {
         if (posCommandBuilder_ == null) {
@@ -7038,9 +5822,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public Builder mergePosCommand(messages.PMotion.PositionHeadCommand value) {
         if (posCommandBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
@@ -7057,9 +5838,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public Builder clearPosCommand() {
         if (posCommandBuilder_ == null) {
           posCommand_ = messages.PMotion.PositionHeadCommand.getDefaultInstance();
@@ -7070,17 +5848,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public messages.PMotion.PositionHeadCommand.Builder getPosCommandBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getPosCommandFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       public messages.PMotion.PositionHeadCommandOrBuilder getPosCommandOrBuilder() {
         if (posCommandBuilder_ != null) {
           return posCommandBuilder_.getMessageOrBuilder();
@@ -7088,35 +5860,27 @@ public final class PMotion {
           return posCommand_;
         }
       }
-      /**
-       * <code>optional .messages.PositionHeadCommand pos_command = 2;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.PositionHeadCommand, messages.PMotion.PositionHeadCommand.Builder, messages.PMotion.PositionHeadCommandOrBuilder> 
           getPosCommandFieldBuilder() {
         if (posCommandBuilder_ == null) {
           posCommandBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.PositionHeadCommand, messages.PMotion.PositionHeadCommand.Builder, messages.PMotion.PositionHeadCommandOrBuilder>(
-                  getPosCommand(),
+                  posCommand_,
                   getParentForChildren(),
                   isClean());
           posCommand_ = null;
         }
         return posCommandBuilder_;
       }
-
+      
+      // optional .messages.ScriptedHeadCommand scripted_command = 3;
       private messages.PMotion.ScriptedHeadCommand scriptedCommand_ = messages.PMotion.ScriptedHeadCommand.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.ScriptedHeadCommand, messages.PMotion.ScriptedHeadCommand.Builder, messages.PMotion.ScriptedHeadCommandOrBuilder> scriptedCommandBuilder_;
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public boolean hasScriptedCommand() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public messages.PMotion.ScriptedHeadCommand getScriptedCommand() {
         if (scriptedCommandBuilder_ == null) {
           return scriptedCommand_;
@@ -7124,9 +5888,6 @@ public final class PMotion {
           return scriptedCommandBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public Builder setScriptedCommand(messages.PMotion.ScriptedHeadCommand value) {
         if (scriptedCommandBuilder_ == null) {
           if (value == null) {
@@ -7140,9 +5901,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public Builder setScriptedCommand(
           messages.PMotion.ScriptedHeadCommand.Builder builderForValue) {
         if (scriptedCommandBuilder_ == null) {
@@ -7154,9 +5912,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public Builder mergeScriptedCommand(messages.PMotion.ScriptedHeadCommand value) {
         if (scriptedCommandBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
@@ -7173,9 +5928,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public Builder clearScriptedCommand() {
         if (scriptedCommandBuilder_ == null) {
           scriptedCommand_ = messages.PMotion.ScriptedHeadCommand.getDefaultInstance();
@@ -7186,17 +5938,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public messages.PMotion.ScriptedHeadCommand.Builder getScriptedCommandBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
         return getScriptedCommandFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       public messages.PMotion.ScriptedHeadCommandOrBuilder getScriptedCommandOrBuilder() {
         if (scriptedCommandBuilder_ != null) {
           return scriptedCommandBuilder_.getMessageOrBuilder();
@@ -7204,155 +5950,444 @@ public final class PMotion {
           return scriptedCommand_;
         }
       }
-      /**
-       * <code>optional .messages.ScriptedHeadCommand scripted_command = 3;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.ScriptedHeadCommand, messages.PMotion.ScriptedHeadCommand.Builder, messages.PMotion.ScriptedHeadCommandOrBuilder> 
           getScriptedCommandFieldBuilder() {
         if (scriptedCommandBuilder_ == null) {
           scriptedCommandBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.ScriptedHeadCommand, messages.PMotion.ScriptedHeadCommand.Builder, messages.PMotion.ScriptedHeadCommandOrBuilder>(
-                  getScriptedCommand(),
+                  scriptedCommand_,
                   getParentForChildren(),
                   isClean());
           scriptedCommand_ = null;
         }
         return scriptedCommandBuilder_;
       }
-
+      
+      // optional int64 timestamp = 4;
       private long timestamp_ ;
-      /**
-       * <code>optional int64 timestamp = 4;</code>
-       */
       public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional int64 timestamp = 4;</code>
-       */
       public long getTimestamp() {
         return timestamp_;
       }
-      /**
-       * <code>optional int64 timestamp = 4;</code>
-       */
       public Builder setTimestamp(long value) {
         bitField0_ |= 0x00000008;
         timestamp_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 timestamp = 4;</code>
-       */
       public Builder clearTimestamp() {
         bitField0_ = (bitField0_ & ~0x00000008);
         timestamp_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.HeadMotionCommand)
     }
-
+    
     static {
       defaultInstance = new HeadMotionCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.HeadMotionCommand)
   }
-
-  public interface PositionHeadCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.PositionHeadCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     */
+  
+  public interface PositionHeadCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float head_yaw = 1;
     boolean hasHeadYaw();
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     */
     float getHeadYaw();
-
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
+    
+    // optional float head_pitch = 2;
     boolean hasHeadPitch();
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
     float getHeadPitch();
-
-    /**
-     * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-     */
+    
+    // optional float max_speed_yaw = 3 [default = -1];
     boolean hasMaxSpeedYaw();
-    /**
-     * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-     */
     float getMaxSpeedYaw();
-
-    /**
-     * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-     */
+    
+    // optional float max_speed_pitch = 4 [default = -1];
     boolean hasMaxSpeedPitch();
-    /**
-     * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-     */
     float getMaxSpeedPitch();
   }
-  /**
-   * Protobuf type {@code messages.PositionHeadCommand}
-   */
   public static final class PositionHeadCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.PositionHeadCommand)
-      PositionHeadCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements PositionHeadCommandOrBuilder {
     // Use PositionHeadCommand.newBuilder() to construct.
-    private PositionHeadCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private PositionHeadCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private PositionHeadCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private PositionHeadCommand(boolean noInit) {}
+    
     private static final PositionHeadCommand defaultInstance;
     public static PositionHeadCommand getDefaultInstance() {
       return defaultInstance;
     }
-
-    public PositionHeadCommand getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private PositionHeadCommand(
-        com.google.protobuf.CodedInputStream input,
+
+    public PositionHeadCommand getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return messages.PMotion.internal_static_messages_PositionHeadCommand_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return messages.PMotion.internal_static_messages_PositionHeadCommand_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional float head_yaw = 1;
+    public static final int HEAD_YAW_FIELD_NUMBER = 1;
+    private float headYaw_;
+    public boolean hasHeadYaw() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public float getHeadYaw() {
+      return headYaw_;
+    }
+    
+    // optional float head_pitch = 2;
+    public static final int HEAD_PITCH_FIELD_NUMBER = 2;
+    private float headPitch_;
+    public boolean hasHeadPitch() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public float getHeadPitch() {
+      return headPitch_;
+    }
+    
+    // optional float max_speed_yaw = 3 [default = -1];
+    public static final int MAX_SPEED_YAW_FIELD_NUMBER = 3;
+    private float maxSpeedYaw_;
+    public boolean hasMaxSpeedYaw() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public float getMaxSpeedYaw() {
+      return maxSpeedYaw_;
+    }
+    
+    // optional float max_speed_pitch = 4 [default = -1];
+    public static final int MAX_SPEED_PITCH_FIELD_NUMBER = 4;
+    private float maxSpeedPitch_;
+    public boolean hasMaxSpeedPitch() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public float getMaxSpeedPitch() {
+      return maxSpeedPitch_;
+    }
+    
+    private void initFields() {
+      headYaw_ = 0F;
+      headPitch_ = 0F;
+      maxSpeedYaw_ = -1F;
+      maxSpeedPitch_ = -1F;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeFloat(1, headYaw_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(2, headPitch_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeFloat(3, maxSpeedYaw_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeFloat(4, maxSpeedPitch_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(1, headYaw_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, headPitch_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, maxSpeedYaw_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(4, maxSpeedPitch_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static messages.PMotion.PositionHeadCommand parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(
+        com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.PositionHeadCommand parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.PositionHeadCommand parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(messages.PMotion.PositionHeadCommand prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.PositionHeadCommandOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return messages.PMotion.internal_static_messages_PositionHeadCommand_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return messages.PMotion.internal_static_messages_PositionHeadCommand_fieldAccessorTable;
+      }
+      
+      // Construct using messages.PMotion.PositionHeadCommand.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        headYaw_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        headPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        maxSpeedYaw_ = -1F;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        maxSpeedPitch_ = -1F;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return messages.PMotion.PositionHeadCommand.getDescriptor();
+      }
+      
+      public messages.PMotion.PositionHeadCommand getDefaultInstanceForType() {
+        return messages.PMotion.PositionHeadCommand.getDefaultInstance();
+      }
+      
+      public messages.PMotion.PositionHeadCommand build() {
+        messages.PMotion.PositionHeadCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private messages.PMotion.PositionHeadCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.PositionHeadCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public messages.PMotion.PositionHeadCommand buildPartial() {
+        messages.PMotion.PositionHeadCommand result = new messages.PMotion.PositionHeadCommand(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.headYaw_ = headYaw_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.headPitch_ = headPitch_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.maxSpeedYaw_ = maxSpeedYaw_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.maxSpeedPitch_ = maxSpeedPitch_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof messages.PMotion.PositionHeadCommand) {
+          return mergeFrom((messages.PMotion.PositionHeadCommand)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(messages.PMotion.PositionHeadCommand other) {
+        if (other == messages.PMotion.PositionHeadCommand.getDefaultInstance()) return this;
+        if (other.hasHeadYaw()) {
+          setHeadYaw(other.getHeadYaw());
+        }
+        if (other.hasHeadPitch()) {
+          setHeadPitch(other.getHeadPitch());
+        }
+        if (other.hasMaxSpeedYaw()) {
+          setMaxSpeedYaw(other.getMaxSpeedYaw());
+        }
+        if (other.hasMaxSpeedPitch()) {
+          setMaxSpeedPitch(other.getMaxSpeedPitch());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              done = true;
-              break;
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                done = true;
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
               }
               break;
             }
@@ -7378,701 +6413,186 @@ public final class PMotion {
             }
           }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
       }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return messages.PMotion.internal_static_messages_PositionHeadCommand_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_PositionHeadCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.PositionHeadCommand.class, messages.PMotion.PositionHeadCommand.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<PositionHeadCommand> PARSER =
-        new com.google.protobuf.AbstractParser<PositionHeadCommand>() {
-      public PositionHeadCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PositionHeadCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PositionHeadCommand> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int HEAD_YAW_FIELD_NUMBER = 1;
-    private float headYaw_;
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     */
-    public boolean hasHeadYaw() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     */
-    public float getHeadYaw() {
-      return headYaw_;
-    }
-
-    public static final int HEAD_PITCH_FIELD_NUMBER = 2;
-    private float headPitch_;
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
-    public boolean hasHeadPitch() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
-    public float getHeadPitch() {
-      return headPitch_;
-    }
-
-    public static final int MAX_SPEED_YAW_FIELD_NUMBER = 3;
-    private float maxSpeedYaw_;
-    /**
-     * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-     */
-    public boolean hasMaxSpeedYaw() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-     */
-    public float getMaxSpeedYaw() {
-      return maxSpeedYaw_;
-    }
-
-    public static final int MAX_SPEED_PITCH_FIELD_NUMBER = 4;
-    private float maxSpeedPitch_;
-    /**
-     * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-     */
-    public boolean hasMaxSpeedPitch() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-     */
-    public float getMaxSpeedPitch() {
-      return maxSpeedPitch_;
-    }
-
-    private void initFields() {
-      headYaw_ = 0F;
-      headPitch_ = 0F;
-      maxSpeedYaw_ = -1F;
-      maxSpeedPitch_ = -1F;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeFloat(1, headYaw_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeFloat(2, headPitch_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeFloat(3, maxSpeedYaw_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeFloat(4, maxSpeedPitch_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(1, headYaw_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, headPitch_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(3, maxSpeedYaw_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, maxSpeedPitch_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static messages.PMotion.PositionHeadCommand parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.PositionHeadCommand parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static messages.PMotion.PositionHeadCommand parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.PositionHeadCommand parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(messages.PMotion.PositionHeadCommand prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code messages.PositionHeadCommand}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.PositionHeadCommand)
-        messages.PMotion.PositionHeadCommandOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return messages.PMotion.internal_static_messages_PositionHeadCommand_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_PositionHeadCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.PositionHeadCommand.class, messages.PMotion.PositionHeadCommand.Builder.class);
-      }
-
-      // Construct using messages.PMotion.PositionHeadCommand.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        headYaw_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        headPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        maxSpeedYaw_ = -1F;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        maxSpeedPitch_ = -1F;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_PositionHeadCommand_descriptor;
-      }
-
-      public messages.PMotion.PositionHeadCommand getDefaultInstanceForType() {
-        return messages.PMotion.PositionHeadCommand.getDefaultInstance();
-      }
-
-      public messages.PMotion.PositionHeadCommand build() {
-        messages.PMotion.PositionHeadCommand result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public messages.PMotion.PositionHeadCommand buildPartial() {
-        messages.PMotion.PositionHeadCommand result = new messages.PMotion.PositionHeadCommand(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.headYaw_ = headYaw_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.headPitch_ = headPitch_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.maxSpeedYaw_ = maxSpeedYaw_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.maxSpeedPitch_ = maxSpeedPitch_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof messages.PMotion.PositionHeadCommand) {
-          return mergeFrom((messages.PMotion.PositionHeadCommand)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(messages.PMotion.PositionHeadCommand other) {
-        if (other == messages.PMotion.PositionHeadCommand.getDefaultInstance()) return this;
-        if (other.hasHeadYaw()) {
-          setHeadYaw(other.getHeadYaw());
-        }
-        if (other.hasHeadPitch()) {
-          setHeadPitch(other.getHeadPitch());
-        }
-        if (other.hasMaxSpeedYaw()) {
-          setMaxSpeedYaw(other.getMaxSpeedYaw());
-        }
-        if (other.hasMaxSpeedPitch()) {
-          setMaxSpeedPitch(other.getMaxSpeedPitch());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        messages.PMotion.PositionHeadCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.PositionHeadCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+      
       private int bitField0_;
-
+      
+      // optional float head_yaw = 1;
       private float headYaw_ ;
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       */
       public boolean hasHeadYaw() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       */
       public float getHeadYaw() {
         return headYaw_;
       }
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       */
       public Builder setHeadYaw(float value) {
         bitField0_ |= 0x00000001;
         headYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       */
       public Builder clearHeadYaw() {
         bitField0_ = (bitField0_ & ~0x00000001);
         headYaw_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float head_pitch = 2;
       private float headPitch_ ;
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public boolean hasHeadPitch() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public float getHeadPitch() {
         return headPitch_;
       }
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public Builder setHeadPitch(float value) {
         bitField0_ |= 0x00000002;
         headPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public Builder clearHeadPitch() {
         bitField0_ = (bitField0_ & ~0x00000002);
         headPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float max_speed_yaw = 3 [default = -1];
       private float maxSpeedYaw_ = -1F;
-      /**
-       * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-       */
       public boolean hasMaxSpeedYaw() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-       */
       public float getMaxSpeedYaw() {
         return maxSpeedYaw_;
       }
-      /**
-       * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-       */
       public Builder setMaxSpeedYaw(float value) {
         bitField0_ |= 0x00000004;
         maxSpeedYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float max_speed_yaw = 3 [default = -1];</code>
-       */
       public Builder clearMaxSpeedYaw() {
         bitField0_ = (bitField0_ & ~0x00000004);
         maxSpeedYaw_ = -1F;
         onChanged();
         return this;
       }
-
+      
+      // optional float max_speed_pitch = 4 [default = -1];
       private float maxSpeedPitch_ = -1F;
-      /**
-       * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-       */
       public boolean hasMaxSpeedPitch() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-       */
       public float getMaxSpeedPitch() {
         return maxSpeedPitch_;
       }
-      /**
-       * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-       */
       public Builder setMaxSpeedPitch(float value) {
         bitField0_ |= 0x00000008;
         maxSpeedPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float max_speed_pitch = 4 [default = -1];</code>
-       */
       public Builder clearMaxSpeedPitch() {
         bitField0_ = (bitField0_ & ~0x00000008);
         maxSpeedPitch_ = -1F;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.PositionHeadCommand)
     }
-
+    
     static {
       defaultInstance = new PositionHeadCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.PositionHeadCommand)
   }
-
-  public interface ScriptedHeadCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.ScriptedHeadCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
+  
+  public interface ScriptedHeadCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .messages.HeadJointCommand command = 1;
     java.util.List<messages.PMotion.HeadJointCommand> 
         getCommandList();
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     messages.PMotion.HeadJointCommand getCommand(int index);
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     int getCommandCount();
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     java.util.List<? extends messages.PMotion.HeadJointCommandOrBuilder> 
         getCommandOrBuilderList();
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     messages.PMotion.HeadJointCommandOrBuilder getCommandOrBuilder(
         int index);
   }
-  /**
-   * Protobuf type {@code messages.ScriptedHeadCommand}
-   */
   public static final class ScriptedHeadCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.ScriptedHeadCommand)
-      ScriptedHeadCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements ScriptedHeadCommandOrBuilder {
     // Use ScriptedHeadCommand.newBuilder() to construct.
-    private ScriptedHeadCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private ScriptedHeadCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private ScriptedHeadCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private ScriptedHeadCommand(boolean noInit) {}
+    
     private static final ScriptedHeadCommand defaultInstance;
     public static ScriptedHeadCommand getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public ScriptedHeadCommand getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private ScriptedHeadCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                command_ = new java.util.ArrayList<messages.PMotion.HeadJointCommand>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              command_.add(input.readMessage(messages.PMotion.HeadJointCommand.PARSER, extensionRegistry));
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          command_ = java.util.Collections.unmodifiableList(command_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_ScriptedHeadCommand_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_ScriptedHeadCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.ScriptedHeadCommand.class, messages.PMotion.ScriptedHeadCommand.Builder.class);
+      return messages.PMotion.internal_static_messages_ScriptedHeadCommand_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<ScriptedHeadCommand> PARSER =
-        new com.google.protobuf.AbstractParser<ScriptedHeadCommand>() {
-      public ScriptedHeadCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ScriptedHeadCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ScriptedHeadCommand> getParserForType() {
-      return PARSER;
-    }
-
+    
+    // repeated .messages.HeadJointCommand command = 1;
     public static final int COMMAND_FIELD_NUMBER = 1;
     private java.util.List<messages.PMotion.HeadJointCommand> command_;
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     public java.util.List<messages.PMotion.HeadJointCommand> getCommandList() {
       return command_;
     }
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     public java.util.List<? extends messages.PMotion.HeadJointCommandOrBuilder> 
         getCommandOrBuilderList() {
       return command_;
     }
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     public int getCommandCount() {
       return command_.size();
     }
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     public messages.PMotion.HeadJointCommand getCommand(int index) {
       return command_.get(index);
     }
-    /**
-     * <code>repeated .messages.HeadJointCommand command = 1;</code>
-     */
     public messages.PMotion.HeadJointCommandOrBuilder getCommandOrBuilder(
         int index) {
       return command_.get(index);
     }
-
+    
     private void initFields() {
       command_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -8081,12 +6601,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       for (int i = 0; i < command_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -8096,106 +6616,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.ScriptedHeadCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.ScriptedHeadCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.ScriptedHeadCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.ScriptedHeadCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.ScriptedHeadCommand}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.ScriptedHeadCommand)
-        messages.PMotion.ScriptedHeadCommandOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.ScriptedHeadCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_ScriptedHeadCommand_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_ScriptedHeadCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.ScriptedHeadCommand.class, messages.PMotion.ScriptedHeadCommand.Builder.class);
+        return messages.PMotion.internal_static_messages_ScriptedHeadCommand_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.ScriptedHeadCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -8207,7 +6734,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         if (commandBuilder_ == null) {
@@ -8218,20 +6745,20 @@ public final class PMotion {
         }
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_ScriptedHeadCommand_descriptor;
+        return messages.PMotion.ScriptedHeadCommand.getDescriptor();
       }
-
+      
       public messages.PMotion.ScriptedHeadCommand getDefaultInstanceForType() {
         return messages.PMotion.ScriptedHeadCommand.getDefaultInstance();
       }
-
+      
       public messages.PMotion.ScriptedHeadCommand build() {
         messages.PMotion.ScriptedHeadCommand result = buildPartial();
         if (!result.isInitialized()) {
@@ -8239,7 +6766,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.ScriptedHeadCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.ScriptedHeadCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.ScriptedHeadCommand buildPartial() {
         messages.PMotion.ScriptedHeadCommand result = new messages.PMotion.ScriptedHeadCommand(this);
         int from_bitField0_ = bitField0_;
@@ -8255,7 +6792,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.ScriptedHeadCommand) {
           return mergeFrom((messages.PMotion.ScriptedHeadCommand)other);
@@ -8264,7 +6801,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.ScriptedHeadCommand other) {
         if (other == messages.PMotion.ScriptedHeadCommand.getDefaultInstance()) return this;
         if (commandBuilder_ == null) {
@@ -8296,30 +6833,47 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.ScriptedHeadCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.ScriptedHeadCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              messages.PMotion.HeadJointCommand.Builder subBuilder = messages.PMotion.HeadJointCommand.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addCommand(subBuilder.buildPartial());
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // repeated .messages.HeadJointCommand command = 1;
       private java.util.List<messages.PMotion.HeadJointCommand> command_ =
         java.util.Collections.emptyList();
       private void ensureCommandIsMutable() {
@@ -8328,13 +6882,10 @@ public final class PMotion {
           bitField0_ |= 0x00000001;
          }
       }
-
+      
       private com.google.protobuf.RepeatedFieldBuilder<
           messages.PMotion.HeadJointCommand, messages.PMotion.HeadJointCommand.Builder, messages.PMotion.HeadJointCommandOrBuilder> commandBuilder_;
-
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
+      
       public java.util.List<messages.PMotion.HeadJointCommand> getCommandList() {
         if (commandBuilder_ == null) {
           return java.util.Collections.unmodifiableList(command_);
@@ -8342,9 +6893,6 @@ public final class PMotion {
           return commandBuilder_.getMessageList();
         }
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public int getCommandCount() {
         if (commandBuilder_ == null) {
           return command_.size();
@@ -8352,9 +6900,6 @@ public final class PMotion {
           return commandBuilder_.getCount();
         }
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public messages.PMotion.HeadJointCommand getCommand(int index) {
         if (commandBuilder_ == null) {
           return command_.get(index);
@@ -8362,9 +6907,6 @@ public final class PMotion {
           return commandBuilder_.getMessage(index);
         }
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder setCommand(
           int index, messages.PMotion.HeadJointCommand value) {
         if (commandBuilder_ == null) {
@@ -8379,9 +6921,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder setCommand(
           int index, messages.PMotion.HeadJointCommand.Builder builderForValue) {
         if (commandBuilder_ == null) {
@@ -8393,9 +6932,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder addCommand(messages.PMotion.HeadJointCommand value) {
         if (commandBuilder_ == null) {
           if (value == null) {
@@ -8409,9 +6945,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder addCommand(
           int index, messages.PMotion.HeadJointCommand value) {
         if (commandBuilder_ == null) {
@@ -8426,9 +6959,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder addCommand(
           messages.PMotion.HeadJointCommand.Builder builderForValue) {
         if (commandBuilder_ == null) {
@@ -8440,9 +6970,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder addCommand(
           int index, messages.PMotion.HeadJointCommand.Builder builderForValue) {
         if (commandBuilder_ == null) {
@@ -8454,24 +6981,17 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder addAllCommand(
           java.lang.Iterable<? extends messages.PMotion.HeadJointCommand> values) {
         if (commandBuilder_ == null) {
           ensureCommandIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, command_);
+          super.addAll(values, command_);
           onChanged();
         } else {
           commandBuilder_.addAllMessages(values);
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder clearCommand() {
         if (commandBuilder_ == null) {
           command_ = java.util.Collections.emptyList();
@@ -8482,9 +7002,6 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public Builder removeCommand(int index) {
         if (commandBuilder_ == null) {
           ensureCommandIsMutable();
@@ -8495,16 +7012,10 @@ public final class PMotion {
         }
         return this;
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public messages.PMotion.HeadJointCommand.Builder getCommandBuilder(
           int index) {
         return getCommandFieldBuilder().getBuilder(index);
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public messages.PMotion.HeadJointCommandOrBuilder getCommandOrBuilder(
           int index) {
         if (commandBuilder_ == null) {
@@ -8512,9 +7023,6 @@ public final class PMotion {
           return commandBuilder_.getMessageOrBuilder(index);
         }
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public java.util.List<? extends messages.PMotion.HeadJointCommandOrBuilder> 
            getCommandOrBuilderList() {
         if (commandBuilder_ != null) {
@@ -8523,24 +7031,15 @@ public final class PMotion {
           return java.util.Collections.unmodifiableList(command_);
         }
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public messages.PMotion.HeadJointCommand.Builder addCommandBuilder() {
         return getCommandFieldBuilder().addBuilder(
             messages.PMotion.HeadJointCommand.getDefaultInstance());
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public messages.PMotion.HeadJointCommand.Builder addCommandBuilder(
           int index) {
         return getCommandFieldBuilder().addBuilder(
             index, messages.PMotion.HeadJointCommand.getDefaultInstance());
       }
-      /**
-       * <code>repeated .messages.HeadJointCommand command = 1;</code>
-       */
       public java.util.List<messages.PMotion.HeadJointCommand.Builder> 
            getCommandBuilderList() {
         return getCommandFieldBuilder().getBuilderList();
@@ -8559,226 +7058,86 @@ public final class PMotion {
         }
         return commandBuilder_;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.ScriptedHeadCommand)
     }
-
+    
     static {
       defaultInstance = new ScriptedHeadCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.ScriptedHeadCommand)
   }
-
-  public interface HeadJointCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.HeadJointCommand)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float time = 1;</code>
-     */
+  
+  public interface HeadJointCommandOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float time = 1;
     boolean hasTime();
-    /**
-     * <code>optional float time = 1;</code>
-     */
     float getTime();
-
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
+    
+    // optional .messages.JointAngles angles = 2;
     boolean hasAngles();
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     messages.PMotion.JointAngles getAngles();
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     messages.PMotion.JointAnglesOrBuilder getAnglesOrBuilder();
-
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
+    
+    // optional .messages.JointAngles stiffness = 3;
     boolean hasStiffness();
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     messages.PMotion.JointAngles getStiffness();
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     messages.PMotion.JointAnglesOrBuilder getStiffnessOrBuilder();
-
-    /**
-     * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-     */
+    
+    // optional .messages.HeadJointCommand.InterpolationType interpolation = 4;
     boolean hasInterpolation();
-    /**
-     * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-     */
     messages.PMotion.HeadJointCommand.InterpolationType getInterpolation();
   }
-  /**
-   * Protobuf type {@code messages.HeadJointCommand}
-   */
   public static final class HeadJointCommand extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.HeadJointCommand)
-      HeadJointCommandOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements HeadJointCommandOrBuilder {
     // Use HeadJointCommand.newBuilder() to construct.
-    private HeadJointCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private HeadJointCommand(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private HeadJointCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final HeadJointCommand defaultInstance;
-    public static HeadJointCommand getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public HeadJointCommand getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    private HeadJointCommand(boolean noInit) {}
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private HeadJointCommand(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 13: {
-              bitField0_ |= 0x00000001;
-              time_ = input.readFloat();
-              break;
-            }
-            case 18: {
-              messages.PMotion.JointAngles.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = angles_.toBuilder();
-              }
-              angles_ = input.readMessage(messages.PMotion.JointAngles.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(angles_);
-                angles_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              messages.PMotion.JointAngles.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = stiffness_.toBuilder();
-              }
-              stiffness_ = input.readMessage(messages.PMotion.JointAngles.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(stiffness_);
-                stiffness_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-              messages.PMotion.HeadJointCommand.InterpolationType value = messages.PMotion.HeadJointCommand.InterpolationType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(4, rawValue);
-              } else {
-                bitField0_ |= 0x00000008;
-                interpolation_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+
+    private static final HeadJointCommand defaultInstance;
+    public static HeadJointCommand getDefaultInstance() {
+      return defaultInstance;
     }
+    
+    public HeadJointCommand getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return messages.PMotion.internal_static_messages_HeadJointCommand_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_HeadJointCommand_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.HeadJointCommand.class, messages.PMotion.HeadJointCommand.Builder.class);
+      return messages.PMotion.internal_static_messages_HeadJointCommand_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<HeadJointCommand> PARSER =
-        new com.google.protobuf.AbstractParser<HeadJointCommand>() {
-      public HeadJointCommand parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new HeadJointCommand(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<HeadJointCommand> getParserForType() {
-      return PARSER;
-    }
-
-    /**
-     * Protobuf enum {@code messages.HeadJointCommand.InterpolationType}
-     */
+    
     public enum InterpolationType
         implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>SMOOTH = 0;</code>
-       */
       SMOOTH(0, 0),
-      /**
-       * <code>LINEAR = 1;</code>
-       */
       LINEAR(1, 1),
       ;
-
-      /**
-       * <code>SMOOTH = 0;</code>
-       */
+      
       public static final int SMOOTH_VALUE = 0;
-      /**
-       * <code>LINEAR = 1;</code>
-       */
       public static final int LINEAR_VALUE = 1;
-
-
+      
+      
       public final int getNumber() { return value; }
-
+      
       public static InterpolationType valueOf(int value) {
         switch (value) {
           case 0: return SMOOTH;
@@ -8786,7 +7145,7 @@ public final class PMotion {
           default: return null;
         }
       }
-
+      
       public static com.google.protobuf.Internal.EnumLiteMap<InterpolationType>
           internalGetValueMap() {
         return internalValueMap;
@@ -8798,7 +7157,7 @@ public final class PMotion {
                 return InterpolationType.valueOf(number);
               }
             };
-
+      
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(index);
@@ -8811,9 +7170,11 @@ public final class PMotion {
           getDescriptor() {
         return messages.PMotion.HeadJointCommand.getDescriptor().getEnumTypes().get(0);
       }
-
-      private static final InterpolationType[] VALUES = values();
-
+      
+      private static final InterpolationType[] VALUES = {
+        SMOOTH, LINEAR, 
+      };
+      
       public static InterpolationType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
@@ -8822,91 +7183,65 @@ public final class PMotion {
         }
         return VALUES[desc.getIndex()];
       }
-
+      
       private final int index;
       private final int value;
-
+      
       private InterpolationType(int index, int value) {
         this.index = index;
         this.value = value;
       }
-
+      
       // @@protoc_insertion_point(enum_scope:messages.HeadJointCommand.InterpolationType)
     }
-
+    
     private int bitField0_;
+    // optional float time = 1;
     public static final int TIME_FIELD_NUMBER = 1;
     private float time_;
-    /**
-     * <code>optional float time = 1;</code>
-     */
     public boolean hasTime() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional float time = 1;</code>
-     */
     public float getTime() {
       return time_;
     }
-
+    
+    // optional .messages.JointAngles angles = 2;
     public static final int ANGLES_FIELD_NUMBER = 2;
     private messages.PMotion.JointAngles angles_;
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     public boolean hasAngles() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     public messages.PMotion.JointAngles getAngles() {
       return angles_;
     }
-    /**
-     * <code>optional .messages.JointAngles angles = 2;</code>
-     */
     public messages.PMotion.JointAnglesOrBuilder getAnglesOrBuilder() {
       return angles_;
     }
-
+    
+    // optional .messages.JointAngles stiffness = 3;
     public static final int STIFFNESS_FIELD_NUMBER = 3;
     private messages.PMotion.JointAngles stiffness_;
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     public boolean hasStiffness() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     public messages.PMotion.JointAngles getStiffness() {
       return stiffness_;
     }
-    /**
-     * <code>optional .messages.JointAngles stiffness = 3;</code>
-     */
     public messages.PMotion.JointAnglesOrBuilder getStiffnessOrBuilder() {
       return stiffness_;
     }
-
+    
+    // optional .messages.HeadJointCommand.InterpolationType interpolation = 4;
     public static final int INTERPOLATION_FIELD_NUMBER = 4;
     private messages.PMotion.HeadJointCommand.InterpolationType interpolation_;
-    /**
-     * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-     */
     public boolean hasInterpolation() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-     */
     public messages.PMotion.HeadJointCommand.InterpolationType getInterpolation() {
       return interpolation_;
     }
-
+    
     private void initFields() {
       time_ = 0F;
       angles_ = messages.PMotion.JointAngles.getDefaultInstance();
@@ -8916,13 +7251,12 @@ public final class PMotion {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
+      if (isInitialized != -1) return isInitialized == 1;
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -8940,12 +7274,12 @@ public final class PMotion {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -8967,106 +7301,113 @@ public final class PMotion {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static messages.PMotion.HeadJointCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.HeadJointCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static messages.PMotion.HeadJointCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static messages.PMotion.HeadJointCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(messages.PMotion.HeadJointCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code messages.HeadJointCommand}
-     */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.HeadJointCommand)
-        messages.PMotion.HeadJointCommandOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.HeadJointCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return messages.PMotion.internal_static_messages_HeadJointCommand_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_HeadJointCommand_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.HeadJointCommand.class, messages.PMotion.HeadJointCommand.Builder.class);
+        return messages.PMotion.internal_static_messages_HeadJointCommand_fieldAccessorTable;
       }
-
+      
       // Construct using messages.PMotion.HeadJointCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -9079,7 +7420,7 @@ public final class PMotion {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         time_ = 0F;
@@ -9100,20 +7441,20 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_HeadJointCommand_descriptor;
+        return messages.PMotion.HeadJointCommand.getDescriptor();
       }
-
+      
       public messages.PMotion.HeadJointCommand getDefaultInstanceForType() {
         return messages.PMotion.HeadJointCommand.getDefaultInstance();
       }
-
+      
       public messages.PMotion.HeadJointCommand build() {
         messages.PMotion.HeadJointCommand result = buildPartial();
         if (!result.isInitialized()) {
@@ -9121,7 +7462,17 @@ public final class PMotion {
         }
         return result;
       }
-
+      
+      private messages.PMotion.HeadJointCommand buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.HeadJointCommand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public messages.PMotion.HeadJointCommand buildPartial() {
         messages.PMotion.HeadJointCommand result = new messages.PMotion.HeadJointCommand(this);
         int from_bitField0_ = bitField0_;
@@ -9154,7 +7505,7 @@ public final class PMotion {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof messages.PMotion.HeadJointCommand) {
           return mergeFrom((messages.PMotion.HeadJointCommand)other);
@@ -9163,7 +7514,7 @@ public final class PMotion {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(messages.PMotion.HeadJointCommand other) {
         if (other == messages.PMotion.HeadJointCommand.getDefaultInstance()) return this;
         if (other.hasTime()) {
@@ -9181,74 +7532,102 @@ public final class PMotion {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        messages.PMotion.HeadJointCommand parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.HeadJointCommand) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 13: {
+              bitField0_ |= 0x00000001;
+              time_ = input.readFloat();
+              break;
+            }
+            case 18: {
+              messages.PMotion.JointAngles.Builder subBuilder = messages.PMotion.JointAngles.newBuilder();
+              if (hasAngles()) {
+                subBuilder.mergeFrom(getAngles());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setAngles(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              messages.PMotion.JointAngles.Builder subBuilder = messages.PMotion.JointAngles.newBuilder();
+              if (hasStiffness()) {
+                subBuilder.mergeFrom(getStiffness());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setStiffness(subBuilder.buildPartial());
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+              messages.PMotion.HeadJointCommand.InterpolationType value = messages.PMotion.HeadJointCommand.InterpolationType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
+                interpolation_ = value;
+              }
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
+      // optional float time = 1;
       private float time_ ;
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public boolean hasTime() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public float getTime() {
         return time_;
       }
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public Builder setTime(float value) {
         bitField0_ |= 0x00000001;
         time_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float time = 1;</code>
-       */
       public Builder clearTime() {
         bitField0_ = (bitField0_ & ~0x00000001);
         time_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional .messages.JointAngles angles = 2;
       private messages.PMotion.JointAngles angles_ = messages.PMotion.JointAngles.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> anglesBuilder_;
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public boolean hasAngles() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public messages.PMotion.JointAngles getAngles() {
         if (anglesBuilder_ == null) {
           return angles_;
@@ -9256,9 +7635,6 @@ public final class PMotion {
           return anglesBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder setAngles(messages.PMotion.JointAngles value) {
         if (anglesBuilder_ == null) {
           if (value == null) {
@@ -9272,9 +7648,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder setAngles(
           messages.PMotion.JointAngles.Builder builderForValue) {
         if (anglesBuilder_ == null) {
@@ -9286,9 +7659,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder mergeAngles(messages.PMotion.JointAngles value) {
         if (anglesBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
@@ -9305,9 +7675,6 @@ public final class PMotion {
         bitField0_ |= 0x00000002;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public Builder clearAngles() {
         if (anglesBuilder_ == null) {
           angles_ = messages.PMotion.JointAngles.getDefaultInstance();
@@ -9318,17 +7685,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public messages.PMotion.JointAngles.Builder getAnglesBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getAnglesFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       public messages.PMotion.JointAnglesOrBuilder getAnglesOrBuilder() {
         if (anglesBuilder_ != null) {
           return anglesBuilder_.getMessageOrBuilder();
@@ -9336,35 +7697,27 @@ public final class PMotion {
           return angles_;
         }
       }
-      /**
-       * <code>optional .messages.JointAngles angles = 2;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> 
           getAnglesFieldBuilder() {
         if (anglesBuilder_ == null) {
           anglesBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder>(
-                  getAngles(),
+                  angles_,
                   getParentForChildren(),
                   isClean());
           angles_ = null;
         }
         return anglesBuilder_;
       }
-
+      
+      // optional .messages.JointAngles stiffness = 3;
       private messages.PMotion.JointAngles stiffness_ = messages.PMotion.JointAngles.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> stiffnessBuilder_;
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public boolean hasStiffness() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public messages.PMotion.JointAngles getStiffness() {
         if (stiffnessBuilder_ == null) {
           return stiffness_;
@@ -9372,9 +7725,6 @@ public final class PMotion {
           return stiffnessBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder setStiffness(messages.PMotion.JointAngles value) {
         if (stiffnessBuilder_ == null) {
           if (value == null) {
@@ -9388,9 +7738,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder setStiffness(
           messages.PMotion.JointAngles.Builder builderForValue) {
         if (stiffnessBuilder_ == null) {
@@ -9402,9 +7749,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder mergeStiffness(messages.PMotion.JointAngles value) {
         if (stiffnessBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
@@ -9421,9 +7765,6 @@ public final class PMotion {
         bitField0_ |= 0x00000004;
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public Builder clearStiffness() {
         if (stiffnessBuilder_ == null) {
           stiffness_ = messages.PMotion.JointAngles.getDefaultInstance();
@@ -9434,17 +7775,11 @@ public final class PMotion {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public messages.PMotion.JointAngles.Builder getStiffnessBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
         return getStiffnessFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       public messages.PMotion.JointAnglesOrBuilder getStiffnessOrBuilder() {
         if (stiffnessBuilder_ != null) {
           return stiffnessBuilder_.getMessageOrBuilder();
@@ -9452,39 +7787,28 @@ public final class PMotion {
           return stiffness_;
         }
       }
-      /**
-       * <code>optional .messages.JointAngles stiffness = 3;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder> 
           getStiffnessFieldBuilder() {
         if (stiffnessBuilder_ == null) {
           stiffnessBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               messages.PMotion.JointAngles, messages.PMotion.JointAngles.Builder, messages.PMotion.JointAnglesOrBuilder>(
-                  getStiffness(),
+                  stiffness_,
                   getParentForChildren(),
                   isClean());
           stiffness_ = null;
         }
         return stiffnessBuilder_;
       }
-
+      
+      // optional .messages.HeadJointCommand.InterpolationType interpolation = 4;
       private messages.PMotion.HeadJointCommand.InterpolationType interpolation_ = messages.PMotion.HeadJointCommand.InterpolationType.SMOOTH;
-      /**
-       * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public boolean hasInterpolation() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public messages.PMotion.HeadJointCommand.InterpolationType getInterpolation() {
         return interpolation_;
       }
-      /**
-       * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public Builder setInterpolation(messages.PMotion.HeadJointCommand.InterpolationType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -9494,362 +7818,1098 @@ public final class PMotion {
         onChanged();
         return this;
       }
-      /**
-       * <code>optional .messages.HeadJointCommand.InterpolationType interpolation = 4;</code>
-       */
       public Builder clearInterpolation() {
         bitField0_ = (bitField0_ & ~0x00000008);
         interpolation_ = messages.PMotion.HeadJointCommand.InterpolationType.SMOOTH;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.HeadJointCommand)
     }
-
+    
     static {
       defaultInstance = new HeadJointCommand(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.HeadJointCommand)
   }
-
-  public interface JointAnglesOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:messages.JointAngles)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     *
-     * <pre>
-     * Head angles.
-     * </pre>
-     */
+  
+  public interface JointAnglesOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional float head_yaw = 1;
     boolean hasHeadYaw();
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     *
-     * <pre>
-     * Head angles.
-     * </pre>
-     */
     float getHeadYaw();
-
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
+    
+    // optional float head_pitch = 2;
     boolean hasHeadPitch();
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
     float getHeadPitch();
-
-    /**
-     * <code>optional float l_shoulder_pitch = 3;</code>
-     *
-     * <pre>
-     * Left arm angles.
-     * </pre>
-     */
+    
+    // optional float l_shoulder_pitch = 3;
     boolean hasLShoulderPitch();
-    /**
-     * <code>optional float l_shoulder_pitch = 3;</code>
-     *
-     * <pre>
-     * Left arm angles.
-     * </pre>
-     */
     float getLShoulderPitch();
-
-    /**
-     * <code>optional float l_shoulder_roll = 4;</code>
-     */
+    
+    // optional float l_shoulder_roll = 4;
     boolean hasLShoulderRoll();
-    /**
-     * <code>optional float l_shoulder_roll = 4;</code>
-     */
     float getLShoulderRoll();
-
-    /**
-     * <code>optional float l_elbow_yaw = 5;</code>
-     */
+    
+    // optional float l_elbow_yaw = 5;
     boolean hasLElbowYaw();
-    /**
-     * <code>optional float l_elbow_yaw = 5;</code>
-     */
     float getLElbowYaw();
-
-    /**
-     * <code>optional float l_elbow_roll = 6;</code>
-     */
+    
+    // optional float l_elbow_roll = 6;
     boolean hasLElbowRoll();
-    /**
-     * <code>optional float l_elbow_roll = 6;</code>
-     */
     float getLElbowRoll();
-
-    /**
-     * <code>optional float l_wrist_yaw = 7;</code>
-     */
+    
+    // optional float l_wrist_yaw = 7;
     boolean hasLWristYaw();
-    /**
-     * <code>optional float l_wrist_yaw = 7;</code>
-     */
     float getLWristYaw();
-
-    /**
-     * <code>optional float l_hand = 8;</code>
-     */
+    
+    // optional float l_hand = 8;
     boolean hasLHand();
-    /**
-     * <code>optional float l_hand = 8;</code>
-     */
     float getLHand();
-
-    /**
-     * <code>optional float r_shoulder_pitch = 9;</code>
-     *
-     * <pre>
-     * Right arm angles.
-     * </pre>
-     */
+    
+    // optional float r_shoulder_pitch = 9;
     boolean hasRShoulderPitch();
-    /**
-     * <code>optional float r_shoulder_pitch = 9;</code>
-     *
-     * <pre>
-     * Right arm angles.
-     * </pre>
-     */
     float getRShoulderPitch();
-
-    /**
-     * <code>optional float r_shoulder_roll = 10;</code>
-     */
+    
+    // optional float r_shoulder_roll = 10;
     boolean hasRShoulderRoll();
-    /**
-     * <code>optional float r_shoulder_roll = 10;</code>
-     */
     float getRShoulderRoll();
-
-    /**
-     * <code>optional float r_elbow_yaw = 11;</code>
-     */
+    
+    // optional float r_elbow_yaw = 11;
     boolean hasRElbowYaw();
-    /**
-     * <code>optional float r_elbow_yaw = 11;</code>
-     */
     float getRElbowYaw();
-
-    /**
-     * <code>optional float r_elbow_roll = 12;</code>
-     */
+    
+    // optional float r_elbow_roll = 12;
     boolean hasRElbowRoll();
-    /**
-     * <code>optional float r_elbow_roll = 12;</code>
-     */
     float getRElbowRoll();
-
-    /**
-     * <code>optional float r_wrist_yaw = 13;</code>
-     */
+    
+    // optional float r_wrist_yaw = 13;
     boolean hasRWristYaw();
-    /**
-     * <code>optional float r_wrist_yaw = 13;</code>
-     */
     float getRWristYaw();
-
-    /**
-     * <code>optional float r_hand = 14;</code>
-     */
+    
+    // optional float r_hand = 14;
     boolean hasRHand();
-    /**
-     * <code>optional float r_hand = 14;</code>
-     */
     float getRHand();
-
-    /**
-     * <code>optional float l_hip_yaw_pitch = 15;</code>
-     *
-     * <pre>
-     * Pelvis angles.
-     * </pre>
-     */
+    
+    // optional float l_hip_yaw_pitch = 15;
     boolean hasLHipYawPitch();
-    /**
-     * <code>optional float l_hip_yaw_pitch = 15;</code>
-     *
-     * <pre>
-     * Pelvis angles.
-     * </pre>
-     */
     float getLHipYawPitch();
-
-    /**
-     * <code>optional float r_hip_yaw_pitch = 16;</code>
-     */
+    
+    // optional float r_hip_yaw_pitch = 16;
     boolean hasRHipYawPitch();
-    /**
-     * <code>optional float r_hip_yaw_pitch = 16;</code>
-     */
     float getRHipYawPitch();
-
-    /**
-     * <code>optional float l_hip_roll = 17;</code>
-     *
-     * <pre>
-     * Left leg angles.
-     * </pre>
-     */
+    
+    // optional float l_hip_roll = 17;
     boolean hasLHipRoll();
-    /**
-     * <code>optional float l_hip_roll = 17;</code>
-     *
-     * <pre>
-     * Left leg angles.
-     * </pre>
-     */
     float getLHipRoll();
-
-    /**
-     * <code>optional float l_hip_pitch = 18;</code>
-     */
+    
+    // optional float l_hip_pitch = 18;
     boolean hasLHipPitch();
-    /**
-     * <code>optional float l_hip_pitch = 18;</code>
-     */
     float getLHipPitch();
-
-    /**
-     * <code>optional float l_knee_pitch = 19;</code>
-     */
+    
+    // optional float l_knee_pitch = 19;
     boolean hasLKneePitch();
-    /**
-     * <code>optional float l_knee_pitch = 19;</code>
-     */
     float getLKneePitch();
-
-    /**
-     * <code>optional float l_ankle_pitch = 20;</code>
-     */
+    
+    // optional float l_ankle_pitch = 20;
     boolean hasLAnklePitch();
-    /**
-     * <code>optional float l_ankle_pitch = 20;</code>
-     */
     float getLAnklePitch();
-
-    /**
-     * <code>optional float l_ankle_roll = 21;</code>
-     */
+    
+    // optional float l_ankle_roll = 21;
     boolean hasLAnkleRoll();
-    /**
-     * <code>optional float l_ankle_roll = 21;</code>
-     */
     float getLAnkleRoll();
-
-    /**
-     * <code>optional float r_hip_roll = 22;</code>
-     *
-     * <pre>
-     * Right leg angles.
-     * </pre>
-     */
+    
+    // optional float r_hip_roll = 22;
     boolean hasRHipRoll();
-    /**
-     * <code>optional float r_hip_roll = 22;</code>
-     *
-     * <pre>
-     * Right leg angles.
-     * </pre>
-     */
     float getRHipRoll();
-
-    /**
-     * <code>optional float r_hip_pitch = 23;</code>
-     */
+    
+    // optional float r_hip_pitch = 23;
     boolean hasRHipPitch();
-    /**
-     * <code>optional float r_hip_pitch = 23;</code>
-     */
     float getRHipPitch();
-
-    /**
-     * <code>optional float r_knee_pitch = 24;</code>
-     */
+    
+    // optional float r_knee_pitch = 24;
     boolean hasRKneePitch();
-    /**
-     * <code>optional float r_knee_pitch = 24;</code>
-     */
     float getRKneePitch();
-
-    /**
-     * <code>optional float r_ankle_pitch = 25;</code>
-     */
+    
+    // optional float r_ankle_pitch = 25;
     boolean hasRAnklePitch();
-    /**
-     * <code>optional float r_ankle_pitch = 25;</code>
-     */
     float getRAnklePitch();
-
-    /**
-     * <code>optional float r_ankle_roll = 26;</code>
-     */
+    
+    // optional float r_ankle_roll = 26;
     boolean hasRAnkleRoll();
-    /**
-     * <code>optional float r_ankle_roll = 26;</code>
-     */
     float getRAnkleRoll();
   }
-  /**
-   * Protobuf type {@code messages.JointAngles}
-   */
   public static final class JointAngles extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:messages.JointAngles)
-      JointAnglesOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements JointAnglesOrBuilder {
     // Use JointAngles.newBuilder() to construct.
-    private JointAngles(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private JointAngles(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private JointAngles(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private JointAngles(boolean noInit) {}
+    
     private static final JointAngles defaultInstance;
     public static JointAngles getDefaultInstance() {
       return defaultInstance;
     }
-
-    public JointAngles getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    
+    private final com.google.protobuf.UnknownFieldSet unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
     }
-    private JointAngles(
-        com.google.protobuf.CodedInputStream input,
+    
+    public JointAngles getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return messages.PMotion.internal_static_messages_JointAngles_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return messages.PMotion.internal_static_messages_JointAngles_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional float head_yaw = 1;
+    public static final int HEAD_YAW_FIELD_NUMBER = 1;
+    private float headYaw_;
+    public boolean hasHeadYaw() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public float getHeadYaw() {
+      return headYaw_;
+    }
+    
+    // optional float head_pitch = 2;
+    public static final int HEAD_PITCH_FIELD_NUMBER = 2;
+    private float headPitch_;
+    public boolean hasHeadPitch() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public float getHeadPitch() {
+      return headPitch_;
+    }
+    
+    // optional float l_shoulder_pitch = 3;
+    public static final int L_SHOULDER_PITCH_FIELD_NUMBER = 3;
+    private float lShoulderPitch_;
+    public boolean hasLShoulderPitch() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public float getLShoulderPitch() {
+      return lShoulderPitch_;
+    }
+    
+    // optional float l_shoulder_roll = 4;
+    public static final int L_SHOULDER_ROLL_FIELD_NUMBER = 4;
+    private float lShoulderRoll_;
+    public boolean hasLShoulderRoll() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public float getLShoulderRoll() {
+      return lShoulderRoll_;
+    }
+    
+    // optional float l_elbow_yaw = 5;
+    public static final int L_ELBOW_YAW_FIELD_NUMBER = 5;
+    private float lElbowYaw_;
+    public boolean hasLElbowYaw() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public float getLElbowYaw() {
+      return lElbowYaw_;
+    }
+    
+    // optional float l_elbow_roll = 6;
+    public static final int L_ELBOW_ROLL_FIELD_NUMBER = 6;
+    private float lElbowRoll_;
+    public boolean hasLElbowRoll() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public float getLElbowRoll() {
+      return lElbowRoll_;
+    }
+    
+    // optional float l_wrist_yaw = 7;
+    public static final int L_WRIST_YAW_FIELD_NUMBER = 7;
+    private float lWristYaw_;
+    public boolean hasLWristYaw() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public float getLWristYaw() {
+      return lWristYaw_;
+    }
+    
+    // optional float l_hand = 8;
+    public static final int L_HAND_FIELD_NUMBER = 8;
+    private float lHand_;
+    public boolean hasLHand() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public float getLHand() {
+      return lHand_;
+    }
+    
+    // optional float r_shoulder_pitch = 9;
+    public static final int R_SHOULDER_PITCH_FIELD_NUMBER = 9;
+    private float rShoulderPitch_;
+    public boolean hasRShoulderPitch() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public float getRShoulderPitch() {
+      return rShoulderPitch_;
+    }
+    
+    // optional float r_shoulder_roll = 10;
+    public static final int R_SHOULDER_ROLL_FIELD_NUMBER = 10;
+    private float rShoulderRoll_;
+    public boolean hasRShoulderRoll() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    public float getRShoulderRoll() {
+      return rShoulderRoll_;
+    }
+    
+    // optional float r_elbow_yaw = 11;
+    public static final int R_ELBOW_YAW_FIELD_NUMBER = 11;
+    private float rElbowYaw_;
+    public boolean hasRElbowYaw() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    public float getRElbowYaw() {
+      return rElbowYaw_;
+    }
+    
+    // optional float r_elbow_roll = 12;
+    public static final int R_ELBOW_ROLL_FIELD_NUMBER = 12;
+    private float rElbowRoll_;
+    public boolean hasRElbowRoll() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    public float getRElbowRoll() {
+      return rElbowRoll_;
+    }
+    
+    // optional float r_wrist_yaw = 13;
+    public static final int R_WRIST_YAW_FIELD_NUMBER = 13;
+    private float rWristYaw_;
+    public boolean hasRWristYaw() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    public float getRWristYaw() {
+      return rWristYaw_;
+    }
+    
+    // optional float r_hand = 14;
+    public static final int R_HAND_FIELD_NUMBER = 14;
+    private float rHand_;
+    public boolean hasRHand() {
+      return ((bitField0_ & 0x00002000) == 0x00002000);
+    }
+    public float getRHand() {
+      return rHand_;
+    }
+    
+    // optional float l_hip_yaw_pitch = 15;
+    public static final int L_HIP_YAW_PITCH_FIELD_NUMBER = 15;
+    private float lHipYawPitch_;
+    public boolean hasLHipYawPitch() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    public float getLHipYawPitch() {
+      return lHipYawPitch_;
+    }
+    
+    // optional float r_hip_yaw_pitch = 16;
+    public static final int R_HIP_YAW_PITCH_FIELD_NUMBER = 16;
+    private float rHipYawPitch_;
+    public boolean hasRHipYawPitch() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    public float getRHipYawPitch() {
+      return rHipYawPitch_;
+    }
+    
+    // optional float l_hip_roll = 17;
+    public static final int L_HIP_ROLL_FIELD_NUMBER = 17;
+    private float lHipRoll_;
+    public boolean hasLHipRoll() {
+      return ((bitField0_ & 0x00010000) == 0x00010000);
+    }
+    public float getLHipRoll() {
+      return lHipRoll_;
+    }
+    
+    // optional float l_hip_pitch = 18;
+    public static final int L_HIP_PITCH_FIELD_NUMBER = 18;
+    private float lHipPitch_;
+    public boolean hasLHipPitch() {
+      return ((bitField0_ & 0x00020000) == 0x00020000);
+    }
+    public float getLHipPitch() {
+      return lHipPitch_;
+    }
+    
+    // optional float l_knee_pitch = 19;
+    public static final int L_KNEE_PITCH_FIELD_NUMBER = 19;
+    private float lKneePitch_;
+    public boolean hasLKneePitch() {
+      return ((bitField0_ & 0x00040000) == 0x00040000);
+    }
+    public float getLKneePitch() {
+      return lKneePitch_;
+    }
+    
+    // optional float l_ankle_pitch = 20;
+    public static final int L_ANKLE_PITCH_FIELD_NUMBER = 20;
+    private float lAnklePitch_;
+    public boolean hasLAnklePitch() {
+      return ((bitField0_ & 0x00080000) == 0x00080000);
+    }
+    public float getLAnklePitch() {
+      return lAnklePitch_;
+    }
+    
+    // optional float l_ankle_roll = 21;
+    public static final int L_ANKLE_ROLL_FIELD_NUMBER = 21;
+    private float lAnkleRoll_;
+    public boolean hasLAnkleRoll() {
+      return ((bitField0_ & 0x00100000) == 0x00100000);
+    }
+    public float getLAnkleRoll() {
+      return lAnkleRoll_;
+    }
+    
+    // optional float r_hip_roll = 22;
+    public static final int R_HIP_ROLL_FIELD_NUMBER = 22;
+    private float rHipRoll_;
+    public boolean hasRHipRoll() {
+      return ((bitField0_ & 0x00200000) == 0x00200000);
+    }
+    public float getRHipRoll() {
+      return rHipRoll_;
+    }
+    
+    // optional float r_hip_pitch = 23;
+    public static final int R_HIP_PITCH_FIELD_NUMBER = 23;
+    private float rHipPitch_;
+    public boolean hasRHipPitch() {
+      return ((bitField0_ & 0x00400000) == 0x00400000);
+    }
+    public float getRHipPitch() {
+      return rHipPitch_;
+    }
+    
+    // optional float r_knee_pitch = 24;
+    public static final int R_KNEE_PITCH_FIELD_NUMBER = 24;
+    private float rKneePitch_;
+    public boolean hasRKneePitch() {
+      return ((bitField0_ & 0x00800000) == 0x00800000);
+    }
+    public float getRKneePitch() {
+      return rKneePitch_;
+    }
+    
+    // optional float r_ankle_pitch = 25;
+    public static final int R_ANKLE_PITCH_FIELD_NUMBER = 25;
+    private float rAnklePitch_;
+    public boolean hasRAnklePitch() {
+      return ((bitField0_ & 0x01000000) == 0x01000000);
+    }
+    public float getRAnklePitch() {
+      return rAnklePitch_;
+    }
+    
+    // optional float r_ankle_roll = 26;
+    public static final int R_ANKLE_ROLL_FIELD_NUMBER = 26;
+    private float rAnkleRoll_;
+    public boolean hasRAnkleRoll() {
+      return ((bitField0_ & 0x02000000) == 0x02000000);
+    }
+    public float getRAnkleRoll() {
+      return rAnkleRoll_;
+    }
+    
+    private void initFields() {
+      headYaw_ = 0F;
+      headPitch_ = 0F;
+      lShoulderPitch_ = 0F;
+      lShoulderRoll_ = 0F;
+      lElbowYaw_ = 0F;
+      lElbowRoll_ = 0F;
+      lWristYaw_ = 0F;
+      lHand_ = 0F;
+      rShoulderPitch_ = 0F;
+      rShoulderRoll_ = 0F;
+      rElbowYaw_ = 0F;
+      rElbowRoll_ = 0F;
+      rWristYaw_ = 0F;
+      rHand_ = 0F;
+      lHipYawPitch_ = 0F;
+      rHipYawPitch_ = 0F;
+      lHipRoll_ = 0F;
+      lHipPitch_ = 0F;
+      lKneePitch_ = 0F;
+      lAnklePitch_ = 0F;
+      lAnkleRoll_ = 0F;
+      rHipRoll_ = 0F;
+      rHipPitch_ = 0F;
+      rKneePitch_ = 0F;
+      rAnklePitch_ = 0F;
+      rAnkleRoll_ = 0F;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeFloat(1, headYaw_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(2, headPitch_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeFloat(3, lShoulderPitch_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeFloat(4, lShoulderRoll_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeFloat(5, lElbowYaw_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeFloat(6, lElbowRoll_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeFloat(7, lWristYaw_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeFloat(8, lHand_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeFloat(9, rShoulderPitch_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeFloat(10, rShoulderRoll_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeFloat(11, rElbowYaw_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        output.writeFloat(12, rElbowRoll_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        output.writeFloat(13, rWristYaw_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        output.writeFloat(14, rHand_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeFloat(15, lHipYawPitch_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        output.writeFloat(16, rHipYawPitch_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        output.writeFloat(17, lHipRoll_);
+      }
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        output.writeFloat(18, lHipPitch_);
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        output.writeFloat(19, lKneePitch_);
+      }
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+        output.writeFloat(20, lAnklePitch_);
+      }
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        output.writeFloat(21, lAnkleRoll_);
+      }
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        output.writeFloat(22, rHipRoll_);
+      }
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+        output.writeFloat(23, rHipPitch_);
+      }
+      if (((bitField0_ & 0x00800000) == 0x00800000)) {
+        output.writeFloat(24, rKneePitch_);
+      }
+      if (((bitField0_ & 0x01000000) == 0x01000000)) {
+        output.writeFloat(25, rAnklePitch_);
+      }
+      if (((bitField0_ & 0x02000000) == 0x02000000)) {
+        output.writeFloat(26, rAnkleRoll_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(1, headYaw_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, headPitch_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, lShoulderPitch_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(4, lShoulderRoll_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(5, lElbowYaw_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(6, lElbowRoll_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(7, lWristYaw_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(8, lHand_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(9, rShoulderPitch_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(10, rShoulderRoll_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(11, rElbowYaw_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(12, rElbowRoll_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(13, rWristYaw_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(14, rHand_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(15, lHipYawPitch_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(16, rHipYawPitch_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(17, lHipRoll_);
+      }
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(18, lHipPitch_);
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(19, lKneePitch_);
+      }
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(20, lAnklePitch_);
+      }
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(21, lAnkleRoll_);
+      }
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(22, rHipRoll_);
+      }
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(23, rHipPitch_);
+      }
+      if (((bitField0_ & 0x00800000) == 0x00800000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(24, rKneePitch_);
+      }
+      if (((bitField0_ & 0x01000000) == 0x01000000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(25, rAnklePitch_);
+      }
+      if (((bitField0_ & 0x02000000) == 0x02000000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(26, rAnkleRoll_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static messages.PMotion.JointAngles parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseFrom(
+        com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.JointAngles parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static messages.PMotion.JointAngles parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static messages.PMotion.JointAngles parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(messages.PMotion.JointAngles prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements messages.PMotion.JointAnglesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return messages.PMotion.internal_static_messages_JointAngles_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return messages.PMotion.internal_static_messages_JointAngles_fieldAccessorTable;
+      }
+      
+      // Construct using messages.PMotion.JointAngles.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        headYaw_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        headPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        lShoulderPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        lShoulderRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        lElbowYaw_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        lElbowRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        lWristYaw_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        lHand_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        rShoulderPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        rShoulderRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        rElbowYaw_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000400);
+        rElbowRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000800);
+        rWristYaw_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00001000);
+        rHand_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00002000);
+        lHipYawPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00004000);
+        rHipYawPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        lHipRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        lHipPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00020000);
+        lKneePitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00040000);
+        lAnklePitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00080000);
+        lAnkleRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00100000);
+        rHipRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00200000);
+        rHipPitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00400000);
+        rKneePitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00800000);
+        rAnklePitch_ = 0F;
+        bitField0_ = (bitField0_ & ~0x01000000);
+        rAnkleRoll_ = 0F;
+        bitField0_ = (bitField0_ & ~0x02000000);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return messages.PMotion.JointAngles.getDescriptor();
+      }
+      
+      public messages.PMotion.JointAngles getDefaultInstanceForType() {
+        return messages.PMotion.JointAngles.getDefaultInstance();
+      }
+      
+      public messages.PMotion.JointAngles build() {
+        messages.PMotion.JointAngles result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private messages.PMotion.JointAngles buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        messages.PMotion.JointAngles result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public messages.PMotion.JointAngles buildPartial() {
+        messages.PMotion.JointAngles result = new messages.PMotion.JointAngles(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.headYaw_ = headYaw_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.headPitch_ = headPitch_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.lShoulderPitch_ = lShoulderPitch_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.lShoulderRoll_ = lShoulderRoll_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.lElbowYaw_ = lElbowYaw_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.lElbowRoll_ = lElbowRoll_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.lWristYaw_ = lWristYaw_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.lHand_ = lHand_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.rShoulderPitch_ = rShoulderPitch_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.rShoulderRoll_ = rShoulderRoll_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
+        }
+        result.rElbowYaw_ = rElbowYaw_;
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000800;
+        }
+        result.rElbowRoll_ = rElbowRoll_;
+        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
+          to_bitField0_ |= 0x00001000;
+        }
+        result.rWristYaw_ = rWristYaw_;
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00002000;
+        }
+        result.rHand_ = rHand_;
+        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.lHipYawPitch_ = lHipYawPitch_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.rHipYawPitch_ = rHipYawPitch_;
+        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
+          to_bitField0_ |= 0x00010000;
+        }
+        result.lHipRoll_ = lHipRoll_;
+        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
+          to_bitField0_ |= 0x00020000;
+        }
+        result.lHipPitch_ = lHipPitch_;
+        if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
+          to_bitField0_ |= 0x00040000;
+        }
+        result.lKneePitch_ = lKneePitch_;
+        if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
+          to_bitField0_ |= 0x00080000;
+        }
+        result.lAnklePitch_ = lAnklePitch_;
+        if (((from_bitField0_ & 0x00100000) == 0x00100000)) {
+          to_bitField0_ |= 0x00100000;
+        }
+        result.lAnkleRoll_ = lAnkleRoll_;
+        if (((from_bitField0_ & 0x00200000) == 0x00200000)) {
+          to_bitField0_ |= 0x00200000;
+        }
+        result.rHipRoll_ = rHipRoll_;
+        if (((from_bitField0_ & 0x00400000) == 0x00400000)) {
+          to_bitField0_ |= 0x00400000;
+        }
+        result.rHipPitch_ = rHipPitch_;
+        if (((from_bitField0_ & 0x00800000) == 0x00800000)) {
+          to_bitField0_ |= 0x00800000;
+        }
+        result.rKneePitch_ = rKneePitch_;
+        if (((from_bitField0_ & 0x01000000) == 0x01000000)) {
+          to_bitField0_ |= 0x01000000;
+        }
+        result.rAnklePitch_ = rAnklePitch_;
+        if (((from_bitField0_ & 0x02000000) == 0x02000000)) {
+          to_bitField0_ |= 0x02000000;
+        }
+        result.rAnkleRoll_ = rAnkleRoll_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof messages.PMotion.JointAngles) {
+          return mergeFrom((messages.PMotion.JointAngles)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(messages.PMotion.JointAngles other) {
+        if (other == messages.PMotion.JointAngles.getDefaultInstance()) return this;
+        if (other.hasHeadYaw()) {
+          setHeadYaw(other.getHeadYaw());
+        }
+        if (other.hasHeadPitch()) {
+          setHeadPitch(other.getHeadPitch());
+        }
+        if (other.hasLShoulderPitch()) {
+          setLShoulderPitch(other.getLShoulderPitch());
+        }
+        if (other.hasLShoulderRoll()) {
+          setLShoulderRoll(other.getLShoulderRoll());
+        }
+        if (other.hasLElbowYaw()) {
+          setLElbowYaw(other.getLElbowYaw());
+        }
+        if (other.hasLElbowRoll()) {
+          setLElbowRoll(other.getLElbowRoll());
+        }
+        if (other.hasLWristYaw()) {
+          setLWristYaw(other.getLWristYaw());
+        }
+        if (other.hasLHand()) {
+          setLHand(other.getLHand());
+        }
+        if (other.hasRShoulderPitch()) {
+          setRShoulderPitch(other.getRShoulderPitch());
+        }
+        if (other.hasRShoulderRoll()) {
+          setRShoulderRoll(other.getRShoulderRoll());
+        }
+        if (other.hasRElbowYaw()) {
+          setRElbowYaw(other.getRElbowYaw());
+        }
+        if (other.hasRElbowRoll()) {
+          setRElbowRoll(other.getRElbowRoll());
+        }
+        if (other.hasRWristYaw()) {
+          setRWristYaw(other.getRWristYaw());
+        }
+        if (other.hasRHand()) {
+          setRHand(other.getRHand());
+        }
+        if (other.hasLHipYawPitch()) {
+          setLHipYawPitch(other.getLHipYawPitch());
+        }
+        if (other.hasRHipYawPitch()) {
+          setRHipYawPitch(other.getRHipYawPitch());
+        }
+        if (other.hasLHipRoll()) {
+          setLHipRoll(other.getLHipRoll());
+        }
+        if (other.hasLHipPitch()) {
+          setLHipPitch(other.getLHipPitch());
+        }
+        if (other.hasLKneePitch()) {
+          setLKneePitch(other.getLKneePitch());
+        }
+        if (other.hasLAnklePitch()) {
+          setLAnklePitch(other.getLAnklePitch());
+        }
+        if (other.hasLAnkleRoll()) {
+          setLAnkleRoll(other.getLAnkleRoll());
+        }
+        if (other.hasRHipRoll()) {
+          setRHipRoll(other.getRHipRoll());
+        }
+        if (other.hasRHipPitch()) {
+          setRHipPitch(other.getRHipPitch());
+        }
+        if (other.hasRKneePitch()) {
+          setRKneePitch(other.getRKneePitch());
+        }
+        if (other.hasRAnklePitch()) {
+          setRAnklePitch(other.getRAnklePitch());
+        }
+        if (other.hasRAnkleRoll()) {
+          setRAnkleRoll(other.getRAnkleRoll());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              done = true;
-              break;
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                done = true;
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
               }
               break;
             }
@@ -9985,2141 +9045,633 @@ public final class PMotion {
             }
           }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
       }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return messages.PMotion.internal_static_messages_JointAngles_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return messages.PMotion.internal_static_messages_JointAngles_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              messages.PMotion.JointAngles.class, messages.PMotion.JointAngles.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<JointAngles> PARSER =
-        new com.google.protobuf.AbstractParser<JointAngles>() {
-      public JointAngles parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new JointAngles(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<JointAngles> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int HEAD_YAW_FIELD_NUMBER = 1;
-    private float headYaw_;
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     *
-     * <pre>
-     * Head angles.
-     * </pre>
-     */
-    public boolean hasHeadYaw() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional float head_yaw = 1;</code>
-     *
-     * <pre>
-     * Head angles.
-     * </pre>
-     */
-    public float getHeadYaw() {
-      return headYaw_;
-    }
-
-    public static final int HEAD_PITCH_FIELD_NUMBER = 2;
-    private float headPitch_;
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
-    public boolean hasHeadPitch() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional float head_pitch = 2;</code>
-     */
-    public float getHeadPitch() {
-      return headPitch_;
-    }
-
-    public static final int L_SHOULDER_PITCH_FIELD_NUMBER = 3;
-    private float lShoulderPitch_;
-    /**
-     * <code>optional float l_shoulder_pitch = 3;</code>
-     *
-     * <pre>
-     * Left arm angles.
-     * </pre>
-     */
-    public boolean hasLShoulderPitch() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional float l_shoulder_pitch = 3;</code>
-     *
-     * <pre>
-     * Left arm angles.
-     * </pre>
-     */
-    public float getLShoulderPitch() {
-      return lShoulderPitch_;
-    }
-
-    public static final int L_SHOULDER_ROLL_FIELD_NUMBER = 4;
-    private float lShoulderRoll_;
-    /**
-     * <code>optional float l_shoulder_roll = 4;</code>
-     */
-    public boolean hasLShoulderRoll() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional float l_shoulder_roll = 4;</code>
-     */
-    public float getLShoulderRoll() {
-      return lShoulderRoll_;
-    }
-
-    public static final int L_ELBOW_YAW_FIELD_NUMBER = 5;
-    private float lElbowYaw_;
-    /**
-     * <code>optional float l_elbow_yaw = 5;</code>
-     */
-    public boolean hasLElbowYaw() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional float l_elbow_yaw = 5;</code>
-     */
-    public float getLElbowYaw() {
-      return lElbowYaw_;
-    }
-
-    public static final int L_ELBOW_ROLL_FIELD_NUMBER = 6;
-    private float lElbowRoll_;
-    /**
-     * <code>optional float l_elbow_roll = 6;</code>
-     */
-    public boolean hasLElbowRoll() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional float l_elbow_roll = 6;</code>
-     */
-    public float getLElbowRoll() {
-      return lElbowRoll_;
-    }
-
-    public static final int L_WRIST_YAW_FIELD_NUMBER = 7;
-    private float lWristYaw_;
-    /**
-     * <code>optional float l_wrist_yaw = 7;</code>
-     */
-    public boolean hasLWristYaw() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
-    /**
-     * <code>optional float l_wrist_yaw = 7;</code>
-     */
-    public float getLWristYaw() {
-      return lWristYaw_;
-    }
-
-    public static final int L_HAND_FIELD_NUMBER = 8;
-    private float lHand_;
-    /**
-     * <code>optional float l_hand = 8;</code>
-     */
-    public boolean hasLHand() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
-    }
-    /**
-     * <code>optional float l_hand = 8;</code>
-     */
-    public float getLHand() {
-      return lHand_;
-    }
-
-    public static final int R_SHOULDER_PITCH_FIELD_NUMBER = 9;
-    private float rShoulderPitch_;
-    /**
-     * <code>optional float r_shoulder_pitch = 9;</code>
-     *
-     * <pre>
-     * Right arm angles.
-     * </pre>
-     */
-    public boolean hasRShoulderPitch() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
-    }
-    /**
-     * <code>optional float r_shoulder_pitch = 9;</code>
-     *
-     * <pre>
-     * Right arm angles.
-     * </pre>
-     */
-    public float getRShoulderPitch() {
-      return rShoulderPitch_;
-    }
-
-    public static final int R_SHOULDER_ROLL_FIELD_NUMBER = 10;
-    private float rShoulderRoll_;
-    /**
-     * <code>optional float r_shoulder_roll = 10;</code>
-     */
-    public boolean hasRShoulderRoll() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
-    }
-    /**
-     * <code>optional float r_shoulder_roll = 10;</code>
-     */
-    public float getRShoulderRoll() {
-      return rShoulderRoll_;
-    }
-
-    public static final int R_ELBOW_YAW_FIELD_NUMBER = 11;
-    private float rElbowYaw_;
-    /**
-     * <code>optional float r_elbow_yaw = 11;</code>
-     */
-    public boolean hasRElbowYaw() {
-      return ((bitField0_ & 0x00000400) == 0x00000400);
-    }
-    /**
-     * <code>optional float r_elbow_yaw = 11;</code>
-     */
-    public float getRElbowYaw() {
-      return rElbowYaw_;
-    }
-
-    public static final int R_ELBOW_ROLL_FIELD_NUMBER = 12;
-    private float rElbowRoll_;
-    /**
-     * <code>optional float r_elbow_roll = 12;</code>
-     */
-    public boolean hasRElbowRoll() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
-    }
-    /**
-     * <code>optional float r_elbow_roll = 12;</code>
-     */
-    public float getRElbowRoll() {
-      return rElbowRoll_;
-    }
-
-    public static final int R_WRIST_YAW_FIELD_NUMBER = 13;
-    private float rWristYaw_;
-    /**
-     * <code>optional float r_wrist_yaw = 13;</code>
-     */
-    public boolean hasRWristYaw() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
-    }
-    /**
-     * <code>optional float r_wrist_yaw = 13;</code>
-     */
-    public float getRWristYaw() {
-      return rWristYaw_;
-    }
-
-    public static final int R_HAND_FIELD_NUMBER = 14;
-    private float rHand_;
-    /**
-     * <code>optional float r_hand = 14;</code>
-     */
-    public boolean hasRHand() {
-      return ((bitField0_ & 0x00002000) == 0x00002000);
-    }
-    /**
-     * <code>optional float r_hand = 14;</code>
-     */
-    public float getRHand() {
-      return rHand_;
-    }
-
-    public static final int L_HIP_YAW_PITCH_FIELD_NUMBER = 15;
-    private float lHipYawPitch_;
-    /**
-     * <code>optional float l_hip_yaw_pitch = 15;</code>
-     *
-     * <pre>
-     * Pelvis angles.
-     * </pre>
-     */
-    public boolean hasLHipYawPitch() {
-      return ((bitField0_ & 0x00004000) == 0x00004000);
-    }
-    /**
-     * <code>optional float l_hip_yaw_pitch = 15;</code>
-     *
-     * <pre>
-     * Pelvis angles.
-     * </pre>
-     */
-    public float getLHipYawPitch() {
-      return lHipYawPitch_;
-    }
-
-    public static final int R_HIP_YAW_PITCH_FIELD_NUMBER = 16;
-    private float rHipYawPitch_;
-    /**
-     * <code>optional float r_hip_yaw_pitch = 16;</code>
-     */
-    public boolean hasRHipYawPitch() {
-      return ((bitField0_ & 0x00008000) == 0x00008000);
-    }
-    /**
-     * <code>optional float r_hip_yaw_pitch = 16;</code>
-     */
-    public float getRHipYawPitch() {
-      return rHipYawPitch_;
-    }
-
-    public static final int L_HIP_ROLL_FIELD_NUMBER = 17;
-    private float lHipRoll_;
-    /**
-     * <code>optional float l_hip_roll = 17;</code>
-     *
-     * <pre>
-     * Left leg angles.
-     * </pre>
-     */
-    public boolean hasLHipRoll() {
-      return ((bitField0_ & 0x00010000) == 0x00010000);
-    }
-    /**
-     * <code>optional float l_hip_roll = 17;</code>
-     *
-     * <pre>
-     * Left leg angles.
-     * </pre>
-     */
-    public float getLHipRoll() {
-      return lHipRoll_;
-    }
-
-    public static final int L_HIP_PITCH_FIELD_NUMBER = 18;
-    private float lHipPitch_;
-    /**
-     * <code>optional float l_hip_pitch = 18;</code>
-     */
-    public boolean hasLHipPitch() {
-      return ((bitField0_ & 0x00020000) == 0x00020000);
-    }
-    /**
-     * <code>optional float l_hip_pitch = 18;</code>
-     */
-    public float getLHipPitch() {
-      return lHipPitch_;
-    }
-
-    public static final int L_KNEE_PITCH_FIELD_NUMBER = 19;
-    private float lKneePitch_;
-    /**
-     * <code>optional float l_knee_pitch = 19;</code>
-     */
-    public boolean hasLKneePitch() {
-      return ((bitField0_ & 0x00040000) == 0x00040000);
-    }
-    /**
-     * <code>optional float l_knee_pitch = 19;</code>
-     */
-    public float getLKneePitch() {
-      return lKneePitch_;
-    }
-
-    public static final int L_ANKLE_PITCH_FIELD_NUMBER = 20;
-    private float lAnklePitch_;
-    /**
-     * <code>optional float l_ankle_pitch = 20;</code>
-     */
-    public boolean hasLAnklePitch() {
-      return ((bitField0_ & 0x00080000) == 0x00080000);
-    }
-    /**
-     * <code>optional float l_ankle_pitch = 20;</code>
-     */
-    public float getLAnklePitch() {
-      return lAnklePitch_;
-    }
-
-    public static final int L_ANKLE_ROLL_FIELD_NUMBER = 21;
-    private float lAnkleRoll_;
-    /**
-     * <code>optional float l_ankle_roll = 21;</code>
-     */
-    public boolean hasLAnkleRoll() {
-      return ((bitField0_ & 0x00100000) == 0x00100000);
-    }
-    /**
-     * <code>optional float l_ankle_roll = 21;</code>
-     */
-    public float getLAnkleRoll() {
-      return lAnkleRoll_;
-    }
-
-    public static final int R_HIP_ROLL_FIELD_NUMBER = 22;
-    private float rHipRoll_;
-    /**
-     * <code>optional float r_hip_roll = 22;</code>
-     *
-     * <pre>
-     * Right leg angles.
-     * </pre>
-     */
-    public boolean hasRHipRoll() {
-      return ((bitField0_ & 0x00200000) == 0x00200000);
-    }
-    /**
-     * <code>optional float r_hip_roll = 22;</code>
-     *
-     * <pre>
-     * Right leg angles.
-     * </pre>
-     */
-    public float getRHipRoll() {
-      return rHipRoll_;
-    }
-
-    public static final int R_HIP_PITCH_FIELD_NUMBER = 23;
-    private float rHipPitch_;
-    /**
-     * <code>optional float r_hip_pitch = 23;</code>
-     */
-    public boolean hasRHipPitch() {
-      return ((bitField0_ & 0x00400000) == 0x00400000);
-    }
-    /**
-     * <code>optional float r_hip_pitch = 23;</code>
-     */
-    public float getRHipPitch() {
-      return rHipPitch_;
-    }
-
-    public static final int R_KNEE_PITCH_FIELD_NUMBER = 24;
-    private float rKneePitch_;
-    /**
-     * <code>optional float r_knee_pitch = 24;</code>
-     */
-    public boolean hasRKneePitch() {
-      return ((bitField0_ & 0x00800000) == 0x00800000);
-    }
-    /**
-     * <code>optional float r_knee_pitch = 24;</code>
-     */
-    public float getRKneePitch() {
-      return rKneePitch_;
-    }
-
-    public static final int R_ANKLE_PITCH_FIELD_NUMBER = 25;
-    private float rAnklePitch_;
-    /**
-     * <code>optional float r_ankle_pitch = 25;</code>
-     */
-    public boolean hasRAnklePitch() {
-      return ((bitField0_ & 0x01000000) == 0x01000000);
-    }
-    /**
-     * <code>optional float r_ankle_pitch = 25;</code>
-     */
-    public float getRAnklePitch() {
-      return rAnklePitch_;
-    }
-
-    public static final int R_ANKLE_ROLL_FIELD_NUMBER = 26;
-    private float rAnkleRoll_;
-    /**
-     * <code>optional float r_ankle_roll = 26;</code>
-     */
-    public boolean hasRAnkleRoll() {
-      return ((bitField0_ & 0x02000000) == 0x02000000);
-    }
-    /**
-     * <code>optional float r_ankle_roll = 26;</code>
-     */
-    public float getRAnkleRoll() {
-      return rAnkleRoll_;
-    }
-
-    private void initFields() {
-      headYaw_ = 0F;
-      headPitch_ = 0F;
-      lShoulderPitch_ = 0F;
-      lShoulderRoll_ = 0F;
-      lElbowYaw_ = 0F;
-      lElbowRoll_ = 0F;
-      lWristYaw_ = 0F;
-      lHand_ = 0F;
-      rShoulderPitch_ = 0F;
-      rShoulderRoll_ = 0F;
-      rElbowYaw_ = 0F;
-      rElbowRoll_ = 0F;
-      rWristYaw_ = 0F;
-      rHand_ = 0F;
-      lHipYawPitch_ = 0F;
-      rHipYawPitch_ = 0F;
-      lHipRoll_ = 0F;
-      lHipPitch_ = 0F;
-      lKneePitch_ = 0F;
-      lAnklePitch_ = 0F;
-      lAnkleRoll_ = 0F;
-      rHipRoll_ = 0F;
-      rHipPitch_ = 0F;
-      rKneePitch_ = 0F;
-      rAnklePitch_ = 0F;
-      rAnkleRoll_ = 0F;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeFloat(1, headYaw_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeFloat(2, headPitch_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeFloat(3, lShoulderPitch_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeFloat(4, lShoulderRoll_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeFloat(5, lElbowYaw_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeFloat(6, lElbowRoll_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeFloat(7, lWristYaw_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeFloat(8, lHand_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeFloat(9, rShoulderPitch_);
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeFloat(10, rShoulderRoll_);
-      }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeFloat(11, rElbowYaw_);
-      }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeFloat(12, rElbowRoll_);
-      }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeFloat(13, rWristYaw_);
-      }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeFloat(14, rHand_);
-      }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
-        output.writeFloat(15, lHipYawPitch_);
-      }
-      if (((bitField0_ & 0x00008000) == 0x00008000)) {
-        output.writeFloat(16, rHipYawPitch_);
-      }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        output.writeFloat(17, lHipRoll_);
-      }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
-        output.writeFloat(18, lHipPitch_);
-      }
-      if (((bitField0_ & 0x00040000) == 0x00040000)) {
-        output.writeFloat(19, lKneePitch_);
-      }
-      if (((bitField0_ & 0x00080000) == 0x00080000)) {
-        output.writeFloat(20, lAnklePitch_);
-      }
-      if (((bitField0_ & 0x00100000) == 0x00100000)) {
-        output.writeFloat(21, lAnkleRoll_);
-      }
-      if (((bitField0_ & 0x00200000) == 0x00200000)) {
-        output.writeFloat(22, rHipRoll_);
-      }
-      if (((bitField0_ & 0x00400000) == 0x00400000)) {
-        output.writeFloat(23, rHipPitch_);
-      }
-      if (((bitField0_ & 0x00800000) == 0x00800000)) {
-        output.writeFloat(24, rKneePitch_);
-      }
-      if (((bitField0_ & 0x01000000) == 0x01000000)) {
-        output.writeFloat(25, rAnklePitch_);
-      }
-      if (((bitField0_ & 0x02000000) == 0x02000000)) {
-        output.writeFloat(26, rAnkleRoll_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(1, headYaw_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, headPitch_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(3, lShoulderPitch_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, lShoulderRoll_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(5, lElbowYaw_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, lElbowRoll_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, lWristYaw_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(8, lHand_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(9, rShoulderPitch_);
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(10, rShoulderRoll_);
-      }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(11, rElbowYaw_);
-      }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(12, rElbowRoll_);
-      }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(13, rWristYaw_);
-      }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(14, rHand_);
-      }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(15, lHipYawPitch_);
-      }
-      if (((bitField0_ & 0x00008000) == 0x00008000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(16, rHipYawPitch_);
-      }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(17, lHipRoll_);
-      }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(18, lHipPitch_);
-      }
-      if (((bitField0_ & 0x00040000) == 0x00040000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(19, lKneePitch_);
-      }
-      if (((bitField0_ & 0x00080000) == 0x00080000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20, lAnklePitch_);
-      }
-      if (((bitField0_ & 0x00100000) == 0x00100000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(21, lAnkleRoll_);
-      }
-      if (((bitField0_ & 0x00200000) == 0x00200000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(22, rHipRoll_);
-      }
-      if (((bitField0_ & 0x00400000) == 0x00400000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(23, rHipPitch_);
-      }
-      if (((bitField0_ & 0x00800000) == 0x00800000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(24, rKneePitch_);
-      }
-      if (((bitField0_ & 0x01000000) == 0x01000000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(25, rAnklePitch_);
-      }
-      if (((bitField0_ & 0x02000000) == 0x02000000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(26, rAnkleRoll_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static messages.PMotion.JointAngles parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.JointAngles parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.JointAngles parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static messages.PMotion.JointAngles parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static messages.PMotion.JointAngles parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.JointAngles parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.JointAngles parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static messages.PMotion.JointAngles parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static messages.PMotion.JointAngles parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static messages.PMotion.JointAngles parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(messages.PMotion.JointAngles prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code messages.JointAngles}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:messages.JointAngles)
-        messages.PMotion.JointAnglesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return messages.PMotion.internal_static_messages_JointAngles_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return messages.PMotion.internal_static_messages_JointAngles_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                messages.PMotion.JointAngles.class, messages.PMotion.JointAngles.Builder.class);
-      }
-
-      // Construct using messages.PMotion.JointAngles.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        headYaw_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        headPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        lShoulderPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        lShoulderRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        lElbowYaw_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        lElbowRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        lWristYaw_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        lHand_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        rShoulderPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        rShoulderRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000200);
-        rElbowYaw_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000400);
-        rElbowRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000800);
-        rWristYaw_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00001000);
-        rHand_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00002000);
-        lHipYawPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00004000);
-        rHipYawPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00008000);
-        lHipRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00010000);
-        lHipPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00020000);
-        lKneePitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00040000);
-        lAnklePitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00080000);
-        lAnkleRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00100000);
-        rHipRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00200000);
-        rHipPitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00400000);
-        rKneePitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00800000);
-        rAnklePitch_ = 0F;
-        bitField0_ = (bitField0_ & ~0x01000000);
-        rAnkleRoll_ = 0F;
-        bitField0_ = (bitField0_ & ~0x02000000);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return messages.PMotion.internal_static_messages_JointAngles_descriptor;
-      }
-
-      public messages.PMotion.JointAngles getDefaultInstanceForType() {
-        return messages.PMotion.JointAngles.getDefaultInstance();
-      }
-
-      public messages.PMotion.JointAngles build() {
-        messages.PMotion.JointAngles result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public messages.PMotion.JointAngles buildPartial() {
-        messages.PMotion.JointAngles result = new messages.PMotion.JointAngles(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.headYaw_ = headYaw_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.headPitch_ = headPitch_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.lShoulderPitch_ = lShoulderPitch_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.lShoulderRoll_ = lShoulderRoll_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.lElbowYaw_ = lElbowYaw_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.lElbowRoll_ = lElbowRoll_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.lWristYaw_ = lWristYaw_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.lHand_ = lHand_;
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.rShoulderPitch_ = rShoulderPitch_;
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
-          to_bitField0_ |= 0x00000200;
-        }
-        result.rShoulderRoll_ = rShoulderRoll_;
-        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
-          to_bitField0_ |= 0x00000400;
-        }
-        result.rElbowYaw_ = rElbowYaw_;
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
-          to_bitField0_ |= 0x00000800;
-        }
-        result.rElbowRoll_ = rElbowRoll_;
-        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
-          to_bitField0_ |= 0x00001000;
-        }
-        result.rWristYaw_ = rWristYaw_;
-        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
-          to_bitField0_ |= 0x00002000;
-        }
-        result.rHand_ = rHand_;
-        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
-          to_bitField0_ |= 0x00004000;
-        }
-        result.lHipYawPitch_ = lHipYawPitch_;
-        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
-          to_bitField0_ |= 0x00008000;
-        }
-        result.rHipYawPitch_ = rHipYawPitch_;
-        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
-          to_bitField0_ |= 0x00010000;
-        }
-        result.lHipRoll_ = lHipRoll_;
-        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
-          to_bitField0_ |= 0x00020000;
-        }
-        result.lHipPitch_ = lHipPitch_;
-        if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
-          to_bitField0_ |= 0x00040000;
-        }
-        result.lKneePitch_ = lKneePitch_;
-        if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
-          to_bitField0_ |= 0x00080000;
-        }
-        result.lAnklePitch_ = lAnklePitch_;
-        if (((from_bitField0_ & 0x00100000) == 0x00100000)) {
-          to_bitField0_ |= 0x00100000;
-        }
-        result.lAnkleRoll_ = lAnkleRoll_;
-        if (((from_bitField0_ & 0x00200000) == 0x00200000)) {
-          to_bitField0_ |= 0x00200000;
-        }
-        result.rHipRoll_ = rHipRoll_;
-        if (((from_bitField0_ & 0x00400000) == 0x00400000)) {
-          to_bitField0_ |= 0x00400000;
-        }
-        result.rHipPitch_ = rHipPitch_;
-        if (((from_bitField0_ & 0x00800000) == 0x00800000)) {
-          to_bitField0_ |= 0x00800000;
-        }
-        result.rKneePitch_ = rKneePitch_;
-        if (((from_bitField0_ & 0x01000000) == 0x01000000)) {
-          to_bitField0_ |= 0x01000000;
-        }
-        result.rAnklePitch_ = rAnklePitch_;
-        if (((from_bitField0_ & 0x02000000) == 0x02000000)) {
-          to_bitField0_ |= 0x02000000;
-        }
-        result.rAnkleRoll_ = rAnkleRoll_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof messages.PMotion.JointAngles) {
-          return mergeFrom((messages.PMotion.JointAngles)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(messages.PMotion.JointAngles other) {
-        if (other == messages.PMotion.JointAngles.getDefaultInstance()) return this;
-        if (other.hasHeadYaw()) {
-          setHeadYaw(other.getHeadYaw());
-        }
-        if (other.hasHeadPitch()) {
-          setHeadPitch(other.getHeadPitch());
-        }
-        if (other.hasLShoulderPitch()) {
-          setLShoulderPitch(other.getLShoulderPitch());
-        }
-        if (other.hasLShoulderRoll()) {
-          setLShoulderRoll(other.getLShoulderRoll());
-        }
-        if (other.hasLElbowYaw()) {
-          setLElbowYaw(other.getLElbowYaw());
-        }
-        if (other.hasLElbowRoll()) {
-          setLElbowRoll(other.getLElbowRoll());
-        }
-        if (other.hasLWristYaw()) {
-          setLWristYaw(other.getLWristYaw());
-        }
-        if (other.hasLHand()) {
-          setLHand(other.getLHand());
-        }
-        if (other.hasRShoulderPitch()) {
-          setRShoulderPitch(other.getRShoulderPitch());
-        }
-        if (other.hasRShoulderRoll()) {
-          setRShoulderRoll(other.getRShoulderRoll());
-        }
-        if (other.hasRElbowYaw()) {
-          setRElbowYaw(other.getRElbowYaw());
-        }
-        if (other.hasRElbowRoll()) {
-          setRElbowRoll(other.getRElbowRoll());
-        }
-        if (other.hasRWristYaw()) {
-          setRWristYaw(other.getRWristYaw());
-        }
-        if (other.hasRHand()) {
-          setRHand(other.getRHand());
-        }
-        if (other.hasLHipYawPitch()) {
-          setLHipYawPitch(other.getLHipYawPitch());
-        }
-        if (other.hasRHipYawPitch()) {
-          setRHipYawPitch(other.getRHipYawPitch());
-        }
-        if (other.hasLHipRoll()) {
-          setLHipRoll(other.getLHipRoll());
-        }
-        if (other.hasLHipPitch()) {
-          setLHipPitch(other.getLHipPitch());
-        }
-        if (other.hasLKneePitch()) {
-          setLKneePitch(other.getLKneePitch());
-        }
-        if (other.hasLAnklePitch()) {
-          setLAnklePitch(other.getLAnklePitch());
-        }
-        if (other.hasLAnkleRoll()) {
-          setLAnkleRoll(other.getLAnkleRoll());
-        }
-        if (other.hasRHipRoll()) {
-          setRHipRoll(other.getRHipRoll());
-        }
-        if (other.hasRHipPitch()) {
-          setRHipPitch(other.getRHipPitch());
-        }
-        if (other.hasRKneePitch()) {
-          setRKneePitch(other.getRKneePitch());
-        }
-        if (other.hasRAnklePitch()) {
-          setRAnklePitch(other.getRAnklePitch());
-        }
-        if (other.hasRAnkleRoll()) {
-          setRAnkleRoll(other.getRAnkleRoll());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        messages.PMotion.JointAngles parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (messages.PMotion.JointAngles) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+      
       private int bitField0_;
-
+      
+      // optional float head_yaw = 1;
       private float headYaw_ ;
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       *
-       * <pre>
-       * Head angles.
-       * </pre>
-       */
       public boolean hasHeadYaw() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       *
-       * <pre>
-       * Head angles.
-       * </pre>
-       */
       public float getHeadYaw() {
         return headYaw_;
       }
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       *
-       * <pre>
-       * Head angles.
-       * </pre>
-       */
       public Builder setHeadYaw(float value) {
         bitField0_ |= 0x00000001;
         headYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float head_yaw = 1;</code>
-       *
-       * <pre>
-       * Head angles.
-       * </pre>
-       */
       public Builder clearHeadYaw() {
         bitField0_ = (bitField0_ & ~0x00000001);
         headYaw_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float head_pitch = 2;
       private float headPitch_ ;
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public boolean hasHeadPitch() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public float getHeadPitch() {
         return headPitch_;
       }
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public Builder setHeadPitch(float value) {
         bitField0_ |= 0x00000002;
         headPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float head_pitch = 2;</code>
-       */
       public Builder clearHeadPitch() {
         bitField0_ = (bitField0_ & ~0x00000002);
         headPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_shoulder_pitch = 3;
       private float lShoulderPitch_ ;
-      /**
-       * <code>optional float l_shoulder_pitch = 3;</code>
-       *
-       * <pre>
-       * Left arm angles.
-       * </pre>
-       */
       public boolean hasLShoulderPitch() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional float l_shoulder_pitch = 3;</code>
-       *
-       * <pre>
-       * Left arm angles.
-       * </pre>
-       */
       public float getLShoulderPitch() {
         return lShoulderPitch_;
       }
-      /**
-       * <code>optional float l_shoulder_pitch = 3;</code>
-       *
-       * <pre>
-       * Left arm angles.
-       * </pre>
-       */
       public Builder setLShoulderPitch(float value) {
         bitField0_ |= 0x00000004;
         lShoulderPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_shoulder_pitch = 3;</code>
-       *
-       * <pre>
-       * Left arm angles.
-       * </pre>
-       */
       public Builder clearLShoulderPitch() {
         bitField0_ = (bitField0_ & ~0x00000004);
         lShoulderPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_shoulder_roll = 4;
       private float lShoulderRoll_ ;
-      /**
-       * <code>optional float l_shoulder_roll = 4;</code>
-       */
       public boolean hasLShoulderRoll() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional float l_shoulder_roll = 4;</code>
-       */
       public float getLShoulderRoll() {
         return lShoulderRoll_;
       }
-      /**
-       * <code>optional float l_shoulder_roll = 4;</code>
-       */
       public Builder setLShoulderRoll(float value) {
         bitField0_ |= 0x00000008;
         lShoulderRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_shoulder_roll = 4;</code>
-       */
       public Builder clearLShoulderRoll() {
         bitField0_ = (bitField0_ & ~0x00000008);
         lShoulderRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_elbow_yaw = 5;
       private float lElbowYaw_ ;
-      /**
-       * <code>optional float l_elbow_yaw = 5;</code>
-       */
       public boolean hasLElbowYaw() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional float l_elbow_yaw = 5;</code>
-       */
       public float getLElbowYaw() {
         return lElbowYaw_;
       }
-      /**
-       * <code>optional float l_elbow_yaw = 5;</code>
-       */
       public Builder setLElbowYaw(float value) {
         bitField0_ |= 0x00000010;
         lElbowYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_elbow_yaw = 5;</code>
-       */
       public Builder clearLElbowYaw() {
         bitField0_ = (bitField0_ & ~0x00000010);
         lElbowYaw_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_elbow_roll = 6;
       private float lElbowRoll_ ;
-      /**
-       * <code>optional float l_elbow_roll = 6;</code>
-       */
       public boolean hasLElbowRoll() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      /**
-       * <code>optional float l_elbow_roll = 6;</code>
-       */
       public float getLElbowRoll() {
         return lElbowRoll_;
       }
-      /**
-       * <code>optional float l_elbow_roll = 6;</code>
-       */
       public Builder setLElbowRoll(float value) {
         bitField0_ |= 0x00000020;
         lElbowRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_elbow_roll = 6;</code>
-       */
       public Builder clearLElbowRoll() {
         bitField0_ = (bitField0_ & ~0x00000020);
         lElbowRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_wrist_yaw = 7;
       private float lWristYaw_ ;
-      /**
-       * <code>optional float l_wrist_yaw = 7;</code>
-       */
       public boolean hasLWristYaw() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
-      /**
-       * <code>optional float l_wrist_yaw = 7;</code>
-       */
       public float getLWristYaw() {
         return lWristYaw_;
       }
-      /**
-       * <code>optional float l_wrist_yaw = 7;</code>
-       */
       public Builder setLWristYaw(float value) {
         bitField0_ |= 0x00000040;
         lWristYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_wrist_yaw = 7;</code>
-       */
       public Builder clearLWristYaw() {
         bitField0_ = (bitField0_ & ~0x00000040);
         lWristYaw_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_hand = 8;
       private float lHand_ ;
-      /**
-       * <code>optional float l_hand = 8;</code>
-       */
       public boolean hasLHand() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
-      /**
-       * <code>optional float l_hand = 8;</code>
-       */
       public float getLHand() {
         return lHand_;
       }
-      /**
-       * <code>optional float l_hand = 8;</code>
-       */
       public Builder setLHand(float value) {
         bitField0_ |= 0x00000080;
         lHand_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_hand = 8;</code>
-       */
       public Builder clearLHand() {
         bitField0_ = (bitField0_ & ~0x00000080);
         lHand_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_shoulder_pitch = 9;
       private float rShoulderPitch_ ;
-      /**
-       * <code>optional float r_shoulder_pitch = 9;</code>
-       *
-       * <pre>
-       * Right arm angles.
-       * </pre>
-       */
       public boolean hasRShoulderPitch() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      /**
-       * <code>optional float r_shoulder_pitch = 9;</code>
-       *
-       * <pre>
-       * Right arm angles.
-       * </pre>
-       */
       public float getRShoulderPitch() {
         return rShoulderPitch_;
       }
-      /**
-       * <code>optional float r_shoulder_pitch = 9;</code>
-       *
-       * <pre>
-       * Right arm angles.
-       * </pre>
-       */
       public Builder setRShoulderPitch(float value) {
         bitField0_ |= 0x00000100;
         rShoulderPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_shoulder_pitch = 9;</code>
-       *
-       * <pre>
-       * Right arm angles.
-       * </pre>
-       */
       public Builder clearRShoulderPitch() {
         bitField0_ = (bitField0_ & ~0x00000100);
         rShoulderPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_shoulder_roll = 10;
       private float rShoulderRoll_ ;
-      /**
-       * <code>optional float r_shoulder_roll = 10;</code>
-       */
       public boolean hasRShoulderRoll() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
-      /**
-       * <code>optional float r_shoulder_roll = 10;</code>
-       */
       public float getRShoulderRoll() {
         return rShoulderRoll_;
       }
-      /**
-       * <code>optional float r_shoulder_roll = 10;</code>
-       */
       public Builder setRShoulderRoll(float value) {
         bitField0_ |= 0x00000200;
         rShoulderRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_shoulder_roll = 10;</code>
-       */
       public Builder clearRShoulderRoll() {
         bitField0_ = (bitField0_ & ~0x00000200);
         rShoulderRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_elbow_yaw = 11;
       private float rElbowYaw_ ;
-      /**
-       * <code>optional float r_elbow_yaw = 11;</code>
-       */
       public boolean hasRElbowYaw() {
         return ((bitField0_ & 0x00000400) == 0x00000400);
       }
-      /**
-       * <code>optional float r_elbow_yaw = 11;</code>
-       */
       public float getRElbowYaw() {
         return rElbowYaw_;
       }
-      /**
-       * <code>optional float r_elbow_yaw = 11;</code>
-       */
       public Builder setRElbowYaw(float value) {
         bitField0_ |= 0x00000400;
         rElbowYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_elbow_yaw = 11;</code>
-       */
       public Builder clearRElbowYaw() {
         bitField0_ = (bitField0_ & ~0x00000400);
         rElbowYaw_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_elbow_roll = 12;
       private float rElbowRoll_ ;
-      /**
-       * <code>optional float r_elbow_roll = 12;</code>
-       */
       public boolean hasRElbowRoll() {
         return ((bitField0_ & 0x00000800) == 0x00000800);
       }
-      /**
-       * <code>optional float r_elbow_roll = 12;</code>
-       */
       public float getRElbowRoll() {
         return rElbowRoll_;
       }
-      /**
-       * <code>optional float r_elbow_roll = 12;</code>
-       */
       public Builder setRElbowRoll(float value) {
         bitField0_ |= 0x00000800;
         rElbowRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_elbow_roll = 12;</code>
-       */
       public Builder clearRElbowRoll() {
         bitField0_ = (bitField0_ & ~0x00000800);
         rElbowRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_wrist_yaw = 13;
       private float rWristYaw_ ;
-      /**
-       * <code>optional float r_wrist_yaw = 13;</code>
-       */
       public boolean hasRWristYaw() {
         return ((bitField0_ & 0x00001000) == 0x00001000);
       }
-      /**
-       * <code>optional float r_wrist_yaw = 13;</code>
-       */
       public float getRWristYaw() {
         return rWristYaw_;
       }
-      /**
-       * <code>optional float r_wrist_yaw = 13;</code>
-       */
       public Builder setRWristYaw(float value) {
         bitField0_ |= 0x00001000;
         rWristYaw_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_wrist_yaw = 13;</code>
-       */
       public Builder clearRWristYaw() {
         bitField0_ = (bitField0_ & ~0x00001000);
         rWristYaw_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_hand = 14;
       private float rHand_ ;
-      /**
-       * <code>optional float r_hand = 14;</code>
-       */
       public boolean hasRHand() {
         return ((bitField0_ & 0x00002000) == 0x00002000);
       }
-      /**
-       * <code>optional float r_hand = 14;</code>
-       */
       public float getRHand() {
         return rHand_;
       }
-      /**
-       * <code>optional float r_hand = 14;</code>
-       */
       public Builder setRHand(float value) {
         bitField0_ |= 0x00002000;
         rHand_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_hand = 14;</code>
-       */
       public Builder clearRHand() {
         bitField0_ = (bitField0_ & ~0x00002000);
         rHand_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_hip_yaw_pitch = 15;
       private float lHipYawPitch_ ;
-      /**
-       * <code>optional float l_hip_yaw_pitch = 15;</code>
-       *
-       * <pre>
-       * Pelvis angles.
-       * </pre>
-       */
       public boolean hasLHipYawPitch() {
         return ((bitField0_ & 0x00004000) == 0x00004000);
       }
-      /**
-       * <code>optional float l_hip_yaw_pitch = 15;</code>
-       *
-       * <pre>
-       * Pelvis angles.
-       * </pre>
-       */
       public float getLHipYawPitch() {
         return lHipYawPitch_;
       }
-      /**
-       * <code>optional float l_hip_yaw_pitch = 15;</code>
-       *
-       * <pre>
-       * Pelvis angles.
-       * </pre>
-       */
       public Builder setLHipYawPitch(float value) {
         bitField0_ |= 0x00004000;
         lHipYawPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_hip_yaw_pitch = 15;</code>
-       *
-       * <pre>
-       * Pelvis angles.
-       * </pre>
-       */
       public Builder clearLHipYawPitch() {
         bitField0_ = (bitField0_ & ~0x00004000);
         lHipYawPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_hip_yaw_pitch = 16;
       private float rHipYawPitch_ ;
-      /**
-       * <code>optional float r_hip_yaw_pitch = 16;</code>
-       */
       public boolean hasRHipYawPitch() {
         return ((bitField0_ & 0x00008000) == 0x00008000);
       }
-      /**
-       * <code>optional float r_hip_yaw_pitch = 16;</code>
-       */
       public float getRHipYawPitch() {
         return rHipYawPitch_;
       }
-      /**
-       * <code>optional float r_hip_yaw_pitch = 16;</code>
-       */
       public Builder setRHipYawPitch(float value) {
         bitField0_ |= 0x00008000;
         rHipYawPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_hip_yaw_pitch = 16;</code>
-       */
       public Builder clearRHipYawPitch() {
         bitField0_ = (bitField0_ & ~0x00008000);
         rHipYawPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_hip_roll = 17;
       private float lHipRoll_ ;
-      /**
-       * <code>optional float l_hip_roll = 17;</code>
-       *
-       * <pre>
-       * Left leg angles.
-       * </pre>
-       */
       public boolean hasLHipRoll() {
         return ((bitField0_ & 0x00010000) == 0x00010000);
       }
-      /**
-       * <code>optional float l_hip_roll = 17;</code>
-       *
-       * <pre>
-       * Left leg angles.
-       * </pre>
-       */
       public float getLHipRoll() {
         return lHipRoll_;
       }
-      /**
-       * <code>optional float l_hip_roll = 17;</code>
-       *
-       * <pre>
-       * Left leg angles.
-       * </pre>
-       */
       public Builder setLHipRoll(float value) {
         bitField0_ |= 0x00010000;
         lHipRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_hip_roll = 17;</code>
-       *
-       * <pre>
-       * Left leg angles.
-       * </pre>
-       */
       public Builder clearLHipRoll() {
         bitField0_ = (bitField0_ & ~0x00010000);
         lHipRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_hip_pitch = 18;
       private float lHipPitch_ ;
-      /**
-       * <code>optional float l_hip_pitch = 18;</code>
-       */
       public boolean hasLHipPitch() {
         return ((bitField0_ & 0x00020000) == 0x00020000);
       }
-      /**
-       * <code>optional float l_hip_pitch = 18;</code>
-       */
       public float getLHipPitch() {
         return lHipPitch_;
       }
-      /**
-       * <code>optional float l_hip_pitch = 18;</code>
-       */
       public Builder setLHipPitch(float value) {
         bitField0_ |= 0x00020000;
         lHipPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_hip_pitch = 18;</code>
-       */
       public Builder clearLHipPitch() {
         bitField0_ = (bitField0_ & ~0x00020000);
         lHipPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_knee_pitch = 19;
       private float lKneePitch_ ;
-      /**
-       * <code>optional float l_knee_pitch = 19;</code>
-       */
       public boolean hasLKneePitch() {
         return ((bitField0_ & 0x00040000) == 0x00040000);
       }
-      /**
-       * <code>optional float l_knee_pitch = 19;</code>
-       */
       public float getLKneePitch() {
         return lKneePitch_;
       }
-      /**
-       * <code>optional float l_knee_pitch = 19;</code>
-       */
       public Builder setLKneePitch(float value) {
         bitField0_ |= 0x00040000;
         lKneePitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_knee_pitch = 19;</code>
-       */
       public Builder clearLKneePitch() {
         bitField0_ = (bitField0_ & ~0x00040000);
         lKneePitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_ankle_pitch = 20;
       private float lAnklePitch_ ;
-      /**
-       * <code>optional float l_ankle_pitch = 20;</code>
-       */
       public boolean hasLAnklePitch() {
         return ((bitField0_ & 0x00080000) == 0x00080000);
       }
-      /**
-       * <code>optional float l_ankle_pitch = 20;</code>
-       */
       public float getLAnklePitch() {
         return lAnklePitch_;
       }
-      /**
-       * <code>optional float l_ankle_pitch = 20;</code>
-       */
       public Builder setLAnklePitch(float value) {
         bitField0_ |= 0x00080000;
         lAnklePitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_ankle_pitch = 20;</code>
-       */
       public Builder clearLAnklePitch() {
         bitField0_ = (bitField0_ & ~0x00080000);
         lAnklePitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float l_ankle_roll = 21;
       private float lAnkleRoll_ ;
-      /**
-       * <code>optional float l_ankle_roll = 21;</code>
-       */
       public boolean hasLAnkleRoll() {
         return ((bitField0_ & 0x00100000) == 0x00100000);
       }
-      /**
-       * <code>optional float l_ankle_roll = 21;</code>
-       */
       public float getLAnkleRoll() {
         return lAnkleRoll_;
       }
-      /**
-       * <code>optional float l_ankle_roll = 21;</code>
-       */
       public Builder setLAnkleRoll(float value) {
         bitField0_ |= 0x00100000;
         lAnkleRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float l_ankle_roll = 21;</code>
-       */
       public Builder clearLAnkleRoll() {
         bitField0_ = (bitField0_ & ~0x00100000);
         lAnkleRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_hip_roll = 22;
       private float rHipRoll_ ;
-      /**
-       * <code>optional float r_hip_roll = 22;</code>
-       *
-       * <pre>
-       * Right leg angles.
-       * </pre>
-       */
       public boolean hasRHipRoll() {
         return ((bitField0_ & 0x00200000) == 0x00200000);
       }
-      /**
-       * <code>optional float r_hip_roll = 22;</code>
-       *
-       * <pre>
-       * Right leg angles.
-       * </pre>
-       */
       public float getRHipRoll() {
         return rHipRoll_;
       }
-      /**
-       * <code>optional float r_hip_roll = 22;</code>
-       *
-       * <pre>
-       * Right leg angles.
-       * </pre>
-       */
       public Builder setRHipRoll(float value) {
         bitField0_ |= 0x00200000;
         rHipRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_hip_roll = 22;</code>
-       *
-       * <pre>
-       * Right leg angles.
-       * </pre>
-       */
       public Builder clearRHipRoll() {
         bitField0_ = (bitField0_ & ~0x00200000);
         rHipRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_hip_pitch = 23;
       private float rHipPitch_ ;
-      /**
-       * <code>optional float r_hip_pitch = 23;</code>
-       */
       public boolean hasRHipPitch() {
         return ((bitField0_ & 0x00400000) == 0x00400000);
       }
-      /**
-       * <code>optional float r_hip_pitch = 23;</code>
-       */
       public float getRHipPitch() {
         return rHipPitch_;
       }
-      /**
-       * <code>optional float r_hip_pitch = 23;</code>
-       */
       public Builder setRHipPitch(float value) {
         bitField0_ |= 0x00400000;
         rHipPitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_hip_pitch = 23;</code>
-       */
       public Builder clearRHipPitch() {
         bitField0_ = (bitField0_ & ~0x00400000);
         rHipPitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_knee_pitch = 24;
       private float rKneePitch_ ;
-      /**
-       * <code>optional float r_knee_pitch = 24;</code>
-       */
       public boolean hasRKneePitch() {
         return ((bitField0_ & 0x00800000) == 0x00800000);
       }
-      /**
-       * <code>optional float r_knee_pitch = 24;</code>
-       */
       public float getRKneePitch() {
         return rKneePitch_;
       }
-      /**
-       * <code>optional float r_knee_pitch = 24;</code>
-       */
       public Builder setRKneePitch(float value) {
         bitField0_ |= 0x00800000;
         rKneePitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_knee_pitch = 24;</code>
-       */
       public Builder clearRKneePitch() {
         bitField0_ = (bitField0_ & ~0x00800000);
         rKneePitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_ankle_pitch = 25;
       private float rAnklePitch_ ;
-      /**
-       * <code>optional float r_ankle_pitch = 25;</code>
-       */
       public boolean hasRAnklePitch() {
         return ((bitField0_ & 0x01000000) == 0x01000000);
       }
-      /**
-       * <code>optional float r_ankle_pitch = 25;</code>
-       */
       public float getRAnklePitch() {
         return rAnklePitch_;
       }
-      /**
-       * <code>optional float r_ankle_pitch = 25;</code>
-       */
       public Builder setRAnklePitch(float value) {
         bitField0_ |= 0x01000000;
         rAnklePitch_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_ankle_pitch = 25;</code>
-       */
       public Builder clearRAnklePitch() {
         bitField0_ = (bitField0_ & ~0x01000000);
         rAnklePitch_ = 0F;
         onChanged();
         return this;
       }
-
+      
+      // optional float r_ankle_roll = 26;
       private float rAnkleRoll_ ;
-      /**
-       * <code>optional float r_ankle_roll = 26;</code>
-       */
       public boolean hasRAnkleRoll() {
         return ((bitField0_ & 0x02000000) == 0x02000000);
       }
-      /**
-       * <code>optional float r_ankle_roll = 26;</code>
-       */
       public float getRAnkleRoll() {
         return rAnkleRoll_;
       }
-      /**
-       * <code>optional float r_ankle_roll = 26;</code>
-       */
       public Builder setRAnkleRoll(float value) {
         bitField0_ |= 0x02000000;
         rAnkleRoll_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float r_ankle_roll = 26;</code>
-       */
       public Builder clearRAnkleRoll() {
         bitField0_ = (bitField0_ & ~0x02000000);
         rAnkleRoll_ = 0F;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:messages.JointAngles)
     }
-
+    
     static {
       defaultInstance = new JointAngles(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:messages.JointAngles)
   }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
+  
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_MotionRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_MotionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_MotionCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_MotionCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_ScriptedMove_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_ScriptedMove_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_BodyJointCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_BodyJointCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_DestinationWalk_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_DestinationWalk_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_OdometryWalk_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_OdometryWalk_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_WalkCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_WalkCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_MotionKick_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_MotionKick_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_HeadMotionCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_HeadMotionCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_PositionHeadCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_PositionHeadCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_ScriptedHeadCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_ScriptedHeadCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_HeadJointCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_HeadJointCommand_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_messages_JointAngles_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_messages_JointAngles_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -12141,146 +9693,173 @@ public final class PMotion {
       "y_dest\030\005 \001(\0132\026.messages.OdometryWalk\022\021\n\t" +
       "timestamp\030\006 \001(\003\"[\n\013CommandType\022\024\n\020DESTIN" +
       "ATION_WALK\020\000\022\020\n\014WALK_COMMAND\020\001\022\021\n\rSCRIPT" +
-      "ED_MOVE\020\002\022\021\n\rODOMETRY_WALK\020\003\";\n\014Scripted" +
+      "ED_MOVE\020\002\022\021\n\rODOMETRY_WALK\020\003\"T\n\014Scripted" +
       "Move\022+\n\007command\030\001 \003(\0132\032.messages.BodyJoi" +
-      "ntCommand\"\343\001\n\020BodyJointCommand\022\014\n\004time\030\001" +
-      " \001(\002\022%\n\006angles\030\002 \001(\0132\025.messages.JointAng" +
-      "les\022(\n\tstiffness\030\003 \001(\0132\025.messages.JointA" +
-      "ngles\022C\n\rinterpolation\030\004 \001(\0162,.messages." +
-      "BodyJointCommand.InterpolationType\"+\n\021In",
-      "terpolationType\022\n\n\006SMOOTH\020\000\022\n\n\006LINEAR\020\001\"" +
-      "p\n\017DestinationWalk\022\r\n\005rel_x\030\001 \001(\002\022\r\n\005rel" +
-      "_y\030\002 \001(\002\022\r\n\005rel_h\030\003 \001(\002\022\014\n\004gain\030\004 \001(\002\022\"\n" +
-      "\004kick\030\005 \001(\0132\024.messages.MotionKick\"I\n\014Odo" +
-      "metryWalk\022\r\n\005rel_x\030\001 \001(\002\022\r\n\005rel_y\030\002 \001(\002\022" +
-      "\r\n\005rel_h\030\003 \001(\002\022\014\n\004gain\030\004 \001(\002\"F\n\013WalkComm" +
-      "and\022\021\n\tx_percent\030\001 \001(\002\022\021\n\ty_percent\030\002 \001(" +
-      "\002\022\021\n\th_percent\030\003 \001(\002\"<\n\nMotionKick\022\033\n\023pe" +
-      "rform_motion_kick\030\001 \001(\010\022\021\n\tkick_type\030\002 \001" +
-      "(\005\"\212\002\n\021HeadMotionCommand\0225\n\004type\030\001 \001(\0162\'",
-      ".messages.HeadMotionCommand.CommandType\022" +
-      "2\n\013pos_command\030\002 \001(\0132\035.messages.Position" +
-      "HeadCommand\0227\n\020scripted_command\030\003 \001(\0132\035." +
-      "messages.ScriptedHeadCommand\022\021\n\ttimestam" +
-      "p\030\004 \001(\003\">\n\013CommandType\022\024\n\020POS_HEAD_COMMA" +
-      "ND\020\000\022\031\n\025SCRIPTED_HEAD_COMMAND\020\001\"s\n\023Posit" +
-      "ionHeadCommand\022\020\n\010head_yaw\030\001 \001(\002\022\022\n\nhead" +
-      "_pitch\030\002 \001(\002\022\031\n\rmax_speed_yaw\030\003 \001(\002:\002-1\022" +
-      "\033\n\017max_speed_pitch\030\004 \001(\002:\002-1\"B\n\023Scripted" +
-      "HeadCommand\022+\n\007command\030\001 \003(\0132\032.messages.",
-      "HeadJointCommand\"\343\001\n\020HeadJointCommand\022\014\n" +
-      "\004time\030\001 \001(\002\022%\n\006angles\030\002 \001(\0132\025.messages.J" +
-      "ointAngles\022(\n\tstiffness\030\003 \001(\0132\025.messages" +
-      ".JointAngles\022C\n\rinterpolation\030\004 \001(\0162,.me" +
-      "ssages.HeadJointCommand.InterpolationTyp" +
-      "e\"+\n\021InterpolationType\022\n\n\006SMOOTH\020\000\022\n\n\006LI" +
-      "NEAR\020\001\"\303\004\n\013JointAngles\022\020\n\010head_yaw\030\001 \001(\002" +
-      "\022\022\n\nhead_pitch\030\002 \001(\002\022\030\n\020l_shoulder_pitch" +
-      "\030\003 \001(\002\022\027\n\017l_shoulder_roll\030\004 \001(\002\022\023\n\013l_elb" +
-      "ow_yaw\030\005 \001(\002\022\024\n\014l_elbow_roll\030\006 \001(\002\022\023\n\013l_",
-      "wrist_yaw\030\007 \001(\002\022\016\n\006l_hand\030\010 \001(\002\022\030\n\020r_sho" +
-      "ulder_pitch\030\t \001(\002\022\027\n\017r_shoulder_roll\030\n \001" +
-      "(\002\022\023\n\013r_elbow_yaw\030\013 \001(\002\022\024\n\014r_elbow_roll\030" +
-      "\014 \001(\002\022\023\n\013r_wrist_yaw\030\r \001(\002\022\016\n\006r_hand\030\016 \001" +
-      "(\002\022\027\n\017l_hip_yaw_pitch\030\017 \001(\002\022\027\n\017r_hip_yaw" +
-      "_pitch\030\020 \001(\002\022\022\n\nl_hip_roll\030\021 \001(\002\022\023\n\013l_hi" +
-      "p_pitch\030\022 \001(\002\022\024\n\014l_knee_pitch\030\023 \001(\002\022\025\n\rl" +
-      "_ankle_pitch\030\024 \001(\002\022\024\n\014l_ankle_roll\030\025 \001(\002" +
-      "\022\022\n\nr_hip_roll\030\026 \001(\002\022\023\n\013r_hip_pitch\030\027 \001(" +
-      "\002\022\024\n\014r_knee_pitch\030\030 \001(\002\022\025\n\rr_ankle_pitch",
-      "\030\031 \001(\002\022\024\n\014r_ankle_roll\030\032 \001(\002"
+      "ntCommand\022\014\n\004dist\030\002 \001(\002\022\t\n\001h\030\003 \001(\002\"\343\001\n\020B" +
+      "odyJointCommand\022\014\n\004time\030\001 \001(\002\022%\n\006angles\030" +
+      "\002 \001(\0132\025.messages.JointAngles\022(\n\tstiffnes" +
+      "s\030\003 \001(\0132\025.messages.JointAngles\022C\n\rinterp" +
+      "olation\030\004 \001(\0162,.messages.BodyJointComman",
+      "d.InterpolationType\"+\n\021InterpolationType" +
+      "\022\n\n\006SMOOTH\020\000\022\n\n\006LINEAR\020\001\"p\n\017DestinationW" +
+      "alk\022\r\n\005rel_x\030\001 \001(\002\022\r\n\005rel_y\030\002 \001(\002\022\r\n\005rel" +
+      "_h\030\003 \001(\002\022\014\n\004gain\030\004 \001(\002\022\"\n\004kick\030\005 \001(\0132\024.m" +
+      "essages.MotionKick\"I\n\014OdometryWalk\022\r\n\005re" +
+      "l_x\030\001 \001(\002\022\r\n\005rel_y\030\002 \001(\002\022\r\n\005rel_h\030\003 \001(\002\022" +
+      "\014\n\004gain\030\004 \001(\002\"F\n\013WalkCommand\022\021\n\tx_percen" +
+      "t\030\001 \001(\002\022\021\n\ty_percent\030\002 \001(\002\022\021\n\th_percent\030" +
+      "\003 \001(\002\"<\n\nMotionKick\022\033\n\023perform_motion_ki" +
+      "ck\030\001 \001(\010\022\021\n\tkick_type\030\002 \001(\005\"\212\002\n\021HeadMoti",
+      "onCommand\0225\n\004type\030\001 \001(\0162\'.messages.HeadM" +
+      "otionCommand.CommandType\0222\n\013pos_command\030" +
+      "\002 \001(\0132\035.messages.PositionHeadCommand\0227\n\020" +
+      "scripted_command\030\003 \001(\0132\035.messages.Script" +
+      "edHeadCommand\022\021\n\ttimestamp\030\004 \001(\003\">\n\013Comm" +
+      "andType\022\024\n\020POS_HEAD_COMMAND\020\000\022\031\n\025SCRIPTE" +
+      "D_HEAD_COMMAND\020\001\"s\n\023PositionHeadCommand\022" +
+      "\020\n\010head_yaw\030\001 \001(\002\022\022\n\nhead_pitch\030\002 \001(\002\022\031\n" +
+      "\rmax_speed_yaw\030\003 \001(\002:\002-1\022\033\n\017max_speed_pi" +
+      "tch\030\004 \001(\002:\002-1\"B\n\023ScriptedHeadCommand\022+\n\007",
+      "command\030\001 \003(\0132\032.messages.HeadJointComman" +
+      "d\"\343\001\n\020HeadJointCommand\022\014\n\004time\030\001 \001(\002\022%\n\006" +
+      "angles\030\002 \001(\0132\025.messages.JointAngles\022(\n\ts" +
+      "tiffness\030\003 \001(\0132\025.messages.JointAngles\022C\n" +
+      "\rinterpolation\030\004 \001(\0162,.messages.HeadJoin" +
+      "tCommand.InterpolationType\"+\n\021Interpolat" +
+      "ionType\022\n\n\006SMOOTH\020\000\022\n\n\006LINEAR\020\001\"\303\004\n\013Join" +
+      "tAngles\022\020\n\010head_yaw\030\001 \001(\002\022\022\n\nhead_pitch\030" +
+      "\002 \001(\002\022\030\n\020l_shoulder_pitch\030\003 \001(\002\022\027\n\017l_sho" +
+      "ulder_roll\030\004 \001(\002\022\023\n\013l_elbow_yaw\030\005 \001(\002\022\024\n",
+      "\014l_elbow_roll\030\006 \001(\002\022\023\n\013l_wrist_yaw\030\007 \001(\002" +
+      "\022\016\n\006l_hand\030\010 \001(\002\022\030\n\020r_shoulder_pitch\030\t \001" +
+      "(\002\022\027\n\017r_shoulder_roll\030\n \001(\002\022\023\n\013r_elbow_y" +
+      "aw\030\013 \001(\002\022\024\n\014r_elbow_roll\030\014 \001(\002\022\023\n\013r_wris" +
+      "t_yaw\030\r \001(\002\022\016\n\006r_hand\030\016 \001(\002\022\027\n\017l_hip_yaw" +
+      "_pitch\030\017 \001(\002\022\027\n\017r_hip_yaw_pitch\030\020 \001(\002\022\022\n" +
+      "\nl_hip_roll\030\021 \001(\002\022\023\n\013l_hip_pitch\030\022 \001(\002\022\024" +
+      "\n\014l_knee_pitch\030\023 \001(\002\022\025\n\rl_ankle_pitch\030\024 " +
+      "\001(\002\022\024\n\014l_ankle_roll\030\025 \001(\002\022\022\n\nr_hip_roll\030" +
+      "\026 \001(\002\022\023\n\013r_hip_pitch\030\027 \001(\002\022\024\n\014r_knee_pit",
+      "ch\030\030 \001(\002\022\025\n\rr_ankle_pitch\030\031 \001(\002\022\024\n\014r_ank" +
+      "le_roll\030\032 \001(\002"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
+      new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+        public com.google.protobuf.ExtensionRegistry assignDescriptors(
+            com.google.protobuf.Descriptors.FileDescriptor root) {
+          descriptor = root;
+          internal_static_messages_MotionRequest_descriptor =
+            getDescriptor().getMessageTypes().get(0);
+          internal_static_messages_MotionRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_MotionRequest_descriptor,
+              new java.lang.String[] { "StopBody", "StopHead", "ResetOdometry", "RemoveStiffness", "EnableStiffness", "ResetProviders", "Timestamp", },
+              messages.PMotion.MotionRequest.class,
+              messages.PMotion.MotionRequest.Builder.class);
+          internal_static_messages_MotionCommand_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_messages_MotionCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_MotionCommand_descriptor,
+              new java.lang.String[] { "Type", "Script", "Dest", "Speed", "OdometryDest", "Timestamp", },
+              messages.PMotion.MotionCommand.class,
+              messages.PMotion.MotionCommand.Builder.class);
+          internal_static_messages_ScriptedMove_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_messages_ScriptedMove_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_ScriptedMove_descriptor,
+              new java.lang.String[] { "Command", "Dist", "H", },
+              messages.PMotion.ScriptedMove.class,
+              messages.PMotion.ScriptedMove.Builder.class);
+          internal_static_messages_BodyJointCommand_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_messages_BodyJointCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_BodyJointCommand_descriptor,
+              new java.lang.String[] { "Time", "Angles", "Stiffness", "Interpolation", },
+              messages.PMotion.BodyJointCommand.class,
+              messages.PMotion.BodyJointCommand.Builder.class);
+          internal_static_messages_DestinationWalk_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_messages_DestinationWalk_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_DestinationWalk_descriptor,
+              new java.lang.String[] { "RelX", "RelY", "RelH", "Gain", "Kick", },
+              messages.PMotion.DestinationWalk.class,
+              messages.PMotion.DestinationWalk.Builder.class);
+          internal_static_messages_OdometryWalk_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_messages_OdometryWalk_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_OdometryWalk_descriptor,
+              new java.lang.String[] { "RelX", "RelY", "RelH", "Gain", },
+              messages.PMotion.OdometryWalk.class,
+              messages.PMotion.OdometryWalk.Builder.class);
+          internal_static_messages_WalkCommand_descriptor =
+            getDescriptor().getMessageTypes().get(6);
+          internal_static_messages_WalkCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_WalkCommand_descriptor,
+              new java.lang.String[] { "XPercent", "YPercent", "HPercent", },
+              messages.PMotion.WalkCommand.class,
+              messages.PMotion.WalkCommand.Builder.class);
+          internal_static_messages_MotionKick_descriptor =
+            getDescriptor().getMessageTypes().get(7);
+          internal_static_messages_MotionKick_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_MotionKick_descriptor,
+              new java.lang.String[] { "PerformMotionKick", "KickType", },
+              messages.PMotion.MotionKick.class,
+              messages.PMotion.MotionKick.Builder.class);
+          internal_static_messages_HeadMotionCommand_descriptor =
+            getDescriptor().getMessageTypes().get(8);
+          internal_static_messages_HeadMotionCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_HeadMotionCommand_descriptor,
+              new java.lang.String[] { "Type", "PosCommand", "ScriptedCommand", "Timestamp", },
+              messages.PMotion.HeadMotionCommand.class,
+              messages.PMotion.HeadMotionCommand.Builder.class);
+          internal_static_messages_PositionHeadCommand_descriptor =
+            getDescriptor().getMessageTypes().get(9);
+          internal_static_messages_PositionHeadCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_PositionHeadCommand_descriptor,
+              new java.lang.String[] { "HeadYaw", "HeadPitch", "MaxSpeedYaw", "MaxSpeedPitch", },
+              messages.PMotion.PositionHeadCommand.class,
+              messages.PMotion.PositionHeadCommand.Builder.class);
+          internal_static_messages_ScriptedHeadCommand_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_messages_ScriptedHeadCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_ScriptedHeadCommand_descriptor,
+              new java.lang.String[] { "Command", },
+              messages.PMotion.ScriptedHeadCommand.class,
+              messages.PMotion.ScriptedHeadCommand.Builder.class);
+          internal_static_messages_HeadJointCommand_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_messages_HeadJointCommand_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_HeadJointCommand_descriptor,
+              new java.lang.String[] { "Time", "Angles", "Stiffness", "Interpolation", },
+              messages.PMotion.HeadJointCommand.class,
+              messages.PMotion.HeadJointCommand.Builder.class);
+          internal_static_messages_JointAngles_descriptor =
+            getDescriptor().getMessageTypes().get(12);
+          internal_static_messages_JointAngles_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_messages_JointAngles_descriptor,
+              new java.lang.String[] { "HeadYaw", "HeadPitch", "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand", "RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand", "LHipYawPitch", "RHipYawPitch", "LHipRoll", "LHipPitch", "LKneePitch", "LAnklePitch", "LAnkleRoll", "RHipRoll", "RHipPitch", "RKneePitch", "RAnklePitch", "RAnkleRoll", },
+              messages.PMotion.JointAngles.class,
+              messages.PMotion.JointAngles.Builder.class);
+          return null;
+        }
+      };
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_messages_MotionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_messages_MotionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_MotionRequest_descriptor,
-        new java.lang.String[] { "StopBody", "StopHead", "ResetOdometry", "RemoveStiffness", "EnableStiffness", "ResetProviders", "Timestamp", });
-    internal_static_messages_MotionCommand_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_messages_MotionCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_MotionCommand_descriptor,
-        new java.lang.String[] { "Type", "Script", "Dest", "Speed", "OdometryDest", "Timestamp", });
-    internal_static_messages_ScriptedMove_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_messages_ScriptedMove_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_ScriptedMove_descriptor,
-        new java.lang.String[] { "Command", });
-    internal_static_messages_BodyJointCommand_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_messages_BodyJointCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_BodyJointCommand_descriptor,
-        new java.lang.String[] { "Time", "Angles", "Stiffness", "Interpolation", });
-    internal_static_messages_DestinationWalk_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_messages_DestinationWalk_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_DestinationWalk_descriptor,
-        new java.lang.String[] { "RelX", "RelY", "RelH", "Gain", "Kick", });
-    internal_static_messages_OdometryWalk_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_messages_OdometryWalk_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_OdometryWalk_descriptor,
-        new java.lang.String[] { "RelX", "RelY", "RelH", "Gain", });
-    internal_static_messages_WalkCommand_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_messages_WalkCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_WalkCommand_descriptor,
-        new java.lang.String[] { "XPercent", "YPercent", "HPercent", });
-    internal_static_messages_MotionKick_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_messages_MotionKick_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_MotionKick_descriptor,
-        new java.lang.String[] { "PerformMotionKick", "KickType", });
-    internal_static_messages_HeadMotionCommand_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_messages_HeadMotionCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_HeadMotionCommand_descriptor,
-        new java.lang.String[] { "Type", "PosCommand", "ScriptedCommand", "Timestamp", });
-    internal_static_messages_PositionHeadCommand_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_messages_PositionHeadCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_PositionHeadCommand_descriptor,
-        new java.lang.String[] { "HeadYaw", "HeadPitch", "MaxSpeedYaw", "MaxSpeedPitch", });
-    internal_static_messages_ScriptedHeadCommand_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_messages_ScriptedHeadCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_ScriptedHeadCommand_descriptor,
-        new java.lang.String[] { "Command", });
-    internal_static_messages_HeadJointCommand_descriptor =
-      getDescriptor().getMessageTypes().get(11);
-    internal_static_messages_HeadJointCommand_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_HeadJointCommand_descriptor,
-        new java.lang.String[] { "Time", "Angles", "Stiffness", "Interpolation", });
-    internal_static_messages_JointAngles_descriptor =
-      getDescriptor().getMessageTypes().get(12);
-    internal_static_messages_JointAngles_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_messages_JointAngles_descriptor,
-        new java.lang.String[] { "HeadYaw", "HeadPitch", "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand", "RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand", "LHipYawPitch", "RHipYawPitch", "LHipRoll", "LHipPitch", "LKneePitch", "LAnklePitch", "LAnkleRoll", "RHipRoll", "RHipPitch", "RKneePitch", "RAnklePitch", "RAnkleRoll", });
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

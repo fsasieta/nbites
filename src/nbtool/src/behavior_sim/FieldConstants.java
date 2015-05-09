@@ -151,11 +151,11 @@ public class FieldConstants
     public static final int M_SIDE_DIST = 100;
 
     // walk speeds
-    public static final int WC_SPEED = 4;
+    public static final int WC_SPEED = 2;
     public static final float WC_SPEED_H = .1f;
     public static final float DEST_SPEED_H = .05f;
 
-    public static final int KICK_SPEED = 5;
+    public static final int KICK_SPEED = 10;
 
     // kick off positions
     public static final Location ODD_DEFENDER_HOME_L = new Location((MY_GOALBOX_RIGHT_X + 50),

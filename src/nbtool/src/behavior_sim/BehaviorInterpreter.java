@@ -184,6 +184,25 @@ public class BehaviorInterpreter implements CppFuncListener
 
             switch(bmc.getType())
             {
+                case SCRIPTED_MOVE:
+                    int dir = 0;
+                    switch((int)bmc.getScript().getH())
+                    {
+                        case 90:
+                            dir = -1;
+                            break;
+                        case 45:
+                            dir = -2;
+                            break;
+                        case -45:
+                            dir = 2;
+                            break;
+                        case -90:
+                            dir = 1;
+                            break;
+                    }
+                    world.kick(pIndex, players[pIndex].h, dir, bmc.getScript().getDist());
+                    break;
                 case DESTINATION_WALK:
                     PMotion.DestinationWalk dest = bmc.getDest();
 
@@ -277,7 +296,7 @@ public class BehaviorInterpreter implements CppFuncListener
         float bearing = p.bearingTo(b.getLocation());
         
         Location relBall = new Location(b.x - p.x, b.y - p.y);
-        relBall.rotate(p.h);
+        relBall.rotate(-p.h);
 
         // DONE
         return BallModel.FilteredBall.newBuilder()
@@ -285,8 +304,8 @@ public class BehaviorInterpreter implements CppFuncListener
                             .setDistance(p.distanceTo(b.getLocation()))
                             .setBearing(bearing)
                             .setBearingDeg((float)Math.toDegrees(bearing))
-                            .setRelX(b.x - p.x)
-                            .setRelY(b.y - p.y)
+                            .setRelX(relBall.x)
+                            .setRelY(relBall.y)
                             .setX(b.x)
                             .setY(b.y)
                             .build();
@@ -376,7 +395,7 @@ public class BehaviorInterpreter implements CppFuncListener
     {
         return MotionStatusOuterClass.MotionStatus.newBuilder()
                                         .setStanding(true)
-                                        .setBodyIsActive(true)
+                                        .setBodyIsActive(false)
                                         .setWalkIsActive(true)
                                         .setHeadIsActive(true)
                                         .setCalibrated(true)

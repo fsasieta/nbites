@@ -34,6 +34,8 @@ message MotionCommand
 message ScriptedMove
 {
     repeated BodyJointCommand command = 1;
+    optional float dist = 2;
+    optional float h = 3;
 }
 
 message BodyJointCommand
