@@ -245,9 +245,9 @@ public class BehaviorInterpreter implements CppFuncListener
                         normalizer = (float)Math.pow(relX*relX + relY*relY, 0.5);
                         if (normalizer == 0) normalizer = 1;
                         
-                        players[pIndex].moveRel(relX/normalizer, 
-                                                relY/normalizer,
-                                                relH);
+                        players[pIndex].moveRel(relX*dest.getGain()/normalizer, 
+                                                relY*dest.getGain()/normalizer,
+                                                relH*dest.getGain());
                     }
 
                     world.repaint();
@@ -300,7 +300,7 @@ public class BehaviorInterpreter implements CppFuncListener
 
         // DONE
         return BallModel.FilteredBall.newBuilder()
-                            .setVis(this.setVisionBall())
+                            .setVis(this.setVisionBall(bearing))
                             .setDistance(p.distanceTo(b.getLocation()))
                             .setBearing(bearing)
                             .setBearingDeg((float)Math.toDegrees(bearing))
@@ -312,13 +312,20 @@ public class BehaviorInterpreter implements CppFuncListener
     }
 
     // TODO determine when ball is being seen
-    private BallModel.VisionBall setVisionBall()
+    private BallModel.VisionBall setVisionBall(float bearing)
     {
+        int framesOn = 0;
+        int framesOff = 0;
+
+        boolean on = Math.abs(Math.toDegrees(bearing)) < 31.;
+
+        if (on) framesOn = 50;
+        else framesOff = 50;
         // DONE
         return BallModel.VisionBall.newBuilder()
-                            .setOn(true)
-                            .setFramesOn(50)
-                            .setFramesOff(0)
+                            .setOn(on)
+                            .setFramesOn(framesOn)
+                            .setFramesOff(framesOff)
                             .build();
     }
 

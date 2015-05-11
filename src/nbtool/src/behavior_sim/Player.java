@@ -4,6 +4,7 @@ package behavior_sim;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 public class Player extends SimObject
 {
@@ -75,11 +76,7 @@ public class Player extends SimObject
 
     public void moveRel(float relX, float relY, float relH)
     {
-        //relX = (float)Math.abs(relX);
-
         h += relH;
-
-        if (h < -(float)Math.PI/2 || h > (float)Math.PI/2) relX *= -1;
 
         if (h < -Math.PI) h = (float)Math.PI*2 + h;
         else if (h > Math.PI) h = h - (float)Math.PI*2;
@@ -158,7 +155,24 @@ public class Player extends SimObject
         int xDist = (int)(20 * Math.cos(heading) + xCoord);
         int yDist = (int)(20 * Math.sin(heading) + yCoord);     
 
-        g2.drawLine(xCoord, yCoord, xDist, yDist); 
+        g2.drawLine(xCoord, yCoord, xDist, yDist);
+
+        g2.setColor(Color.red);
+        g2.setStroke(new BasicStroke(1));
+
+        double halfViewAngle = Math.toRadians(31);
+
+        xDist = (int)(20 * Math.cos(heading + halfViewAngle) + xCoord);
+        yDist = (int)(20 * Math.sin(heading + halfViewAngle) + yCoord);
+
+        g2.drawLine(xCoord, yCoord, xDist, yDist);
+
+        xDist = (int)(20 * Math.cos(heading - halfViewAngle) + xCoord);
+        yDist = (int)(20 * Math.sin(heading - halfViewAngle) + yCoord);
+
+        g2.drawLine(xCoord, yCoord, xDist, yDist);
+
+        g2.setStroke(new BasicStroke(FieldConstants.LINE_WIDTH/2));
     }
 
     protected void notifyListeners()
