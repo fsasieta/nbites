@@ -213,22 +213,22 @@ public class BehaviorInterpreter implements CppFuncListener
 
                         switch(kick)
                         {
-                            case 0:
+                            case 1:
                                 world.kick(pIndex, heading, -1, FieldConstants.M_SIDE_DIST);
                                 break;
-                            case 1:
-                                world.kick(pIndex, heading, 1, FieldConstants.M_SIDE_DIST);
-                                break;
                             case 2:
-                                world.kick(pIndex, heading, 0, FieldConstants.M_STRAIGHT_DIST);
+                                world.kick(pIndex, heading, 1, FieldConstants.M_SIDE_DIST);
                                 break;
                             case 3:
                                 world.kick(pIndex, heading, 0, FieldConstants.M_STRAIGHT_DIST);
                                 break;
                             case 4:
-                                world.kick(pIndex, heading, -2, FieldConstants.M_CHIP_DIST);
+                                world.kick(pIndex, heading, 0, FieldConstants.M_STRAIGHT_DIST);
                                 break;
                             case 5:
+                                world.kick(pIndex, heading, -2, FieldConstants.M_CHIP_DIST);
+                                break;
+                            case 6:
                                 world.kick(pIndex, heading, 2, FieldConstants.M_CHIP_DIST);
                                 break;
                         }
