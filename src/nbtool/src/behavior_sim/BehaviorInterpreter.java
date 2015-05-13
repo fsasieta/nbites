@@ -245,18 +245,18 @@ public class BehaviorInterpreter implements CppFuncListener
                         normalizer = (float)Math.pow(relX*relX + relY*relY, 0.5);
                         if (normalizer == 0) normalizer = 1;
                         
-                        players[pIndex].moveRel(relX*dest.getGain()/normalizer, 
-                                                relY*dest.getGain()/normalizer,
-                                                relH*dest.getGain());
+                        players[pIndex].moveRel(relX*dest.getGain()*FieldConstants.WALK_SPEED/normalizer, 
+                                                relY*dest.getGain()*FieldConstants.WALK_SPEED/normalizer,
+                                                relH*dest.getGain()*FieldConstants.WALK_SPEED);
                     }
 
                     world.repaint();
                     break;
 
                 case WALK_COMMAND:
-                    players[pIndex].moveRel(FieldConstants.WC_SPEED*bmc.getSpeed().getXPercent(), 
-                                            FieldConstants.WC_SPEED*bmc.getSpeed().getYPercent(), 
-                                            bmc.getSpeed().getHPercent()*FieldConstants.WC_SPEED_H);
+                    players[pIndex].moveRel(FieldConstants.WALK_SPEED*bmc.getSpeed().getXPercent(), 
+                                            FieldConstants.WALK_SPEED*bmc.getSpeed().getYPercent(), 
+                                            FieldConstants.WALK_SPEED_H*bmc.getSpeed().getHPercent());
                     
                     world.repaint();
                     break;

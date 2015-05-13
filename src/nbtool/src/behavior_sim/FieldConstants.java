@@ -151,8 +151,8 @@ public class FieldConstants
     public static final int M_SIDE_DIST = 100;
 
     // walk speeds
-    public static final int WC_SPEED = 2;
-    public static final float WC_SPEED_H = .1f;
+    public static final int WALK_SPEED = 3;
+    public static final float WALK_SPEED_H = WALK_SPEED/27.0f;
     public static final float DEST_SPEED_H = .05f;
 
     public static final int KICK_SPEED = 10;
