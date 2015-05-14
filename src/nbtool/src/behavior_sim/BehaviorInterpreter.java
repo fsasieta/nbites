@@ -27,6 +27,8 @@ public class BehaviorInterpreter implements CppFuncListener
 
     private Thread callThread;
 
+    private int runSpeed;
+
     private long tBM;   // time to build messages
     private long tFC;    // time func call
     private long tGUI;  // time to update GUI
@@ -68,10 +70,14 @@ public class BehaviorInterpreter implements CppFuncListener
 
         CppIO.current.tryAddCall(clearSim);
 
+        int numPlayers = 0;
+
         for (Player p : players) 
         { 
             if (p != null) 
             {
+                numPlayers++;
+
                 byte[] byteArray = {(byte)p.num};
                 Log log = new Log("type=int", byteArray);
 
@@ -84,6 +90,8 @@ public class BehaviorInterpreter implements CppFuncListener
                 CppIO.current.tryAddCall(initSim);
             }
         }
+
+        runSpeed = FieldConstants.RUN_SPEED * numPlayers;
 
         this.sendMessagesInSeparateThread();
     }
@@ -153,7 +161,7 @@ public class BehaviorInterpreter implements CppFuncListener
                     // runSim = false;
                     // return;
                     // time delay before next call
-                    try { callThread.sleep(FieldConstants.RUN_SPEED); }
+                    try { callThread.sleep(runSpeed); }
                     catch (InterruptedException e) { 
                         System.out.println("Thread interrupted."); 
                     }
