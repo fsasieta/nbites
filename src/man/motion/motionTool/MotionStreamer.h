@@ -3,6 +3,8 @@
  * commands to the motion module, which then executes them.
  * The class gets manual input from the Java tool.
  *
+ * Therefore this class takes no inportals
+ *
  * @author: Franco Sasieta
  * @email: fsasieta@bowdoin.edu
  * Last modified: 05/21/2016
@@ -35,14 +37,15 @@
 #include <vector>
 
 
-
+namespace man{
+namespace motion{
 class MotionStreamerModule: public portals:: Module{
 
 public:
-    //Functions I will provide
+    
+    //Constructor
     MotionStreamerModule();
-
-    //Not sure what the cirtual method is actually for
+    //Not sure what the virtual method is actually for
     virtual ~MotionStreamerModule();
 
     /*Start streaming parameters
@@ -53,10 +56,24 @@ public:
      */
     void stop();
 
+    /* Test Function that sends messages to the motion module
+     */
+    int executeWalk();
+
+
+
     //For now we just do one outportal, since we need to make this work first.
-    portals::Outportal<messages::DestinationWalkCommand> walkThereCommand;
+    /** Out Portals **/
+    portals::Outportal<messages::MotionCommand> streamerWalkInput_;
 
 private:
-    //functions/vaariables I will not provide
-    //bool streaming; //given by module base class as "running" methoe
+    
+    bool streaming;
+
+    //functions/variables I will not provide
+    messages::MotionCommand walkThere;
+
+};
+
+}
 }

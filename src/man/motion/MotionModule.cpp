@@ -59,6 +59,11 @@ void MotionModule::run_()
     headCommandInput_.latch();
     requestInput_.latch();
     fallInput_.latch();
+    
+    //Tool streaming latch
+    streamerWalk_.latch();
+
+
 
     sensorAngles   = toJointAngles(jointsInput_.message());
     sensorCurrents = toJointAngles(currentsInput_.message());

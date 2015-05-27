@@ -23,7 +23,11 @@
 namespace man{
 namespace motion{
 
-    MotionStreamerModule::~MotionStreamerModule(){}
+MotionStreamerModule::MotionStreamerModule():
+    portals::Module()    
+    {
+    streaming = false;
+    }
 
     void start(){
         streaming = true;
@@ -32,28 +36,36 @@ namespace motion{
         streaming = false;
     }
 
-    int main (int argc, char*argv[]){
+    int main (int argc, char *argv[]){
 
-        //Testing purposes only
-        //Should work?
         //parameters are somewhat randomish, the first 4 make sense,
-        //total gamble on the kick ones.
-        //DestinationWalk test = new DestinationWalk(100, 100, 2, .5, 0, 0);
+        //DestinationWalk test = new DestinationWalk(100, 100, 2, .5);
         //sendMotionCommand(test);
 
-        
-        //Need to the the wiring of an in/out portal.
-        //main code
-
-
-
-
-
-
-
+        executeWalk(100, 100, 0, .5);
 
     }
 
+    int executeWalk(int xCm, int yCm, int hDeg, int gain){
+        //Get the parameters from somewhere else
+
+        //make the message.
+        //This is odometry walk, so the robot should stand at destination.
+        //Probably should change the name of walkThere, leaving it for now as is.
+        walkThere.set_rel_x(xCm);
+        walkThere.set_rel_y(yCm);
+        walkThere.set_rel_h(hDeg);
+        walkThere.set_gain(gain);
+
+        streamerWalk_.setMessage(walkThere)
+    }
+
+    void test(){
+        cout<<"Could access C++ code through the network. YAY!\n"
+            <<"Should continue working on the c++ side now only"<<endl; 
+    }
+
+
+
 }//namespace motion
 }//namespace man
-
