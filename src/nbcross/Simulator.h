@@ -2,7 +2,7 @@
 
 #include "Common.h"
 #include "RoboGrams.h"
-#include "../man/log/logio.h"
+#include "../share/logshare/Log.h"
 
 #include "behaviors/BehaviorsModule.h"
 
@@ -20,22 +20,25 @@
 #include "StiffnessControl.pb.h"
 #include "Obstacle.pb.h"
 
+using nblog::Log;
+using nblog::SExpr;
+
 class Simulator
 {
 public:
     Simulator(int pNum);
-    void run(std::vector<logio::log_t> pbufs);
+    void run(std::vector<Log*> pbufs);
     void setWorldModels(portals::Message<messages::WorldModel> wm[]);
 
 public:
-    logio::log_t bodyMotion;
-    logio::log_t headMotion;
+    Log bodyMotion;
+    Log headMotion;
     portals::Message<messages::WorldModel> myWM;
 
     int pNum;
 
 private:
-    void sendMessages(std::vector<logio::log_t> pbufs);
+    void sendMessages(std::vector<Log*> pbufs);
     void getMotionCommandsAndComm();
 
 private:

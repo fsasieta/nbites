@@ -26,8 +26,8 @@ int Behaviors_func() {
     sim->setWorldModels(comm);
     sim->run(args);
 
-    logio::log_t bodyMotion = logio::copyLog(&sim->bodyMotion);
-    rets.push_back(bodyMotion);
+    Log bodyMotion = Log(&sim->bodyMotion);
+    rets.push_back(&bodyMotion);
 
     comm[pNum-1] = sim->myWM;
 
@@ -44,8 +44,9 @@ int Behaviors_func() {
 int InitSim_func() {
     assert(args.size() == 1);
 
-    int pNum = static_cast<int>(*args[0].data);
-    
+    // int pNum = static_cast<int>(args[0]->data().data());
+    int pNum = 2;
+
     if (pNum == 100) {
         sims.clear();
         pIndex = 0;

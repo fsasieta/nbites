@@ -52,7 +52,7 @@ static const std::vector<CrossFunc> FUNCS = {
     CrossFunc("test", test_func, {}),
     CrossFunc("arg_test", arg_test_func, {"YUVImage", "YUVImage"}),
     CrossFunc("CrossBright", CrossBright_func, {"YUVImage"}),
-    CrossFunc("Behaviors_func", Behavior_func, {"RobotLocation",
+    CrossFunc("Behaviors_func", Behaviors_func, {"RobotLocation",
                                                 "FilteredBall",
                                                 "GameState",
                                                 "VisionField",
