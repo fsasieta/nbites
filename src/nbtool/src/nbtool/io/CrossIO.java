@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
 import nbtool.data.Log;
 import nbtool.data.Log.SOURCE;
 import nbtool.data.SExpr;
+import nbtool.io.CommonIO.GIOFirstResponder;
 import nbtool.io.CommonIO.IOFirstResponder;
 import nbtool.io.CommonIO.IOInstance;
 import nbtool.io.CommonIO.IOState;
@@ -156,7 +157,7 @@ public class CrossIO {
 					this.state = IOState.RUNNING;
 				}
 				
-				Events.CrossStatus.generate(this, true);
+				Events.GCrossStatus.generate(this, true);
 				while (this.state() == IOState.RUNNING) {
 					
 					CrossCall call = null;
@@ -202,7 +203,7 @@ public class CrossIO {
 						Logger.logf(Logger.EVENT, "%s finished function %s, ret=%d nout=%d", name(), call.function.name,
 								ret, num_out);
 						
-						IOFirstResponder.generateReceived(this, call.listener, ret, outs);
+						GIOFirstResponder.generateReceived(this, call.listener, ret, outs);
 					}
 					
 				}
@@ -216,13 +217,16 @@ public class CrossIO {
 				Logger.logf(Logger.INFO, "CrossInstance %d dieing.", this.unique_id);
 				finish();
 				
-				IOFirstResponder.generateFinished(this, this.ifr);
-				Events.CrossStatus.generate(this, false);
+				GIOFirstResponder.generateFinished(this, this.ifr);
+				Events.GCrossStatus.generate(this, false);
 			}
 		}
 		
 		private void parseFunctions(Log funclog) {
 			SExpr tree = funclog.tree();
+			tree = tree.find("contents");
+			
+			//System.out.printf("%s\n", tree.print());
 			if (!tree.find("name").exists() ||
 					tree.find("name").count() < 2 ||
 					tree.find("name").get(1).value().trim().isEmpty()) {
@@ -345,10 +349,6 @@ public class CrossIO {
 					} catch (Exception e) {
 						Logger.log(Logger.ERROR, "Exception in CrossServer while accepting connection.");
 						e.printStackTrace();
-					} finally {
-						if (socket != null) {
-							socket.close();
-						}
 					}
 				}
 				
