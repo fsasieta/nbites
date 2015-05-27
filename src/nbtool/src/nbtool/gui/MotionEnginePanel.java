@@ -50,8 +50,7 @@ import nbtool.util.U;
  * Bad MVC, but it works (sort of)
  */
 public class MotionEnginePanel extends JPanel implements ActionListener,
-                                                         ChangeListener 
-                                                        (MotionStreamer streamer){
+                                                         ChangeListener {
 
     private JPanel canvas;
     private JButton start, stop;
@@ -63,6 +62,7 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
     private JSlider xSlider, ySlider, hSlider;
     private JScrollPane sp;
     private JComboBox<String> modes;
+    private MotionStreamer dataStreamer;
 
     public MotionEnginePanel() {	
         super();
@@ -72,6 +72,10 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
 				useSize(e.getComponent().getSize());
 			}
 		});
+
+        //Need to specify comm with the Motion Streamer
+        dataStreamer = new MotionStreamer(this);
+
 
         canvas = new JPanel();
         canvas.setLayout(null);
@@ -134,7 +138,9 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
     }
 
     public void model_returnKeypress() {
-		ActionEvent e = new ActionEvent(start, ActionEvent.ACTION_PERFORMED, "start from keypress");
+		ActionEvent e = new ActionEvent(
+                start, ActionEvent.ACTION_PERFORMED, "start from keypress"
+                );
 		this.actionPerformed(e);
 	}
 
@@ -151,7 +157,6 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
     }
 
     //Need to call appropiate function here
-    //
     public void stateChanged(ChangeEvent e){
         JSlider source = (JSlider) e.getSource();
         if(!source.getValueIsAdjusting()){
@@ -160,13 +165,13 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
             int valueH = (int) hSlider.getValue();
             
 
-            //Sends parameters to class that handles
-            //rest of motion movmt and msgs.
+            //Sends parameters to class that handles rest of motion movmt and msgs.
             //this gets upadated everytime this method is called
-            //Declared in MotionStreamer.java
-            streamer.walkMotion(valueX, valueY, valueH);
+            //Declared in MotionStreamer.java. Works!!
+            dataStreamer.walkMotion(valueX, valueY, valueH);
 
-            
+            //We know this works, so we can comment it
+           /* 
             if(valueX == 0 ){
                 System.out.println("xSlider is at zero");
             }
@@ -188,6 +193,7 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
                 System.out.println("hSlider is at max");
             }
             else{System.out.println("hSlider stopped at value:" + valueH);}
+            */
         }
     }
     

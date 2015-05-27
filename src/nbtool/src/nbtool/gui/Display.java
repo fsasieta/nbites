@@ -72,9 +72,9 @@ public final class Display extends JFrame implements KeyEventPostProcessor {
 		cntrlp = new ControlPanel();
 		lc = new LogChooser();
         //Will need to give a streamer object as an argument
-        //
-        MotionStreamer streamer = new MotionStreamer();
-        meng = new MotionEnginePanel(streamer);
+        // wil I though? wil I really?
+        //MotionStreamer streamer = new MotionStreamer();
+        meng = new MotionEnginePanel();//streamer);
 
 		left.addTab("control", cntrlp);
 		left.addTab("logs", lc);

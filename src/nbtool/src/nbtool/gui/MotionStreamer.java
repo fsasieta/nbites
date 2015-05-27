@@ -8,11 +8,17 @@
  * Currently it is not in the right directory, but I need
  * to figure out where is the appropiate place to put it,
  * and what package should it go in.
+ * UPDATE: made a dir in motion.Correct place?
  * Also need to figure out where to put the C++ thing in.
+ * UPDATE: c++ class should be in motion package maybe?
+ *          started it there
  */
 
-import java.lang.*
-import java.io.*
+
+package nbtool.gui;
+
+import java.lang.*;
+import java.io.*;
 
 import nbtool.data.RobotStats;
 import nbtool.data.Log;
@@ -28,31 +34,35 @@ import nbtool.util.NBConstants.STATUS;
 import nbtool.util.P;
 import nbtool.util.U;
 
+import messages.PMotion;
 
+
+
+//Trying the JNI BS
 /*Class will take values from tool and call commands to the robot
  *
  */
 public class MotionStreamer{
 
-    public MotionStreamer(MotionEnginePanel MotionPanel){
-        MotionEnginePanel MotionPanel = new MotionEnginePanel();
+    //public native void walkMotionCommand(String s);
+
+    public MotionStreamer(MotionEnginePanel motionPanel){
+        MotionEnginePanel MotionPanel = motionPanel;
     }
 
-    public void walkMotion(int xInput, int yInput, int Hinput){
+    public void walkMotion(int xInput, int yInput, int hInput){
         // will need to send a protobuf to the robot with the walk params
         // Actually will need to override the behaviors thing and send 
         // input to the motion module.
         //convert to sExpression
         //Eventually will chagne the method to only work with walk motion stuff
 
-        String walkMsg = "XValue=" + xInput.toString() + " ";
-        walkMsg.append("YValue=" + yinput.toString() + " ");
-        walkMsg.append("HValue=" + hInput.toString());
+        String walkMsg = "XValue=" + xInput + " ";
+        walkMsg += ("YValue=" + yInput + " ");
+        walkMsg += ("HValue=" + hInput);
 
 
-        System.out.println("Testing whether tool connects with Streamer class")
+        System.out.println("Testing whether tool connects with Streamer class");
         System.out.println(walkMsg);
     }
-
-    
 }

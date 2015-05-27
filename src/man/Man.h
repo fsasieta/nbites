@@ -50,6 +50,7 @@ private:
     jointenactor::JointEnactorModule jointEnactor;
     motion::MotionModule motion;
     arms::ArmContactModule arms;
+    motion::MotionStreamerModule streamer; //ADDED!
 
     DiagramThread guardianThread;
     guardian::GuardianModule guardian;

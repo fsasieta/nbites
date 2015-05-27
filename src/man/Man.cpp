@@ -60,6 +60,7 @@ namespace man {
         sensorsThread.addModule(jointEnactor);
         sensorsThread.addModule(motion);
         sensorsThread.addModule(arms);
+        sensorsThread.addModule(streamer); //ADDED!
         
         sensors.printInput.wireTo(&guardian.printJointsOutput, true);
         
@@ -79,6 +80,11 @@ namespace man {
         arms.actualJointsIn.wireTo(&sensors.jointsOutput_);
         arms.expectedJointsIn.wireTo(&motion.jointsOutput_);
         arms.handSpeedsIn.wireTo(&motion.handSpeedsOutput_);
+
+        //Need to wire the streamer to the motion module
+        
+
+
         
         /** Guardian **/
         guardianThread.addModule(guardian);
