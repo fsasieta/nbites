@@ -28,27 +28,58 @@ public class Log implements Serializable {
 	}
 	public final long unique_id = getID();
 	
-	public String name; //File name, might be null
+	//user supplied name, often null.  Used as file name.
+	public String name; 
 	
 	//Core opaque log fields:
-	public String description;
 	public byte[] bytes;
+	private SExpr tree;
+	
+	public String _olddesc_;
+	
+	public static enum SOURCE {
+		DERIVED, FILE, NETWORK
+	}
 	
 	public SOURCE source;
 	
 	//Set by GUI when selected.
 	public transient TreePath lastSeen = null;
 
-	private SExpr tree = null;
+	
 	public SExpr tree() {
-		if (tree == null)
-			tree = SExpr.deserializeFrom(description);
 		return tree;
+	}
+	
+	public String description() {
+		return tree.serialize();
+	}
+	
+	public String description(int nchars) {
+		String ser = tree.serialize();
+		if (ser.length() > nchars) {
+			return ser.substring(0, nchars);
+		} else return ser;
 	}
 	
 	public void setTree(SExpr nt) {
 		this.tree = nt;
-		this.description = nt.serialize();
+	}
+	
+	public static Log logWithType(String type) {
+		SExpr typeField = SExpr.newKeyValue("type", type);
+		SExpr fieldList = SExpr.newList(typeField);
+		
+		SExpr topLevel = SExpr.newList(SExpr.newKeyValue("contents", fieldList));
+		return new Log(topLevel, null);
+	}
+	
+	public static Log logWithType(String type, byte[] b) {
+		SExpr typeField = SExpr.newKeyValue("type", type);
+		SExpr fieldList = SExpr.newList(typeField);
+		
+		SExpr topLevel = SExpr.newList(SExpr.newKeyValue("contents", fieldList));
+		return new Log(topLevel, b);
 	}
 	
 	public Log() {}
@@ -57,9 +88,8 @@ public class Log implements Serializable {
 		this();
 		
 		this.name = null;
-		this.tree = null;
-		this.description = d;
-		this.bytes = b;		
+		this.tree = SExpr.deserializeFrom(d);
+		this.bytes = b;
 	}
 	
 	public Log(SExpr t, byte[] d) {
@@ -67,7 +97,6 @@ public class Log implements Serializable {
 		
 		this.name = null;
 		this.tree = t;
-		this.description = t.serialize();
 		this.bytes = d;
 	}
 	
@@ -80,12 +109,11 @@ public class Log implements Serializable {
 	
 	public String toString() {
 		if (name != null) return name;
-		else return description;
+		else return description();
 	}
 	
-	public static enum SOURCE {
-		DERIVED, FILE, NETWORK
-	}
+	
+	
 	/* ALL ATTRIBUTES MUST BE OBJECTS SO THAT NULL CAN BE RETURNED IF THEY'RE NOT FOUND */
 	
 	/*
