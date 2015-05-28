@@ -199,7 +199,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         clearLog.tree().append(SExpr.newKeyValue("pNum", "100"));
         
         //Phil's dumb names.
-        CrossInstance ci = CrossIO.instanceByIndex(0);
+        CrossInstance ci = CrossIO.instanceByIndex(8);
         CrossFunc cf = ci.functionWithName("InitSim");
         CrossCall clearSim = new CrossCall(this, cf, clearLog);
         ci.tryAddCall(clearSim);
@@ -262,8 +262,10 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 protobufs.add(Log.logWithType("Obstacle", this.setObstacle().toByteArray()));
                 protobufs.add(Log.logWithType("SharedBall", this.setSharedBall(b).toByteArray()));
                 protobufs.add(Log.logWithType("RobotLocation", this.setSharedFlip().toByteArray()));
+
+                // System.out.println(i);
                 
-                CrossInstance ci = CrossIO.instanceByIndex(0);
+                CrossInstance ci = CrossIO.instanceByIndex(i);
                 CrossFunc cf = ci.functionWithName("Behaviors");
                 CrossCall funcCall = new CrossCall(this, cf, protobufs.toArray(new Log[0]));      
 

@@ -36,7 +36,7 @@ using nblog::SExpr;
 std::vector<Log *> args;
 std::vector<Log *> rets;
 
-bool crossprintout = false;
+bool crossprintout = true;
 
 static inline void nbcprintf(const char * format, ...) {
     

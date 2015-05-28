@@ -38,8 +38,13 @@ nbcross: build_nbcross
 	./$(EXECUTABLE)
 
 .PHONY: nbcross_sim
-nbcross_sim: build_nbcross
+nbcross_sim: 
 	@echo "nbcross in da house!!"
+	@cd $(BUILD_DIR); \
+	./$(EXECUTABLE) $(NBCROSS_NAME) silent
+
+.PHONY: nbcross_inst
+nbcross_inst:
 	@cd $(BUILD_DIR); \
 	./$(EXECUTABLE) $(NBCROSS_NAME) silent
 
