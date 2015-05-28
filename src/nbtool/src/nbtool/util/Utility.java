@@ -7,8 +7,10 @@ import java.io.File;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.security.KeyPair;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -21,63 +23,14 @@ import javax.swing.JTextField;
 import javax.swing.tree.TreePath;
 
 import nbtool.data.Log;
+import nbtool.data.SExpr;
 import nbtool.images.ImageParent;
 import nbtool.images.UV88image;
 import nbtool.images.Y16image;
 import nbtool.images.YUYV8888image;
 
 
-public class U {
-	
-	/*
-	 * Currently synchronized to avoid output interleaving.
-	 * 
-	 * If the code becomes sluggish, behaves erratically, this is a good place to start looking...
-	 * */
-	
-	/*
-	 * Also: synch methods sync on the class.  So while it makes sense for these three to be synchronized, if other static U methods
-	 * need to be synchronized it should be with a different locking object.
-	 * */
-	public static synchronized void w(String s) {
-		System.out.println(s);
-	}
-	
-	public static synchronized void wnl(String s) {
-		System.out.print(s);
-	}
-	
-	public static synchronized void wf(String f, Object ... a) {
-		System.out.printf(f, a);
-	}
-	
-	public static Map<String, String> attributes(String desc) {
-		if (desc.trim().isEmpty()) return null;
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		String[] attrs = desc.trim().split(" ");
-		for (String a : attrs) {
-			if (a.trim().isEmpty()) continue;
-			
-			String[] parts = a.split("=");
-			if (parts.length != 2)
-				return null;	//Don't attempt to reconstruct malformed descriptions.
-			
-			String type = parts[0].trim();
-			if (type.isEmpty())
-				return null;	//empty key is an error.  Empty value is NOT error, though parsing it may throw one later.
-			
-			if (map.containsKey(type)) {
-				U.wf("ERROR: description\n\t%s\ncontains multiple key: %s\n", desc, type);
-				return null;
-			}
-			
-			map.put(type, parts[1]);
-		}
-		
-		if (map.size() > 0) return map; //If description contains no k/v pairs, explicitly indicate that with null return.
-		else return null;
-	}
+public class Utility {
 	
 	public static byte[] subArray(byte[] ar, int start, int len) {
 		byte[] ret = new byte[len];
@@ -89,10 +42,10 @@ public class U {
 	
 	//Almost all image logs will have null or [Y8(U8/V8)] encoding, but this method should be extended if that changes.
 	public static BufferedImage biFromLog(Log log) {
-		assert(log.type().equalsIgnoreCase(NBConstants.IMAGE_S));
-		int width = log.width();
-		int height = log.height();
-		String encoding = log.encoding();
+		assert(log.primaryType().equalsIgnoreCase(NBConstants.IMAGE_S));
+		int width = log.primaryWidth();
+		int height = log.primaryHeight();
+		String encoding = log.primaryEncoding();
 		
 		ImageParent ip = null;
 		if (encoding == null ) {
@@ -105,7 +58,7 @@ public class U {
 		} else if (encoding.equalsIgnoreCase("[U8V8]")) {
 			ip = new UV88image(width , height, log.bytes);
 		} else {
-			U.w("WARNING:  Cannot use image with encoding:" + encoding);
+			Logger.log(Logger.WARN, "Cannot use image with encoding:" + encoding);
 			return null;
 		}
 		
@@ -157,7 +110,7 @@ public class U {
 		String except;
 		
 		try {
-			except = P.CLASS_EXCEPTIONS_MAP.get(type);
+			except = Prefs.CLASS_EXCEPTIONS_MAP.get(type);
 		} catch(MissingResourceException mre) {
 			except = null;
 		}
@@ -238,5 +191,93 @@ public class U {
 			return System.getProperty("user.home") 
 					+ p.substring(1);
 		} else return p;
+	}
+	
+	
+	public static boolean isv6Description(String desc) {
+		return (desc != null && desc.trim().startsWith("(nblog"));
+	}
+	
+	/* creates tree for old out of _olddesc_ */
+	public static boolean v6Convert(Log old) {
+		if (old._olddesc_ != null && isv6Description(old._olddesc_)) {
+			old.setTree(SExpr.deserializeFrom(old._olddesc_));
+			return true;
+		}
+		if (old._olddesc_ == null) return false;
+		
+		assert(old._olddesc_ != null);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		String[] attrs = old._olddesc_.trim().split(" ");
+		for (String a : attrs) {
+			if (a.trim().isEmpty()) continue;
+			
+			String[] parts = a.split("=");
+			if (parts.length != 2)
+				return false;	//Don't attempt to reconstruct malformed descriptions.
+			
+			String type = parts[0].trim();
+			if (type.isEmpty())
+				return false;
+			
+			String value = parts[1].trim();
+			if (value.isEmpty())
+				return false;
+			
+			if (map.containsKey(type)) {
+				return false;
+			}
+			
+			map.put(type, value);
+		}
+		
+		if (map.containsKey("checksum")) {
+			int found_sum = checksum(old.bytes);
+			int read_sum = Integer.parseInt(map.get("checksum"));
+			if (found_sum != read_sum)
+				return false;
+		}
+		
+		//Ok, we can convert this.
+		map.remove("checksum");
+		map.remove("version");
+		
+		SExpr top_level = SExpr.newList();
+		top_level.append(SExpr.newAtom("nblog"));
+		top_level.append(SExpr.newList(
+				SExpr.newAtom("created"),
+				SExpr.newAtom("CONVERTED"),
+				SExpr.newAtom("null")
+				));
+		
+		top_level.append(SExpr.newKeyValue("version", 6 + ""));
+		
+		SExpr c1 = SExpr.newList();
+		c1.append(SExpr.newKeyValue("nbytes", old.bytes.length + ""));
+		if (map.containsKey("index")) {
+			c1.append(SExpr.newKeyValue("iindex", map.get("index")));
+			map.remove("index");
+		}
+		
+		for (Entry<String, String> kp : map.entrySet()) {
+			c1.append(SExpr.newKeyValue(kp.getKey(), kp.getValue()));
+		}
+		
+		SExpr clist = SExpr.newList();
+		clist.append(SExpr.newAtom("contents"));
+		clist.append(c1);
+		
+		top_level.append(clist);
+		
+		old.setTree(top_level);
+		return true;
+	}
+	
+	public static int checksum(byte[] data) {
+		int checksum = 0;
+		for (byte b : data)
+			checksum += (b & 0xFF);
+		return checksum;
 	}
 }
