@@ -52,17 +52,20 @@ MotionStreamerModule::MotionStreamerModule():
         //make the message.
         //This is odometry walk, so the robot should stand at destination.
         //Probably should change the name of walkThere, leaving it for now as is.
-        walkThere.set_rel_x(xCm);
-        walkThere.set_rel_y(yCm);
-        walkThere.set_rel_h(hDeg);
-        walkThere.set_gain(gain);
+        motionCommand = portals::Message<messages::MotionCommand> motionCommand(0); 
+        motionCommand.set_rel_x(xCm);
+        motionCommand.set_rel_y(yCm);
+        motionCommand.set_rel_h(hDeg);
+        motionCommand.set_gain(gain);
 
-        streamerWalk_.setMessage(walkThere)
+        streamerOutput.setMessage(motionCommand);
     }
 
-    void test(){
+    /* only used to test network connectivity */ 
+    void test(int data){
         cout<<"Could access C++ code through the network. YAY!\n"
-            <<"Should continue working on the c++ side now only"<<endl; 
+            <<"Should continue working on the c++ side now only"
+            <<", this is the int data: "<< data <<endl; 
     }
 
 

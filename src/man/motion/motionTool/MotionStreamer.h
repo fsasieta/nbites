@@ -60,18 +60,21 @@ public:
      */
     int executeWalk();
 
+    //test function only
+    int test(int data);
 
 
     //For now we just do one outportal, since we need to make this work first.
+    //There are only outputs outportals in this module.
     /** Out Portals **/
-    portals::Outportal<messages::MotionCommand> streamerWalkInput_;
+    portals::OutPortal<messages::MotionCommand> streamerOutput;
 
 private:
     
     bool streaming;
 
     //functions/variables I will not provide
-    messages::MotionCommand walkThere;
+    messages::MotionCommand motionCommand;
 
 };
 

@@ -61,7 +61,10 @@ void MotionModule::run_()
     fallInput_.latch();
     
     //Tool streaming latch
-    streamerWalk_.latch();
+    //Maybe the streamer should be wired to bodyCommandInput?
+    //If so then we would not need to deal with any motion module manipulation...
+    //However we would need a way to shut down behaviors...
+    streamerWalkInput_.latch();
 
 
 
@@ -201,6 +204,8 @@ bool MotionModule::postProcess()
 
 void MotionModule::processBodyJoints()
 {
+    //Need to add a tool if stmt:
+    //if tool is running, change
     if (curProvider->isActive())
     {
         //TODO: move this
