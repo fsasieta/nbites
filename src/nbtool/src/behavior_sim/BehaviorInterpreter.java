@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import nbtool.data.Log;
+import nbtool.data.SExpr;
 import nbtool.io.CommonIO.IOInstance;
 import nbtool.io.CrossIO;
 import nbtool.io.CrossIO.CrossCall;
@@ -194,12 +195,13 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         players = world.players;
 
         byte[] bArray = {(byte)100};
-        Log logg = Log.logWithType("int", bArray);
+        Log clearLog = Log.logWithType("int", bArray);
+        clearLog.tree().append(SExpr.newKeyValue("pNum", "100"));
         
         //Phil's dumb names.
         CrossInstance ci = CrossIO.instanceByIndex(0);
         CrossFunc cf = ci.functionWithName("InitSim");
-        CrossCall clearSim = new CrossCall(this, cf, logg);
+        CrossCall clearSim = new CrossCall(this, cf, clearLog);
         ci.tryAddCall(clearSim);
         
         int numPlayers = 0;
@@ -212,6 +214,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
 
                 byte[] byteArray = {(byte)p.num};
                 Log log = Log.logWithType("int", byteArray);
+                log.tree().append(SExpr.newKeyValue("pNum", String.valueOf(p.num)));
                 
                 CrossCall is = new CrossCall(this, cf, log);
                 ci.tryAddCall(is);

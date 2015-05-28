@@ -44,8 +44,7 @@ int Behaviors_func() {
 int InitSim_func() {
     assert(args.size() == 1);
 
-    // int pNum = static_cast<int>(args[0]->data().data());
-    int pNum = 2;
+    int pNum = std::stoi(args[0]->tree().find("pNum")->get(1)->value());
 
     if (pNum == 100) {
         sims.clear();
