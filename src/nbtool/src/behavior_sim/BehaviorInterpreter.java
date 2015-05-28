@@ -11,6 +11,7 @@ import nbtool.io.CrossIO.CrossCall;
 import nbtool.io.CrossIO.CrossFunc;
 import nbtool.io.CrossIO.CrossInstance;
 import nbtool.util.Center;
+import nbtool.util.Logger;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -43,6 +44,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
     { 
     	Center.startCenter();
     	CrossIO.startCrossServer();
+        Logger.level = Logger.WARN;
 
         runSim = false;     // shouldn't be running yet
 
@@ -57,7 +59,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
 
 	@Override
 	public void ioReceived(IOInstance inst, int ret, Log... out) {
-		 // System.out.println("Func Call Time: " + (System.nanoTime() - tFC)/1000000.);
+		// System.out.println("Func Call Time: " + (System.nanoTime() - tFC)/1000000.);
         tGUI = System.nanoTime();
 
         if (out.length == 0) return;
@@ -192,7 +194,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         players = world.players;
 
         byte[] bArray = {(byte)100};
-        Log logg = new Log("type=int", bArray);
+        Log logg = Log.logWithType("int", bArray);
         
         //Phil's dumb names.
         CrossInstance ci = CrossIO.instanceByIndex(0);
@@ -209,7 +211,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 numPlayers++;
 
                 byte[] byteArray = {(byte)p.num};
-                Log log = new Log("type=int", byteArray);
+                Log log = Log.logWithType("int", byteArray);
                 
                 CrossCall is = new CrossCall(this, cf, log);
                 ci.tryAddCall(is);
@@ -243,20 +245,20 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 else b.moveTo(b.flipX(), b.y);
 
                 ArrayList<Log> protobufs = new ArrayList<Log>();
-                protobufs.add(new Log("type=RobotLocation", this.setLocalization(player).toByteArray()));
-                protobufs.add(new Log("type=FilteredBall", this.setFilteredBall(player, b).toByteArray()));
-                protobufs.add(new Log("type=GameState", this.setGameState(player).toByteArray()));
-                protobufs.add(new Log("type=VisionField", this.setVisionField().toByteArray()));
-                protobufs.add(new Log("type=VisionRobot", this.setVisionRobot().toByteArray()));
-                protobufs.add(new Log("type=VisionObstacle", this.setVisionObstacle().toByteArray()));
-                protobufs.add(new Log("type=FallStatus", this.setFallStatus().toByteArray()));
-                protobufs.add(new Log("type=MotionStatus", this.setMotionStatus().toByteArray()));
-                protobufs.add(new Log("type=RobotLocation", this.setOdometry().toByteArray()));
-                protobufs.add(new Log("type=Joints", this.setJoints().toByteArray()));
-                protobufs.add(new Log("type=StiffStatus", this.setStiffStatus().toByteArray()));
-                protobufs.add(new Log("type=Obstacle", this.setObstacle().toByteArray()));
-                protobufs.add(new Log("type=SharedBall", this.setSharedBall(b).toByteArray()));
-                protobufs.add(new Log("type=RobotLocation", this.setSharedFlip().toByteArray()));
+                protobufs.add(Log.logWithType("RobotLocation", this.setLocalization(player).toByteArray()));
+                protobufs.add(Log.logWithType("FilteredBall", this.setFilteredBall(player, b).toByteArray()));
+                protobufs.add(Log.logWithType("GameState", this.setGameState(player).toByteArray()));
+                protobufs.add(Log.logWithType("VisionField", this.setVisionField().toByteArray()));
+                protobufs.add(Log.logWithType("VisionRobot", this.setVisionRobot().toByteArray()));
+                protobufs.add(Log.logWithType("VisionObstacle", this.setVisionObstacle().toByteArray()));
+                protobufs.add(Log.logWithType("FallStatus", this.setFallStatus().toByteArray()));
+                protobufs.add(Log.logWithType("MotionStatus", this.setMotionStatus().toByteArray()));
+                protobufs.add(Log.logWithType("RobotLocation", this.setOdometry().toByteArray()));
+                protobufs.add(Log.logWithType("Joints", this.setJoints().toByteArray()));
+                protobufs.add(Log.logWithType("StiffStatus", this.setStiffStatus().toByteArray()));
+                protobufs.add(Log.logWithType("Obstacle", this.setObstacle().toByteArray()));
+                protobufs.add(Log.logWithType("SharedBall", this.setSharedBall(b).toByteArray()));
+                protobufs.add(Log.logWithType("RobotLocation", this.setSharedFlip().toByteArray()));
                 
                 CrossInstance ci = CrossIO.instanceByIndex(0);
                 CrossFunc cf = ci.functionWithName("Behaviors");

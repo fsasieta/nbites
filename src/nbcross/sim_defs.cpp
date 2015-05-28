@@ -26,8 +26,8 @@ int Behaviors_func() {
     sim->setWorldModels(comm);
     sim->run(args);
 
-    Log bodyMotion = Log(&sim->bodyMotion);
-    rets.push_back(&bodyMotion);
+    Log * bodyMotion = new Log(&sim->bodyMotion);
+    rets.push_back(bodyMotion);
 
     comm[pNum-1] = sim->myWM;
 

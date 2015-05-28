@@ -132,14 +132,14 @@ void Simulator::getMotionCommandsAndComm()
     std::string hmcData;
     hmc.SerializeToString(&hmcData);
 
-    headMotion.setData(hmcData);
+    headMotion = Log::simple("HeadMotionCommand", hmcData);
 
     bmc = *behaviors.bodyMotionCommandOut.getMessage(true).get();
 
     std::string bmcData;
-    hmc.SerializeToString(&bmcData);
+    bmc.SerializeToString(&bmcData);
 
-    bodyMotion.setData(bmcData);
+    bodyMotion = Log::simple("MotionCommand", bmcData);
 
     messages::WorldModel wm = *behaviors.myWorldModelOut.getMessage(true).get();
     myWM = portals::Message<messages::WorldModel>(&wm);
