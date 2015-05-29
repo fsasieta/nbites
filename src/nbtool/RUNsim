@@ -33,7 +33,7 @@ make build_nbcross -j4
 
 cd $BIN
 java -ea behavior_sim.Gui &
-sleep 1
+sleep 5
 
 cd $CROSS
 make nbcross_inst NBCROSS_NAME="DN0" &

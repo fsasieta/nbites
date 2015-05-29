@@ -2,7 +2,7 @@
 #include <typeinfo>
 
 Simulator::Simulator(int playerNum)
-: behaviors(0, playerNum%5)
+: behaviors(0, playerNum%6)
 {
     pNum = playerNum;
 }
@@ -20,7 +20,7 @@ void Simulator::run(std::vector<Log*> pbufs)
 
 void Simulator::setWorldModels(portals::Message<messages::WorldModel> wm[])
 {
-    if (pNum < 5)
+    if (pNum <= 5)
         for (int i(0); i < 5; i++) { behaviors.worldModelIn[i].setMessage(wm[i]); }
     else
         for (int i(5); i < 10; i++) { behaviors.worldModelIn[i].setMessage(wm[i]); }
@@ -28,22 +28,6 @@ void Simulator::setWorldModels(portals::Message<messages::WorldModel> wm[])
 
 void Simulator::sendMessages(std::vector<Log*> pbufs)
 {
-    // // The data strings from the arguments
-    // const std::string pBufString0((const char*)pbufs[0].data(), pbufs[0].data().size());
-    // const std::string pBufString1((const char*)pbufs[1].data(), pbufs[1].data().size());
-    // const std::string pBufString2((const char*)pbufs[2].data(), pbufs[2].data().size());
-    // const std::string pBufString3((const char*)pbufs[3].data(), pbufs[3].data().size());
-    // const std::string pBufString4((const char*)pbufs[4].data(), pbufs[4].data().size());
-    // const std::string pBufString5((const char*)pbufs[5].data(), pbufs[5].data().size());
-    // const std::string pBufString6((const char*)pbufs[6].data(), pbufs[6].data().size());
-    // const std::string pBufString7((const char*)pbufs[7].data(), pbufs[7].data().size());
-    // const std::string pBufString8((const char*)pbufs[8].data(), pbufs[8].data().size());
-    // const std::string pBufString9((const char*)pbufs[9].data(), pbufs[9].data().size());
-    // const std::string pBufString10((const char*)pbufs[10].data(), pbufs[10].data().size());
-    // const std::string pBufString11((const char*)pbufs[11].data(), pbufs[11].data().size());
-    // const std::string pBufString12((const char*)pbufs[12].data(), pbufs[12].data().size());
-    // const std::string pBufString13((const char*)pbufs[13].data(), pbufs[13].data().size());
-
     messages::RobotLocation localizationPB;
     messages::FilteredBall filteredBallPB;
     messages::GameState gameStatePB;

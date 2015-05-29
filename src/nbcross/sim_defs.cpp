@@ -10,28 +10,25 @@
 using nblog::Log;
 using nblog::SExpr;
 
-std::vector<Simulator *> sims;
-portals::Message<messages::WorldModel> comm[10];
+int pNum;
 
-int pIndex = 0;
+Simulator* sim;
+portals::Message<messages::WorldModel> comm[10];
 
 int Behaviors_func() {
     // std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
 
     assert(args.size() == 14);
-
-    Simulator *sim = sims.at(pIndex);
-    int pNum = sim->pNum;
-
+    
     sim->setWorldModels(comm);
     sim->run(args);
 
     Log * bodyMotion = new Log(&sim->bodyMotion);
+    SExpr s("pNum", pNum);
+    bodyMotion->tree().append(s);
     rets.push_back(bodyMotion);
 
-    comm[pNum-1] = sim->myWM;
-
-    pIndex = (pIndex + 1) % sims.size();
+    // comm[pNum-1] = sim->myWM;
 
     // std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
 
@@ -44,20 +41,12 @@ int Behaviors_func() {
 int InitSim_func() {
     assert(args.size() == 1);
 
-    int pNum = std::stoi(args[0]->tree().find("pNum")->get(1)->value());
+    pNum = std::stoi(args[0]->tree().find("pNum")->get(1)->value());
 
-    if (pNum == 100) {
-        sims.clear();
-        pIndex = 0;
-    }
+    sim = new Simulator(pNum + 2);
 
-    else {
-        Simulator *sim = new Simulator(pNum + 2);
-        sims.push_back(sim);
-
-        portals::Message<messages::WorldModel> defaultModel(0);
-        for (int i = 0; i < 10; i++) { comm[i] = defaultModel; }
-    }
+    portals::Message<messages::WorldModel> defaultModel(0);
+    for (int i = 0; i < 10; i++) { comm[i] = defaultModel; }
 
     return 0;
 }

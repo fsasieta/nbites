@@ -33,8 +33,6 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
 
     private Thread callThread;
 
-    private int runSpeed;
-
     private long tBM;   // time to build messages
     private long tFC;    // time func call
     private long tGUI;  // time to update GUI
@@ -66,6 +64,8 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         if (out.length == 0) return;
 
         int pIndex = pQ.remove();
+
+        // System.out.println(Arrays.toString(out[2].bytes));
 
         PMotion.MotionCommand bmc = PMotion.MotionCommand.newBuilder().build();
         try
@@ -194,34 +194,22 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         ball = world.ball;
         players = world.players;
 
-        byte[] bArray = {(byte)100};
-        Log clearLog = Log.logWithType("int", bArray);
-        clearLog.tree().append(SExpr.newKeyValue("pNum", "100"));
-        
-        //Phil's dumb names.
-        CrossInstance ci = CrossIO.instanceByIndex(8);
-        CrossFunc cf = ci.functionWithName("InitSim");
-        CrossCall clearSim = new CrossCall(this, cf, clearLog);
-        ci.tryAddCall(clearSim);
-        
-        int numPlayers = 0;
-
-        for (Player p : players) 
+        for (int i = 0; i < players.length; i++) 
         { 
-            if (p != null) 
+            if (players[i] != null) 
             {
-                numPlayers++;
+                //Phil's dumb names.
+                CrossInstance ci = CrossIO.instanceByIndex(i);
+                CrossFunc cf = ci.functionWithName("InitSim");
 
-                byte[] byteArray = {(byte)p.num};
+                byte[] byteArray = {(byte)players[i].num};
                 Log log = Log.logWithType("int", byteArray);
-                log.tree().append(SExpr.newKeyValue("pNum", String.valueOf(p.num)));
+                log.tree().append(SExpr.newKeyValue("pNum", String.valueOf(players[i].num)));
                 
                 CrossCall is = new CrossCall(this, cf, log);
                 ci.tryAddCall(is);
             }
         }
-
-        runSpeed = FieldConstants.RUN_SPEED * numPlayers;
 
         this.sendMessagesInSeparateThread();
     }
@@ -263,8 +251,6 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 protobufs.add(Log.logWithType("SharedBall", this.setSharedBall(b).toByteArray()));
                 protobufs.add(Log.logWithType("RobotLocation", this.setSharedFlip().toByteArray()));
 
-                // System.out.println(i);
-                
                 CrossInstance ci = CrossIO.instanceByIndex(i);
                 CrossFunc cf = ci.functionWithName("Behaviors");
                 CrossCall funcCall = new CrossCall(this, cf, protobufs.toArray(new Log[0]));      
@@ -290,7 +276,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                     // runSim = false;
                     // return;
                     // time delay before next call
-                    try { callThread.sleep(runSpeed); }
+                    try { callThread.sleep(FieldConstants.RUN_SPEED); }
                     catch (InterruptedException e) { 
                         System.out.println("Thread interrupted."); 
                     }

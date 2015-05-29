@@ -182,7 +182,7 @@ public class FieldConstants
     public static void drawField(Graphics2D g2)
     {
         // green field
-        g2.setColor(Color.green);
+        g2.setColor(new Color(0, 175, 0));
         g2.fillRect(0, 0, (int)FIELD_WIDTH, (int)FIELD_HEIGHT);
 
         // white lines
