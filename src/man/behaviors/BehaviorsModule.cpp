@@ -1,5 +1,6 @@
 #include <Python.h>
 #include <cstdlib>
+#include <stdlib.h>
 #include <exception>
 #include <boost/shared_ptr.hpp>
 #include <boost/python/errors.hpp>
@@ -316,7 +317,10 @@ void BehaviorsModule::modifySysPath ()
 {
     // Enter the current working directory into the python module path
     const char *cwd = "/home/nao/nbites/lib";
-    const char *cwd2 = "/home/dnav/nbites/build/nbcross/install/lib";
+    // const char *cwd2 = "/home/dnav/nbites/build/nbcross/install/lib";
+    const char *cwd2;
+    char *NBITES_DIR = getenv ("NBITES_DIR");
+    cwd2 = strcat(NBITES_DIR, "/build/nbcross/install/lib");
 
     std::cout << "  Adding " << cwd << " to sys.path" << std::endl;
     std::cout << "  Adding " << cwd2 << " to sys.path" << std::endl;
