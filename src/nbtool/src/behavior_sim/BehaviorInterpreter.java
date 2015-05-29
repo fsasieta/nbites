@@ -25,8 +25,6 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
 {
     private boolean runSim;    // should the sim keep running?
 
-    private LinkedList<Integer> pQ;     // player index who's behavior's are being run
-
     private Ball ball;
     private Player[] players;
     private World world;
@@ -46,8 +44,6 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         Logger.level = Logger.WARN;
 
         runSim = false;     // shouldn't be running yet
-
-        pQ = new LinkedList();
     }
     
     @Override
@@ -63,9 +59,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
 
         if (out.length == 0) return;
 
-        int pIndex = pQ.remove();
-
-        // System.out.println(Arrays.toString(out[2].bytes));
+        int pIndex = out[0].tree().find("pNum").get(1).valueAsInt();
 
         PMotion.MotionCommand bmc = PMotion.MotionCommand.newBuilder().build();
         try
@@ -227,8 +221,6 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         {
             if (players[i] != null)
             {   
-                pQ.add(i);
-
                 Player player = new Player(players[i]); // make a copy so we can edit it
                 Ball b = new Ball(ball);
 
