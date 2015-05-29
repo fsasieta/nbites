@@ -4,6 +4,9 @@
 #include "control.h"
 #include "../log/logging.h"
 
+//streamer file
+#include "../motion/motionTool/MotionStreamer.h"
+
 #include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -96,6 +99,9 @@ namespace control {
         
         ret["test"] = &cnc_test;
         ret["setFlag"] = &cnc_setFlag;
+        //main function for the tool streaming.
+        ret["toolTest"] = &toolTest;
+        ret["streamerTool"] = &streamerTool;
         
         return ret;
     }

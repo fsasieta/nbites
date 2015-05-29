@@ -1,24 +1,19 @@
 /* Motion streamer class that sends input from the tool 
  * to the robot.
- * It connects with the "MotionStreamer" in the gui package, which 
- * itself takes input from the MotionEnginePanel .
  *
- * This class uses motionModule commands to send to the robot.
+ * It provides the functions that will run on the robot
+ * and will  be called from the motion module
  *
- * Should it inherit from the motion module then?
- * I think thats a possibility.
- *
- * Pros: you inherit stuff
- * Cons: I'm not sure what that implies though,
- * since we need to send stuff over to the motion module.
  * 
  */
 
-
+/* Order of arguments of the motion module commands:
+ *
+ * Odometry walk: x input, y input, degrees, gain.
+ * Destination walk: x input, y input, degrees, gain, ????, kickname.
+ */
 #include "MotionStreamer.h"
-// used to call a destination walk function in the motion module
-#include "DestinationCommand.h"
-
+#include "MotionCommand.h"
 
 namespace man{
 namespace motion{
@@ -27,28 +22,95 @@ MotionStreamerModule::MotionStreamerModule():
     portals::Module()    
     {
     streaming = false;
+    makeMap();
     }
 
     void start(){
         streaming = true;
     }
+
     void stop(){
         streaming = false;
     }
 
-    int main (int argc, char *argv[]){
 
-        //parameters are somewhat randomish, the first 4 make sense,
-        //DestinationWalk test = new DestinationWalk(100, 100, 2, .5);
-        //sendMotionCommand(test);
+    /* Main function. it parses throught the log given to determine the appropiate
+     * function to call.
+     *
+     * Logs are in format: (commandName = name) (number of args) (args ...)
+     *
+     * If not, this function will not parse them right.
+     * The arguments must also be in the same order.
+     */
+    void streamerTool(String argument){
+        //Parsing the arguments. Need to figure out what are we dealing with.
+        if(!argument.find("commandName").equals(string::npos)){
 
-        executeWalk(100, 100, 0, .5);
+            motionCommandName = extractValue(argument, "commandName");
+            String numberOfArguments = extractValue(argument, "numberOfArguments");
+            numberOfArguments = atoi(numberOfArguments.c_str());
+            
+            for(i = 0; i < numberOfArguments; i++){
+                
+                String temp = "argument";
+                String argumentNumber =  temp + i;
+                argumentValue = extractValue(argument, argumentNumber);
+                arguments.push_back(argumentValue);
+                
+            }
+        }
+        else{
+            incorrectLog();
+        }
+
+        //Once argument vector is filled, we can then call the function we want
+        switch (motionFunctionsMap[motionCommandName]){
+            case DESTINATION_WALK:{
+                break;
+            }
+            case ODOMETRY_WALK:{
+                executeOdometryWalk(arguments);
+                break;
+            }
+            default:{
+                break;
+            }
+        };
+    }
+
+    enum motionFunction = {DESTINATION_WALK,
+                           ODOMETRY_WALK
+                          };
+
+    void incorrectLog(){
+        cout<<"Incorrect log, exiting"<<endl;
+        system.exit(0);
+    }
+        
+    /* Figure out command name from the s expression 
+     * only one command/value per (), so this should work.
+     */
+    String extractValue(String input, String desiredValue){
+
+        int desiredValueIndex = input.find(desiredValue); 
+        int endOfValueIndex= argument.find_first_of(")", desiredValueIndex);
+        String valueNoTrim = argument.substr(cmdIndex + 1, endOfValueIndex);
+        String value = valueNoTrim.trim();
+
+        return value;
 
     }
 
-    int executeWalk(int xCm, int yCm, int hDeg, int gain){
-        //Get the parameters from somewhere else
+    //This function executes the Odometry walk command.
+    int executeOdometryWalk(&vector<String> argumentList){
 
+        //We assume that we get the parameters in order.
+        int xCm, yCm, hDeg, gain;
+        xCm = atoi(argumentList[0].c_str());
+        yCm = atoi(argumentList[1].c_str());
+        hDeg = atoi(argumentList[2].c_str());
+        gain = atoi(argumentList[3].c_str());
+        
         //make the message.
         //This is odometry walk, so the robot should stand at destination.
         //Probably should change the name of walkThere, leaving it for now as is.
@@ -61,14 +123,17 @@ MotionStreamerModule::MotionStreamerModule():
         streamerOutput.setMessage(motionCommand);
     }
 
-    /* only used to test network connectivity */ 
-    void test(int data){
+    /* Only used to test network connectivity */ 
+    void toolTest(String data){
         cout<<"Could access C++ code through the network. YAY!\n"
-            <<"Should continue working on the c++ side now only"
+            <<"Should continue working on the C++ side now only"
             <<", this is the int data: "<< data <<endl; 
     }
 
-
+    void makeMap(){
+        motionFunctionsMap["DESTINATION_WALK"] = DESTINATION_WALK;
+        motionFunctionsMap["ODOMETRY_WALK"] = ODOMETRY_WALK;
+    }
 
 }//namespace motion
 }//namespace man

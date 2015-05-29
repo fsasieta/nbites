@@ -7,14 +7,13 @@
  *
  * @author: Franco Sasieta
  * @email: fsasieta@bowdoin.edu
- * Last modified: 05/21/2016
+ * Last modified: 05/28/2016
+ *
  */
 
-
-#include "Robograms.h"
-
-
+#include "RoboGrams.h"
 #include "MotionModule.h"
+#include "motionSelectorModule.h"
 #include <fstream>
 
 // Motion commands
@@ -58,10 +57,10 @@ public:
 
     /* Test Function that sends messages to the motion module
      */
-    int executeWalk();
+    int executeOdometryWalk(&vector<String> argumentList);
 
-    //test function only
-    int test(int data);
+    //test function only. used for network connectivity.
+    void test(String data);
 
 
     //For now we just do one outportal, since we need to make this work first.
@@ -70,13 +69,19 @@ public:
     portals::OutPortal<messages::MotionCommand> streamerOutput;
 
 private:
-    
+
+    String motionCommandName;
+    int numberOfArguments;
     bool streaming;
 
-    //functions/variables I will not provide
+    vector<String> arguments
+    map<string, motionFunction> motionFunctionsMap;
+
     messages::MotionCommand motionCommand;
 
-};
+    String extractValue(String input, String desiredValue);
 
-}
-}
+};//class 
+
+}//namespace motion
+}//namespace man

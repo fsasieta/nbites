@@ -67,8 +67,10 @@ namespace man {
         motion.inertialsInput_.wireTo(&sensors.inertialsOutput_);
         motion.fsrInput_.wireTo(&sensors.fsrOutput_);
         motion.stiffnessInput_.wireTo(&guardian.stiffnessControlOutput, true);
+
         motion.bodyCommandInput_.wireTo(&behaviors.bodyMotionCommandOut, true);
         motion.headCommandInput_.wireTo(&behaviors.headMotionCommandOut, true);
+
         motion.requestInput_.wireTo(&behaviors.motionRequestOut, true);
         motion.fallInput_.wireTo(&guardian.fallStatusOutput, true);
         
@@ -80,6 +82,7 @@ namespace man {
         arms.handSpeedsIn.wireTo(&motion.handSpeedsOutput_);
 
         //Need to wire the streamer to the motion module
+        motion.bodyCommandInput_.wireTo(&streamer.streamerOutput, true);
         
 
 

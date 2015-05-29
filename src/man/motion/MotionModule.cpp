@@ -60,13 +60,6 @@ void MotionModule::run_()
     requestInput_.latch();
     fallInput_.latch();
     
-    //Tool streaming latch
-    //Maybe the streamer should be wired to bodyCommandInput?
-    //If so then we would not need to deal with any motion module manipulation...
-    //However we would need a way to shut down behaviors...
-    streamerWalkInput_.latch();
-
-
 
     sensorAngles   = toJointAngles(jointsInput_.message());
     sensorCurrents = toJointAngles(currentsInput_.message());

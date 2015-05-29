@@ -11,4 +11,5 @@ target_link_libraries(
   control
   logshare
   messages
+  motion
 )
