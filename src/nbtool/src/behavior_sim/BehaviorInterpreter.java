@@ -53,7 +53,7 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
             
             try
             {
-                CrossIO.startNBCrossAt(NBCROSS_EXECUTABLE, name, false, true);
+                CrossIO.startNBCrossAt(NBCROSS_EXECUTABLE, name, true, true, true);
             }
             catch (IOException ex)
             {
