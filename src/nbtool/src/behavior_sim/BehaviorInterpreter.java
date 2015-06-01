@@ -1,8 +1,7 @@
 package behavior_sim;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.io.IOException;
 
 import nbtool.data.Log;
 import nbtool.data.SExpr;
@@ -44,6 +43,23 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         Logger.level = Logger.WARN;
 
         runSim = false;     // shouldn't be running yet
+
+        String NBITES_DIR = System.getenv("NBITES_DIR");
+        String NBCROSS_EXECUTABLE = NBITES_DIR + "/build/nbcross/nbcross_tool";
+        
+        for (int i = 0; i < FieldConstants.NUM_PLAYERS; i++)
+        {
+            String name = "Player " + String.valueOf(i);
+            
+            try
+            {
+                CrossIO.startNBCrossAt(NBCROSS_EXECUTABLE, name, false, true);
+            }
+            catch (IOException ex)
+            {
+                ex.printStackTrace();
+            }
+        }
     }
     
     @Override

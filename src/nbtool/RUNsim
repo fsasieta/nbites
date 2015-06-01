@@ -32,16 +32,4 @@ cd $CROSS
 make build_nbcross -j4
 
 cd $BIN
-java -ea behavior_sim.Gui &
-sleep 5
-
-cd $CROSS
-make nbcross_inst NBCROSS_NAME="DN0" &
-make nbcross_inst NBCROSS_NAME="DN1" &
-make nbcross_inst NBCROSS_NAME="DN2" &
-make nbcross_inst NBCROSS_NAME="DN3" &
-make nbcross_inst NBCROSS_NAME="DN4" &
-make nbcross_inst NBCROSS_NAME="DN5" &
-make nbcross_inst NBCROSS_NAME="DN6" &
-make nbcross_inst NBCROSS_NAME="DN7" &
-make nbcross_inst NBCROSS_NAME="DN8" &
+java -ea behavior_sim.Gui
