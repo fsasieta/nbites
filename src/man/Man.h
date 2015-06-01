@@ -49,6 +49,7 @@ private:
     motion::MotionModule motion;
     arms::ArmContactModule arms;
     motion::MotionStreamerModule streamer; //ADDED!
+    motion::MotionSelectorModule motionSelector;
 
     DiagramThread guardianThread;
     guardian::GuardianModule guardian;

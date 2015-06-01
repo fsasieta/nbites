@@ -31,6 +31,8 @@ namespace man {
     jointEnactor(broker),
     motion(),
     arms(),
+    streamer(),
+    motionSelector(),
     guardianThread("guardian", GUARDIAN_FRAME_LENGTH_uS),
     guardian(),
     audio(),
@@ -59,6 +61,7 @@ namespace man {
         sensorsThread.addModule(motion);
         sensorsThread.addModule(arms);
         sensorsThread.addModule(streamer); //ADDED!
+        sensorsThread.addModule(motionSelector); //ADDED!
         
         sensors.printInput.wireTo(&guardian.printJointsOutput, true);
         
@@ -68,8 +71,16 @@ namespace man {
         motion.fsrInput_.wireTo(&sensors.fsrOutput_);
         motion.stiffnessInput_.wireTo(&guardian.stiffnessControlOutput, true);
 
-        motion.bodyCommandInput_.wireTo(&behaviors.bodyMotionCommandOut, true);
+        //motion.bodyCommandInput_.wireTo(&behaviors.bodyMotionCommandOut, true);
         motion.headCommandInput_.wireTo(&behaviors.headMotionCommandOut, true);
+
+
+        //need to wire modules through the selector
+        //Since selector will switch the motion and tool, wire the tool to a dead end for clarity.
+        //unless the tool is started, the switching will not occur.
+        motionSelector.wireModulesThroughSelector(motion.bodyCommandInput_, &behaviors,bodyMotionCommandOut, true);
+        motionSelector.deadEndWire(&streamer.streamerOutput, true);
+
 
         motion.requestInput_.wireTo(&behaviors.motionRequestOut, true);
         motion.fallInput_.wireTo(&guardian.fallStatusOutput, true);
@@ -80,10 +91,6 @@ namespace man {
         arms.actualJointsIn.wireTo(&sensors.jointsOutput_);
         arms.expectedJointsIn.wireTo(&motion.jointsOutput_);
         arms.handSpeedsIn.wireTo(&motion.handSpeedsOutput_);
-
-        //Need to wire the streamer to the motion module
-        motion.bodyCommandInput_.wireTo(&streamer.streamerOutput, true);
-        
 
 
         

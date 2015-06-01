@@ -11,7 +11,7 @@
  *
  * @author Franco Sasieta, fsasieta@bowdoin.edu
  * Created 05/29/2015
- * Last modified 05/29/2015
+ * Last modified 06/01/2015
  */
 
 #include "RoboGrams.h"
@@ -22,58 +22,79 @@ namespace motion{
 class MotionSelectorModule public: portals::Module{
 public:
 
-MotionSelectorModule();
+MotionSelectorModule():
+    selectorOutput(base())
+    {}
 ~MotionSelectorModule();
 
-/** Out Portals **/
-portals::OutPortal<messages::MotionCommand> selectorOutput;
-portals::InPortal<messages::MotionCommand> selectorInput;
-
-//portal saved:
-portals::OutPortal<messages:: MotionCommand>* savedPortal;
-bool savedAsynchronousValue = false;
-
 //actually make a map of portals saved.
-map<portals::InPortal, portals::OutPortal>
+//map<portals::InPortal, portals::OutPortal *> previousWire;
+//map<portals::OutPortal, bool> previousWireAsynchValues;
+
+//map<portals::InPortal, portals::OutPortal> deadEndWires;
+//map<portals::OutPortal, portals::InPortal> deadEndWiresInverse;
 
 /********************
  * Wiring functions *
  ********************/
 
-/* Wire the input InPortal with the corresponding OutPortal
- * Throught the selector Module
- * May not have goetten any pointer stuff right.
- * ...
- * Probably did not get any pointer stuff right.
- * I'm not sure this is needed though, but maybe it will be
- * needed later for generality
+/* Doesn't actually wire portal to anything.
+ * It is used for clarity in Man.cpp
+ * Motion streamer wires to this first.
+ * saves the outportal entered to be able to change to it later.
+ *
+ * TODO: expand this from a single variable to a map of dead end variables 
+ *       to make this more general.
+ *
  */
-void wireModules(portals::InPortal<messages::MotionCommand> Input,
-                 portals::OutPortal<messages::MotionCommand> Output,
+void deadEndWire(portals::OutPortal<message::MotionCommand> incomingOutput,
                  bool asynchronous){
 
-    selectorInput.wireTo(Output, asynchronous);
-    selectoOutput.wireTo(Input, asynchronous);
+    //portals::InPortal<messages::MotionCommand>  deadEndInPortal_;
+    //deadEndInPortal_.wireTo(incomingOutput, asynchronous);
+
+    //save the dead end wire to use later.
+    saveOutPortal(incomingOutput, asynchronous);
+    //saveAsynchronousValue(asynchronous);
+
+    streamerIn = incomingOutput;
+    streamerAsynch =  asynchronous;
 }
 
-// Input the InPortal that will be changed and the OutPortal that it will
-// be changed to.
-void changeWiring(portals::InPortal<messages::MotionCommand> inputPortal,
-                  portals::OutPortal<messages::MotionCommand> newOutPortal,
+/* Wire the input InPortal with the corresponding OutPortal
+ * Through the selector Module. Used in Man.cpp
+ * TODO: to generalize, will need to implement arrays of
+ * selector input/output portals.
+ */
+void wireModulesThroughSelector(portals::InPortal<messages::MotionCommand> OutgoingInput,
+                 portals::OutPortal<messages::MotionCommand> IncomingOutput,
+                 bool asynchronous){
+
+    selectorInput.wireTo(&IncomingOutput, asynchronous);
+
+    selectorOutput.wireTo(&selectorInput, asynchronous);
+
+    OutgoingInput.wireTo(&selectorOutput.asynchronous);
+}
+
+/* Use the selector portals to change the wiring.
+ * Now that I think of this, you dont need to save the outPortal,
+ * since you'd only be using the selectors, right?
+ */
+void changeWiring(portals::OutPortal<messages::MotionCommand> newIncomingOutPortal,
                   bool asynchronous){
 
     //first need to save the current portal we are using.
     saveOutPortal(selectorInput);
-
     //then we wire to new portal.
-    inputPortal.wireTo(newOutPortal, asynchronous);
+    selectorInput.wireTo(newIncomingOutPortal, asynchronous);
+    
 }
 
-void revertToOriginalWiring(portals::InPortal<messages::MotionCommand> InputPortal,
-                            portals::OutPortal<messages::MotionCommand> OutputPortal,
+void revertToPreviousWiring(portals::InPortal<messages::MotionCommand> InputPortal,
                             bool asynchronous){
 
-    InputPortal.wireTo(*savedPortal, asynchronous);
+    InputPortal.wireTo(&savedPortal, asynchronous);
 
     clearSavedPortal();
         
@@ -81,16 +102,42 @@ void revertToOriginalWiring(portals::InPortal<messages::MotionCommand> InputPort
 
 
 private:
+/** Out Portals **/
+portals::OutPortal<messages::MotionCommand> *selectorOutput;
+portals::InPortal<messages::MotionCommand> *selectorInput_;
+
+//middlemen connect the portals to each other
+//portals::OutPortal<messages::MotionCommand> middlemanOut;
+//portals::InPortal<messages::MotionCommand> middlemanIn;
+
+//portal saved:
+portals::OutPortal<messages::MotionCommand> *savedPortal;
+
+//specifically for the streamer
+portals::OutPortal<messages::MotionCommand> *streamerIn;
+
+bool savedAsynchronousValue = false;
+
 //save the OutPortal we are currently connected to;
-void saveOutPortal(portals::InPortal<messages::MotionCommand> portal, bool asyncValue){
+void saveOutPortal(portals::InPortal<messages::MotionCommand> portal){
 
     savedOutPortal = portal.wiredTo();
     savedAsynchronousValue = portal.asynchronousValue();
+        
+    //make sure no other key is here first.
+    previousWire.erase( savedOutPortal );
+    previousAsynchValue.erase( savedAsynchronousValue );
+
+    previousWire.insert( pair<portals::OutPortal, portals::InPortal>(savedOutPortal, portal) );
+    previousAsynchValue( pair<OutPortal, bool>(savedOutPortal, savedAsynchronousValue) )
 
 }
+
+//Previously saved portal.
 void clearSavedPortal(){
     savedPortal = NULL;
     savedAsynchronousValue = false;
+
 }
 
 

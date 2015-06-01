@@ -504,15 +504,12 @@ public:
   //          and then put it back, which is why we didn't make this a const fcn.
   //          i.e. if you need to wire an inportal to something else, use this to
   //          remember previous OutPortal it was wired to.
-  const bool asynchronousValue() const {
+  bool asynchronousValue() const {
       return asynchronous_;
   }
   // effect   This is a helping function done for the same reasons as above
   //          we use const in the function because this is not intended to modify
   //          the class.
-  //          TODO: Figure out if this is supposed the be a const bool fcn as well.
-  //                dont think so but might as well put some thought into it 1st.
-  //                Still putting it here just in case.
 
   void latch() { if (wiredTo_) message_ = wiredTo_->getMessage(asynchronous_);}
   // effect   Latch a new message from the output to which this input is wired,
