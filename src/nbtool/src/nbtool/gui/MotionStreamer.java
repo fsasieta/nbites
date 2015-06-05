@@ -24,6 +24,7 @@ import nbtool.data.RobotStats;
 import nbtool.data.Log;
 import nbtool.data.SessionMaster;
 import nbtool.io.CommandIO;
+import nbtool.io.CommandIO.ControlInstance;
 import nbtool.util.N;
 import nbtool.util.N.NListener;
 import nbtool.util.NBConstants;
@@ -37,8 +38,6 @@ import nbtool.util.U;
 import messages.PMotion;
 
 
-
-//Trying the JNI BS
 /*Class will take values from tool and call commands to the robot
  *
  */
@@ -50,19 +49,22 @@ public class MotionStreamer{
         MotionEnginePanel MotionPanel = motionPanel;
     }
 
-    public void walkMotion(int xInput, int yInput, int hInput){
-        // will need to send a protobuf to the robot with the walk params
-        // Actually will need to override the behaviors thing and send 
-        // input to the motion module.
-        //convert to sExpression
-        //Eventually will chagne the method to only work with walk motion stuff
-
+    public void walkMotion(float xInput, float yInput, float hInput, float gain){
+        
+        //Need to convert this to s-expr somehow.
+        //Eventually will change the method to only work with walk motion stuff
         String walkMsg = "XValue=" + xInput + " ";
         walkMsg += ("YValue=" + yInput + " ");
         walkMsg += ("HValue=" + hInput);
-
+        walkMsg += ("Gain=" + gain)
 
         System.out.println("Testing whether tool connects with Streamer class");
         System.out.println(walkMsg);
     }
+
+
+    //private void sendDataOverNetwork(String packet){
+    //    ControlIO inst = ControlIO.getByIndex(0);
+
+    //}
 }

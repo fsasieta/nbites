@@ -160,41 +160,22 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
     public void stateChanged(ChangeEvent e){
         JSlider source = (JSlider) e.getSource();
         if(!source.getValueIsAdjusting()){
-            int valueX = (int) xSlider.getValue();
-            int valueY = (int) ySlider.getValue();
-            int valueH = (int) hSlider.getValue();
-            
+
+            float valueX = (float) xSlider.getValue();
+            float valueY = (float) ySlider.getValue();
+            float valueH = (float) hSlider.getValue();
+            //Need to add a slider for this.
+            //float gainsValue = (float) gainsSlider.getValue();
+
+            //TODO: only send the information if a boolean is set to true
+            //aka send the command only after pressing a button, not
+            //iummediately after changing the slider.
 
             //Sends parameters to class that handles rest of motion movmt and msgs.
             //this gets upadated everytime this method is called
             //Declared in MotionStreamer.java. Works!!
-            dataStreamer.walkMotion(valueX, valueY, valueH);
+            dataStreamer.walkMotion(valueX, valueY, valueH, .5); //hardcoded value for now.
 
-            //We know this works, so we can comment it
-           /* 
-            if(valueX == 0 ){
-                System.out.println("xSlider is at zero");
-            }
-            else if(valueX == 100){
-                System.out.println("xSlider is at max");
-            }
-            else{System.out.println("xSlider stopped at value:" + valueX);}
-            if(valueY == 0 ){
-                System.out.println("ySlider is at zero");
-            }
-            else if(valueY == 100){
-                System.out.println("ySlider is at max");
-            }
-            else{System.out.println("ySlider stopped at value:"+valueY);}
-            if(valueH == 0 ){
-                System.out.println("hSlider is at zero");
-            }
-            else if(valueH == 100){
-                System.out.println("hSlider is at max");
-            }
-            else{System.out.println("hSlider stopped at value:" + valueH);}
-            */
-        }
     }
     
     

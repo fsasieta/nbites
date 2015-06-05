@@ -31,8 +31,8 @@ namespace man {
     jointEnactor(broker),
     motion(),
     arms(),
-    streamer(),
     motionSelector(),
+    streamer(motionSelector),
     guardianThread("guardian", GUARDIAN_FRAME_LENGTH_uS),
     guardian(),
     audio(),
@@ -74,12 +74,11 @@ namespace man {
         //motion.bodyCommandInput_.wireTo(&behaviors.bodyMotionCommandOut, true);
         motion.headCommandInput_.wireTo(&behaviors.headMotionCommandOut, true);
 
-
         //need to wire modules through the selector
         //Since selector will switch the motion and tool, wire the tool to a dead end for clarity.
         //unless the tool is started, the switching will not occur.
-        motionSelector.wireModulesThroughSelector(motion.bodyCommandInput_, &behaviors,bodyMotionCommandOut, true);
-        motionSelector.deadEndWire(&streamer.streamerOutput, true);
+        motionSelector.wireModulesThroughSelector(motion.bodyCommandInput_, &behaviors.bodyMotionCommandOut, true);
+        motionSelector.deadEndWire(&streamer.streamerOutput_, true);
 
 
         motion.requestInput_.wireTo(&behaviors.motionRequestOut, true);

@@ -5,7 +5,7 @@
 #include "../log/logging.h"
 
 //streamer file
-#include "../motion/motionTool/MotionStreamer.h"
+//#include "MotionStreamerModule.h"
 
 #include <stdio.h>
 #include <sys/socket.h>
@@ -89,6 +89,12 @@ namespace control {
         return 0;
     }
     
+
+    //uint32_t (*)(Log *)> init_fmap()
+
+    //uint32_t (*)(Log*) cnc_testFcn(
+
+
     /*
      THIS IS WHERE YOU PUT NEW CONTROL FUNCTIONS!
      
@@ -100,8 +106,10 @@ namespace control {
         ret["test"] = &cnc_test;
         ret["setFlag"] = &cnc_setFlag;
         //main function for the tool streaming.
-        ret["toolTest"] = &toolTest;
-        ret["streamerTool"] = &streamerTool;
+        //ret["toolTest"] = &toolTest;
+        //ret["streamerTool"] = &streamerTool;
+        //ret["startStreaming"] = &startStreaming;
+        //ret["stopStreaming"] = &stopStreaming;
         
         return ret;
     }

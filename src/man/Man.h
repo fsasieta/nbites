@@ -19,6 +19,10 @@
 #include "behaviors/BehaviorsModule.h"
 #include "jointenactor/JointEnactorModule.h"
 #include "motion/MotionModule.h"
+
+#include "motion/MotionStreamer.h"
+#include "motion/MotionSelectorModule.h"
+
 #include "gamestate/GameStateModule.h"
 #include "localization/LocalizationModule.h"
 #include "sharedball/SharedBall.h"
@@ -48,8 +52,9 @@ private:
     jointenactor::JointEnactorModule jointEnactor;
     motion::MotionModule motion;
     arms::ArmContactModule arms;
+
+    motion::MotionSelectorModule motionSelector; //ADDED!
     motion::MotionStreamerModule streamer; //ADDED!
-    motion::MotionSelectorModule motionSelector;
 
     DiagramThread guardianThread;
     guardian::GuardianModule guardian;

@@ -11,7 +11,9 @@ set(MOTION_SRCS MotionModule
 		ChopShop
 		ScriptedProvider
 		HeadJointCommand
-		HeadProvider)
+		HeadProvider
+        MotionStreamer
+        )
 
 add_subdirectory( bhwalk )
 

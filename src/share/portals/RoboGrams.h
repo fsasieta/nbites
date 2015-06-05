@@ -4,7 +4,8 @@
  *
  * @author Bill Silver
  * with modifications for gcc compatibility by Lizzie and Ellis.
- * added wiredTo method for changing module wiring on the go (Franco).
+ * added wiredTo (and asynchronousValue) method for changing 
+ *      module wiring on the go (Franco).
  */
 
 #ifndef _RoboGrams_
