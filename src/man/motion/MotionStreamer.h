@@ -16,6 +16,9 @@
 #include "RoboGrams.h"
 #include "MotionModule.h"
 #include "MotionSelectorModule.h"
+#include "control.h"
+
+//Standard lib 
 #include <iostream>
 #include <ostream>
 #include <vector>
@@ -23,12 +26,12 @@
 #include <map>
 
 // Motion commands
-#include "BodyJointCommand.h"
-#include "WalkCommand.h"
-#include "DestinationCommand.h"
-#include "StepCommand.h"
-#include "FreezeCommand.h"
-#include "UnfreezeCommand.h"
+//#include "BodyJointCommand.h"
+//#include "WalkCommand.h"
+//#include "DestinationCommand.h"
+//#include "StepCommand.h"
+//#include "FreezeCommand.h"
+//#include "UnfreezeCommand.h"
 
 // Messages
 #include "InertialState.pb.h"
@@ -47,10 +50,13 @@ public:
     
     //Constructor
     //MotionStreamerModule(MotionSelectorModule *selectorInput);
-    
     //^ compiles somewhat, this is a new try
     MotionStreamerModule(MotionSelectorModule &selectorInput);
     
+
+    //extern *this;
+
+
     //Not sure what the virtual keyword is actually for.
     //~MotionStreamerModule();
     
@@ -75,7 +81,7 @@ public:
      */
     void toolTest(std::string data);
 
-    /* This needs to be called before anything else.
+    /* This needs to be called; before anything else.
      */
     void setSelector(MotionSelectorModule selectorInput);
      
@@ -94,6 +100,8 @@ private:
     bool streaming;
     bool selectorInstance;
 
+    std::string previousDataReceived;
+
     //Pointer battle to figure out how to do this.
     //MotionSelectorModule * selector;
     MotionSelectorModule &selector;
@@ -107,10 +115,9 @@ private:
     std::string extractValue(std::string input, std::string desiredValue);
     void makeMap();
     int incorrectLog();
-    
+
 };//class 
 }//namespace motion
 }//namespace man
 
-
-#endif
+#endif //MOTION_STREAMER_H

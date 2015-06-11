@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.util.LinkedList;
+import java.nio.charset.StandardCharsets;
 
 import nbtool.data.Log;
 import nbtool.data.SExpr;
@@ -42,6 +43,26 @@ public class ControlIO {
 		Log cmnd = new Log(commandTree, null);
 		return cmnd;
 	}
+
+    //TODO: Now that I think of it, creating my own protobuff that has a MotionCommand as a
+    //      parameter would be the most effective way to do less work.For now this is simpler.
+    public static Log createCmndSendMotionCommands(String motionCommand) {
+        
+        System.out.println("Entering create commnad send motion command in controlIO");
+        //required by the control.cpp function on the c++ side of the code.
+        SExpr commandTree = SExpr.newList(SExpr.newAtom("command"), SExpr.newAtom("streamerTool"));
+        //rest of sexpr must have the string sent.
+        //byte[] serializedString = motionCommand.getBytes(StandardCharsets.UTF_8);
+        System.out.println("About to serialize the string");
+        byte[] serializedString = motionCommand.getBytes(StandardCharsets.UTF_8);
+
+        System.out.println("Successfully serialized string");
+
+        
+        Log cmnd = new Log(commandTree, serializedString);
+        System.out.println("Created log command!!");
+        return cmnd;
+    }
 	
 	private static final LinkedList<ControlInstance> instances = new LinkedList<>();
 

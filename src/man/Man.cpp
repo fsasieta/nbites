@@ -52,6 +52,7 @@ namespace man {
     leds(broker),
     sharedBall(playerNum)
     {
+        
         setModuleDescription("The Northern Bites' soccer player.");
                 
         /** Sensors **/
@@ -71,14 +72,18 @@ namespace man {
         motion.fsrInput_.wireTo(&sensors.fsrOutput_);
         motion.stiffnessInput_.wireTo(&guardian.stiffnessControlOutput, true);
 
+        control::streamedData = "100";
+        std::cout << "Printing extern variable streamedData:" << control::streamedData << std::endl;
+
+
         //motion.bodyCommandInput_.wireTo(&behaviors.bodyMotionCommandOut, true);
         motion.headCommandInput_.wireTo(&behaviors.headMotionCommandOut, true);
 
         //need to wire modules through the selector
         //Since selector will switch the motion and tool, wire the tool to a dead end for clarity.
         //unless the tool is started, the switching will not occur.
-        motionSelector.wireModulesThroughSelector(motion.bodyCommandInput_, &behaviors.bodyMotionCommandOut, true);
-        motionSelector.deadEndWire(&streamer.streamerOutput_, true);
+        motionSelector.wireModulesThroughSelector(&motion.bodyCommandInput_, &behaviors.bodyMotionCommandOut, true);
+        //motionSelector.deadEndWire(&streamer.streamerOutput_, true);
 
 
         motion.requestInput_.wireTo(&behaviors.motionRequestOut, true);

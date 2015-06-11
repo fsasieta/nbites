@@ -7,6 +7,10 @@
 
 #define CONTROL_PORT (30001)
 
+
+//extern bool newCommand;
+//extern std::string newTimeStamp, oldTimeStamp, streamedData;
+
 namespace control {
     
     /*
@@ -42,6 +46,11 @@ namespace control {
     void control_init();
     
     extern pthread_t control_thread;
+
+    //Global variables shared by the control and motion threads.
+    //Only modified here, values are copied by the function called from other thread.
+    extern bool newCommand;
+    extern std::string newTimeStamp, oldTimeStamp, streamedData;
 }
 
 #endif //nbcontrol_h

@@ -4,9 +4,6 @@
 #include "control.h"
 #include "../log/logging.h"
 
-//streamer file
-//#include "MotionStreamerModule.h"
-
 #include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -21,12 +18,22 @@
 #include <string>
 #include <vector>
 #include <sstream>
+//#include <iostream>
 
 using nblog::SExpr;
 using nblog::Log;
 
+//initializing global variables used in streaming
+//bool newCommand = false;
+//std::string newTimeStamp, oldTimeStamp = "0";
+//std::string streamedData = "";
+
 namespace control {
     
+    bool newCommand = false;
+    std::string newTimeStamp, oldTimeStamp = "0";
+    std::string streamedData = "";
+
     pthread_t control_thread;
     static bool STARTED = false;
     
@@ -90,10 +97,31 @@ namespace control {
     }
     
 
-    //uint32_t (*)(Log *)> init_fmap()
+    //confusing name, since the streamer tool is defined in motion streamer.
+    //Need to refactor this into something readable.
+    //Need to use timestamp to figure out if they are new commands.
+    uint32_t streamerTool(Log * arg){
 
-    //uint32_t (*)(Log*) cnc_testFcn(
+        printf("Entering streamerTool function in control.cpp");
+        printf("Java connection worked so far");
 
+        std::string dataReceived = arg->data();
+        //std::string timeStamp = "timeStamp";
+
+        int sindex = dataReceived.find("timeStamp");
+        newTimeStamp = dataReceived.substr(sindex + 1, dataReceived.find_first_of(",]", sindex));
+
+        if(newTimeStamp != oldTimeStamp){
+            
+            oldTimeStamp = newTimeStamp;
+            //New command/data received.
+            printf("In control.cpp function. Data received: %s\n", dataReceived.c_str());
+            streamedData = dataReceived;
+            newCommand = true;
+        }
+
+        return 0;
+    }
 
     /*
      THIS IS WHERE YOU PUT NEW CONTROL FUNCTIONS!
@@ -105,9 +133,7 @@ namespace control {
         
         ret["test"] = &cnc_test;
         ret["setFlag"] = &cnc_setFlag;
-        //main function for the tool streaming.
-        //ret["toolTest"] = &toolTest;
-        //ret["streamerTool"] = &streamerTool;
+        ret["streamerTool"] = &streamerTool;
         //ret["startStreaming"] = &startStreaming;
         //ret["stopStreaming"] = &stopStreaming;
         

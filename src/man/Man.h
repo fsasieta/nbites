@@ -56,6 +56,7 @@ private:
     motion::MotionSelectorModule motionSelector; //ADDED!
     motion::MotionStreamerModule streamer; //ADDED!
 
+
     DiagramThread guardianThread;
     guardian::GuardianModule guardian;
     audio::AudioEnactorModule audio;

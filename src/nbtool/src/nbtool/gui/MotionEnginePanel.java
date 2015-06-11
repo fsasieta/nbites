@@ -28,7 +28,9 @@ import javax.swing.BorderFactory;
 //import nbtool.data.BotStats;
 import nbtool.data.Log;
 import nbtool.data.SessionMaster;
-import nbtool.io.CommandIO;
+import nbtool.io.ControlIO;
+
+/*
 import nbtool.util.N;
 import nbtool.util.N.NListener;
 import nbtool.util.NBConstants;
@@ -38,6 +40,7 @@ import nbtool.util.NBConstants.MODE;
 import nbtool.util.NBConstants.STATUS;
 import nbtool.util.P;
 import nbtool.util.U;
+*/
 
 /* TO DO:
  * Add a text box to input the place where I want the robot to go
@@ -53,7 +56,7 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
                                                          ChangeListener {
 
     private JPanel canvas;
-    private JButton start, stop;
+    private JButton startStop;//, stop;
     private JLabel robPositionLab, walkParamLab;
     //Names of Slider based on robot parameters
     //Look in bhwalk/~/ WalkCommand.
@@ -81,13 +84,13 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
         canvas.setLayout(null);
 
         //adding GUI action components.
-        start = new JButton("start");
-        start.addActionListener(this);
-        canvas.add(start);
+        startStop = new JButton("Start streaming");
+        startStop.addActionListener(this);
+        canvas.add(startStop);
 
-        stop = new JButton("stop");
-        stop.addActionListener(this);
-        canvas.add(stop);
+        //stop = new JButton("Stop streaming");
+        //stop.addActionListener(this);
+        //canvas.add(stop);
         
         walkParamLab = new JLabel("Walking parameters");
         robPositionLab = new JLabel("Robot Position in the field.");
@@ -139,24 +142,34 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
 
     public void model_returnKeypress() {
 		ActionEvent e = new ActionEvent(
-                start, ActionEvent.ACTION_PERFORMED, "start from keypress"
+                startStop, ActionEvent.ACTION_PERFORMED, "start from keypress"
                 );
 		this.actionPerformed(e);
 	}
 
 
 
+    /* For some reason you have to press the button twice to make it go.
+     * The first press is always stop streaming
+     */
     public void actionPerformed (ActionEvent e){
-        if (e.getSource() == start){
-            System.out.println("Start button was pressed.");
+        if (e.getSource() == startStop){
+            if("Start Streaming".equals(e.getActionCommand())){
+                System.out.println("Start button was pressed.");
+                dataStreamer.streamingStatus("start");
+                startStop.setText("Stop Streaming");
+            }
+            else{
+                System.out.println("Stop button was pressed");
+                dataStreamer.streamingStatus("stop");
+                startStop.setText("Start Streaming");
+            }
         }
-        else if(e.getSource() == stop){
-            System.out.println("Stop button was pressed");
-        }
-        else{}
     }
 
-    //Need to call appropiate function here
+    /* Commands will only be sent if the the tool is
+     * streaming. ie. if the "Stop streaming" button is shown
+     */
     public void stateChanged(ChangeEvent e){
         JSlider source = (JSlider) e.getSource();
         if(!source.getValueIsAdjusting()){
@@ -167,15 +180,11 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
             //Need to add a slider for this.
             //float gainsValue = (float) gainsSlider.getValue();
 
-            //TODO: only send the information if a boolean is set to true
-            //aka send the command only after pressing a button, not
-            //iummediately after changing the slider.
-
             //Sends parameters to class that handles rest of motion movmt and msgs.
             //this gets upadated everytime this method is called
             //Declared in MotionStreamer.java. Works!!
-            dataStreamer.walkMotion(valueX, valueY, valueH, .5); //hardcoded value for now.
-
+            dataStreamer.odometryWalk(valueX, valueY, valueH, .5f); //hardcoded value for now.
+        }
     }
     
     
@@ -189,17 +198,17 @@ public class MotionEnginePanel extends JPanel implements ActionListener,
 		int max_x = 260;
 		
         //start button
-		d1 = start.getPreferredSize();
+		d1 = startStop.getPreferredSize();
         d2 = d1;
-		start.setBounds(0, y, d1.width, d1.height);
+		startStop.setBounds(0, y, d1.width + 5, d1.height);
         //This calculates the y value of the bottom part of the button
         //I think.
 		y += (d1.height > d2.height ? d1.height : d2.height) + 3;
 
         //stop button
-        d1 = start.getPreferredSize();
-		stop.setBounds(0, y + 3, d1.width, d1.height);
-		y += (d1.height > d2.height ? d1.height : d2.height) + 3;
+        //d1 = start.getPreferredSize();
+		//stop.setBounds(0, y + 3, d1.width, d1.height);
+		//y += (d1.height > d2.height ? d1.height : d2.height) + 3;
 
         //label for the walk motion sliders
         walkParamLab.setBounds(0, y + 3, d1.width * 3 , d1.height);

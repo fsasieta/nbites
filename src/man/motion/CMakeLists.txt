@@ -13,9 +13,12 @@ set(MOTION_SRCS MotionModule
 		HeadJointCommand
 		HeadProvider
         MotionStreamer
+        MotionSelectorModule
         )
 
 add_subdirectory( bhwalk )
+
+include_directories( ../control )
 
 # Add project as a library.
 add_library(
@@ -27,6 +30,7 @@ add_library(
 # Link project to appropriate libraries.
 target_link_libraries(motion
   portals
+  control
   messages
   support
   bhwalk

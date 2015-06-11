@@ -16,37 +16,36 @@
 #include "MotionCommand.h"
 #include "MotionSelector.h"
 
+using std::cout;
+using std::endl;
+
+
 namespace man{
 namespace motion{
 
 //MotionStreamerModule::MotionStreamerModule(MotionSelectorModule *selectorInput)
-
 MotionStreamerModule::MotionStreamerModule(MotionSelectorModule &selectorInput)
     :   streamerOutput_(base()),
         selector(selectorInput){
         streaming = false;
         makeMap();
+
+        cout << "Building Streamer Module" << endl;
+        control::streamedData  = "randomString";
+        cout << "Changed value of streamedData to: " <<control::streamedData<< endl;
 }
 
 //MotionStreamerModule::~MotionStreamerModule(){}
 
 
-/* For now the implementation of run is empty,
- * since we don't plan to make the diagram thread run
- * this everytime.
- * Also, the diagram is not intended to run the tool.
- * Put here cause the implementation of run_() is required
- * by the base class.
- */
-void MotionStreamerModule::run_(){
-}
+
 
 /* When you start streaming, you need to change the wiring.
  * the selector allows you to do that.
  */
 void MotionStreamerModule::startStreaming(){
     streaming = true;
-    selector.changeWiring(streamerOutput_, true);
+    selector.changeWiring(&streamerOutput_, true);
 }
 
 /* Always remember to stop streaming in order to make behaviors
@@ -69,10 +68,11 @@ void MotionStreamerModule::streamerTool(std::string argument){
     //Parsing the arguments. Need to figure out what are we dealing with.
     //I think I should be using asserts here, but we will leave this for now
     
-    std::cout<<"String received: \n"<<argument<<std::endl;
+    cout <<"String received: \n"<< argument << endl;
 
-    std::cout<<"\nRemember, parsing not implemented yet"<<std::endl;
+    cout <<"\nRemember, parsing not implemented yet"<< endl;
 
+    motionCommandName = "ODOMETRY_WALK";
     /*
     if(!argument.find("commandName").equals(string::npos)){
 
@@ -101,7 +101,7 @@ void MotionStreamerModule::streamerTool(std::string argument){
     //Once argument vector is filled, we can then call the function we want
     switch (motionFunctionsMap[motionCommandName]){
         case DESTINATION_WALK:{
-            std::cout<<"DestinationWalk not implemented yet"<<std::endl;
+            cout <<"DestinationWalk not implemented yet"<< endl;
             break;
         }
         case ODOMETRY_WALK:{
@@ -116,7 +116,7 @@ void MotionStreamerModule::streamerTool(std::string argument){
 
 int MotionStreamerModule::incorrectLog(){
     stopStreaming();
-    std::cout<<"Incorrect log, exiting"<<std::endl;
+    cout <<"Incorrect log, exiting"<< endl;
     return 0;
 }
     
@@ -142,30 +142,11 @@ void MotionStreamerModule::executeOdometryWalk(std::vector<std::string> &argumen
     hDeg = (float) atoi(argumentList[2].c_str());
     gain = (float) atoi(argumentList[3].c_str());
     
-    //make the message.
-    //This is odometry walk, so the robot should stand at destination.
-    //None of the commented stuff works! (as of right now)
-    //portals::Message<messages::MotionCommand> motionCommand(0); 
-    //portals::Message<messages::OdometryWalk> odoWalk(0);
-
-    //messages::MotionCommand motionMsg = 
-    //motionCommand.get()->set_type(messages::MotionCommand::ODOMETRY_WALK);
-    //motionMsg.mutable_odometry_dest().set_rel_x(xCm);
-    //motionMsg.mutable_odometry_dest().set_rel_y(yCm);
-    //motionMsg.mutable_odometry_dest().set_rel_h(hDeg);
-    //motionMsg.mutable_odometry_dest().set_gain(gain);
-    //motionCommand.get()->odometry_dest
-
-    //odoWalk.get()->set_rel_x(xCm);
-    //odoWalk.get()->set_rel_y(yCm);
-    //odoWalk.get()->set_rel_h(hDeg);
-    //odoWalk.get()->set_gain(gain);
-    
+        
     //building motionCommand msg from scratch;
     messages::MotionCommand motionProto;
     motionProto.set_type(messages::MotionCommand::ODOMETRY_WALK);
 
-    //literally no idea why this syntax works
     //odometrywalk is a proto inside the motioncommand proto.
     //the mutable make this possible I think
     motionProto.mutable_odometry_dest()->set_rel_x(xCm);
@@ -175,30 +156,49 @@ void MotionStreamerModule::executeOdometryWalk(std::vector<std::string> &argumen
 
     //messages::OdometryWalk odomWalk;
     //odomWalk.set_rel_x(xCm);
-    //odomWalk.set_rel_y(yCm);
-    //odomWalk.set_rel_h(hDeg);
-    //odomWalk.set_gain(gain);
-
     //motionProto.mutable_odometry_dest(odomWalk);
 
     portals::Message<messages::MotionCommand> motionCommand(&motionProto); 
-
-    //motionCommand.get()->set_type(messages::MotionCommand::ODOMETRY_WALK);
-    //motionCommand.get()->mutable_odometry_dest() = odomWalk;
 
     streamerOutput_.setMessage(motionCommand);
 }
 
 /* Only used to test network connectivity */ 
 void MotionStreamerModule::toolTest(std::string data){
-    std::cout<<"Could access C++ code through the network. YAY!\n"
-        <<"Should continue working on the C++ side now only"
-        <<", this is the string received: \n"<< data <<std::endl; 
+    cout <<"Could access C++ code through the network. YAY!\n"
+         <<"Should continue working on the C++ side now only"
+         <<", this is the string received: \n"<< data << endl; 
 }
 
 void MotionStreamerModule::makeMap(){
     motionFunctionsMap["DESTINATION_WALK"] = DESTINATION_WALK;
     motionFunctionsMap["ODOMETRY_WALK"] = ODOMETRY_WALK;
+}
+
+/* For now the implementation of run is empty,
+ * since we don't plan to make the diagram thread run
+ * this everytime.
+ * Also, the diagram is not intended to run the tool.
+ * Put here cause the implementation of run_() is required
+ * by the base class.
+ *
+ * Spoke to soon, may be able to make it work this way.
+ */
+void MotionStreamerModule::run_(){
+
+    if(control::newCommand){
+        cout << "Motion Command received through streamer" << endl;
+
+        startStreaming();
+        streamerTool(control::streamedData);
+        stopStreaming();
+        
+        cout << "Motion Command sent through streamer" << endl;
+    }
+    else{
+        //Nothing happens
+    }
+
 }
 
 }//namespace motion

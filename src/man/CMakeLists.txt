@@ -93,6 +93,10 @@ include_directories( support )
 add_subdirectory( support )
 include_directories( motion/bhwalk ) # @todo hack?
 
+#added to make Man recognize the motionStreamer.h is including control.h
+include_directories( control )
+
+
 # Actual modules
 add_subdirectory( arms )
 add_subdirectory( audio )

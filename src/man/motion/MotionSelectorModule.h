@@ -12,7 +12,7 @@
  *
  * @author Franco Sasieta, fsasieta@bowdoin.edu
  * Created 05/29/2015
- * Last modified 06/01/2015
+ * Last modified 06/09/2015
  */
 
 #ifndef MOTION_SELECTOR_MODULE_H
@@ -21,18 +21,19 @@
 
 #include "RoboGrams.h"
 #include "PMotion.pb.h"
+#include <iostream>
 
 namespace man{
 namespace motion{
 
-class MotionSelectorModule : public portals::Module{
-
+class MotionSelectorModule : public portals::Module
+{
 public:
     
     MotionSelectorModule();
     
     //Do we need a destructor?
-    //virtual ~MotionSelectorModule();
+    virtual ~MotionSelectorModule();
     
     //actually make a map of portals saved.
     //map<portals::InPortal, portals::OutPortal *> previousWire;
@@ -40,16 +41,16 @@ public:
     //map<portals::InPortal, portals::OutPortal> deadEndWires;
     //map<portals::OutPortal, portals::InPortal> deadEndWiresInverse;
     
-    
-    /********************
-     * Wiring functions *
-     ********************/
+    // ********************
+    // * Wiring functions *
+    // ******************** 
     
     /* Doesn't actually wire portal to anything.
      * It is used for clarity in Man.cpp
      * Motion streamer wires to this first.
      * saves the outportal entered to be able to change to it later.
      * unless called by motion streamer this has no purpose.
+     * currently not implemented
      */
     void deadEndWire(portals::OutPortal<messages::MotionCommand> *incomingOutput,
                      bool asynchronous);
@@ -58,15 +59,14 @@ public:
      * Through the selector Module. Used in Man.cpp
      * TODO: to generalize, will need to implement arrays of
      * selector input/output portals.
-     * ADDED: & and * to handle references
      */
-    void wireModulesThroughSelector(portals::InPortal<messages::MotionCommand> &OutgoingInput,
+    void wireModulesThroughSelector(portals::InPortal<messages::MotionCommand> *OutgoingInput,
                                     portals::OutPortal<messages::MotionCommand> *IncomingOutput,
                                     bool asynchronous);
     
     /* Use the selector portals to change the wiring.
      */
-    void changeWiring(portals::OutPortal<messages::MotionCommand> newIncomingOutPortal,
+    void changeWiring(portals::OutPortal<messages::MotionCommand> *newIncomingOutPortal,
                       bool asynchronous);
     
     /* Use the selector portals to change the wiring.
@@ -80,35 +80,33 @@ public:
     
     
 private:
-    
+
     //need to implement this because otherwise we get an error.
     void run_();
 
+protected:
+    
     //save the OutPortal we are currently connected to;
-    void saveOutPortal(portals::InPortal<messages::MotionCommand> portal, bool asynchronous){
-        savedOutPortal = portal.wiredTo();
-        savedAsynchronousValue = asynchronous;
-    }
+    void saveOutPortal(portals::InPortal<messages::MotionCommand> *portal, bool asynchronous);
     
     //Previously saved portal.
-    void clearSavedPortal(){
-        savedOutPortal = NULL;
-        savedAsynchronousValue = false;
-    }
+    void clearSavedPortal();
     
     /** Out Portals **/
-    portals::OutPortal<messages::MotionCommand> *selectorOutput;
-    portals::InPortal<messages::MotionCommand> *selectorInput_;
-    portals::OutPortal<messages::MotionCommand> *savedOutPortal; //portal saved
-    portals::OutPortal<messages::MotionCommand> *streamerIn;//specifically for the streamer
-    
+    portals::OutPortal<messages::MotionCommand>  selectorOutput_;
+    portals::OutPortal<messages::MotionCommand>  *savedOutPortal;   //portal saved 
+    portals::OutPortal<messages::MotionCommand>  streamerIn;        //specifically for the streamer
+
+    /** In Portal **/
+    portals::InPortal<messages::MotionCommand>   selectorInput_;
+
     bool savedAsynchronousValue;
     bool streamerAsynch;
+    bool clearedPortal;
     
 };//class bracket
 
 }//namespace motion
 }//namespace man
-
 
 #endif
