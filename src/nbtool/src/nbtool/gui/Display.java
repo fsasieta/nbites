@@ -1,5 +1,6 @@
 package nbtool.gui;
 
+import java.awt.*;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.KeyEventPostProcessor;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
@@ -70,8 +72,11 @@ public final class Display extends JFrame implements KeyEventPostProcessor {
 		
 		cntrlp = new ControlPanel();
 		lc = new LogChooser();
+        engparp = new EngineParametersPanel();
 		left.addTab("control", cntrlp);
 		left.addTab("logs", lc);
+        JScrollPane scroll= new JScrollPane(engparp, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        left.add(scroll, "Walking Engine Parameters");
 				
 		statusp = new StatusPanel();
 		right.addTab("status", statusp);
@@ -138,6 +143,8 @@ public final class Display extends JFrame implements KeyEventPostProcessor {
 	private ControlPanel cntrlp;
 	private StatusPanel statusp;
 	private LogChooser lc;
+
+    private EngineParametersPanel engparp;
 		
 	private LogDisplayPanel ldp;
 	
