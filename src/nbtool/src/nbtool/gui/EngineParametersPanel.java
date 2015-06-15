@@ -22,98 +22,87 @@ import java.io.IOException;
  */
 public class EngineParametersPanel extends JPanel implements ActionListener {
 	
-	//static final long serialVersionUID = 1L;
 
-    private JScrollPane sp;
-	private JPanel canvas;
-    //private JPanel notScrollable;
-    //private JScrollPane canvas;
+    private JScrollPane spCenter, spLeft;
+	private JPanel canvas, labelCanvas;
 	
-	//private JButton startStreaming;
-	private JButton saveParamsV4, saveParamsV5;
-    private JButton useV4, useV5;
+	private JButton saveParamsV4, saveParamsV5, useV4, useV5;
+    private BoxLayout layout;
     
     private JTextField[] paramFields;
+    private JLabel[] fieldLabels;
 	
-	public Integer[] v4Params;
-	public Integer[] v5Params;
     private static int paramNumber =  49; //size of parameter string.
 
     private WalkingEngineParameters engineStreamer;
     private JTextField test;
 
-
 	public EngineParametersPanel() {
+
 		/*
 		 * GUI below. 
 		 */
 		super();
-		setLayout(null);
-		addComponentListener(new ComponentAdapter() {
-			public void componentResized(ComponentEvent e) {
-				useSize(e.getComponent().getSize());
-			}
-		});
-		
-        //notScrollable = new JPanel();
+
+        //Class that contains the networking and other logic stuff.
+		engineStreamer = new WalkingEngineParameters();
+
+        /* I use two layout. The border layout to have everything centered, and then the
+         * box layout in the canvas panel to have everything in list type.
+         */
+        setLayout(new BorderLayout());
+        
 		canvas = new JPanel();
-        //canvas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
-        //canvas.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-		canvas.setLayout(null);
+        // there are more than 50 parameters, so we need to be able to scroll stuff
+        sp = new JScrollPane(canvas,
+                             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        engineStreamer = new WalkingEngineParameters();
-
-        useV4 = new JButton("Use v4 parameters");
-        useV4.addActionListener(this);
-        //useV4.setPreferredSize(new Dimension(80,25));
-        canvas.add(useV4);
-
-        useV5 = new JButton("Use v5 parameters");
-        useV5.addActionListener(this);
-        //useV5.setPreferredSize(new Dimension(80,25));
-        canvas.add(useV5);
-
+        add(sp, BorderLayout.CENTER);
+        canvas.setLayout(new BoxLayout(canvas, BoxLayout.Y_AXIS));
+        
+        //Button initialization
+        useV4 = new JButton("Use v4 params");
+        useV5 = new JButton("Use v5 params");
         saveParamsV4 = new JButton("Save v4 params");
         saveParamsV5 = new JButton("Save v5 params");
+        useV4.addActionListener(this);
+        useV5.addActionListener(this);
         saveParamsV4.addActionListener(this);
         saveParamsV5.addActionListener(this);
-        //saveParamsV4.setPreferredSize(new Dimension(80, 25));
-        //saveParamsV5.setPreferredSize(new Dimension(80, 25));
+
+        /* Layout bullshit*/
+        useV4.setAlignmentX(Component.LEFT_ALIGNMENT);
+        useV5.setAlignmentX(Component.LEFT_ALIGNMENT);
+        saveParamsV4.setAlignmentX(Component.LEFT_ALIGNMENT);
+        saveParamsV5.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        canvas.add(useV4);
+        canvas.add(useV5);
         canvas.add(saveParamsV4);
         canvas.add(saveParamsV5);
 
-        //In case we get a lot of components in the tab.
-        sp = new JScrollPane();
-		sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		sp.setViewportView(canvas);
-        add(sp);
-
-        paramFields = new JTextField[paramNumber];
+        paramFields = new JTextField[engineStreamer.getListOfParamsLength()];
+        
         for(int i = 0; i < paramNumber; i++){
             paramFields[i] = new JTextField(6);
-            //System.out.println("in initializer array");
             paramFields[i].setEditable(true);
-            //paramFields[i].setBounds( 5, 50 + i*25, useV4.getPreferredSize().width, useV4.getPreferredSize().height);
             paramFields[i].addActionListener(this);
+            paramFields[i].setAlignmentX(Component.LEFT_ALIGNMENT);
             canvas.add(paramFields[i]);
         }
 
-        //JComponent labelsAndFields = getTwoColumnLayout(engineStreamer.listOfParams, paramFields);
-        //JComponent optionsPanel = new JPanel(new BorderLayout(10,10));
-        //canvas.add(optionsPanel);
+
+        fieldLabels = new JLabels[engineStreamer.getListOfParamsLength()];
+
+        setParams = new JButton("Set parameters");
+        setParams.addActionListener(this);
+        canvas.add(setParams);
     }
 
-    /*
-    public void model_returnKeypress() {
-        ActionEvent e = new ActionEvent(
-                startStop, Action.Event.ACTION_PERFORMED, "start from keypress"
-                );
-        this.actionPerformed(e);
-    }
-    */
-
+    /* Action code handling 
+     */
     @Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -133,14 +122,19 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //save parameters of V5 robot 
             System.out.println("Save v5 parameters button pressed");
         }
-        else{
+        else if(e.getSource() == setParams){
             //Nothing should happen since an unknown button was pressed
         }
 	}
 
+
+
+/*
+
     private void useSize(Dimension s) {
 
-    sp.setBounds(0, 0, s.width, s.height);
+    //sp.setBounds(0, 0, s.width, s.height);
+    
     //update component sizes...
     Dimension d1, d2, d3, d4;
     int y = 0;
@@ -172,53 +166,5 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
     }
     
     }
-    
-/* everything else is a comment
-
-    protected JComponent getTwoColumnLayout(JLabel[] labels, JComponent[] fields) {
-		if(labels.length != fields.length) {
-			String s = "Inconsistent # of labels and fields";
-			throw new IllegalArgumentException(s);
-		}
-		
-		JComponent panel = new JPanel();
-		GroupLayout layout = new GroupLayout(panel);
-		panel.setLayout(layout);
-		layout.setAutoCreateGaps(true);
-		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
-		GroupLayout.Group yLabelGroup = layout.createParallelGroup(GroupLayout.Alignment.TRAILING);
-		hGroup.addGroup(yLabelGroup);
-		
-		GroupLayout.Group yFieldGroup = layout.createParallelGroup();
-		hGroup.addGroup(yFieldGroup);
-		layout.setHorizontalGroup(hGroup);
-		
-		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
-		layout.setVerticalGroup(vGroup);
-		
-		int p = GroupLayout.PREFERRED_SIZE;
-		
-		for(JLabel label : labels) {
-			yLabelGroup.addComponent(label);
-		}
-		for(Component field : fields) {
-			yFieldGroup.addComponent(field,p,p,p);
-			for(int i=0; i<labels.length; i++) {
-				vGroup.addGroup(layout.createParallelGroup().
-						addComponent(labels[i]).
-						addComponent(fields[i],p,p,p));
-			}
-		}
-		return panel;
-	}
-	
-	protected JComponent getTwoColumnLayout(String[] labelStrings, JComponent[] fields) {
-		JLabel[] labels = new JLabel[labelStrings.length];
-		for(int i=0; i<labels.length; i++) {
-			labels[i] = new JLabel(labelStrings[i]);
-		}
-		return getTwoColumnLayout(labels,fields);
-	}
-
-
+    */
 }
