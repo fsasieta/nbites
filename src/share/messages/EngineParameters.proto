@@ -21,106 +21,109 @@ message WalkEngineParameterList{
     optional float vectorWalkRefAtFullSpeed_x = 10;
     optional float vectorWalkRefAtFullSpeed_y = 11;
     
-    optional float rangeWalkRefPlanningLimit_low = 14;
-    optional float rangeWalkRefPlanningLimit_high = 15;
+    optional float rangeWalkRefPlanningLimit_low = 12;
+    optional float rangeWalkRefPlanningLimit_high = 13;
 
-    optional float rangeWalkRefXLimit_low = 16;
-    optional float rangeWalkRefXLimit_high = 17;
+    optional float rangeWalkRefXLimit_low = 14;
+    optional float rangeWalkRefXLimit_high = 15;
 
-    optional float rangeWalkRefYLimit_low = 18;
-    optional float rangeWalkRefYLimit_high = 19;
+    optional float rangeWalkRefYLimit_low = 16;
+    optional float rangeWalkRefYLimit_high = 17;
 
-    optional float rangeWalkStepSizeXPlanningLimit_low = 20;
-    optional float rangeWalkStepSizeXPlanningLimit_high = 21;
+    optional float rangeWalkStepSizeXPlanningLimit_low = 18;
+    optional float rangeWalkStepSizeXPlanningLimit_high = 19;
 
-    optional float rangeWalkStepSizeXLimit_low = 22;
-    optional float rangeWalkStepSizeLimit_high = 23;
+    optional float rangeWalkStepSizeXLimit_low = 20;
+    optional float rangeWalkStepSizeLimit_high = 21;
 
-    optional float walkStepDuration = 24;
-    optional float walkStepDurationAtFullSpeedX = 25;
-    optional float walkStepDurationAtFullSpeedY = 26;
+    optional float walkStepDuration = 22;
+    optional float walkStepDurationAtFullSpeedX = 23;
+    optional float walkStepDurationAtFullSpeedY = 24;
 
-    optional float vectorWalkHeight_x = 27;
-    optional float vectorWalkHeight_y = 28;
+    optional float vectorWalkHeight_x = 25;
+    optional float vectorWalkHeight_y = 26;
 
-    optional float walkArmRotationAtFullSpeedX = 29;
+    optional float walkArmRotationAtFullSpeedX = 27;
 
-    optional float walkMovePhaseBeginning = 30;
-    optional float walkMovePhaseLength = 31;
+    optional float walkMovePhaseBeginning = 28;
+    optional float walkMovePhaseLength = 29;
 
-    optional float walkLiftPhaseBeginning = 32;
-    optional float walkLiftPhaseLength = 33;
+    optional float walkLiftPhaseBeginning = 30;
+    optional float walkLiftPhaseLength = 31;
 
-    optional float vectorWalkLiftOffSet_x = 34;
-    optional float vectorWalkLiftOffSet_y = 35;
-    optional float vectorWalkLiftOffSet_z = 36;
+    optional float vectorWalkLiftOffSet_x = 32;
+    optional float vectorWalkLiftOffSet_y = 33;
+    optional float vectorWalkLiftOffSet_z = 34;
 
-    optional float vectorwalkLiftOffSetAtFullSpeedX_x = 37;
-    optional float vectorwalkLiftOffSetAtFullSpeedX_y = 38;
-    optional float vectorwalkLiftOffSetAtFullSpeedX_z = 39;
+    optional float vectorwalkLiftOffSetAtFullSpeedX_x = 35;
+    optional float vectorwalkLiftOffSetAtFullSpeedX_y = 36;
+    optional float vectorwalkLiftOffSetAtFullSpeedX_z = 37;
 
-    optional float vectorwalkLiftOffSetAtFullSpeedY_x = 40;
-    optional float vectorwalkLiftOffSetAtFullSpeedY_y = 41;
-    optional float vectorwalkLiftOffSetAtFullSpeedY_z = 42;
+    optional float vectorwalkLiftOffSetAtFullSpeedY_x = 38;
+    optional float vectorwalkLiftOffSetAtFullSpeedY_y = 39;
+    optional float vectorwalkLiftOffSetAtFullSpeedY_z = 40;
 
-    optional float vectorWalkLiftRotation_x = 43;
-    optional float vectorWalkLiftRotation_y = 44;
-    optional float vectorWalkLiftRotation_z = 45;
+    optional float vectorWalkLiftRotation_x = 41;
+    optional float vectorWalkLiftRotation_y = 42;
+    optional float vectorWalkLiftRotation_z = 43;
 
-    optional float walkSupportRotation = 46;
+    optional float walkSupportRotation = 44;
 
-    optional float walkComLiftOffSet_x = 47;
-    optional float walkComLiftOffSet_y = 48;
-    optional float walkComLiftOffSet_z = 49;
+    optional float walkComLiftOffSet_x = 45;
+    optional float walkComLiftOffSet_y = 46;
+    optional float walkComLiftOffSet_z = 47;
 
-    optional float walkComBodyRotation = 50;
+    optional float walkComBodyRotation = 48;
 
-    optional float speedMax_rot = 51;
-    optional float speedMax_Vector_x = 52;
-    optional float speedMax_Vector_y = 53;
+    optional float speedMax_rot = 49;
+    optional float speedMax_Vector_x = 50;
+    optional float speedMax_Vector_y = 51;
 
-    optional float speedMaxBackwards = 54;
+    optional float speedMaxBackwards = 52;
 
-    optional float speedMaxChange_rot = 55;
-    optional float speedMaxChange_Vector_x = 56;
-    optional float speedMaxChange_Vector_y = 57;
+    optional float speedMaxChange_rot = 53;
+    optional float speedMaxChange_Vector_x = 54;
+    optional float speedMaxChange_Vector_y = 55;
 
-    optional bool balance = 58;
+    optional bool balance = 56;
 
-    optional float vectorBalanceBodyRotation_x = 59;
-    optional float vectorBalanceBodyRotation_y = 60;
-    optional float vectorBalanceBodyRotation_z = 61;
+    optional float vectorBalanceBodyRotation_x = 57;
+    optional float vectorBalanceBodyRotation_y = 58;
+    optional float vectorBalanceBodyRotation_z = 59;
 
-    optional float vectorBalanceCom_x = 62;
-    optional float vectorBalanceCom_y = 63;
+    optional float vectorBalanceCom_x = 60;
+    optional float vectorBalanceCom_y = 61;
 
-    optional float vectorBalanceComVelocity_x = 64;
-    optional float vectorBalanceComVelocity_y = 65;
+    optional float vectorBalanceComVelocity_x = 62;
+    optional float vectorBalanceComVelocity_y = 63;
 
-    optional float vectorBalanceRef_x = 66;
-    optional float vectorBalanceRef_y = 67;
+    optional float vectorBalanceRef_x = 64;
+    optional float vectorBalanceRef_y = 65;
 
-    optional float vectorBalanceNextRef_x = 68;
-    optional float vectorBalanceNextRef_y = 69;
+    optional float vectorBalanceNextRef_x = 66;
+    optional float vectorBalanceNextRef_y = 67;
 
-    optional float vectorBalanceStepSize_x = 70;
-    optional float vectorBalanceStepSize_y = 71;
+    optional float vectorBalanceStepSize_x = 68;
+    optional float vectorBalanceStepSize_y = 69;
 
-    optional float observerMeasurementDelay = 72;
+    optional float observerMeasurementDelay = 70;
 
-    optional float vectorObserverMeasurementDeviation_x = 73;
-    optional float vectorObserverMeasurementDeviaiton_y = 74;
-    optional float vectorObserverMeasurementDeviation_z = 75;
-    optional float vectorObserverMeasurementDeviation_w = 76;
+    optional float vectorObserverMeasurementDeviation = 71;
+    optional float vectorObserverMeasurementDeviation = 72;
 
-    optional float odometryScale_rot = 78;
-    optional float odometryScale_Vector_x = 79;
-    optional float odometryScale_Vector_y = 80;
+    optional float vectorObserverProcessDeviation_x = 73;
+    optional float vectorObserverProcessDeviation_y = 74;
+    optional float vectorObserverProcessDeviation_z = 75;
+    optional float vectorObserverProcessDeviation_w = 76;
 
-    optional float gyroStateGain = 81;
-    optional float gyroDerivativeGain = 82;
-    optional float gyroSmoothing = 83;
+    optional float odometryScale_rot = 77;
+    optional float odometryScale_Vector_x = 78;
+    optional float odometryScale_Vector_y = 79;
 
-    optional float minRotationtoReduceStepSize = 84;
+    optional float gyroStateGain = 80;
+    optional float gyroDerivativeGain = 81;
+    optional float gyroSmoothing = 82;
+
+    optional float minRotationtoReduceStepSize = 83;
 
 }
