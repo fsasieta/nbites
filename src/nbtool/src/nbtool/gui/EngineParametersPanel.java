@@ -71,7 +71,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
         canvas.setLayout(new GridLayout(0, 2));
 
-        //Button initialization
+        //Adding Buttons
         useV4 = new JButton("Default V4 params");
         useV5 = new JButton("Default V5 params");
         saveParamsV4 = new JButton("Save v4 params");
@@ -82,13 +82,12 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         useV5.addActionListener(this);
         saveParamsV4.addActionListener(this);
         saveParamsV5.addActionListener(this);
-
-        /* Layout bullshit*/
         buttonCanvas.add(useV4);
         buttonCanvas.add(useV5);
         buttonCanvas.add(saveParamsV4);
         buttonCanvas.add(saveParamsV5);
 
+        //Initializing needed arrays
         paramNumber = engineStreamer.getListOfParamsLength();
         paramFields = new JTextField[paramNumber];
 
@@ -146,12 +145,12 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		}
         else if(e.getSource() == saveParamsV4) {
             //save parameters of v4 robot
-            System.out.println("save v4 parameters button pressed.");
+            System.out.println("Save V4 parameters button pressed.");
             //TODO: write them to a file
 		}
         else if(e.getSource() == saveParamsV5) {
             //save parameters of V5 robot 
-            System.out.println("Save v5 parameters button pressed");
+            System.out.println("Save V5 parameters button pressed");
             //TODO: write thing to a file.
         }
         else if(e.getSource() == setParams){
@@ -163,9 +162,10 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
                 currentValues[i] = paramFields[i].getText();
             }
             
-            System.out.println("Array that was acquired by set params button\n");
-            System.out.println(Arrays.toString(currentValues));
-            //engineStreamer.sendValuesOverNetwork(currentValues);
+            //System.out.println("Array that was acquired by set params button");
+            //System.out.println(Arrays.toString(currentValues));
+            System.out.println("Sending data over network");
+            engineStreamer.sendDataOverNetwork(currentValues);
         }
 	}
 }

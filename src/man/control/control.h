@@ -2,6 +2,7 @@
 #define nbcontrol_h
 
 #include <pthread.h>
+#include "EngineParameters.pb.h"
 
 #define CONTROL_USLEEP_WAITING (100000)
 
@@ -41,6 +42,8 @@ namespace control {
     
     void control_init();
     
+    //Protobuff used in Walking engine function
+    static messages::WalkEnginePreferences receivedParams;
     extern pthread_t control_thread;
 }
 

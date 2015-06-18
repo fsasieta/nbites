@@ -2,7 +2,7 @@ package messages;
 
 //Com = center of mass.
 //any parameter that is part of a vector will have "vector" in its name.
-message WalkEngineParameterList{
+message WalkEnginePreferences{
 
     optional float vectorStandComPos_y = 1;
     optional float vectorStandComPos_z = 2;
@@ -34,7 +34,7 @@ message WalkEngineParameterList{
     optional float rangeWalkStepSizeXPlanningLimit_high = 19;
 
     optional float rangeWalkStepSizeXLimit_low = 20;
-    optional float rangeWalkStepSizeLimit_high = 21;
+    optional float rangeWalkStepSizeXLimit_high = 21;
 
     optional float walkStepDuration = 22;
     optional float walkStepDurationAtFullSpeedX = 23;
@@ -55,13 +55,13 @@ message WalkEngineParameterList{
     optional float vectorWalkLiftOffSet_y = 33;
     optional float vectorWalkLiftOffSet_z = 34;
 
-    optional float vectorwalkLiftOffSetAtFullSpeedX_x = 35;
-    optional float vectorwalkLiftOffSetAtFullSpeedX_y = 36;
-    optional float vectorwalkLiftOffSetAtFullSpeedX_z = 37;
+    optional float vectorWalkLiftOffSetAtFullSpeedX_x = 35;
+    optional float vectorWalkLiftOffSetAtFullSpeedX_y = 36;
+    optional float vectorWalkLiftOffSetAtFullSpeedX_z = 37;
 
-    optional float vectorwalkLiftOffSetAtFullSpeedY_x = 38;
-    optional float vectorwalkLiftOffSetAtFullSpeedY_y = 39;
-    optional float vectorwalkLiftOffSetAtFullSpeedY_z = 40;
+    optional float vectorWalkLiftOffSetAtFullSpeedY_x = 38;
+    optional float vectorWalkLiftOffSetAtFullSpeedY_y = 39;
+    optional float vectorWalkLiftOffSetAtFullSpeedY_z = 40;
 
     optional float vectorWalkLiftRotation_x = 41;
     optional float vectorWalkLiftRotation_y = 42;
@@ -89,41 +89,40 @@ message WalkEngineParameterList{
 
     optional float vectorBalanceBodyRotation_x = 57;
     optional float vectorBalanceBodyRotation_y = 58;
-    optional float vectorBalanceBodyRotation_z = 59;
 
-    optional float vectorBalanceCom_x = 60;
-    optional float vectorBalanceCom_y = 61;
+    optional float vectorBalanceCom_x = 59;
+    optional float vectorBalanceCom_y = 60;
 
-    optional float vectorBalanceComVelocity_x = 62;
-    optional float vectorBalanceComVelocity_y = 63;
+    optional float vectorBalanceComVelocity_x = 61;
+    optional float vectorBalanceComVelocity_y = 62;
 
-    optional float vectorBalanceRef_x = 64;
-    optional float vectorBalanceRef_y = 65;
+    optional float vectorBalanceRef_x = 63;
+    optional float vectorBalanceRef_y = 64;
 
-    optional float vectorBalanceNextRef_x = 66;
-    optional float vectorBalanceNextRef_y = 67;
+    optional float vectorBalanceNextRef_x = 65;
+    optional float vectorBalanceNextRef_y = 66;
 
-    optional float vectorBalanceStepSize_x = 68;
-    optional float vectorBalanceStepSize_y = 69;
+    optional float vectorBalanceStepSize_x = 67;
+    optional float vectorBalanceStepSize_y = 68;
 
-    optional float observerMeasurementDelay = 70;
+    optional float observerMeasurementDelay = 69;
 
-    optional float vectorObserverMeasurementDeviation = 71;
-    optional float vectorObserverMeasurementDeviation = 72;
+    optional float vectorObserverMeasurementDeviation_x = 70;
+    optional float vectorObserverMeasurementDeviation_y = 71;
 
-    optional float vectorObserverProcessDeviation_x = 73;
-    optional float vectorObserverProcessDeviation_y = 74;
-    optional float vectorObserverProcessDeviation_z = 75;
-    optional float vectorObserverProcessDeviation_w = 76;
+    optional float vectorObserverProcessDeviation_x = 72;
+    optional float vectorObserverProcessDeviation_y = 73;
+    optional float vectorObserverProcessDeviation_z = 74;
+    optional float vectorObserverProcessDeviation_w = 75;
 
-    optional float odometryScale_rot = 77;
-    optional float odometryScale_Vector_x = 78;
-    optional float odometryScale_Vector_y = 79;
+    optional float odometryScale_rot = 76;
+    optional float odometryScale_Vector_x = 77;
+    optional float odometryScale_Vector_y = 78;
 
-    optional float gyroStateGain = 80;
-    optional float gyroDerivativeGain = 81;
-    optional float gyroSmoothing = 82;
+    optional float gyroStateGain = 79;
+    optional float gyroDerivativeGain = 80;
+    optional float gyroSmoothing = 81;
 
-    optional float minRotationtoReduceStepSize = 83;
+    optional float minRotationToReduceStepSize = 82;
 
 }

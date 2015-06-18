@@ -10,9 +10,19 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 
 import java.io.IOException;
+import java.util.*;
 
 import nbtool.data.*;
 import nbtool.gui.utilitypanes.*;
+import nbtool.util.*;
+import nbtool.io.ControlIO;
+import nbtool.io.ControlIO.ControlInstance;
+import nbtool.util.NBConstants.*;
+import nbtool.util.Logger;
+
+//import messages.WalkEnginePreferences;
+import messages.EngineParameters.WalkEnginePreferences;
+
 
 public class WalkingEngineParameters {
 	
@@ -140,7 +150,7 @@ public class WalkingEngineParameters {
     "odometryScale_x   (1.f)"                           ,
     "odometryScale_y   (1.f)"                           ,
 
-      /* Parameters to calculate the correction of the torso's angular velocity. */
+    /* Parameters to calculate the correction of the torso's angular velocity. */
     "gyroStateGain (0.01f)"                             , /** Control weight (P) of the torso's angular velocity error. */
     "gyroDerivativeGain (0.0001f)"                      , /** Control weight (D) of the approximated rate of change of the angular velocity error. */
     "gyroSmoothing (0.5f)"                              , /** Smoothing (between 0 and 1!) to calculate the moving average of the y-axis gyro measurements. */
@@ -246,8 +256,8 @@ public class WalkingEngineParameters {
         System.arraycopy(defaultValuesV4, 0, defaultValuesV5, 0, defaultValuesV4.length);        
 
         //Actual default values for V5 robot for specific parameters.
-        defaultValuesV5[21] = "535.f";
-        defaultValuesV5[22] = "535.f";
+        defaultValuesV5[21] = "535.f"; //WalkStepDuration
+        defaultValuesV5[22] = "535.f"; //WalkStepDurationAtFullSpeedX
         defaultValuesV5[33] = "22.f";
         defaultValuesV5[36] = "22.f";
         defaultValuesV5[47] = "0.07f";
@@ -269,9 +279,154 @@ public class WalkingEngineParameters {
         return defaultValuesV5;
     }
 
-    //public void sendValuesOverNetwork(String[]){
-    //
-    //}
+    /* Called when the Set Param button is pressed. Doesnt check if the 
+     * input for balance is "true" or "false" 
+     * */
+    public void sendDataOverNetwork(String[] packet){
+
+        //System.out.println("Printing whole array");
+        //System.out.println(Arrays.toString(packet));
+        //for(i=0
+        //System.out.println("list of v4 params length: " + listOfV4Params.length);
+        //System.out.println("Length of array: " + packet.length + "| Last element: " + packet[81] + "|First element:" + packet[0]);
+
+        WalkEnginePreferences walkingEngineParams = WalkEnginePreferences.newBuilder()
+                              .setVectorStandComPosY(Float.parseFloat(packet[0]))
+                              .setVectorStandComPosZ(Float.parseFloat(packet[1]))
+
+                              .setStandBodyTilt(Float.parseFloat(packet[2]))
+
+                              .setVectorStandArmJointAngleX(Float.parseFloat(packet[3]))
+                              .setVectorStandArmJointAngleY(Float.parseFloat(packet[4]))
+
+                              .setStandHardnessAnklePitch(Long.parseLong(packet[5]))    //These are long!
+                              .setStandHardnessAnkleRoll(Long.parseLong(packet[6]))     //These are long!
+
+                              .setVectorWalkRefX(Float.parseFloat(packet[7]))
+                              .setVectorWalkRefY(Float.parseFloat(packet[8]))
+
+                              .setVectorWalkRefAtFullSpeedX(Float.parseFloat(packet[9]))
+                              .setVectorWalkRefAtFullSpeedY(Float.parseFloat(packet[10]))
+
+                              .setRangeWalkRefPlanningLimitLow(Float.parseFloat(packet[11]))
+                              .setRangeWalkRefPlanningLimitHigh(Float.parseFloat(packet[12]))
+
+                              .setRangeWalkRefXLimitLow(Float.parseFloat(packet[13]))
+                              .setRangeWalkRefXLimitHigh(Float.parseFloat(packet[14]))
+
+                              .setRangeWalkRefYLimitLow(Float.parseFloat(packet[15]))
+                              .setRangeWalkRefYLimitHigh(Float.parseFloat(packet[16]))
+
+                              .setRangeWalkStepSizeXPlanningLimitLow(Float.parseFloat(packet[17]))
+                              .setRangeWalkStepSizeXPlanningLimitHigh(Float.parseFloat(packet[18]))
+
+                              .setRangeWalkStepSizeXLimitLow(Float.parseFloat(packet[19]))
+                              .setRangeWalkStepSizeXLimitHigh(Float.parseFloat(packet[20]))
+
+                              .setWalkStepDuration(Float.parseFloat(packet[21])) //This index must be 21
+                              .setWalkStepDurationAtFullSpeedX(Float.parseFloat(packet[22]))//This index must be 22
+                              .setWalkStepDurationAtFullSpeedY(Float.parseFloat(packet[23]))
+
+                              .setVectorWalkHeightX(Float.parseFloat(packet[24]))
+                              .setVectorWalkHeightY(Float.parseFloat(packet[25]))
+
+                              .setWalkArmRotationAtFullSpeedX(Float.parseFloat(packet[26]))
+
+                              .setWalkMovePhaseBeginning(Float.parseFloat(packet[27]))
+                              .setWalkMovePhaseLength(Float.parseFloat(packet[28]))
+
+                              .setWalkLiftPhaseBeginning(Float.parseFloat(packet[29]))
+                              .setWalkLiftPhaseLength(Float.parseFloat(packet[30]))
+
+                              .setVectorWalkLiftOffSetX(Float.parseFloat(packet[31]))
+                              .setVectorWalkLiftOffSetY(Float.parseFloat(packet[32]))
+                              .setVectorWalkLiftOffSetZ(Float.parseFloat(packet[33]))
+
+                              .setVectorWalkLiftOffSetAtFullSpeedXX(Float.parseFloat(packet[34]))
+                              .setVectorWalkLiftOffSetAtFullSpeedXY(Float.parseFloat(packet[35]))
+                              .setVectorWalkLiftOffSetAtFullSpeedXZ(Float.parseFloat(packet[36]))
+
+                              .setVectorWalkLiftOffSetAtFullSpeedYX(Float.parseFloat(packet[37]))
+                              .setVectorWalkLiftOffSetAtFullSpeedYY(Float.parseFloat(packet[38]))
+                              .setVectorWalkLiftOffSetAtFullSpeedYZ(Float.parseFloat(packet[39]))
+
+                              .setVectorWalkLiftRotationX(Float.parseFloat(packet[40]))
+                              .setVectorWalkLiftRotationY(Float.parseFloat(packet[41]))
+                              .setVectorWalkLiftRotationZ(Float.parseFloat(packet[42]))
+
+                              .setWalkSupportRotation(Float.parseFloat(packet[43]))
+
+                              .setWalkComLiftOffSetX(Float.parseFloat(packet[44]))
+                              .setWalkComLiftOffSetY(Float.parseFloat(packet[45]))
+                              .setWalkComLiftOffSetZ(Float.parseFloat(packet[46]))
+
+                              .setWalkComBodyRotation(Float.parseFloat(packet[47]))
+
+                              .setSpeedMaxRot(Float.parseFloat(packet[48]))
+                              .setSpeedMaxVectorX(Float.parseFloat(packet[49]))
+                              .setSpeedMaxVectorY(Float.parseFloat(packet[50]))
+
+                              .setSpeedMaxBackwards(Float.parseFloat(packet[51]))
+
+                              .setSpeedMaxChangeRot(Float.parseFloat(packet[52]))
+                              .setSpeedMaxChangeVectorX(Float.parseFloat(packet[53]))
+                              .setSpeedMaxChangeVectorY(Float.parseFloat(packet[54]))
+
+                              .setBalance(Boolean.parseBoolean(packet[55])) //Boolean Conversion! TODO!! This index must be 55
+
+                              .setVectorBalanceBodyRotationX(Float.parseFloat(packet[56]))
+                              .setVectorBalanceBodyRotationY(Float.parseFloat(packet[57]))
+
+                              .setVectorBalanceComX(Float.parseFloat(packet[58]))
+                              .setVectorBalanceComY(Float.parseFloat(packet[59]))
+
+                              .setVectorBalanceComVelocityX(Float.parseFloat(packet[60]))
+                              .setVectorBalanceComVelocityY(Float.parseFloat(packet[61]))
+
+                              .setVectorBalanceRefX(Float.parseFloat(packet[62]))
+                              .setVectorBalanceRefY(Float.parseFloat(packet[63]))
+
+                              .setVectorBalanceNextRefX(Float.parseFloat(packet[64]))
+                              .setVectorBalanceNextRefY(Float.parseFloat(packet[65]))
+
+                              .setVectorBalanceStepSizeX(Float.parseFloat(packet[66]))
+                              .setVectorBalanceStepSizeY(Float.parseFloat(packet[67]))
+
+                              .setObserverMeasurementDelay(Float.parseFloat(packet[68]))
+
+                              .setVectorObserverMeasurementDeviationX(Float.parseFloat(packet[69]))
+                              .setVectorObserverMeasurementDeviationY(Float.parseFloat(packet[70]))
+
+                              .setVectorObserverProcessDeviationX(Float.parseFloat(packet[71]))
+                              .setVectorObserverProcessDeviationY(Float.parseFloat(packet[72]))
+                              .setVectorObserverProcessDeviationZ(Float.parseFloat(packet[73]))
+                              .setVectorObserverProcessDeviationW(Float.parseFloat(packet[74]))
+
+                              .setOdometryScaleRot(Float.parseFloat(packet[75]))
+                              .setOdometryScaleVectorX(Float.parseFloat(packet[76]))
+                              .setOdometryScaleVectorY(Float.parseFloat(packet[77]))
+
+                              .setGyroStateGain(Float.parseFloat(packet[78]))
+                              .setGyroDerivativeGain(Float.parseFloat(packet[79]))
+                              .setGyroSmoothing(Float.parseFloat(packet[80]))
+
+                              .setMinRotationToReduceStepSize(Float.parseFloat(packet[81]))
+
+                              .build(); //incredibly everything here is treated as in the same line
+        
+        ControlInstance inst = ControlIO.getByIndex(0);
+        if (inst == null) {
+			Logger.log(Logger.WARN, "EngineParameterPanel clicked while no ControlInstance available");
+            //does not return anything
+			return;
+		}
+
+        boolean success = inst.tryAddCmnd(ControlIO.createCmndSetWalkingEngineParameters(walkingEngineParams));
+
+        if(success){ System.out.println("Successfully sent a walking engine parameters command through the tool");}
+
+	    Logger.logf(Logger.INFO, "EngineParameterPanel: CommandIO.createCmdSendMotionCommands(%s) returned %B\n", packet, success);
+    }
 
     //Variables used.
     private String[] defaultValuesV5;
