@@ -100,7 +100,7 @@ namespace control {
 
             /*For now im building an sexpr. its possible that it will be better to leave everythind in protobuffs though
              */
-            std::cout << "These are the serialized bytes received (in binary):\n " << arg->data() << std::endl;
+            //std::cout << "These are the serialized bytes received (in binary):\n " << arg->data() << std::endl;
 
             SExpr s;
 
@@ -311,9 +311,29 @@ namespace control {
             s.append(gyroSmoothinge);
             s.append(minRotationToReduceStepSize);
 
-            std::cout << "This is the formatted sexpr: " << std::endl;
+            std::cout << "[INFO] This is the formatted sexpr: " << std::endl;
+
             //Printing SExpr so we can check data received
             std::cout << s.print();
+            std::string stringInFile = s.serialize();
+
+        #ifdef NAOQI_2
+            std::cout << "Saving V5 Walk Engine parameters" << std::endl;
+            std::ofstream file("home/nao/nbites/Config/V5WalkEngineParameters");
+            std::cout << stringInFile << std::endl;
+            stringInFile >> file;
+            file.close();
+            std::cout << "Saving Done" << std::endl;
+        #else
+            std::cout << "Saving V4 Walk Engine parameters" << std::endl;
+            std::ofstream file("home/nao/nbites/Config/V4WalkEngineParameters");
+            std::cout << stringInFile << std::endl;
+            stringInFile >> file;
+            file.close();
+            std::cout << "Saving Done" << std::endl;
+        #endif
+
+
         }
         return 0;
     }

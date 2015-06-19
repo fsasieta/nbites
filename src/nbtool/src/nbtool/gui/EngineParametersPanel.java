@@ -158,6 +158,10 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //This grabs all values from the textfields array and sends them to the next class to format
             //into a protobuf and send them.
             System.out.println("Set params button pressed");
+
+            //TODO: Check for boundary conditions in some of the parameters!!
+
+
             for(int i = 0; i < paramFields.length; i++){
                 currentValues[i] = paramFields[i].getText();
             }

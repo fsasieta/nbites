@@ -4,6 +4,7 @@ project( BHWALK )
 add_definitions(-DLINUX -DRELEASE -DTARGET_ROBOT)
 
 set( bhwalk_srcs 
+  NBParamStream.cpp
   BHWalkProvider.cpp
   MotionSelector.cpp
   WalkingEngine.cpp
