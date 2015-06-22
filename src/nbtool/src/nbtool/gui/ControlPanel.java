@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Set;
+import java.util.LinkedList;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
@@ -32,14 +32,18 @@ import nbtool.util.Utility;
 
 public class ControlPanel extends JPanel implements Events.LogsFound, Events.LogSelected,
 Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.RelevantRobotStats {
-
-	private Vector<String> setToArray(Set<String> set) {
-		return new Vector<String>(set);
-	}
-
-	private Vector<String> addToSet(Set<String> set, String a) {
-		set.add(a);
-		return new Vector<String>(set);
+	
+	private Vector<String> updateList(LinkedList<String> pref, String nv) {
+		if (nv != null) {
+			String put = nv.trim();
+			if (pref.contains(put)) {
+				pref.remove(put);
+			}
+			
+			pref.addFirst(put);
+		}
+		
+		return new Vector<String>(pref);
 	}
 
 	public ControlPanel() {
@@ -84,8 +88,8 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
 
 		this.controlStatus(null, false);
 
-		dirBox.setModel(new DefaultComboBoxModel<String>( setToArray(Prefs.filepaths)));
-		addrBox.setModel(new DefaultComboBoxModel<String>( setToArray(Prefs.addresses)));
+		dirBox.setModel(new DefaultComboBoxModel<String>( updateList(Prefs.filepaths, null)));
+		addrBox.setModel(new DefaultComboBoxModel<String>( updateList(Prefs.addresses, null)));
 
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
 		labelTable.put( new Integer( 0 ), new JLabel("0.0") );
@@ -163,7 +167,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
 		Center.listen(Events.RelevantRobotStats.class, this, true);
 	}
 
-	private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+	private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {    		
 		if (SessionMaster.get().isIdle()) {
 			String dpath = (String) dirBox.getSelectedItem();
 
@@ -175,10 +179,10 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
 			String absolute = Utility.localizePath(dpath.trim()) + File.separator;
 
 			if (FileIO.checkLogFolder(absolute)) {
-				SessionMaster.get().loadSession(absolute);
-				Vector<String> pathes = addToSet(Prefs.filepaths, dpath);
+				Vector<String> pathes = updateList(Prefs.filepaths, dpath);
 				dirBox.setModel(new DefaultComboBoxModel<String>(pathes));
 				dirBox.setSelectedIndex(pathes.indexOf(dpath));
+				SessionMaster.get().loadSession(absolute);
 			} else {
 				JOptionPane.showMessageDialog(this, String.format("bad path: {%s}", absolute));
 			}
@@ -211,27 +215,52 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
 				JOptionPane.showMessageDialog(this, String.format("bad address: %s", address));
 				return;
 			} else {
-				Vector<String> addrs =  addToSet(Prefs.addresses, address);
+				Vector<String> addrs =  updateList(Prefs.addresses, address);
 				addrBox.setModel(new DefaultComboBoxModel<String>(addrs));
 				addrBox.setSelectedIndex(addrs.indexOf(address));
 				Logger.log(Logger.INFO, "ControlPanel: using address " + address);
 			}
 
 			String dpath = (String) dirBox.getSelectedItem();
-			if (dpath == null || dpath.trim().isEmpty()) {
+			if (!writeBox.isSelected() || dpath == null || dpath.trim().isEmpty()) {
 				Logger.log(Logger.INFO, "ControlPanel: not using file writer.");
 			} else {
 				String absolute = Utility.localizePath(dpath.trim()) + File.separator;
-				if (FileIO.checkLogFolder(absolute)) {
-					Vector<String> pathes = addToSet(Prefs.filepaths, dpath);
-					dirBox.setModel(new DefaultComboBoxModel<String>(pathes));
-					dirBox.setSelectedIndex(pathes.indexOf(dpath));
-					Logger.log(Logger.INFO, "ControlPanel: using directory " + absolute);
-					filepath = absolute;
-				} else {
-					JOptionPane.showMessageDialog(this, String.format("cannot connect with bad path {%s}.  Fix path or clear it.", absolute));
-					return;
+				
+				if (!FileIO.checkLogFolder(absolute)) {
+					
+					int ret = JOptionPane.showConfirmDialog(this,
+							"would you like to create it?",
+							String.format("bad path {%s}", absolute),
+							JOptionPane.YES_NO_OPTION);
+					
+					if (ret == JOptionPane.YES_OPTION) {
+						File pathCreator = new File(absolute);
+						try {
+							pathCreator.mkdirs();
+							pathCreator.setReadable(true);
+							pathCreator.setWritable(true);
+						} catch (Exception e) {
+							Logger.logf(Logger.ERROR, "could not make full path: %s", absolute);
+							return;
+						}
+						
+						if (!FileIO.checkLogFolder(absolute)) {
+							Logger.logf(Logger.ERROR, "could not verify path: %s", absolute);
+							return;
+						}
+						
+					} else {
+						return;
+					}
 				}
+				
+				assert(FileIO.checkLogFolder(absolute));
+				Vector<String> pathes = updateList(Prefs.filepaths, dpath);
+				dirBox.setModel(new DefaultComboBoxModel<String>(pathes));
+				dirBox.setSelectedIndex(pathes.indexOf(dpath));
+				Logger.log(Logger.INFO, "ControlPanel: using directory " + absolute);
+				filepath = absolute;
 			}
 
 			SessionMaster.get().streamSession(address, filepath);
@@ -387,7 +416,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
         keepSlider = new javax.swing.JSlider();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        writeBox = new javax.swing.JCheckBox();
         controlPanel = new javax.swing.JPanel();
         controlTestButton = new javax.swing.JButton();
         controlExitButton = new javax.swing.JButton();
@@ -404,11 +433,6 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
         dirBox.setEditable(true);
 
         loadButton.setText("load");
-        loadButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadButtonActionPerformed(evt);
-            }
-        });
 
         chooseButton.setText("choose");
 
@@ -446,7 +470,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
 
         addrBox.setEditable(true);
 
-        connectButton.setText("jButton1");
+        connectButton.setText("connect");
 
         streamCB.setText("stream");
 
@@ -466,7 +490,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
 
         jLabel2.setText("keep fraction");
 
-        jCheckBox1.setText("write");
+        writeBox.setText("write");
 
         javax.swing.GroupLayout robotPanelLayout = new javax.swing.GroupLayout(robotPanel);
         robotPanel.setLayout(robotPanelLayout);
@@ -495,7 +519,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
                 .addContainerGap())
             .addGroup(robotPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(writeBox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         robotPanelLayout.setVerticalGroup(
@@ -509,7 +533,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
                     .addComponent(streamCB)
                     .addComponent(streamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(writeBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(robotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(writeSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -587,7 +611,7 @@ Events.SessionSelected, Events.ToolStatus, Events.ControlStatus, Events.Relevant
     private javax.swing.JComboBox<String> dirBox;
     private javax.swing.JPanel dirpanel;
     private javax.swing.JScrollPane flagScrollPanel;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox writeBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
