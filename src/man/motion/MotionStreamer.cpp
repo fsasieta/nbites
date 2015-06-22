@@ -101,7 +101,7 @@ void MotionStreamerModule::streamerTool(std::string argument){
     //Once argument vector is filled, we can then call the function we want
     switch (motionFunctionsMap[motionCommandName]){
         case DESTINATION_WALK:{
-            cout <<"DestinationWalk not implemented yet"<< endl;
+            cout <<"Destination Walk not implemented yet"<< endl;
             break;
         }
         case ODOMETRY_WALK:{
@@ -135,6 +135,9 @@ std::string MotionStreamerModule::extractValue(std::string input, std::string de
 //This function executes the Odometry walk command.
 void MotionStreamerModule::executeOdometryWalk(std::vector<std::string> &argumentList){
 
+
+    cout << "Executing odometry walk command in motion streamer." << endl;
+
     //We assume that we get the parameters in order.
     float xCm, yCm, hDeg, gain;
     xCm = (float) atoi(argumentList[0].c_str());
@@ -159,6 +162,8 @@ void MotionStreamerModule::executeOdometryWalk(std::vector<std::string> &argumen
     //motionProto.mutable_odometry_dest(odomWalk);
 
     portals::Message<messages::MotionCommand> motionCommand(&motionProto); 
+
+    cout << "Setting message for the motion module to execute" << endl;
 
     streamerOutput_.setMessage(motionCommand);
 }

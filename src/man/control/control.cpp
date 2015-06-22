@@ -104,8 +104,8 @@ namespace control {
     //Need to use timestamp to figure out if they are new commands.
     uint32_t streamerTool(Log * arg){
 
-        printf("Entering streamerTool function in control.cpp");
-        printf("Java connection worked so far");
+        printf("Entering streamerTool function in control.cpp\n");
+        //printf("Java connection worked so far");
 
         std::string dataReceived = arg->data();
         //std::string timeStamp = "timeStamp";
@@ -117,7 +117,7 @@ namespace control {
             
             oldTimeStamp = newTimeStamp;
             //New command/data received.
-            printf("In control.cpp function. Data received: %s\n", dataReceived.c_str());
+            printf("In control.cpp function. Data received:\n %s\n", dataReceived.c_str());
             streamedData = dataReceived;
             newCommand = true;
         }
