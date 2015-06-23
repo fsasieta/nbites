@@ -45,6 +45,8 @@ namespace control {
     //Protobuff used in Walking engine function
     static messages::WalkEnginePreferences receivedParams;
     extern pthread_t control_thread;
+
+    extern bool newWalkParameters;
 }
 
 #endif //nbcontrol_h

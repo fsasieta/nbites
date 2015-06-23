@@ -20,6 +20,7 @@
 #include <sstream>
 #include <exception>
 #include <iostream>
+#include <fstream>
 
 
 using nblog::SExpr;
@@ -29,6 +30,7 @@ namespace control {
     
     pthread_t control_thread;
     static bool STARTED = false;
+    bool newWalkParameters = false;
     
     uint32_t cnc_test(Log * arg) {
         printf("\tcnc_test:[%s] %lu bytes of data.\n", arg->description().c_str(),
@@ -99,13 +101,13 @@ namespace control {
         else{
 
             /*For now im building an sexpr. its possible that it will be better to leave everythind in protobuffs though
+             * NO: this is much easier to parse.
              */
-            //std::cout << "These are the serialized bytes received (in binary):\n " << arg->data() << std::endl;
 
             SExpr s;
 
             /* Making engine sexpr */
-            //There are 82 parameters, in case anyone is wondering
+            //There are 82 parameters, in case anyone is wondering. BHuman defines 51, but several have multipe parts
             SExpr vectorStandComPos_y = SExpr("vectorStandComPos_y", receivedParams.vectorstandcompos_y());
             SExpr vectorStandComPos_z = SExpr("vectorStandComPos_z", receivedParams.vectorstandcompos_z());
                                                
@@ -223,7 +225,7 @@ namespace control {
                                                                                   
             SExpr gyroStateGain = SExpr("gyroStateGain", receivedParams.gyrostategain());
             SExpr gyroDerivativeGain = SExpr("gyroDerivativeGain", receivedParams.gyroderivativegain());
-            SExpr gyroSmoothinge = SExpr("gyroSmoothing", receivedParams.gyrosmoothing());
+            SExpr gyroSmoothing = SExpr("gyroSmoothing", receivedParams.gyrosmoothing());
                                                 
             SExpr minRotationToReduceStepSize = SExpr("minRotationToReduceStepSize", receivedParams.minrotationtoreducestepsize());
 
@@ -308,32 +310,34 @@ namespace control {
             s.append(odometryScale_Vector_y);
             s.append(gyroStateGain);
             s.append(gyroDerivativeGain);
-            s.append(gyroSmoothinge);
+            s.append(gyroSmoothing);
             s.append(minRotationToReduceStepSize);
 
             std::cout << "[INFO] This is the formatted sexpr: " << std::endl;
 
             //Printing SExpr so we can check data received
-            std::cout << s.print();
+            std::cout << s.print() << std::endl;
             std::string stringInFile = s.serialize();
 
         #ifdef NAOQI_2
             std::cout << "[INFO] Saving V5 Walk Engine parameters" << std::endl;
-            std::ofstream file("home/nao/nbites/Config/V5WalkEngineParameters");
-            std::cout << stringInFile << std::endl;
-            stringInFile >> file;
+            std::ofstream file("home/nao/nbites/Config/V5WalkEngineParameters.txt");
+            //std::cout << stringInFile << std::endl;
+            file << stringInFile;
             file.close();
             std::cout << "[INFO] Saving Done" << std::endl;
         #else
             std::cout << "[INFO] Saving V4 Walk Engine parameters" << std::endl;
-            std::ofstream file("home/nao/nbites/Config/V4WalkEngineParameters");
-            std::cout << stringInFile << std::endl;
-            stringInFile >> file;
+            std::ofstream file("home/nao/nbites/Config/V4WalkEngineParameters.txt");
+            //std::cout << stringInFile << std::endl;
+            file << stringInFile;
             file.close();
             std::cout << "[INFO] Saving Done" << std::endl;
         #endif
 
 
+        //Setting flag for motion module run function.
+        newWalkParameters = true;
         }
         return 0;
     }

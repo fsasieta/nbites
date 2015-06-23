@@ -47,6 +47,25 @@ void MotionModule::stop()
 
 void MotionModule::run_()
 {
+
+    static bool printed = true;
+    if(printed){ 
+        sanityCheckWalkEngineParameters();
+        printed = false;
+    }
+
+
+    //We check for diferent walk engine parameters
+    //      If there are, we update them, and then we go on with
+    //      the rest of the motion module's funcitonality
+    //      We print them to be mentally healthy.
+    if(control::newWalkParameters){
+        walkProvider.updateWalkingEngineParameters();
+        sanityCheckWalkEngineParameters();
+        control::newWalkParameters = false;
+    }
+    
+
     PROF_ENTER(P_MOTION);
     // (1) Before anything else happens, it is important to
     //     retrieve the correct current joint angles.
@@ -1242,6 +1261,13 @@ void MotionModule::updateHandSpeeds()
 
     handSpeedsOutput_.setMessage(current);
 }
+
+void MotionModule::sanityCheckWalkEngineParameters(){
+
+    walkProvider.printCurrentEngineParams();
+    std::cout << "End of parameters received in motion module" <<std::endl;
+}
+
 
 } // namespace motion
 } // namespace man

@@ -10,6 +10,7 @@
 #pragma once
 
 #include <vector>
+#include <fstream>
 
 #include "../WalkCommand.h"
 #include "../StepCommand.h"
@@ -19,11 +20,14 @@
 
 #include "RoboGrams.h"
 #include "RobotLocation.pb.h"
+#include "SExpr.h"
+#include <time.h>
 
 //BH
 #include "WalkingEngine.h"
 #include "Representations/Blackboard.h"
 #include "Tools/Math/Pose2D.h"
+
 
 namespace man
 {
@@ -83,11 +87,16 @@ public:
 
     void setStandby(bool value) { standby = value; }
 
+    void updateWalkingEngineParameters();
+    void printCurrentEngineParams();
+
 protected:
     void stand();
     void setActive() {}
 
 private:
+    time_t file_mod_time;
+    int first_time;
     bool requestedToStop;
     bool standby;
     bool justMotionKicked;
@@ -97,6 +106,8 @@ private:
 
     WalkingEngine *walkingEngine;
     Blackboard *blackboard;
+
+    bool updatedFile(std::string filename);
     };
 } // namespace motion
 } // namespace man

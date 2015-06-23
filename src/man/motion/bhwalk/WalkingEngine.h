@@ -10,9 +10,6 @@
 
 #pragma once
 
-
-#include "NBParamStream.h"
-
 #include "Tools/Module/Module.h"
 #include "MotionSelector.h"
 #include "Modules/Sensing/JointFilter.h"

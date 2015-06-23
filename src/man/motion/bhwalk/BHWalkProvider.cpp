@@ -6,6 +6,11 @@
 #include <cassert>
 #include <string>
 #include <iostream>
+#include <sstream>
+
+#include <sys/ioctl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
 
 // BH
 #include "bhuman.h"
@@ -16,6 +21,7 @@ namespace motion
 {
 
 using namespace boost;
+using nblog::SExpr;
 
 // TODO make this consistent with new walk
 const float BHWalkProvider::INITIAL_BODY_POSE_ANGLES[] =
@@ -70,6 +76,10 @@ BHWalkProvider::BHWalkProvider()
     // Setup the walk engine
 	walkingEngine = new WalkingEngine;
     hardReset();
+
+    //Initializing the mod time of the walk engine file.
+    file_mod_time = 0;
+    first_time = 1;
 }
 
 BHWalkProvider::~BHWalkProvider()
@@ -449,5 +459,220 @@ float BHWalkProvider::rightHandSpeed() const {
     return walkingEngine->rightHandSpeed;
 }
 
+//Parses throught the file of parameters, returns the  value specified in the .txt file
+//and sets it to the engine param instance that is in the
+//
+void BHWalkProvider::updateWalkingEngineParameters(){
+
+    std::string fileString;
+    std::string filename;
+
+    //Taking into account different NAOQI versions
+    #ifdef NAOQI_2
+    filename = "/home/nao/nbites/Config/V5WalkEngineParameters.txt";
+    #else
+    filename = "/home/nao/nbites/Config/V4WalkEngineParameters.txt";
+    #endif
+
+    //Reading file to a string
+    std::ifstream file(filename);
+    std::stringstream ssfile;
+    ssfile << file.rdbuf();
+    fileString = ssfile.str();
+
+    SExpr params;
+    params.readAndAppend(fileString);
+
+    // regardless of request, we only update the parameters if they are different from the old ones
+    // (If the TIMESTAMP of the file is different)
+    if(updatedFile(filename)){
+        walkingEngine->standComPosition.y             = (float) params.find("vectorStandComPos_y")->get(1)->valueAsDouble();
+        walkingEngine->standComPosition.z             = (float) params.find("vectorStandComPos_z")->get(1)->valueAsDouble();
+        walkingEngine->standBodyTilt                  = (float) params.find("standBodyTilt")->get(1)->valueAsDouble();
+        walkingEngine->standArmJointAngles.x          = (float) params.find("vectorStandArmJointAngle_x")->get(1)->valueAsDouble();
+        walkingEngine->standArmJointAngles.y          = (float) params.find("vectorStandArmJointAngle_y")->get(1)->valueAsDouble();
+        walkingEngine->standHardnessAnklePitch        = (int)   params.find("standHardnessAnklePitch")->get(1)->valueAsDouble();
+        walkingEngine->standHardnessAnkleRoll         = (int)   params.find("standHardnessAnkleRoll")->get(1)->valueAsDouble();
+        walkingEngine->walkRef.x                      = (float) params.find("vectorWalkRef_x")->get(1)->valueAsDouble();
+        walkingEngine->walkRef.y                      = (float) params.find("vectorWalkRef_y")->get(1)->valueAsDouble();
+        walkingEngine->walkRefAtFullSpeedX.x          = (float) params.find("vectorWalkRefAtFullSpeed_x")->get(1)->valueAsDouble();
+        walkingEngine->walkRefAtFullSpeedX.y          = (float) params.find("vectorWalkRefAtFullSpeed_y")->get(1)->valueAsDouble();
+        walkingEngine->walkRefXPlanningLimit.min      = (float) params.find("rangeWalkRefPlanningLimit_low")->get(1)->valueAsDouble();
+        walkingEngine->walkRefXPlanningLimit.max      = (float) params.find("rangeWalkRefPlanningLimit_high")->get(1)->valueAsDouble();
+        walkingEngine->walkRefXLimit.min              = (float) params.find("rangeWalkRefXLimit_low")->get(1)->valueAsDouble();
+        walkingEngine->walkRefXLimit.max              = (float) params.find("rangeWalkRefXLimit_high")->get(1)->valueAsDouble();
+        walkingEngine->walkRefYLimit.min              = (float) params.find("rangeWalkRefYLimit_low")->get(1)->valueAsDouble();
+        walkingEngine->walkRefYLimit.max              = (float) params.find("rangeWalkRefYLimit_high")->get(1)->valueAsDouble();
+        walkingEngine->walkStepSizeXPlanningLimit.min = (float) params.find("rangeWalkStepSizeXPlanningLimit_low")->get(1)->valueAsDouble();
+        walkingEngine->walkStepSizeXPlanningLimit.max = (float) params.find("rangeWalkStepSizeXPlanningLimit_high")->get(1)->valueAsDouble();
+        walkingEngine->walkStepSizeXLimit.min         = (float) params.find("rangeWalkStepSizeXLimit_low")->get(1)->valueAsDouble();
+        walkingEngine->walkStepSizeXLimit.max         = (float) params.find("rangeWalkStepSizeXLimit_high")->get(1)->valueAsDouble();
+        walkingEngine->walkStepDuration               = (float) params.find("walkStepDuration")->get(1)->valueAsDouble();
+        walkingEngine->walkStepDurationAtFullSpeedX   = (float) params.find("walkStepDurationAtFullSpeedX")->get(1)->valueAsDouble();
+        walkingEngine->walkStepDurationAtFullSpeedY   = (float) params.find("walkStepDurationAtFullSpeedY")->get(1)->valueAsDouble();
+        walkingEngine->walkHeight.x                   = (float) params.find("vectorWalkHeight_x")->get(1)->valueAsDouble();
+        walkingEngine->walkHeight.y                   = (float) params.find("vectorWalkHeight_y")->get(1)->valueAsDouble();
+        walkingEngine->walkArmRotationAtFullSpeedX    = (float) params.find("walkArmRotationAtFullSpeedX")->get(1)->valueAsDouble();
+        walkingEngine->walkMovePhase.start            = (float) params.find("walkMovePhaseBeginning")->get(1)->valueAsDouble();
+        walkingEngine->walkMovePhase.duration         = (float) params.find("walkMovePhaseLength")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftPhase.start            = (float) params.find("walkLiftPhaseBeginning")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftPhase.duration         = (float) params.find("walkLiftPhaseLength")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffset.x               = (float) params.find("vectorWalkLiftOffSet_x")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffset.y               = (float) params.find("vectorWalkLiftOffSet_y")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffset.z               = (float) params.find("vectorWalkLiftOffSet_z")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffsetAtFullSpeedX.x   = (float) params.find("vectorWalkLiftOffSetAtFullSpeedX_x")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffsetAtFullSpeedX.y   = (float) params.find("vectorWalkLiftOffSetAtFullSpeedX_y")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffsetAtFullSpeedX.z   = (float) params.find("vectorWalkLiftOffSetAtFullSpeedX_z")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffsetAtFullSpeedY.x   = (float) params.find("vectorWalkLiftOffSetAtFullSpeedY_x")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffsetAtFullSpeedY.y   = (float) params.find("vectorWalkLiftOffSetAtFullSpeedY_y")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftOffsetAtFullSpeedY.z   = (float) params.find("vectorWalkLiftOffSetAtFullSpeedY_z")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftRotation.x             = (float) params.find("vectorWalkLiftRotation_x")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftRotation.y             = (float) params.find("vectorWalkLiftRotation_y")->get(1)->valueAsDouble();
+        walkingEngine->walkLiftRotation.z             = (float) params.find("vectorWalkLiftRotation_z")->get(1)->valueAsDouble();
+        walkingEngine->walkSupportRotation            = (float) params.find("walkSupportRotation")->get(1)->valueAsDouble();
+        walkingEngine->walkComLiftOffset.x            = (float) params.find("walkComLiftOffSet_x")->get(1)->valueAsDouble();
+        walkingEngine->walkComLiftOffset.y            = (float) params.find("walkComLiftOffSet_y")->get(1)->valueAsDouble();
+        walkingEngine->walkComLiftOffset.z            = (float) params.find("walkComLiftOffSet_z")->get(1)->valueAsDouble();
+        walkingEngine->walkComBodyRotation            = (float) params.find("walkComBodyRotation")->get(1)->valueAsDouble();
+        walkingEngine->speedMax.rotation              = (float) params.find("speedMax_rot")->get(1)->valueAsDouble();
+        walkingEngine->speedMax.translation.x         = (float) params.find("speedMax_Vector_x")->get(1)->valueAsDouble();
+        walkingEngine->speedMax.translation.y         = (float) params.find("speedMax_Vector_y")->get(1)->valueAsDouble();
+        walkingEngine->speedMaxBackwards              = (float) params.find("speedMaxBackwards")->get(1)->valueAsDouble();
+        walkingEngine->speedMaxChange.rotation        = (float) params.find("speedMaxChange_rot")->get(1)->valueAsDouble();
+        walkingEngine->speedMaxChange.translation.x   = (float) params.find("speedMaxChange_Vector_x")->get(1)->valueAsDouble();
+        walkingEngine->speedMaxChange.translation.y   = (float) params.find("speedMaxChange_Vector_y")->get(1)->valueAsDouble();
+        walkingEngine->balance                        = (params.find("balance")->get(1)->value() == "true") ? true : false;
+        walkingEngine->balanceBodyRotation.x          = (float) params.find("vectorBalanceBodyRotation_x")->get(1)->valueAsDouble();
+        walkingEngine->balanceBodyRotation.y          = (float) params.find("vectorBalanceBodyRotation_y")->get(1)->valueAsDouble();
+        walkingEngine->balanceCom.x                   = (float) params.find("vectorBalanceCom_x")->get(1)->valueAsDouble();
+        walkingEngine->balanceCom.y                   = (float) params.find("vectorBalanceCom_y")->get(1)->valueAsDouble();
+        walkingEngine->balanceComVelocity.x           = (float) params.find("vectorBalanceComVelocity_x")->get(1)->valueAsDouble();
+        walkingEngine->balanceComVelocity.y           = (float) params.find("vectorBalanceComVelocity_y")->get(1)->valueAsDouble();
+        walkingEngine->balanceRef.x                   = (float) params.find("vectorBalanceRef_x")->get(1)->valueAsDouble();
+        walkingEngine->balanceRef.y                   = (float) params.find("vectorBalanceRef_y")->get(1)->valueAsDouble();
+        walkingEngine->balanceNextRef.x               = (float) params.find("vectorBalanceNextRef_x")->get(1)->valueAsDouble();
+        walkingEngine->balanceNextRef.y               = (float) params.find("vectorBalanceNextRef_y")->get(1)->valueAsDouble();
+        walkingEngine->balanceStepSize.x              = (float) params.find("vectorBalanceStepSize_x")->get(1)->valueAsDouble();
+        walkingEngine->balanceStepSize.y              = (float) params.find("vectorBalanceStepSize_y")->get(1)->valueAsDouble();
+        walkingEngine->observerMeasurementDelay       = (float) params.find("observerMeasurementDelay")->get(1)->valueAsDouble();
+        walkingEngine->observerMeasurementDeviation.x = (float) params.find("vectorObserverMeasurementDeviation.x")->get(1)->valueAsDouble();
+        walkingEngine->observerMeasurementDeviation.y = (float) params.find("vectorObserverMeasurementDeviation.y")->get(1)->valueAsDouble();
+        walkingEngine->observerProcessDeviation[0]    = (float) params.find("vectorObserverProcessDeviation.x")->get(1)->valueAsDouble();
+        walkingEngine->observerProcessDeviation[1]    = (float) params.find("vectorObserverProcessDeviation.y")->get(1)->valueAsDouble();
+        walkingEngine->observerProcessDeviation[2]    = (float) params.find("vectorObserverProcessDeviation.z")->get(1)->valueAsDouble();
+        walkingEngine->observerProcessDeviation[3]    = (float) params.find("vectorObserverProcessDeviation.w")->get(1)->valueAsDouble();
+        walkingEngine->odometryScale.rotation         = (float) params.find("odometryScale_rot")->get(1)->valueAsDouble();
+        walkingEngine->odometryScale.translation.x    = (float) params.find("odometryScale_Vector_x")->get(1)->valueAsDouble();
+        walkingEngine->odometryScale.translation.y    = (float) params.find("odometryScale_Vector_y")->get(1)->valueAsDouble();
+        walkingEngine->gyroStateGain                  = (float) params.find("gyroStateGain")->get(1)->valueAsDouble();
+        walkingEngine->gyroDerivativeGain             = (float) params.find("gyroDerivativeGain")->get(1)->valueAsDouble();
+        walkingEngine->gyroSmoothing                  = (float) params.find("gyroSmoothing")->get(1)->valueAsDouble();
+        walkingEngine->minRotationToReduceStepSize    = (float) params.find("minRotationToReduceStepSize")->get(1)->valueAsDouble();
+        //82, in case you're wondering
+    }
 }
+
+bool BHWalkProvider::updatedFile(std::string filename){
+
+    struct stat file_stats;
+    int timeDiff = difftime(file_stats.st_mtime, file_mod_time);
+        if(timeDiff > 0.0) {
+            file_mod_time = file_stats.st_mtime;
+            std::cout << "[INFO] New Mod. Time " << file_mod_time << std::endl;
+            std::cout << "[INFO] Updating parameters used." << std::endl;
+            return true;
+        }
+        return false;
 }
+
+void BHWalkProvider::printCurrentEngineParams(){
+
+    std::cout << "[DEBUG] This are the current parameters in the walk engine: \n" <<
+    walkingEngine->standComPosition.y               << "\n" << 
+    walkingEngine->standComPosition.z               << "\n" << 
+    walkingEngine->standBodyTilt                    << "\n" << 
+    walkingEngine->standArmJointAngles.x            << "\n" << 
+    walkingEngine->standArmJointAngles.y            << "\n" << 
+    walkingEngine->standHardnessAnklePitch          << "\n" << 
+    walkingEngine->standHardnessAnkleRoll           << "\n" << 
+    walkingEngine->walkRef.x                        << "\n" << 
+    walkingEngine->walkRef.y                        << "\n" << 
+    walkingEngine->walkRefAtFullSpeedX.x            << "\n" << 
+    walkingEngine->walkRefAtFullSpeedX.y            << "\n" << 
+    walkingEngine->walkRefXPlanningLimit.min        << "\n" << 
+    walkingEngine->walkRefXPlanningLimit.max        << "\n" << 
+    walkingEngine->walkRefXLimit.min                << "\n" << 
+    walkingEngine->walkRefXLimit.max                << "\n" << 
+    walkingEngine->walkRefYLimit.min                << "\n" << 
+    walkingEngine->walkRefYLimit.max                << "\n" << 
+    walkingEngine->walkStepSizeXPlanningLimit.min   << "\n" << 
+    walkingEngine->walkStepSizeXPlanningLimit.max   << "\n" << 
+    walkingEngine->walkStepSizeXLimit.min           << "\n" << 
+    walkingEngine->walkStepSizeXLimit.max           << "\n" << 
+    walkingEngine->walkStepDuration                 << "\n" << 
+    walkingEngine->walkStepDurationAtFullSpeedX     << "\n" << 
+    walkingEngine->walkStepDurationAtFullSpeedY     << "\n" << 
+    walkingEngine->walkHeight.x                     << "\n" << 
+    walkingEngine->walkHeight.y                     << "\n" << 
+    walkingEngine->walkArmRotationAtFullSpeedX      << "\n" << 
+    walkingEngine->walkMovePhase.start              << "\n" << 
+    walkingEngine->walkMovePhase.duration           << "\n" << 
+    walkingEngine->walkLiftPhase.start              << "\n" << 
+    walkingEngine->walkLiftPhase.duration           << "\n" << 
+    walkingEngine->walkLiftOffset.x                 << "\n" << 
+    walkingEngine->walkLiftOffset.y                 << "\n" << 
+    walkingEngine->walkLiftOffset.z                 << "\n" << 
+    walkingEngine->walkLiftOffsetAtFullSpeedX.x     << "\n" << 
+    walkingEngine->walkLiftOffsetAtFullSpeedX.y     << "\n" << 
+    walkingEngine->walkLiftOffsetAtFullSpeedX.z     << "\n" << 
+    walkingEngine->walkLiftOffsetAtFullSpeedY.x     << "\n" << 
+    walkingEngine->walkLiftOffsetAtFullSpeedY.y     << "\n" << 
+    walkingEngine->walkLiftOffsetAtFullSpeedY.z     << "\n" << 
+    walkingEngine->walkLiftRotation.x               << "\n" << 
+    walkingEngine->walkLiftRotation.y               << "\n" << 
+    walkingEngine->walkLiftRotation.z               << "\n" << 
+    walkingEngine->walkSupportRotation              << "\n" << 
+    walkingEngine->walkComLiftOffset.x              << "\n" << 
+    walkingEngine->walkComLiftOffset.y              << "\n" << 
+    walkingEngine->walkComLiftOffset.z              << "\n" << 
+    walkingEngine->walkComBodyRotation              << "\n" << 
+    walkingEngine->speedMax.rotation                << "\n" << 
+    walkingEngine->speedMax.translation.x           << "\n" << 
+    walkingEngine->speedMax.translation.y           << "\n" << 
+    walkingEngine->speedMaxBackwards                << "\n" << 
+    walkingEngine->speedMaxChange.rotation          << "\n" << 
+    walkingEngine->speedMaxChange.translation.x     << "\n" << 
+    walkingEngine->speedMaxChange.translation.y     << "\n" << 
+    walkingEngine->balance                          << "\n" << 
+    walkingEngine->balanceBodyRotation.x            << "\n" << 
+    walkingEngine->balanceBodyRotation.y            << "\n" << 
+    walkingEngine->balanceCom.x                     << "\n" << 
+    walkingEngine->balanceCom.y                     << "\n" << 
+    walkingEngine->balanceComVelocity.x             << "\n" << 
+    walkingEngine->balanceComVelocity.y             << "\n" << 
+    walkingEngine->balanceRef.x                     << "\n" << 
+    walkingEngine->balanceRef.y                     << "\n" << 
+    walkingEngine->balanceNextRef.x                 << "\n" << 
+    walkingEngine->balanceNextRef.y                 << "\n" << 
+    walkingEngine->balanceStepSize.x                << "\n" << 
+    walkingEngine->balanceStepSize.y                << "\n" << 
+    walkingEngine->observerMeasurementDelay         << "\n" << 
+    walkingEngine->observerMeasurementDeviation.x   << "\n" << 
+    walkingEngine->observerMeasurementDeviation.y   << "\n" << 
+    walkingEngine->observerProcessDeviation[0]      << "\n" << 
+    walkingEngine->observerProcessDeviation[1]      << "\n" << 
+    walkingEngine->observerProcessDeviation[2]      << "\n" << 
+    walkingEngine->observerProcessDeviation[3]      << "\n" << 
+    walkingEngine->odometryScale.rotation           << "\n" << 
+    walkingEngine->odometryScale.translation.x      << "\n" << 
+    walkingEngine->odometryScale.translation.y      << "\n" << 
+    walkingEngine->gyroStateGain                    << "\n" << 
+    walkingEngine->gyroDerivativeGain               << "\n" << 
+    walkingEngine->gyroSmoothing                    << "\n" << 
+    walkingEngine->minRotationToReduceStepSize      << "\n" << 
+    "End of param printing" << std::endl;
+}
+
+
+} //motion                                                                                 
+} //man
