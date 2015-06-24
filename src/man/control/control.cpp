@@ -118,7 +118,7 @@ namespace control {
                                                
             SExpr standHardnessAnklePitch = SExpr("standHardnessAnklePitch", (int) receivedParams.standhardnessanklepitch());
             SExpr standHardnessAnkleRoll = SExpr("standHardnessAnkleRoll", (int) receivedParams.standhardnessankleroll());
-                                               
+            
             SExpr vectorWalkRef_x = SExpr("vectorWalkRef_x", receivedParams.vectorwalkref_x());
             SExpr vectorWalkRef_y = SExpr("vectorWalkRef_y", receivedParams.vectorwalkref_y());
                                                
@@ -313,10 +313,10 @@ namespace control {
             s.append(gyroSmoothing);
             s.append(minRotationToReduceStepSize);
 
-            std::cout << "[INFO] This is the formatted sexpr: " << std::endl;
+            //std::cout << "[INFO] This is the formatted sexpr: " << std::endl;
 
             //Printing SExpr so we can check data received
-            std::cout << s.print() << std::endl;
+            //std::cout << s.print() << std::endl;
             std::string stringInFile = s.serialize();
 
         #ifdef NAOQI_2

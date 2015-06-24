@@ -60,6 +60,7 @@ void MotionModule::run_()
     //      the rest of the motion module's funcitonality
     //      We print them to be mentally healthy.
     if(control::newWalkParameters){
+        std::cout << "About to update parameters" << std::endl;
         walkProvider.updateWalkingEngineParameters();
         sanityCheckWalkEngineParameters();
         control::newWalkParameters = false;

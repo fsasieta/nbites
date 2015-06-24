@@ -74,9 +74,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Adding Buttons
         useV4 = new JButton("Default V4 params");
         useV5 = new JButton("Default V5 params");
-        saveParamsV4 = new JButton("Save v4 params");
-        saveParamsV5 = new JButton("Save v5 params");
-        setParams = new JButton("Set parameters");
+        saveParamsV4 = new JButton("Locally Save v4 params");
+        saveParamsV5 = new JButton("Locally Save v5 params");
+        setParams = new JButton("Set and Save parameters on robot");
         setParams.addActionListener(this);
         useV4.addActionListener(this);
         useV5.addActionListener(this);
@@ -118,8 +118,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             canvas.add(paramFields[i]);
         }
 
-        canvas.add(setParams);
-
+        //canvas.add(setParams);
+        add(setParams, BorderLayout.SOUTH);
     }
 
     /* Action code handling 
@@ -146,18 +146,26 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         else if(e.getSource() == saveParamsV4) {
             //save parameters of v4 robot
             System.out.println("Save V4 parameters button pressed.");
-            //TODO: write them to a file
+            for(int i = 0; i < paramFields.length; i++){
+                currentValues[i] = paramFields[i].getText();
+            }
+            engineStreamer.writeDataToFile(currentValues, 4);
+
 		}
         else if(e.getSource() == saveParamsV5) {
             //save parameters of V5 robot 
             System.out.println("Save V5 parameters button pressed");
-            //TODO: write thing to a file.
+            for(int i = 0; i < paramFields.length; i++){
+                currentValues[i] = paramFields[i].getText();
+            }
+            engineStreamer.writeDataToFile(currentValues, 5);
+
         }
         else if(e.getSource() == setParams){
               
             //This grabs all values from the textfields array and sends them to the next class to format
             //into a protobuf and send them.
-            System.out.println("Set params button pressed");
+            System.out.println("Set and save on robot params button pressed");
 
             //TODO: Check for boundary conditions in some of the parameters!!
 

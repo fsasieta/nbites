@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <stdio.h>
 
 #include <sys/ioctl.h>
 #include <sys/mman.h>
@@ -65,7 +66,7 @@ static const JointDataBH::Joint nb_joint_order[] = {
 };
 
 BHWalkProvider::BHWalkProvider()
-    : MotionProvider(WALK_PROVIDER), requestedToStop(false), tryingToWalk(false)
+    : MotionProvider(WALK_PROVIDER), requestedToStop(false), tryingToWalk(false),file_mod_time()
 {
 	// Setup Walk Engine Configuation Parameters
 	ModuleBase::config_path = common::paths::NAO_CONFIG_DIR;
@@ -78,8 +79,7 @@ BHWalkProvider::BHWalkProvider()
     hardReset();
 
     //Initializing the mod time of the walk engine file.
-    file_mod_time = 0;
-    first_time = 1;
+    //file_mod_time = 0;
 }
 
 BHWalkProvider::~BHWalkProvider()
@@ -480,19 +480,33 @@ void BHWalkProvider::updateWalkingEngineParameters(){
     ssfile << file.rdbuf();
     fileString = ssfile.str();
 
-    SExpr params;
-    params.readAndAppend(fileString);
+    //std::cout << "This is the current string read from the file\n" << std::endl; //fileString << std::endl;
+    printf(fileString.c_str());
+
+    ssize_t i = 0;
+    SExpr params = *SExpr::read(fileString, i);
+    
+    std::cout << "Printing parameters just received\n" << params.print() << std::endl; //<-- OK
 
     // regardless of request, we only update the parameters if they are different from the old ones
     // (If the TIMESTAMP of the file is different)
     if(updatedFile(filename)){
+        std::cout << "[INFO] In If stmt. Parameters updating NOW!!" << std::endl;
+
+        //std::cout << "Printing params.get 1: " << params.get(1).print(); << std::endl;
+
         walkingEngine->standComPosition.y             = (float) params.find("vectorStandComPos_y")->get(1)->valueAsDouble();
         walkingEngine->standComPosition.z             = (float) params.find("vectorStandComPos_z")->get(1)->valueAsDouble();
+        std::cout << "Successfully pased the second param" << std::endl;
+
         walkingEngine->standBodyTilt                  = (float) params.find("standBodyTilt")->get(1)->valueAsDouble();
         walkingEngine->standArmJointAngles.x          = (float) params.find("vectorStandArmJointAngle_x")->get(1)->valueAsDouble();
         walkingEngine->standArmJointAngles.y          = (float) params.find("vectorStandArmJointAngle_y")->get(1)->valueAsDouble();
-        walkingEngine->standHardnessAnklePitch        = (int)   params.find("standHardnessAnklePitch")->get(1)->valueAsDouble();
-        walkingEngine->standHardnessAnkleRoll         = (int)   params.find("standHardnessAnkleRoll")->get(1)->valueAsDouble();
+        walkingEngine->standHardnessAnklePitch        = (int)   params.find("standHardnessAnklePitch")->get(1)->valueAsInt();
+        walkingEngine->standHardnessAnkleRoll         = (int)   params.find("standHardnessAnkleRoll")->get(1)->valueAsInt();
+
+        std::cout << "Successfully pased the int params" << std::endl;
+
         walkingEngine->walkRef.x                      = (float) params.find("vectorWalkRef_x")->get(1)->valueAsDouble();
         walkingEngine->walkRef.y                      = (float) params.find("vectorWalkRef_y")->get(1)->valueAsDouble();
         walkingEngine->walkRefAtFullSpeedX.x          = (float) params.find("vectorWalkRefAtFullSpeed_x")->get(1)->valueAsDouble();
@@ -542,25 +556,42 @@ void BHWalkProvider::updateWalkingEngineParameters(){
         walkingEngine->speedMaxChange.translation.x   = (float) params.find("speedMaxChange_Vector_x")->get(1)->valueAsDouble();
         walkingEngine->speedMaxChange.translation.y   = (float) params.find("speedMaxChange_Vector_y")->get(1)->valueAsDouble();
         walkingEngine->balance                        = (params.find("balance")->get(1)->value() == "true") ? true : false;
+
+        std::cout << "Successfully pased the bool param" << std::endl;
+
         walkingEngine->balanceBodyRotation.x          = (float) params.find("vectorBalanceBodyRotation_x")->get(1)->valueAsDouble();
         walkingEngine->balanceBodyRotation.y          = (float) params.find("vectorBalanceBodyRotation_y")->get(1)->valueAsDouble();
         walkingEngine->balanceCom.x                   = (float) params.find("vectorBalanceCom_x")->get(1)->valueAsDouble();
         walkingEngine->balanceCom.y                   = (float) params.find("vectorBalanceCom_y")->get(1)->valueAsDouble();
         walkingEngine->balanceComVelocity.x           = (float) params.find("vectorBalanceComVelocity_x")->get(1)->valueAsDouble();
         walkingEngine->balanceComVelocity.y           = (float) params.find("vectorBalanceComVelocity_y")->get(1)->valueAsDouble();
+
+        std::cout << "Between bool and array, before array" << std::endl;
+
         walkingEngine->balanceRef.x                   = (float) params.find("vectorBalanceRef_x")->get(1)->valueAsDouble();
         walkingEngine->balanceRef.y                   = (float) params.find("vectorBalanceRef_y")->get(1)->valueAsDouble();
         walkingEngine->balanceNextRef.x               = (float) params.find("vectorBalanceNextRef_x")->get(1)->valueAsDouble();
         walkingEngine->balanceNextRef.y               = (float) params.find("vectorBalanceNextRef_y")->get(1)->valueAsDouble();
+
+        std::cout << "Between last thing, before array" << std::endl;
+
         walkingEngine->balanceStepSize.x              = (float) params.find("vectorBalanceStepSize_x")->get(1)->valueAsDouble();
         walkingEngine->balanceStepSize.y              = (float) params.find("vectorBalanceStepSize_y")->get(1)->valueAsDouble();
+        std::cout << "After balance Step Size" << std::endl;
         walkingEngine->observerMeasurementDelay       = (float) params.find("observerMeasurementDelay")->get(1)->valueAsDouble();
-        walkingEngine->observerMeasurementDeviation.x = (float) params.find("vectorObserverMeasurementDeviation.x")->get(1)->valueAsDouble();
-        walkingEngine->observerMeasurementDeviation.y = (float) params.find("vectorObserverMeasurementDeviation.y")->get(1)->valueAsDouble();
-        walkingEngine->observerProcessDeviation[0]    = (float) params.find("vectorObserverProcessDeviation.x")->get(1)->valueAsDouble();
-        walkingEngine->observerProcessDeviation[1]    = (float) params.find("vectorObserverProcessDeviation.y")->get(1)->valueAsDouble();
-        walkingEngine->observerProcessDeviation[2]    = (float) params.find("vectorObserverProcessDeviation.z")->get(1)->valueAsDouble();
-        walkingEngine->observerProcessDeviation[3]    = (float) params.find("vectorObserverProcessDeviation.w")->get(1)->valueAsDouble();
+        std::cout << "After observer Measurement delay" << std::endl;
+        //walkingEngine->observerMeasurementDeviation[0] = (float) params.find("vectorObserverMeasurementDeviation.x")->get(1)->valueAsDouble();
+        //walkingEngine->observerMeasurementDeviation[1] = (float) params.find("vectorObserverMeasurementDeviation.y")->get(1)->valueAsDouble();
+
+        std::cout << "Before the array." << std::endl;
+
+        //walkingEngine->observerProcessDeviation[0]    = (float) params.find("vectorObserverProcessDeviation.x")->get(1)->valueAsDouble();
+        //walkingEngine->observerProcessDeviation[1]    = (float) params.find("vectorObserverProcessDeviation.y")->get(1)->valueAsDouble();
+        //walkingEngine->observerProcessDeviation[2]    = (float) params.find("vectorObserverProcessDeviation.z")->get(1)->valueAsDouble();
+        //walkingEngine->observerProcessDeviation[3]    = (float) params.find("vectorObserverProcessDeviation.w")->get(1)->valueAsDouble();
+
+        std::cout << "Successfully pased array params" << std::endl;
+
         walkingEngine->odometryScale.rotation         = (float) params.find("odometryScale_rot")->get(1)->valueAsDouble();
         walkingEngine->odometryScale.translation.x    = (float) params.find("odometryScale_Vector_x")->get(1)->valueAsDouble();
         walkingEngine->odometryScale.translation.y    = (float) params.find("odometryScale_Vector_y")->get(1)->valueAsDouble();
@@ -569,20 +600,31 @@ void BHWalkProvider::updateWalkingEngineParameters(){
         walkingEngine->gyroSmoothing                  = (float) params.find("gyroSmoothing")->get(1)->valueAsDouble();
         walkingEngine->minRotationToReduceStepSize    = (float) params.find("minRotationToReduceStepSize")->get(1)->valueAsDouble();
         //82, in case you're wondering
+            
+        std::cout << "[INFO] Parameters finished updating" << std::endl;
     }
 }
 
 bool BHWalkProvider::updatedFile(std::string filename){
 
     struct stat file_stats;
-    int timeDiff = difftime(file_stats.st_mtime, file_mod_time);
-        if(timeDiff > 0.0) {
-            file_mod_time = file_stats.st_mtime;
-            std::cout << "[INFO] New Mod. Time " << file_mod_time << std::endl;
-            std::cout << "[INFO] Updating parameters used." << std::endl;
-            return true;
-        }
-        return false;
+    //if(stat(filename.c_str(), &file_stats) == -1){
+    //    std::cout << "Error on stat function in BHWalkProvider::updatedFile" << std::endl;
+    //}
+    int error = stat(filename.c_str(), &file_stats);
+
+    int timeDiff = (file_stats.st_mtime - file_mod_time);
+    std::cout << "file tim diff: " << timeDiff << std::endl;
+    std::cout << "Printing file_mod_time: " << file_mod_time << std::endl;
+    if(timeDiff > 0.0) {
+        file_mod_time = file_stats.st_mtime;
+        std::cout << "[INFO] New Mod. Time " << file_mod_time << std::endl;
+        std::cout << "[INFO] Updating parameters used." << std::endl;
+        return true;
+    } else {
+        std::cout << "[ERR] File has not been modified"<<std::endl;
+    }
+    return false;
 }
 
 void BHWalkProvider::printCurrentEngineParams(){

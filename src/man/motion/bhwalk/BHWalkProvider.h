@@ -22,6 +22,7 @@
 #include "RobotLocation.pb.h"
 #include "SExpr.h"
 #include <time.h>
+#include <stdint.h>
 
 //BH
 #include "WalkingEngine.h"
@@ -90,13 +91,15 @@ public:
     void updateWalkingEngineParameters();
     void printCurrentEngineParams();
 
+    time_t file_mod_time;
+
 protected:
     void stand();
     void setActive() {}
 
 private:
-    time_t file_mod_time;
-    int first_time;
+    //time_t file_mod_time;
+    //int first_time;
     bool requestedToStop;
     bool standby;
     bool justMotionKicked;
