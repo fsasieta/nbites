@@ -77,7 +77,7 @@ public final class Display extends JFrame implements KeyEventPostProcessor {
 		left.addTab("logs", lc);
         //JScrollPane scroll= new JScrollPane(engparp, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         //left.add(scroll, "Walking Engine Parameters");
-        left.add("Walking Engine Parameters", engparp);
+        left.add("Walking Engine Parameters",  engparp);
 		
 		statusp = new StatusPanel();
 		right.addTab("status", statusp);
