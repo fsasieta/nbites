@@ -27,13 +27,14 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 	
 
     private JScrollPane spCenter, spLeft;
-	private JPanel canvas, labelCanvas, buttonCanvas;
+	private JPanel canvas, labelCanvas, buttonCanvas, backEndCanvas;
 	
 	private JButton saveParamsV4, saveParamsV5, useV4, useV5, setParams;
-    //private BoxLayout layout;
+    private JLabel currentValuesTopLabel;
     
     private JTextField[] paramFields;
-    private JLabel[] fieldLabels;
+    private JLabel[] fieldLabels, currentValuesLabels;
+    //private JSlider[] sliderFields;
 	
     private static int paramNumber; //size of parameter string.
     private static String[] paramList, defaultValuesV4, defaultValuesV5, currentValues;
@@ -58,9 +59,12 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         
 		canvas = new JPanel();
         buttonCanvas = new JPanel();
+        backEndCanvas = new JPanel(new BorderLayout());
+        labelCanvas = new JPanel();
+        labelCanvas.setLayout(new BoxLayout(labelCanvas, BoxLayout.Y_AXIS));
 
         // there are more than 80 parameters, so we need to be able to scroll stuff
-        spCenter = new JScrollPane(canvas,
+        spCenter = new JScrollPane(backEndCanvas,
                              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                              JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -68,6 +72,10 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //canvas panel just created
         add(spCenter, BorderLayout.CENTER);
         add(buttonCanvas, BorderLayout.NORTH);
+
+        //The backend canvas contains the middle components
+        backEndCanvas.add(canvas, BorderLayout.WEST);
+        backEndCanvas.add(labelCanvas, BorderLayout.EAST);
 
         canvas.setLayout(new GridLayout(0, 2));
 
@@ -87,11 +95,22 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         buttonCanvas.add(saveParamsV4);
         buttonCanvas.add(saveParamsV5);
 
-        //Initializing needed arrays
-        paramNumber = engineStreamer.getListOfParamsLength();
-        paramFields = new JTextField[paramNumber];
+        //We add it to the main one so it is visible even when we scroll
+        add(setParams, BorderLayout.SOUTH);
 
+        //Top JLabel
+        currentValuesTopLabel = new JLabel("Current Value");
+        buttonCanvas.add(currentValuesTopLabel, BorderLayout.EAST);
+
+        //Initializing needed arrays
+        //Number of params
+        paramNumber = engineStreamer.getListOfParamsLength();
+
+        paramFields = new JTextField[paramNumber];
         fieldLabels = new JLabel[paramNumber]; 
+        currentValuesLabels = new JLabel[paramNumber];
+        //sliderFields = new JSlider[paramNumber];
+
         paramList = engineStreamer.getListOfParams();
 
         defaultValuesV4 = engineStreamer.getDefaultValuesV4();
@@ -99,13 +118,13 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
         currentValues = new String[defaultValuesV4.length];
 
-
         //Setting the arrays equal to each other will only redirect pointers, and we dont want that.
         System.arraycopy(defaultValuesV4, 0, currentValues, 0, defaultValuesV4.length);
 
         //Adding the labels and the text fields into the grid layout.
         //We always initialize with the default values for v4.
         //Up to the person using the tool to actively change the values for V5.
+        labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
         for(int i = 0; i < paramNumber; i++){ 
 
             fieldLabels[i] = new JLabel(paramList[i]);
@@ -116,10 +135,18 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             paramFields[i].setEditable(true);
             paramFields[i].addActionListener(this);
             canvas.add(paramFields[i]);
-        }
 
-        //canvas.add(setParams);
-        add(setParams, BorderLayout.SOUTH);
+
+            //if( i != 21 || i != 22 || i != 55){
+            //    sliderFields[i] = new JSlider(JSlider.HORIZONTAL, Float.parseFloat(defaultValuesV4[i]) - 200, Float.parseFloat(defaultValuesV4[i]) + 200); 
+            //}
+
+            currentValuesLabels[i] = new JLabel(currentValues[i]);
+            currentValuesLabels[i].setAlignmentX(Component.LEFT_ALIGNMENT);
+            labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
+            labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
+
+        }
     }
 
     /* Action code handling 
@@ -169,9 +196,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
             //TODO: Check for boundary conditions in some of the parameters!!
 
-
             for(int i = 0; i < paramFields.length; i++){
                 currentValues[i] = paramFields[i].getText();
+                currentValuesLabels[i].setText(currentValues[i]);
             }
             
             //System.out.println("Array that was acquired by set params button");

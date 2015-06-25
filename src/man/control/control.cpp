@@ -30,7 +30,7 @@ namespace control {
     
     pthread_t control_thread;
     static bool STARTED = false;
-    bool newWalkParameters = false;
+    bool newWalkParameters = false; //Need to initialize bool somewhere
     
     uint32_t cnc_test(Log * arg) {
         printf("\tcnc_test:[%s] %lu bytes of data.\n", arg->description().c_str(),
@@ -205,7 +205,7 @@ namespace control {
                                                                                   
             SExpr vectorBalanceNextRef_x = SExpr("vectorBalanceNextRef_x", receivedParams.vectorbalancenextref_x());
             SExpr vectorBalanceNextRef_y = SExpr("vectorBalanceNextRef_y", receivedParams.vectorbalancenextref_y());
-                                                                                                        
+            
             SExpr vectorBalanceStepSize_x = SExpr("vectorBalanceStepSize_x", receivedParams.vectorbalancestepsize_x());
             SExpr vectorBalanceStepSize_y = SExpr("vectorBalanceStepSize_y", receivedParams.vectorbalancestepsize_y());
                                                                                                         
@@ -313,28 +313,43 @@ namespace control {
             s.append(gyroSmoothing);
             s.append(minRotationToReduceStepSize);
 
-            //std::cout << "[INFO] This is the formatted sexpr: " << std::endl;
-
+            //std::cout << "[INFO] This is the formatted sexpr to be written to txt: " << std::endl;
             //Printing SExpr so we can check data received
             //std::cout << s.print() << std::endl;
+
             std::string stringInFile = s.serialize();
 
         #ifdef NAOQI_2
-            std::cout << "[INFO] Saving V5 Walk Engine parameters" << std::endl;
-            std::ofstream file("home/nao/nbites/Config/V5WalkEngineParameters.txt");
+            std::cout << "[CONTROL] Saving V5 Walk Engine parameters" << std::endl;
+            std::ofstream file("/home/nao/nbites/Config/V5WalkEngineParameters.txt");
             //std::cout << stringInFile << std::endl;
             file << stringInFile;
             file.close();
-            std::cout << "[INFO] Saving Done" << std::endl;
+            std::cout << "[CONTROL] Saving Done" << std::endl;
         #else
-            std::cout << "[INFO] Saving V4 Walk Engine parameters" << std::endl;
-            std::ofstream file("home/nao/nbites/Config/V4WalkEngineParameters.txt");
+            std::cout << "[CONTROL] Saving V4 Walk Engine parameters" << std::endl;
+            std::ofstream file("/home/nao/nbites/Config/V4WalkEngineParameters.txt");
             //std::cout << stringInFile << std::endl;
             file << stringInFile;
             file.close();
-            std::cout << "[INFO] Saving Done" << std::endl;
-        #endif
+            std::cout << "[CONTROL] Saving Done" << std::endl;
 
+            /* Sanity Check on control thread writing capabilities.*/
+            //Notice the ifstream instaed of the ofstream
+            /*
+            std::ifstream file2("/home/nao/nbites/Config/V4WalkEngineParameters.txt");
+            std::cout << "[CONTROL] Managed to open the file just written to" << std::endl;
+            std::stringstream ssfile;
+            ssfile << file2.rdbuf();
+            std::string fileString = ssfile.str();
+            std::cout << "Printing filestring in control function thread of file just read:\n" << fileString << std::endl;
+            ssize_t i = 0;
+            std::cout << "Before calling read function in SExpr file" << std::endl; //Prints normally
+            SExpr params = *SExpr::read(fileString, i);        //gdb says segfault happens in this line
+            std::cout << "Printing parameters just written (hopefully) to robot .txt file\n" << params.print() << std::endl; //Doesn't print (and robot loses stiffneses and falls down)
+            */
+
+        #endif
 
         //Setting flag for motion module run function.
         newWalkParameters = true;

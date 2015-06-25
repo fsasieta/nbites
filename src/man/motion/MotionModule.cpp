@@ -48,21 +48,25 @@ void MotionModule::stop()
 void MotionModule::run_()
 {
 
-    static bool printed = true;
-    if(printed){ 
-        sanityCheckWalkEngineParameters();
-        printed = false;
-    }
-
-
-    //We check for diferent walk engine parameters
-    //      If there are, we update them, and then we go on with
-    //      the rest of the motion module's funcitonality
-    //      We print them to be mentally healthy.
-    if(control::newWalkParameters){
-        std::cout << "About to update parameters" << std::endl;
+    //Immediately after startup, we update our walking parameters 
+    //      to our desired configuration. We also print the params
+    //      to be mentally healthy.
+    static bool firstTime = true;
+    if(firstTime){ 
         walkProvider.updateWalkingEngineParameters();
         sanityCheckWalkEngineParameters();
+        firstTime = false;
+        std::cout << "[MOTION] Parameters updated at startup from config .txt file" << std::endl;
+    }
+
+    //We check for diferent walk engine parameters set up from the tool
+    //      If there are, we update them, and then we go on with
+    //      the rest of the motion module's functionality
+    //      We print them to be mentally healthy.
+    if(control::newWalkParameters){
+        std::cout << "[MOTION] About to update parameters" << std::endl;
+        walkProvider.updateWalkingEngineParameters();
+        //sanityCheckWalkEngineParameters();
         control::newWalkParameters = false;
     }
     
@@ -1264,11 +1268,10 @@ void MotionModule::updateHandSpeeds()
 }
 
 void MotionModule::sanityCheckWalkEngineParameters(){
-
+    std::cout << "[MOTION] Parameters in motion module" << std::endl;
     walkProvider.printCurrentEngineParams();
-    std::cout << "End of parameters received in motion module" <<std::endl;
+    std::cout << "[MOTION] End of current parameters in motion module" <<std::endl;
 }
-
 
 } // namespace motion
 } // namespace man
