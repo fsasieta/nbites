@@ -12,6 +12,7 @@
 
 #include "RoboGrams.h"
 #include "MotionConstants.h"
+#include "../control/control.h"
 
 // Motion providers
 #include "bhwalk/BHWalkProvider.h"
@@ -270,6 +271,9 @@ private:
 
     // Update the hand speeds
     void updateHandSpeeds();
+
+    //sanity check on the walk engine params
+    void sanityCheckWalkEngineParameters();
 
     BHWalkProvider          walkProvider;
     ScriptedProvider        scriptedProvider;

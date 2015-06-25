@@ -76,3 +76,8 @@ add_library(
 	bhwalk
 	STATIC
 	${bhwalk_srcs} )
+
+target_link_libraries(bhwalk
+    control
+    logshare
+)

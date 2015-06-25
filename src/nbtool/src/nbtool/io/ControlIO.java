@@ -17,6 +17,8 @@ import nbtool.util.Logger;
 
 import messages.CameraParamsOuterClass;
 import messages.CameraParamsOuterClass.CameraParams;
+import messages.EngineParameters.WalkEnginePreferences;
+
 
 /*
  * Astute observers will notice this code is remarkably similar to the netIO code
@@ -52,6 +54,13 @@ public class ControlIO {
 		Log cmnd = new Log(commandTree, null);
 		return cmnd;
 	}
+
+    public static Log createCmndSetWalkingEngineParameters(WalkEnginePreferences engineParamPrefs){
+        byte[] serializedEngineParams = engineParamPrefs.toByteArray();
+        SExpr commandTree = SExpr.newList(SExpr.newAtom("command"), SExpr.newAtom("walkingEngineParameterStream"));
+        Log cmnd = new Log(commandTree, serializedEngineParams);
+		return cmnd;
+    }
 	
 	private static final LinkedList<ControlInstance> instances = new LinkedList<>();
 

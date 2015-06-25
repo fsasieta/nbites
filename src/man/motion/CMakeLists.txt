@@ -27,5 +27,6 @@ target_link_libraries(motion
   portals
   messages
   support
+  control
   bhwalk
 )

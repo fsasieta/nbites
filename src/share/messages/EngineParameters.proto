@@ -1,0 +1,128 @@
+package messages;
+
+//Com = center of mass.
+//any parameter that is part of a vector will have "vector" in its name.
+message WalkEnginePreferences{
+
+    optional float vectorStandComPos_y = 1;
+    optional float vectorStandComPos_z = 2;
+
+    optional float standBodyTilt = 3;
+
+    optional float vectorStandArmJointAngle_x = 4;
+    optional float vectorStandArmJointAngle_y = 5;
+
+    optional int64 standHardnessAnklePitch = 6;
+    optional int64 standHardnessAnkleRoll = 7;
+
+    optional float vectorWalkRef_x = 8; 
+    optional float vectorWalkRef_y = 9;
+
+    optional float vectorWalkRefAtFullSpeed_x = 10;
+    optional float vectorWalkRefAtFullSpeed_y = 11;
+    
+    optional float rangeWalkRefPlanningLimit_low = 12;
+    optional float rangeWalkRefPlanningLimit_high = 13;
+
+    optional float rangeWalkRefXLimit_low = 14;
+    optional float rangeWalkRefXLimit_high = 15;
+
+    optional float rangeWalkRefYLimit_low = 16;
+    optional float rangeWalkRefYLimit_high = 17;
+
+    optional float rangeWalkStepSizeXPlanningLimit_low = 18;
+    optional float rangeWalkStepSizeXPlanningLimit_high = 19;
+
+    optional float rangeWalkStepSizeXLimit_low = 20;
+    optional float rangeWalkStepSizeXLimit_high = 21;
+
+    optional float walkStepDuration = 22;
+    optional float walkStepDurationAtFullSpeedX = 23;
+    optional float walkStepDurationAtFullSpeedY = 24;
+
+    optional float vectorWalkHeight_x = 25;
+    optional float vectorWalkHeight_y = 26;
+
+    optional float walkArmRotationAtFullSpeedX = 27;
+
+    optional float walkMovePhaseBeginning = 28;
+    optional float walkMovePhaseLength = 29;
+
+    optional float walkLiftPhaseBeginning = 30;
+    optional float walkLiftPhaseLength = 31;
+
+    optional float vectorWalkLiftOffSet_x = 32;
+    optional float vectorWalkLiftOffSet_y = 33;
+    optional float vectorWalkLiftOffSet_z = 34;
+
+    optional float vectorWalkLiftOffSetAtFullSpeedX_x = 35;
+    optional float vectorWalkLiftOffSetAtFullSpeedX_y = 36;
+    optional float vectorWalkLiftOffSetAtFullSpeedX_z = 37;
+
+    optional float vectorWalkLiftOffSetAtFullSpeedY_x = 38;
+    optional float vectorWalkLiftOffSetAtFullSpeedY_y = 39;
+    optional float vectorWalkLiftOffSetAtFullSpeedY_z = 40;
+
+    optional float vectorWalkLiftRotation_x = 41;
+    optional float vectorWalkLiftRotation_y = 42;
+    optional float vectorWalkLiftRotation_z = 43;
+
+    optional float walkSupportRotation = 44;
+
+    optional float walkComLiftOffSet_x = 45;
+    optional float walkComLiftOffSet_y = 46;
+    optional float walkComLiftOffSet_z = 47;
+
+    optional float walkComBodyRotation = 48;
+
+    optional float speedMax_rot = 49;
+    optional float speedMax_Vector_x = 50;
+    optional float speedMax_Vector_y = 51;
+
+    optional float speedMaxBackwards = 52;
+
+    optional float speedMaxChange_rot = 53;
+    optional float speedMaxChange_Vector_x = 54;
+    optional float speedMaxChange_Vector_y = 55;
+
+    optional bool balance = 56;
+
+    optional float vectorBalanceBodyRotation_x = 57;
+    optional float vectorBalanceBodyRotation_y = 58;
+
+    optional float vectorBalanceCom_x = 59;
+    optional float vectorBalanceCom_y = 60;
+
+    optional float vectorBalanceComVelocity_x = 61;
+    optional float vectorBalanceComVelocity_y = 62;
+
+    optional float vectorBalanceRef_x = 63;
+    optional float vectorBalanceRef_y = 64;
+
+    optional float vectorBalanceNextRef_x = 65;
+    optional float vectorBalanceNextRef_y = 66;
+
+    optional float vectorBalanceStepSize_x = 67;
+    optional float vectorBalanceStepSize_y = 68;
+
+    optional float observerMeasurementDelay = 69;
+
+    optional float vectorObserverMeasurementDeviation_x = 70;
+    optional float vectorObserverMeasurementDeviation_y = 71;
+
+    optional float vectorObserverProcessDeviation_x = 72;
+    optional float vectorObserverProcessDeviation_y = 73;
+    optional float vectorObserverProcessDeviation_z = 74;
+    optional float vectorObserverProcessDeviation_w = 75;
+
+    optional float odometryScale_rot = 76;
+    optional float odometryScale_Vector_x = 77;
+    optional float odometryScale_Vector_y = 78;
+
+    optional float gyroStateGain = 79;
+    optional float gyroDerivativeGain = 80;
+    optional float gyroSmoothing = 81;
+
+    optional float minRotationToReduceStepSize = 82;
+
+}

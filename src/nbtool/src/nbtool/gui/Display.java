@@ -1,5 +1,6 @@
 package nbtool.gui;
 
+import java.awt.*;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.KeyEventPostProcessor;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
@@ -65,11 +67,15 @@ public final class Display extends JFrame {
 		LogDisplayPanel.main = ldp;
 		
 		cntrlp = new ControlPanel();
-		camstrmp = new StreamingPanel();
+		camstrmp = new CameraStreamingPanel();
 		lc = new LogChooser();
+        engparp = new EngineParametersPanel();
 		left.addTab("control", cntrlp);
 		left.addTab("logs", lc);
 		left.addTab("camera",camstrmp);
+        //JScrollPane scroll= new JScrollPane(engparp, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //left.add(scroll, "Walking Engine Parameters");
+        left.add("Walking Engine Parameters",  engparp);
 		
 		statusp = new StatusPanel();
 		right.addTab("status", statusp);
@@ -113,9 +119,11 @@ public final class Display extends JFrame {
 	private JTabbedPane right;
 	
 	private ControlPanel cntrlp;
-	private StreamingPanel camstrmp;
+	private CameraStreamingPanel camstrmp;
 	private StatusPanel statusp;
 	private LogChooser lc;
+
+    private EngineParametersPanel engparp;
 		
 	private LogDisplayPanel ldp;
 	

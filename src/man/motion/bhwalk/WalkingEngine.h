@@ -2,6 +2,10 @@
 * @file WalkingEngine.h
 * Declaration a module that creates the walking motions
 * @author Colin Graf
+* 
+* With modifications to stream Walking parameters for the Northern Bites team
+* @Franco Sasieta.
+*
 */
 
 #pragma once

@@ -2,10 +2,14 @@
 #define nbcontrol_h
 
 #include <pthread.h>
+<<<<<<< HEAD
 #include <CameraParams.pb.h>
 #include <google/protobuf/message_lite.h>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+=======
+#include "EngineParameters.pb.h"
+>>>>>>> franco/walkingEngineParamStream
 
 #define CONTROL_USLEEP_WAITING (100000)
 
@@ -46,7 +50,11 @@ namespace control {
     
     void control_init();
     
+    //Protobuff used in Walking engine function
+    static messages::WalkEnginePreferences receivedParams;
     extern pthread_t control_thread;
+
+    extern bool newWalkParameters;
 }
 
 #endif //nbcontrol_h
