@@ -12,26 +12,28 @@ import javax.swing.*;
 public class EngineParametersPanel extends JPanel implements ActionListener {
 	
 	private abstract class Parameter {
-		abstract JComponent getDisplay();
-		abstract float getValue(JComponent display);
-		abstract void setValue(float value, JComponent display);
+		abstract JComponent getDisplay(String initial);
+		abstract String getValue(JComponent display);
+		abstract void setValue(String value, JComponent display);
 	}
 	
 	private final class FreeParameter extends Parameter {
 		@Override
-		JComponent getDisplay() {
-			return new JTextField();
+		JComponent getDisplay(String initial) {
+			JTextField field = new JTextField(initial, 8);
+			field.setEditable(true);
+			return field;
 		}
 
 		@Override
-		float getValue(JComponent display) {
+		String getValue(JComponent display) {
 			assert(display instanceof JTextField);
 			JTextField field = (JTextField) display;
-			return Float.parseFloat(field.getText());
+			return field.getText();
 		}
 
 		@Override
-		void setValue(float value, JComponent display) {
+		void setValue(String value, JComponent display) {
 			assert(display instanceof JTextField);
 			JTextField field = (JTextField) display;
 			
@@ -47,21 +49,22 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		}
 		
 		@Override
-		JComponent getDisplay() {
+		JComponent getDisplay(String initial) {
 			return new JSlider();
 		}
 
 		@Override
-		float getValue(JComponent display) {
+		String getValue(JComponent display) {
 			JSlider slider = (JSlider) display;
 			int value = slider.getValue();
-			return value / (float) DENOMINATOR;
+			return "" + value / (float) DENOMINATOR;
 		}
 
 		@Override
-		void setValue(float value, JComponent display) {
+		void setValue(String value, JComponent display) {
 			JSlider slider = (JSlider) display;
-			int valueAsInt = (int) (value * DENOMINATOR);
+			float valueAsFloat = Float.parseFloat(value);
+			int valueAsInt = (int) (valueAsFloat * DENOMINATOR);
 			slider.setValue(valueAsInt);
 		}	
 	}
@@ -157,7 +160,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 	private JButton saveParamsV4, saveParamsV5, useV4, useV5, setParams;
     private JLabel currentValuesTopLabel;
     
-    private JTextField[] paramFields;
+    private JComponent[] paramFields;
     private JLabel[] fieldLabels, currentValuesLabels;
     //private JSlider[] sliderFields;
 	
@@ -233,7 +236,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Number of params
         paramNumber = engineStreamer.getListOfParamsLength();
 
-        paramFields = new JTextField[paramNumber];
+        paramFields = new JComponent[paramNumber];
         fieldLabels = new JLabel[paramNumber]; 
         currentValuesLabels = new JLabel[paramNumber];
         //sliderFields = new JSlider[paramNumber];
@@ -253,16 +256,13 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Up to the person using the tool to actively change the values for V5.
         labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
         for(int i = 0; i < paramNumber; i++){ 
-
             fieldLabels[i] = new JLabel(paramList[i]);
             fieldLabels[i].setToolTipText("Default value is in parenthesis");
             canvas.add(fieldLabels[i]);
 
-            paramFields[i] = new JTextField(defaultValuesV4[i], 8);
-            paramFields[i].setEditable(true);
-            paramFields[i].addActionListener(this);
+            //paramFields[i] = new JTextField(defaultValuesV4[i], 8);
+            paramFields[i] = Parameters[i].getDisplay(defaultValuesV4[i]);
             canvas.add(paramFields[i]);
-
 
             //if( i != 21 || i != 22 || i != 55){
             //    sliderFields[i] = new JSlider(JSlider.HORIZONTAL, Float.parseFloat(defaultValuesV4[i]) - 200, Float.parseFloat(defaultValuesV4[i]) + 200); 
@@ -285,7 +285,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 			//make v4 parameters visible.
             System.out.println("Default V4 button pressed");
             for(int i = 0; i < paramFields.length; i++){
-                paramFields[i].setText(defaultValuesV4[i]);
+            	Parameters[i].setValue(defaultValuesV4[i], paramFields[i]);
+                //paramFields[i].setText(defaultValuesV4[i]);
             }
             System.arraycopy(defaultValuesV4, 0, currentValues, 0, defaultValuesV4.length);
 		}
@@ -293,7 +294,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 			//make v5 parameters visible.
             System.out.println("Default V5 button pressed");
             for(int i = 0; i < paramFields.length; i++){
-                paramFields[i].setText(defaultValuesV5[i]);
+            	Parameters[i].setValue(defaultValuesV5[i], paramFields[i]);
+                //paramFields[i].setText(defaultValuesV5[i]);
             }
             System.arraycopy(defaultValuesV5, 0, currentValues, 0, defaultValuesV5.length);
 		}
@@ -301,7 +303,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //save parameters of v4 robot
             System.out.println("Save V4 parameters button pressed.");
             for(int i = 0; i < paramFields.length; i++){
-                currentValues[i] = paramFields[i].getText();
+                //currentValues[i] = paramFields[i].getText();
+            	currentValues[i] = "" + Parameters[i].getValue(paramFields[i]);
             }
             engineStreamer.writeDataToFile(currentValues, 4);
 
@@ -310,7 +313,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //save parameters of V5 robot 
             System.out.println("Save V5 parameters button pressed");
             for(int i = 0; i < paramFields.length; i++){
-                currentValues[i] = paramFields[i].getText();
+                //currentValues[i] = paramFields[i].getText();
+            	currentValues[i] = "" + Parameters[i].getValue(paramFields[i]);
             }
             engineStreamer.writeDataToFile(currentValues, 5);
 
@@ -324,7 +328,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //TODO: Check for boundary conditions in some of the parameters!!
 
             for(int i = 0; i < paramFields.length; i++){
-                currentValues[i] = paramFields[i].getText();
+                //currentValues[i] = paramFields[i].getText();
+            	currentValues[i] = "" + Parameters[i].getValue(paramFields[i]);
                 currentValuesLabels[i].setText(currentValues[i]);
             }
             
