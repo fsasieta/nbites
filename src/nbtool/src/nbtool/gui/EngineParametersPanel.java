@@ -2,166 +2,24 @@ package nbtool.gui;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.*;
 
 import javax.swing.*;
+
+import nbtool.gui.WalkingEngineParameters.Parameter;
 
 
 /* GUI for the Walking engine parameters streamer.
  * Shows buttons and basic labels, processing is done elsewhere
  */
 public class EngineParametersPanel extends JPanel implements ActionListener {
-	
-	private abstract class Parameter {
-		abstract JComponent getDisplay(String initial);
-		abstract String getValue(JComponent display);
-		abstract void setValue(String value, JComponent display);
-	}
-	
-	private final class FreeParameter extends Parameter {
-		@Override
-		JComponent getDisplay(String initial) {
-			JTextField field = new JTextField(initial, 8);
-			field.setEditable(true);
-			return field;
-		}
-
-		@Override
-		String getValue(JComponent display) {
-			assert(display instanceof JTextField);
-			JTextField field = (JTextField) display;
-			return field.getText();
-		}
-
-		@Override
-		void setValue(String value, JComponent display) {
-			assert(display instanceof JTextField);
-			JTextField field = (JTextField) display;
-			
-			field.setText("" + value);
-		}
-	}
-	
-	final class BoundedParameter extends Parameter {
-		static final int DENOMINATOR = 10000;
-		private float min, max, start;
-		BoundedParameter(float min, float max, float start) {
-			this.min = min; this.max = max; this.start = start;
-		}
-		
-		@Override
-		JComponent getDisplay(String initial) {
-			return new JSlider(JSlider.HORIZONTAL, (int) min, (int) max, (int) start);
-		}
-
-		@Override
-		String getValue(JComponent display) {
-			JSlider slider = (JSlider) display;
-			int value = slider.getValue();
-			return "" + value / (float) DENOMINATOR;
-		}
-
-		@Override
-		void setValue(String value, JComponent display) {
-			JSlider slider = (JSlider) display;
-			float valueAsFloat = Float.parseFloat(value);
-			int valueAsInt = (int) (valueAsFloat * DENOMINATOR);
-			slider.setValue(valueAsInt);
-		}	
-	}
-
-	private Parameter[] Parameters = {
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new BoundedParameter(0, 1000, 525), //index 21,walkstep duration
-			new BoundedParameter(0, 1000, 525), //Walkstep duration at full speed X
-			new BoundedParameter(0, 1000, 180),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new BoundedParameter(0.f, 1.f, .5f), //Gyro smoothing. BH puts it from 0 to 1
-			new FreeParameter()
-	};
 
     private JScrollPane spCenter, spLeft;
-	private JPanel canvas, labelCanvas, buttonCanvas, backEndCanvas;
+    //private JPanel labelCanvas;
+	private JPanel canvas, buttonCanvas, backEndCanvas;
 	
 	private JButton saveParamsV4, saveParamsV5, useV4, useV5, setParams;
     private JLabel currentValuesTopLabel;
     
-    private JComponent[] paramFields;
     private JLabel[] fieldLabels, currentValuesLabels;
     //private JSlider[] sliderFields;
 	
@@ -169,7 +27,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
     private static String[] paramList, defaultValuesV4, defaultValuesV5, currentValues;
 
     private WalkingEngineParameters engineStreamer;
-    private JTextField test;
+    private Parameter[] parameters;
 
 	public EngineParametersPanel() {
 
@@ -177,11 +35,10 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		 * GUI below. 
 		 */
 		super();
-		
-		System.out.println("LENGTH " + Parameters.length);
-
+	
         //Class that contains the networking and other logic stuff.
 		engineStreamer = new WalkingEngineParameters();
+		parameters = engineStreamer.parameters;
 
         /* I use two layout. The border layout to have everything centered, and then the
          * box layout in the canvas panel to have everything in list type.
@@ -191,8 +48,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		canvas = new JPanel();
         buttonCanvas = new JPanel();
         backEndCanvas = new JPanel(new BorderLayout());
-        labelCanvas = new JPanel();
-        labelCanvas.setLayout(new BoxLayout(labelCanvas, BoxLayout.Y_AXIS));
+        //labelCanvas = new JPanel();
+        //labelCanvas.setLayout(new BoxLayout(labelCanvas, BoxLayout.Y_AXIS));
 
         // there are more than 80 parameters, so we need to be able to scroll stuff
         spCenter = new JScrollPane(backEndCanvas,
@@ -206,9 +63,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
         //The backend canvas contains the middle components
         backEndCanvas.add(canvas, BorderLayout.WEST);
-        backEndCanvas.add(labelCanvas, BorderLayout.EAST);
+        //backEndCanvas.add(labelCanvas, BorderLayout.EAST);
 
-        canvas.setLayout(new GridLayout(0, 2));
+        canvas.setLayout(new GridLayout(0, 3));
 
         //Adding Buttons
         useV4 = new JButton("Default V4 params");
@@ -237,7 +94,6 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Number of params
         paramNumber = engineStreamer.getListOfParamsLength();
 
-        paramFields = new JComponent[paramNumber];
         fieldLabels = new JLabel[paramNumber]; 
         currentValuesLabels = new JLabel[paramNumber];
         //sliderFields = new JSlider[paramNumber];
@@ -255,20 +111,27 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Adding the labels and the text fields into the grid layout.
         //We always initialize with the default values for v4.
         //Up to the person using the tool to actively change the values for V5.
-        labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
+        //labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
         for(int i = 0; i < paramNumber; i++){ 
-            fieldLabels[i] = new JLabel(paramList[i]);
+            fieldLabels[i] = new JLabel("(" + i + ")" + " " + paramList[i]);
             fieldLabels[i].setToolTipText("Default value is in parenthesis");
             canvas.add(fieldLabels[i]);
 
             //paramFields[i] = new JTextField(defaultValuesV4[i], 8);
-            paramFields[i] = Parameters[i].getDisplay(defaultValuesV4[i]);
-            canvas.add(paramFields[i]);
+            //paramFields[i] = Parameters[i].getDisplay(defaultValuesV4[i]);
+            //Dimension opt = parameters[i].getDisplay().getPreferredSize();
+            //parameters[i].getDisplay().setMaximumSize(new Dimension(opt.width, fieldLabels[i].getHeight()));
+            canvas.add(parameters[i].getDisplay());
+
+            //if( i != 21 || i != 22 || i != 55){
+            //    sliderFields[i] = new JSlider(JSlider.HORIZONTAL, Float.parseFloat(defaultValuesV4[i]) - 200, Float.parseFloat(defaultValuesV4[i]) + 200); 
+            //}
 
             currentValuesLabels[i] = new JLabel(currentValues[i]);
-            currentValuesLabels[i].setAlignmentX(Component.LEFT_ALIGNMENT);
-            labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
-            labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
+            //currentValuesLabels[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
+            //labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
+           // labelCanvas.add(Box.createRigidArea(new Dimension(0,50)));
+            canvas.add(currentValuesLabels[i]);
 
         }
     }
@@ -281,8 +144,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		if(e.getSource() == useV4) {
 			//make v4 parameters visible.
             System.out.println("Default V4 button pressed");
-            for(int i = 0; i < paramFields.length; i++){
-            	Parameters[i].setValue(defaultValuesV4[i], paramFields[i]);
+            for(int i = 0; i < parameters.length; i++){
+            	parameters[i].setValue(defaultValuesV4[i]);
                 //paramFields[i].setText(defaultValuesV4[i]);
             }
             System.arraycopy(defaultValuesV4, 0, currentValues, 0, defaultValuesV4.length);
@@ -290,8 +153,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         else if(e.getSource() == useV5) {
 			//make v5 parameters visible.
             System.out.println("Default V5 button pressed");
-            for(int i = 0; i < paramFields.length; i++){
-            	Parameters[i].setValue(defaultValuesV5[i], paramFields[i]);
+            for(int i = 0; i < parameters.length; i++){
+            	parameters[i].setValue(defaultValuesV5[i]);
                 //paramFields[i].setText(defaultValuesV5[i]);
             }
             System.arraycopy(defaultValuesV5, 0, currentValues, 0, defaultValuesV5.length);
@@ -299,9 +162,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         else if(e.getSource() == saveParamsV4) {
             //save parameters of v4 robot
             System.out.println("Save V4 parameters button pressed.");
-            for(int i = 0; i < paramFields.length; i++){
+            for(int i = 0; i < parameters.length; i++){
                 //currentValues[i] = paramFields[i].getText();
-            	currentValues[i] = "" + Parameters[i].getValue(paramFields[i]);
+            	currentValues[i] = "" + parameters[i].getValue();
             }
             engineStreamer.writeDataToFile(currentValues, 4);
 
@@ -309,9 +172,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         else if(e.getSource() == saveParamsV5) {
             //save parameters of V5 robot 
             System.out.println("Save V5 parameters button pressed");
-            for(int i = 0; i < paramFields.length; i++){
+            for(int i = 0; i < parameters.length; i++){
                 //currentValues[i] = paramFields[i].getText();
-            	currentValues[i] = "" + Parameters[i].getValue(paramFields[i]);
+            	currentValues[i] = "" + parameters[i].getValue();
             }
             engineStreamer.writeDataToFile(currentValues, 5);
 
@@ -324,9 +187,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
             //TODO: Check for boundary conditions in some of the parameters!!
 
-            for(int i = 0; i < paramFields.length; i++){
+            for(int i = 0; i < parameters.length; i++){
                 //currentValues[i] = paramFields[i].getText();
-            	currentValues[i] = "" + Parameters[i].getValue(paramFields[i]);
+            	currentValues[i] = "" + parameters[i].getValue();
                 currentValuesLabels[i].setText(currentValues[i]);
             }
             
