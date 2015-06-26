@@ -128,7 +128,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //}
 
             currentValuesLabels[i] = new JLabel(currentValues[i]);
-            currentValuesLabels[i].setAlignmentX(Component.LEFT_ALIGNMENT);
+            //currentValuesLabels[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
             //labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
            // labelCanvas.add(Box.createRigidArea(new Dimension(0,50)));
             canvas.add(currentValuesLabels[i]);
