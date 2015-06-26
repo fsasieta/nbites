@@ -26,12 +26,123 @@ import messages.EngineParameters.WalkEnginePreferences;
 
 public class WalkingEngineParameters {
 	
-    //Constructor
-    public WalkingEngineParameters(){
+	protected abstract class Parameter {
+		protected int index;
+		protected Parameter(int i) {this.index = i;}
+		
+		abstract JComponent getDisplay();
+		abstract String getValue();
+		abstract void setValue(String value);
+	}
+	
+	protected class FreeParameter extends Parameter {
+		
+		JTextField display;
+		
+		FreeParameter(int i) {
+			super(i);
+			
+			display = new JTextField(defaultValuesV4[i], 8);
+			display.setToolTipText(parameterHints[i]);
+			display.setEditable(true);
+		}
 
-        buildV5ParamList();
-    }
+		@Override
+		JComponent getDisplay() {
+			return display;
+		}
 
+		@Override
+		String getValue() {
+			return display.getText();
+		}
+
+		@Override
+		void setValue(String value) {
+			display.setText(value);
+		}
+	}
+	
+	protected final class FixedParameter extends FreeParameter {
+		FixedParameter(int i) {
+			super(i);
+			this.display.setEditable(false);
+		}
+	}
+	
+	protected final class BoolParameter extends Parameter {
+		JCheckBox display;
+		BoolParameter(int i) {
+			super(i);
+			display = new JCheckBox();
+			display.setText("");
+			display.setToolTipText(parameterHints[i]);
+			
+			this.setValue(defaultValuesV4[i]);
+		}
+
+		@Override
+		JComponent getDisplay() {
+			return display;
+		}
+
+		@Override
+		String getValue() {
+			return String.valueOf(display.isSelected());
+		}
+
+		@Override
+		void setValue(String value) {
+			Boolean b = Boolean.parseBoolean(value);
+			display.setSelected(b);
+		}
+	}
+	
+	protected class BoundedParameter extends Parameter {
+		public static final int DENOMINATOR = 10000;
+		JSlider display;
+		int istart;
+		int imin, imax;
+		BoundedParameter(int i, float min, float max, float start) {
+			super(i);
+			
+			istart = (int) (start * DENOMINATOR);
+			imin = (int) (min * DENOMINATOR);
+			imax = (int) (max * DENOMINATOR);
+			
+			display = new JSlider(JSlider.HORIZONTAL, imin, imax, istart);
+			display.setToolTipText(parameterHints[i]);
+			Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
+			labelTable.put( new Integer( imin ), new JLabel("" + min) );
+			labelTable.put( new Integer( imax ), new JLabel("" + max) );
+			
+			display.setLabelTable(labelTable);
+			display.setPaintLabels(true);
+		}
+		
+		@Override
+		JComponent getDisplay() {
+			return display;
+		}
+		
+		@Override
+		String getValue() {
+			int sval = display.getValue();
+			float fval = ((float) sval) / DENOMINATOR;
+			return String.valueOf(fval);
+		}
+		
+		@Override
+		void setValue(String value) {
+			/*
+			float fval = Float.parseFloat(value);
+			int ival = (int) (fval * DENOMINATOR);
+			display. */
+			
+			Logger.warnf("BoundedParameter ignoring setValue() that may be outside bounds.");
+			display.setValue(istart);
+		}
+	}
 
     /* List of arguments and their setup values as BH put them initially
      * Several might not be used, but adding all of them for now.
@@ -45,7 +156,7 @@ public class WalkingEngineParameters {
      * Descriptions taken from WalkingEngine.h , in the B-human walking engine code.
      * Don't blame me for their unhelpfulness
      */
-	private String[] parameterNames = new String[] {
+	public String[] parameterNames = new String[] {
 			
     "StandComPosition_x (50.f)"                         ,    /** The position of the center of mass relative to the right foot when standing */
     "StandComPos_y (262.0f)"                            ,
@@ -132,12 +243,97 @@ public class WalkingEngineParameters {
     "gyroSmoothing (0.5f)"                              , /** Smoothing (between 0 and 1!) to calculate the moving average of the y-axis gyro measurements. */
     "minRotationToReduceStepSize (1.3f)"                , /** I have no idea what im doing! Colin pls fix this! (Actual B-Human comment)**/
 	};
+	
+	public String[] parameterHints = {
+			"/** The position of the center of mass relative to the right foot when standing */",
+			"/** The position of the center of mass relative to the right foot when standing */",
+			"/** The tilt of the torso when standing */",
+			"/** The joint angles of the left arm when standing */",
+			"/** The joint angles of the left arm when standing */",
+			"/** The hardness of the ankle pitch joint for standing and walking */",
+			"/** The hardness of the ankle roll joint for standing and walking */",
+			"/** The position of the pendulum pivot point in Q */",
+			"/** The position of the pendulum pivot point in Q */",
+			"/** The position of the pendulum pivot point when walking forwards with maximum speed */",
+			"/** The position of the pendulum pivot point when walking forwards with maximum speed */",
+			"/** The limit for shifting the pendulum pivot point towards the x-axis when planning the next step size */",
+			"/** The limit for shifting the pendulum pivot point towards the x-axis when planning the next step size */",
+			"/** The limit for shifting the pendulum pivot point towards the x-axis when balancing */",
+			"/** The limit for shifting the pendulum pivot point towards the x-axis when balancing */",
+			"/** The limit for shifting the pendulum pivot point towards the y-axis when balancing */",
+			"/** The limit for shifting the pendulum pivot point towards the y-axis when balancing */",
+			"/** The minimum and maximum step size used to plan the next step size */",
+			"/** The minimum and maximum step size used to plan the next step size */",
+			"/** The minimum and maximum step size when balancing */",
+			"/** The minimum and maximum step size when balancing */",
+			"/** the duration of a full step cycle (two half steps) */",
+			"/** the duration of a full step cycle when walking forwards with maximum speed */",
+			"/** The duration of a full step cycle when walking sidewards with maximum speed */",
+			"/** The height of the 3d linear inverted pendulum pla(for the pendulum motion towards the x-axis and the pendulum motion towards the y-axis) */",
+			"/** The height of the 3d linear inverted pendulum pla(for the pendulum motion towards the x-axis and the pendulum motion towards the y-axis) */",
+			"/** The maximum deflection for the arm swinging motion */",
+			"/** The beginning and length of the trajectory used to move the swinging foot to its new position */",
+			"/** The beginning and length of the trajectory used to move the swinging foot to its new position */",
+			"/** The beginning and length of the trajectory used to lift the swinging foot */",
+			"/** The beginning and length of the trajectory used to lift the swinging foot */",
+			"/** The height the swinging foot is lifted */",
+			"/** The height the swinging foot is lifted */",
+			"/** The height the swinging foot is lifted */",
+			"/** The height the swinging foot is lifted when walking in x direction*/",
+			"/** The height the swinging foot is lifted when walking in x direction*/",
+			"/** The height the swinging foot is lifted when walking in x direction*/",
+			"/** The height the swinging foot is lifted when walking full speed in y-direction */",
+			"/** The height the swinging foot is lifted when walking full speed in y-direction */",
+			"/** The height the swinging foot is lifted when walking full speed in y-direction */",
+			"/** The amount the swinging foot is rotated while getting lifted */",
+			"/** The amount the swinging foot is rotated while getting lifted */",
+			"/** The amount the swinging foot is rotated while getting lifted */",
+			"/** A rotation added to the supporting foot to boost the com acceleration */",
+			"/** The height the center of mass is lifted within a single support phase */",
+			"/** The height the center of mass is lifted within a single support phase */",
+			"/** The height the center of mass is lifted within a single support phase */",
+			"/** How much the torso is rotated to achieve the center of mass shift along the y-axis */",
+			"/** The maximum walking speed (in \"size of two steps\") */",
+			"/** The maximum walking speed (in \"size of two steps\") */",
+			"/** The maximum walking speed (in \"size of two steps\") */",
+			"/** The maximum walking speed for backwards walking (in \"size of two steps\") */",
+			"/** The maximum walking speed deceleration that is used to avoid overshooting of the walking target */",
+			"/** The maximum walking speed deceleration that is used to avoid overshooting of the walking target */",
+			"/** The maximum walking speed deceleration that is used to avoid overshooting of the walking target */",
+			"/**  Whether sensory feedback should be used or not */",
+			"/** A  torso rotation p-control factor */",
+			"/** A  torso rotation p-control factor */",
+			"/** A measured center of mass position adoption factor */",
+			"/** A measured center of mass position adoption factor */",
+			"/** A measured center of mass velocity adoption factor */",
+			"/** A measured center of mass velocity adoption factor */",
+			"/** A pendulum pivot point p-control factor */",
+			"/** A pendulum pivot point p-control factor */",
+			"/** A pendulum pivot point of the upcoming single support phase p-control factor */",
+			"/** A pendulum pivot point of the upcoming single support phase p-control factor */",
+			"/** A step size i-control factor */",
+			"/** A step size i-control factor */",
+			"/** The delay between setting a joint angle and the ability of measuring the result */",
+			"/** The measurement uncertainty of the computed \"measured\" center of mass position */",
+			"/** The measurement uncertainty of the computed \"measured\" center of mass position */",
+			"/** The noise of the filtering process that estimates the position of the center of mass */",
+			"/** The noise of the filtering process that estimates the position of the center of mass */",
+			"/** The noise of the filtering process that estimates the position of the center of mass */",
+			"/** The noise of the filtering process that estimates the position of the center of mass */",
+			"/** A scaling factor for computed odometry data */",
+			"/** A scaling factor for computed odometry data */",
+			"/** A scaling factor for computed odometry data */",
+			"/** Control weight (P) of the torso's angular velocity error. */",
+			"/** Control weight (D) of the approximated rate of change of the angular velocity error. */",
+			"/** Smoothing (between 0 and 1!) to calculate the moving average of the y-axis gyro measurements. */",
+			"/** I have no idea what im doing! Colin pls fix this! (Actual B-Human comment)**/"
+	};
 
     /* Values for the v4 robot. v5 values are in side comment.
      * The two versions share most of the same parameter values
      * (As B-Human put them).
      */
-    private String[] defaultValuesV4 = new String [] {
+    public String[] defaultValuesV4 = new String [] {
                                       "50.f"   ,   
                                       "262.0f" ,
                                       "0.f"    ,   
@@ -226,23 +422,24 @@ public class WalkingEngineParameters {
     };
     
     //Variables used.
-    private String[] defaultValuesV5;
+    public String[] defaultValuesV5 = buildV5ParamList();
 
-    private void buildV5ParamList(){
+    private String[] buildV5ParamList(){
+    	String[] dv5;
+    	dv5 = new String[defaultValuesV4.length];
 
-        defaultValuesV5 = new String[defaultValuesV4.length];
-
-        System.arraycopy(defaultValuesV4, 0, defaultValuesV5, 0, defaultValuesV4.length);        
+        System.arraycopy(defaultValuesV4, 0, dv5, 0, defaultValuesV4.length);        
 
         //Actual default values for V5 robot for specific parameters.
-        defaultValuesV5[21] = "535.f"; //WalkStepDuration
-        defaultValuesV5[22] = "535.f"; //WalkStepDurationAtFullSpeedX
-        defaultValuesV5[33] = "22.f";
-        defaultValuesV5[36] = "22.f";
-        defaultValuesV5[47] = "0.07f";
+        dv5[21] = "535.f"; //WalkStepDuration
+        dv5[22] = "535.f"; //WalkStepDurationAtFullSpeedX
+        dv5[33] = "22.f";
+        dv5[36] = "22.f";
+        dv5[47] = "0.07f";
 
         //test
         //defaultValuesV5[55] = "false";
+        return dv5;
     }
 
     public int getListOfParamsLength(){
@@ -392,6 +589,7 @@ public class WalkingEngineParameters {
                               .setMinRotationToReduceStepSize(Float.parseFloat(packet[81]))
 
                               .build(); //incredibly everything here is treated as in the same line
+        								/*That's called daisy chaining Franco!  Google thinks its cool.*/
         
         ControlInstance inst = ControlIO.getByIndex(0);
         if (inst == null) {
@@ -402,6 +600,7 @@ public class WalkingEngineParameters {
 
         boolean success = inst.tryAddCmnd(ControlIO.createCmndSetWalkingEngineParameters(walkingEngineParams));
 
+        //TODO this actually just means the command was accepted by the ControlInstance.
         if(success){ System.out.println("Successfully sent a walking engine parameters command through the tool");}
 
 	    Logger.logf(Logger.INFO, "EngineParameterPanel: CommandIO.createCmdSendMotionCommands(%s) returned %B\n", packet, success);
@@ -520,4 +719,88 @@ public class WalkingEngineParameters {
 		return s;                                                                     
 	}                          
 
+    protected Parameter[] parameters = {
+			new FreeParameter(0),
+			new FreeParameter(1),
+			new FreeParameter(2),
+			new FreeParameter(3),
+			new FreeParameter(4),
+			new FreeParameter(5),
+			new FreeParameter(6),
+			new FreeParameter(7),
+			new FreeParameter(8),
+			new FreeParameter(9),
+			new FreeParameter(10),
+			new FreeParameter(11),
+			new FreeParameter(12),
+			new FreeParameter(13),
+			new FreeParameter(14),
+			new FreeParameter(15),
+			new FreeParameter(16),
+			new FreeParameter(17),
+			new FreeParameter(18),
+			new FreeParameter(19),
+			new FreeParameter(20),
+			new FreeParameter(21),
+			new FreeParameter(22),
+			new FreeParameter(23),
+			new FreeParameter(24),
+			new FreeParameter(25),
+			new FreeParameter(26),
+			new FreeParameter(27),
+			new FreeParameter(28),
+			new FreeParameter(29),
+			new FreeParameter(30),
+			new FreeParameter(31),
+			new FreeParameter(32),
+			new FreeParameter(33),
+			new FreeParameter(34),
+			new FreeParameter(35),
+			new FreeParameter(36),
+			new FreeParameter(37),
+			new FreeParameter(38),
+			new FreeParameter(39),
+			new FreeParameter(40),
+			new FreeParameter(41),
+			new FreeParameter(42),
+			new FreeParameter(43),
+			new FreeParameter(44),
+			new FreeParameter(45),
+			new FreeParameter(46),
+			new FreeParameter(47),
+			new FreeParameter(48),
+			new FreeParameter(49),
+			new FreeParameter(50),
+			new FreeParameter(51),
+			new FreeParameter(52),
+			new FreeParameter(53),
+			new FreeParameter(54),
+			new BoolParameter(55),
+			new FreeParameter(56),
+			new FreeParameter(57),
+			new FreeParameter(58),
+			new FreeParameter(59),
+			new FreeParameter(60),
+			new FreeParameter(61),
+			new FreeParameter(62),
+			new FreeParameter(63),
+			new FreeParameter(64),
+			new FreeParameter(65),
+			new FreeParameter(66),
+			new FreeParameter(67),
+			new FreeParameter(68),
+			new FixedParameter(69),
+			new FixedParameter(70),
+			new FixedParameter(71),
+			new FixedParameter(72),
+			new FixedParameter(73),
+			new FixedParameter(74),
+			new BoundedParameter(75, 0f, 1f, 1f),
+			new FreeParameter(76),
+			new FreeParameter(77),
+			new FreeParameter(78),
+			new FreeParameter(79),
+			new FreeParameter(80),
+			new FreeParameter(81),
+	};
 }
