@@ -2,6 +2,7 @@ package nbtool.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.*;
 
 import javax.swing.*;
 
@@ -50,7 +51,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		
 		@Override
 		JComponent getDisplay(String initial) {
-			return new JSlider();
+			return new JSlider(JSlider.HORIZONTAL, (int) min, (int) max, (int) start);
 		}
 
 		@Override
@@ -90,6 +91,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 			new FreeParameter(),
 			new FreeParameter(),
 			new FreeParameter(),
+			new BoundedParameter(0, 1000, 525), //index 21,walkstep duration
+			new BoundedParameter(0, 1000, 525), //Walkstep duration at full speed X
+			new BoundedParameter(0, 1000, 180),
 			new FreeParameter(),
 			new FreeParameter(),
 			new FreeParameter(),
@@ -147,10 +151,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 			new FreeParameter(),
 			new FreeParameter(),
 			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
-			new FreeParameter(),
+			new BoundedParameter(0.f, 1.f, .5f), //Gyro smoothing. BH puts it from 0 to 1
 			new FreeParameter()
 	};
 
@@ -263,10 +264,6 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             //paramFields[i] = new JTextField(defaultValuesV4[i], 8);
             paramFields[i] = Parameters[i].getDisplay(defaultValuesV4[i]);
             canvas.add(paramFields[i]);
-
-            //if( i != 21 || i != 22 || i != 55){
-            //    sliderFields[i] = new JSlider(JSlider.HORIZONTAL, Float.parseFloat(defaultValuesV4[i]) - 200, Float.parseFloat(defaultValuesV4[i]) + 200); 
-            //}
 
             currentValuesLabels[i] = new JLabel(currentValues[i]);
             currentValuesLabels[i].setAlignmentX(Component.LEFT_ALIGNMENT);

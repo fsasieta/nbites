@@ -68,10 +68,10 @@ public class WalkingEngineParameters {
     "walkStepSizeXPlanningLimit_high (60.f)"            ,
     "walkStepSizeXLimit_low (-55.f)"                    ,    /** The minimum and maximum step size when balancing */
     "walkStepSizeXLimit_high (66.f)"                    ,
-    "walkStepDuration (v5=535.f)(v4=525.f)"             , /** the duration of a full step cycle (two half steps) */
+    "walkStepDuration (v5=535.f)(v4=525.f)"             , /** the duration of a full step cycle (two half steps) (NBites: index 21)*/
     "walkStepDurationAtFullSpeedX (v5=535.f)(v4=525.f)" , /** the duration of a full step cycle when walking forwards with maximum speed */
     "walkStepDurationAtFullSpeedY (180.f)"              , /** The duration of a full step cycle when walking sidewards with maximum speed */
-    "walkHeight_x (262.f)"                              , /** The height of the 3d linear inverted pendulum pla(for the pendulum motion towards the x-axis and the pendulum motion towards the y-axis) */
+    "walkHeight_x (262.f)"                              , /** The height of the 3d linear inverted pendulum plane (for the pendulum motion towards the x-axis and the pendulum motion towards the y-axis) */
     "walkHeight_y (262.f)"                              ,
     "walkArmRotationAtFullSpeedX (0.1f)"                , /** The maximum deflection for the arm swinging motion */
     "walkMovePhase_beginning (0.f)"                     , /** The beginning and length of the trajectory used to move the swinging foot to its new position */
@@ -116,12 +116,12 @@ public class WalkingEngineParameters {
     "balanceStepSize_x (0.1f)"                          , /** A step size i-control factor */
     "balanceStepSize_y (-0.04f)"                        ,
     "observerMeasurementDelay (40.f)"                   , /** The delay between setting a joint angle and the ability of measuring the result */
-    "CANT CHANGE_observerMeasurementDeviation_x (2.f)"                , /** The measurement uncertainty of the computed "measured" center of mass position */
-    "CANT CHANGE_observerMeasurementDeviation_y (2.f)"                ,
-    "CANT CHANGE_observerProcessDeviation_x (0.1f)"                 , /** The noise of the filtering process that estimates the position of the center of mass */
-    "CANT CHANGE_observerProcessDeviation_y (0.1f)"                 ,
-    "CANT CHANGE_observerProcessDeviation_z (3.f)"                  ,
-    "CANT CHANGE_observerProcessDeviation_w (3.f)"                  ,
+    "CANT CHANGE_observerMeasurementDeviation_x (2.f)"  , /** The measurement uncertainty of the computed "measured" center of mass position */
+    "CANT CHANGE_observerMeasurementDeviation_y (2.f)"  ,
+    "CANT CHANGE_observerProcessDeviation_x (0.1f)"     , /** The noise of the filtering process that estimates the position of the center of mass */
+    "CANT CHANGE_observerProcessDeviation_y (0.1f)"     ,
+    "CANT CHANGE_observerProcessDeviation_z (3.f)"      ,
+    "CANT CHANGE_observerProcessDeviation_w (3.f)"      ,
     "odometryScale_rot (1.f)"                           , /** A scaling factor for computed odometry data */
     "odometryScale_x   (1.f)"                           ,
     "odometryScale_y   (1.f)"                           ,
