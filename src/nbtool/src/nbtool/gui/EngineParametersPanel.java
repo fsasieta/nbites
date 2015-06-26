@@ -14,7 +14,8 @@ import nbtool.gui.WalkingEngineParameters.Parameter;
 public class EngineParametersPanel extends JPanel implements ActionListener {
 
     private JScrollPane spCenter, spLeft;
-	private JPanel canvas, labelCanvas, buttonCanvas, backEndCanvas;
+    //private JPanel labelCanvas;
+	private JPanel canvas, buttonCanvas, backEndCanvas;
 	
 	private JButton saveParamsV4, saveParamsV5, useV4, useV5, setParams;
     private JLabel currentValuesTopLabel;
@@ -47,8 +48,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 		canvas = new JPanel();
         buttonCanvas = new JPanel();
         backEndCanvas = new JPanel(new BorderLayout());
-        labelCanvas = new JPanel();
-        labelCanvas.setLayout(new BoxLayout(labelCanvas, BoxLayout.Y_AXIS));
+        //labelCanvas = new JPanel();
+        //labelCanvas.setLayout(new BoxLayout(labelCanvas, BoxLayout.Y_AXIS));
 
         // there are more than 80 parameters, so we need to be able to scroll stuff
         spCenter = new JScrollPane(backEndCanvas,
@@ -62,9 +63,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
         //The backend canvas contains the middle components
         backEndCanvas.add(canvas, BorderLayout.WEST);
-        backEndCanvas.add(labelCanvas, BorderLayout.EAST);
+        //backEndCanvas.add(labelCanvas, BorderLayout.EAST);
 
-        canvas.setLayout(new GridLayout(0, 2));
+        canvas.setLayout(new GridLayout(0, 3));
 
         //Adding Buttons
         useV4 = new JButton("Default V4 params");
@@ -110,7 +111,7 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Adding the labels and the text fields into the grid layout.
         //We always initialize with the default values for v4.
         //Up to the person using the tool to actively change the values for V5.
-        labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
+        //labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
         for(int i = 0; i < paramNumber; i++){ 
             fieldLabels[i] = new JLabel("(" + i + ")" + " " + paramList[i]);
             fieldLabels[i].setToolTipText("Default value is in parenthesis");
@@ -118,6 +119,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
             //paramFields[i] = new JTextField(defaultValuesV4[i], 8);
             //paramFields[i] = Parameters[i].getDisplay(defaultValuesV4[i]);
+            //Dimension opt = parameters[i].getDisplay().getPreferredSize();
+            //parameters[i].getDisplay().setMaximumSize(new Dimension(opt.width, fieldLabels[i].getHeight()));
             canvas.add(parameters[i].getDisplay());
 
             //if( i != 21 || i != 22 || i != 55){
@@ -126,8 +129,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
             currentValuesLabels[i] = new JLabel(currentValues[i]);
             currentValuesLabels[i].setAlignmentX(Component.LEFT_ALIGNMENT);
-            labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
-            labelCanvas.add(Box.createRigidArea(new Dimension(0,18)));
+            //labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
+           // labelCanvas.add(Box.createRigidArea(new Dimension(0,50)));
+            canvas.add(currentValuesLabels[i]);
 
         }
     }
