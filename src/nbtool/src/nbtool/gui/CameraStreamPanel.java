@@ -21,11 +21,11 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 
-public class CameraStreamingPanel extends JPanel implements ActionListener {
+public class CameraStreamPanel extends JPanel implements ActionListener {
 	
 	static final long serialVersionUID = 1L;
 
-	public CameraStreamingPanel() {
+	public CameraStreamPanel() {
 		/*
 		 GUI is done below. 
 		 TODO: transfer to actual layout manager
