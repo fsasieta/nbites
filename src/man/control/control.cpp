@@ -404,7 +404,7 @@ namespace control {
 
             std::string stringInFile = s.serialize();
 
-        #ifdef NAOQI_2
+        #ifdef V5_ROBOT
             std::cout << "[CONTROL] Saving V5 Walk Engine parameters" << std::endl;
             std::ofstream file("/home/nao/nbites/Config/V5WalkEngineParameters.txt");
             //std::cout << stringInFile << std::endl;
@@ -418,7 +418,6 @@ namespace control {
             file << stringInFile;
             file.close();
             std::cout << "[CONTROL] Saving Done" << std::endl;
-
         #endif
 
         //Setting flag for motion module run function.
@@ -431,7 +430,7 @@ namespace control {
      */
     uint32_t cnc_getEngineParameters(Log * arg){
 
-        #ifdef NAOQI2
+        #ifdef V5_ROBOT
         std::ifstream file2("/home/nao/nbites/Config/V5WalkEngineParameters.txt");
         #else
         std::ifstream file2("/home/nao/nbites/Config/V4WalkEngineParameters.txt");

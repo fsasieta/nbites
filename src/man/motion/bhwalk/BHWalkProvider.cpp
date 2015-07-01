@@ -469,7 +469,7 @@ void BHWalkProvider::updateWalkingEngineParameters(){
     std::string filename;
 
     //Taking into account different NAOQI versions
-    #ifdef NAOQI_2
+    #ifdef V5_ROBOT
     filename = "/home/nao/nbites/Config/V5WalkEngineParameters.txt";
     #else
     filename = "/home/nao/nbites/Config/V4WalkEngineParameters.txt";
