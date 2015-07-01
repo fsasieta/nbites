@@ -23,6 +23,7 @@ VisionModule::VisionModule(int wd, int ht, std::string robotName)
       bottomIn(),
       jointsIn(),
       linesOut(base()),
+      cornersOut(base()),
       ballOut(base()),
       ballOn(false),
       ballOnCount(0),
@@ -158,6 +159,7 @@ void VisionModule::run_()
 
     // Send messages on outportals
     sendLinesOut();
+    sendCornersOut();
     ballOn = ballDetected;
     updateVisionBall();
 
@@ -325,6 +327,29 @@ void VisionModule::sendLinesOut()
 
     portals::Message<messages::FieldLines> linesOutMessage(&pLines);
     linesOut.setMessage(linesOutMessage);
+}
+
+// TODO repeats
+void VisionModule::sendCornersOut()
+{
+    messages::Corners pCorners;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < cornerDetector[i]->size(); j++) {
+            messages::Corner* pCorner = pCorners.add_corner();
+            Corner& corner = (*(cornerDetector[i]))[j];
+
+            // Rotate to post vision relative robot coordinate system
+            double rotatedX, rotatedY;
+            man::vision::translateRotate(corner.x, corner.y, 0, 0, -(M_PI / 2), rotatedX, rotatedY);
+
+            pCorner->set_x(rotatedX);
+            pCorner->set_y(rotatedY);
+            pCorner->set_id(static_cast<int>(corner.id));
+        }
+    }
+
+    portals::Message<messages::Corners> cornersOutMessage(&pCorners);
+    cornersOut.setMessage(cornersOutMessage);
 }
 
 const std::string VisionModule::getStringFromTxtFile(std::string path) 

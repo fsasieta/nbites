@@ -9,13 +9,29 @@ message HoughLine
 }
 
 message FieldLine
- {
+{
     optional HoughLine inner = 1;
     optional HoughLine outer = 2;
     optional int32 id = 3;
+    optional int32 correspondence = 4;
+    optional float prob = 5;
 }
 
 message FieldLines
 {
     repeated FieldLine line = 1;
+}
+
+message Corner
+{
+    optional float x = 1;
+    optional float y = 2;
+    optional int32 id = 3;
+    optional int32 correspondence = 4;
+    optional float prob = 5;
+}
+
+message Corners
+{
+    repeated Corner corner = 1;
 }

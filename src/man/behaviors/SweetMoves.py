@@ -25,6 +25,8 @@ import StiffnessModes as stiff
 #    RIGHT_BIG_KICK = mirrorMove(LEFT_BIG_KICK)
 #============================================================================
 
+
+
 def mirrorMove(positions):
     return tuple(
         tuple(((RShoulderPitch, -RShoulderRoll, -RElbowYaw, -RElbowRoll),
@@ -33,6 +35,7 @@ def mirrorMove(positions):
                (LShoulderPitch, -LShoulderRoll, -LElbowYaw, -LElbowRoll),
                interp_time, interpolation, stiff.flipStiffness(stiffness)))
         for
+# ORIGINAL DOCUMENTATION (above is mirrored)
         ((LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll),
          (LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll),
          (RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll),
@@ -66,6 +69,13 @@ BRING_ARMS_FORWARD = ((105.,10.,15.,-11.6),
       (0.0,0.0,-22.3,43.5,-21.2, 0.0),
       (105.,-10.,-15.,-11.6),
       0.5,0,stiff.NORMAL_STIFFNESSES)
+
+BRING_ARMS_FORWARD_SLOW = ((105.,10.,15.,-11.6),
+      (0.0,0.0,-22.3,43.5,-21.2, 0.0),
+      (0.0,0.0,-22.3,43.5,-21.2, 0.0),
+      (105.,-10.,-15.,-11.6),
+      1,0,stiff.NORMAL_STIFFNESSES)
+
 
 #Keyframe that moves the joints to a stable, standing position quickly.
 QUICK_INITIAL_POS_KEYFRAME = ((90.,10.,-90.,-10.),
@@ -113,97 +123,100 @@ STAND_UP_FRONT = (#Initial
                   (3.1, 1.9, 0.4, -4.3, 55.3, -0.8),
                   (0.0, 0.1, 2.5, -5.8, 61.1, 2.2),
                   (74.9, -6.4, -93.2, 19.6),
-                  0.3,1, stiff.STANDUP_STIFFNESSES ),
+                  0.3,1, stiff.STANDUP_STIFFNESSES),
 
-                  #Begin wrap around
+                  #Begin wrap around by bending knees and twisting arms out of the way
                   ((97.6, -1.8, 72.5, -49.2),
                   (-0.5, -1.9, 11.3, 20.7, -6.6, 58.0),
                   (-0.5, -6.2, 10.3, 21.8, -7.2, 0.6),
                   (95.8, -1.8, -89.4, 53.3),
                   0.3,1, stiff.STANDUP_STIFFNESSES),
 
-                  #Feet in front
+                  #Wrap feet to front be straightening legs
                   ((116.0, -8.9, 82.5, -86.7),
                   (-68.9, 46.1, -75.6, 98.3, 7.5, 58.0),
                   (-68.9, -46.8, -45.1, 69.3, 10.8, -4.5),
                   (115.6, 4.6, -79.5, 86.3),
                   0.4,1, stiff.STANDUP_STIFFNESSES ),
 
-                  #Sit Back
+                  #Start to sit up
                   ((111.7, -20.3, 69.5, -89.6),
                   (-69.4, -18.8, -89.1, -7.5, -16.9, 35.7),
                   (0.0, 11.7, -86.3, -6.5, -25.1, -33.7),
                   (106.9, 21.8, -59.2, 89.5),
                   0.5,1, stiff.STANDUP_STIFFNESSES ),
 
-                  #Arms behind sitting
-                  ((120.8, -10.1, 0.2, -1.9),
+                  #sit up straight
+                  ((92.6, -5.4, 70.4, -58.6),
+                  (-43.8, -4.7, -89.9, 0.5, -14.6, 14.9),
+                  (-43.8, 7.2, -85.6, -6.3, -5.1, -13.2),
+                  (92.6, 0.6, -53.6, 54.5),
+                  0.5, 1, stiff.STANDUP_STIFFNESSES),
+
+                  #Lean back on arms
+                  ((119.6, -5.4, 3.7, -26.9),
                   (-23.1, 13.3, -88.7, 14.5, 32.4, 0.3),
                   (0.0, 1.3, -84.3, 13.4, 48.6, 2.0),
-                  (117.5, 10.1, -13.0, 1.4),
-                  0.4,1, stiff.STANDUP_STIFFNESSES ),
+                  (115.8, 3.5, -8.6, 24.0),
+                  0.5,1, stiff.STANDUP_STIFFNESSES ),
 
+                  # FINISH WITH BACK STAND UP
 
-                  # BACK STAND UP CODE BELOW
-
-
+                  #take a seat
                   ((120.9, 9.2, 16.6, -31.6),
-                  (-30.4, 17.2, -91.5, 56.5, 53.3, 0.4),
-                  (-30.4, -12.4, -87.0, 57.4, 57.0, 7.6),
+                  (-30.4, 17.2, -91, 56.5, 53.3, 0.4),
+                  (-30.4, -12.4, -87, 57.4, 57.0, 7.6),
                   (121.0, 6.9, -17.8, 2.2),
                   0.4,1, stiff.STANDUP_STIFFNESSES),
-                 #take a seat
 
+                  #take a seat
                   ((120.5, 19.4, 21.7, -39.7),
                   (-34.9, 46.1, -94.2, 105.4, 34.6, 10.7),
                   (-34.9, -34.1, -92.9, 122.5, 18.4, 13.9),
                   (125.4, 3.1, -50, 1.7),
                   0.4,1, stiff.STANDUP_STIFFNESSES),
-                 #take a seat
 
+                 #sitting legs spread hands behind facing forward
                   ((119,-11.08,94.13,-1.93),
                   (-62.93,9.06,-84.64,116.72,21.88,23.73),
                   (-62.93,-29.44,-82.62,103.71,30.85,-10.11),
                   (115.93,17.58,-90.62,3.34),
-                  0.4,1, stiff.STANDUP_STIFFNESSES),
-                 #sitting legs spread hands behind facing forward
-                 
-                 ((40,60,4,-28),
+                  0.3,1, stiff.STANDUP_STIFFNESSES),
+
+                 #makes elbow straight
+                  ((40,60,4,-28),
                   (-28,8,-49,126,-25,-22),
                   (-28,-31,-87,80,52,0),
                   (123.1, -28.0, -1.7, 6.9),
                   0.4,1, stiff.STANDUP_STIFFNESSES),
-                 # makes elbow straight
-                
-
+                 
+                 # turns to right a little and stands with one arm on ground
                   ((40,50,4,-34),
                   (-31.6, -9.1, -27.5,110,-50,-13),
                   (-32,-31,-95,73,44,0),
                   (109.9, -38.2, -1.6, 1.7),
-                  0.4,1, stiff.STANDUP_STIFFNESSES),
-                   # turns to right a little and stands with one arm on ground
+                  0.5,1, stiff.STANDUP_STIFFNESSES),
 
+                  #gets hips up and over knees
                   ((42,28,5,-47),
                   (-49,-16,27,101,-70,-5),
                   (-44.0, -32.9, -91.9, 88.7, 21.7, -3.5),
                   (101,-15,-4,3),
-                  0.6,1, stiff.STANDUP_STIFFNESSES),
-                 #gets hips up and over knees
+                  0.5,1, stiff.STANDUP_STIFFNESSES),
 
-                
-                 ((58.6, 32.2, 6.9, -38.1),
-                  (-27.9, -7.1, -26.4, 113.7, -69.5, 4.4),
-                  (-27.9, -23.9, -69.6, 76.2, 9.6, 24.7),
-                  (65.9, -42.6, -3.8, 28.8),
-                 0.5,1, stiff.STANDUP_STIFFNESSES),
-                 #pulls right leg in a little
+                  #pulls right leg in a little
+                  ((59.76,29.35,4.39,-45.79),
+                  (-32.7, -2.6, -31.7, 122.2, -69.1, 4.4),
+                  (-32.7, -23.2, -70.1, 71.5, 18.5, 20.9),
+                  (54.85,-45.62,-0.27,24.35),
+                  0.5,1, stiff.STANDUP_STIFFNESSES),
 
-                 ((77.5, 28.9, 5.6, -40.7),
-                  (-30.1, -2.2, -32.6, 123.5, -69.4, 3.1),
-                  (-30.1, -14.2, -61.5, 123.2, -42.8, 8.6),
+                  # pulls both legs together, squat
+                  ((77.5, 28.9, 5.6, -40.7),
+                  (-30.1, -2.2, -23, 123.5, -69.4, 3.1),
+                  (-30.1, -14.2, -55, 123.2, -42.8, 8.6),
                   (88.1, -22.6, -1.0, 23.0),
-                  0.4, 1, stiff.STANDUP_STIFFNESSES),
-                 # pulls both legs in, squat
+                  0.5, 1, stiff.STANDUP_STIFFNESSES),
 
                  #stands up
                  (INITIAL_POS[0][0],
@@ -215,17 +228,13 @@ STAND_UP_FRONT = (#Initial
 
 # new robots
 STAND_UP_BACK = (
-                  ((121.6, 44.7, -5.5, -78.6),
-                  (4.7, 2.4, 29.4, 26.0, 52.6, 0.0),
-                  (4.7, 4.0, 29.6, 29.9, 50.3, 7.8),
-                  (119.9, -43.0, 2.6, 73.3),
-                  0.3,1, stiff.STANDUP_STIFFNESSES),
 
                  (INITIAL_POS[0][0],
                   INITIAL_POS[0][1],
                   INITIAL_POS[0][2],
                   INITIAL_POS[0][3],
                   0.6,0, stiff.STANDUP_STIFFNESSES),
+                 #rotate arms
 
                  ((100,0,0,0),
                   (0,0,0,0,0,0),
@@ -235,36 +244,36 @@ STAND_UP_BACK = (
                  #arms at sides
 
                  ((109.9, 13.3, 15.3, -78.5),
-                  (4.7, 25.1, 11.8, 91.8, 8.3, 8.7),
-                  (4.7, -12.3, 14.3, 81.3, 15.6, 0.3),
+                 (-0.4, 22.8, 17.1, 62.1, 32.2, 19.3),
+                 (-0.4, -14.2, 20.3, 69.9, 29.1, 1.1),
                   (113.9, -4.3, -12.7, 75.3),
                   0.4,1, stiff.STANDUP_STIFFNESSES),
-                 #hips arch and arms underneath
+                 #start to arch hips and move arms under back
 
-                 ((122.7, 9.2, 12.0, -89.6),
-                  (9.9, 22.9, 24.7, 85.3, 8.5, 7.6),
-                  (9.9, -11.2, 29.8, 71.5, 12.3, 1.6),
-                  (121.5, -15.3, -14.9, 89.7),
+                 ((121.0, 20.3, -0.3, -90.1),
+                  (-0.4, 12.7, 25.4, 66.3, 29, 10.3),
+                  (-0.4, -10.6, 26.4, 72.1, 29, 0.8),
+                  (122.6, -17.6, -4.7, 90.2),
                   0.2,1, stiff.STANDUP_STIFFNESSES),
                  #hips arch and arms underneath
 
-                 ((102.6, 8.3, 32.0, -89.6),
-                  (-5.6, 13.8, -8.3, 23.1, 10.0, 8.5),
-                  (-5.6, -8.6, -14.2, 35.4, 20.7, -0.3),
-                  (117.5, -9.0, -13.8, 84.6),
-                  0.4,1, stiff.STANDUP_STIFFNESSES),
-                 #fling feet forward for momentum
+                 ((101.9, 19.1, 19.8, -89.8),
+                 (-1.6, 10.8, 30.6, 6.7, 51.5, 2.1),
+                 (-1.6, -4.6, 30.8, 6.7, 44.2, -0.3),
+                  (116.6, -12.7, -2.5, 79.6),
+                  0.5,1, stiff.STANDUP_STIFFNESSES),
+                 #lift legs for momentum
 
                  ((102.6, 8.3, 32.0, -89.6),
-                  (-5.6, 13.8, -8.3, 23.1, 10.0, 8.5),
-                  (-5.6, -8.6, -14.2, 35.4, 20.7, -0.3),
+                  (-5.6, 13.8, -15.3, 23.1, 35, 8.5),
+                  (-5.6, -8.6, -15.3, 35.4, 35, -0.3),
                   (117.5, -9.0, -13.8, 84.6),
                   0.3,1, stiff.STANDUP_STIFFNESSES),
-                 #fling feet forward for momentum
+                 #lift legs more to sit up
 
                  ((120.9, 9.2, 16.6, -31.6),
-                  (-30.4, 17.2, -91.5, 56.5, 53.3, 0.4),
-                  (-30.4, -12.4, -87.0, 57.4, 57.0, 7.6),
+                  (-30.4, 17.2, -91, 56.5, 53.3, 0.4),
+                  (-30.4, -12.4, -87, 57.4, 57.0, 7.6),
                   (121.0, 6.9, -17.8, 2.2),
                   0.4,1, stiff.STANDUP_STIFFNESSES),
                  #take a seat
@@ -287,7 +296,6 @@ STAND_UP_BACK = (
                  ((40,60,4,-28),
                   (-28,8,-49,126,-25,-22),
                   (-28,-31,-87,80,52,0),
-                  # (120,-33,-4,0.4),
                   (123.1, -28.0, -1.7, 6.9),
                   0.4,1, stiff.STANDUP_STIFFNESSES),
                  # turns to right a little and stands with one arm on ground
@@ -296,7 +304,7 @@ STAND_UP_BACK = (
                   (-31.6, -9.1, -27.5,110,-50,-13),
                   (-32,-31,-95,73,44,0),
                   (109.9, -38.2, -1.6, 1.7),
-                  .3,1, stiff.STANDUP_STIFFNESSES),
+                  0.5,1, stiff.STANDUP_STIFFNESSES),
 
                   ((42,28,5,-47),
                   (-49,-16,27,101,-70,-5),
@@ -306,15 +314,15 @@ STAND_UP_BACK = (
                  #gets hips up and over knees
 
                  ((59.76,29.35,4.39,-45.79),
-                  (-30.23,-10.19,-45.86,122.78,-67.68,8.44),
-                  (-30.23,-26.72,-70.78,54.41,34.99,10.69),
+                  (-32.7, -2.6, -31.7, 122.2, -69.1, 4.4),
+                  (-32.7, -23.2, -70.1, 71.5, 18.5, 20.9),
                   (54.85,-45.62,-0.27,24.35),
-                 0.5,1, stiff.STANDUP_STIFFNESSES),
+                  0.5,1, stiff.STANDUP_STIFFNESSES),
                  #pulls right leg in a little
 
                  ((77.5, 28.9, 5.6, -40.7),
-                  (-30.1, -2.2, -32.6, 123.5, -69.4, 3.1),
-                  (-30.1, -14.2, -61.5, 123.2, -42.8, 8.6),
+                  (-30.1, -2.2, -23, 123.5, -69.4, 3.1),
+                  (-30.1, -14.2, -55, 123.2, -42.8, 8.6),
                   (88.1, -22.6, -1.0, 23.0),
                   0.5, 1, stiff.STANDUP_STIFFNESSES),
                  # pulls both legs in, squat
@@ -1130,7 +1138,7 @@ LEFT_QUICK_STRAIGHT_KICK = (
      (100.,-30.,0.,0),
      .6,0, stiff.NORMAL_STIFFNESSES),
 
-    #kick?
+    #kick!!
     ((43.,30.,0.,0.),
      (0.,17.,-65,60,0,-20.),
      (0.,13.,-22.3,45,-22.5,-17),
@@ -1161,24 +1169,25 @@ LEFT_QUICK_STRAIGHT_KICK = (
 
 RIGHT_QUICK_STRAIGHT_KICK = mirrorMove(LEFT_QUICK_STRAIGHT_KICK)
 
-LEFT_SHORT_STRAIGHT_KICK = (
-    BRING_ARMS_FORWARD,
+
+LEFT_MEDIUM_STRAIGHT_KICK = (
+    BRING_ARMS_FORWARD_SLOW,
 
     #stand for a bit
     ((90.,10.,-90.,-10.),
      (0.0,0.0,-22.3,43.5,-21.2, 0.0),
      (0.0,0.0,-22.3,43.5,-21.2, 0.0),
      (90.,-10.,82.,13.2),
-     .3,0,stiff.NORMAL_STIFFNESSES),
+     0.4,0,stiff.NORMAL_STIFFNESSES),
 
     #lean right/lift leg
     ((20.,30.,0.,0.),
      (0.,17.,-30,70,-50,-25.),
-     (0.,13.,-22.3,45,-22.5,-17),
+     (0, 19.1, -20.8, 53.5, -25.1, -16.3),
      (100.,-30.,0.,0),
-     .6,0, stiff.NORMAL_STIFFNESSES),
+     0.6,0, stiff.NORMAL_STIFFNESSES),
 
-    #kick?
+    #kick <3
     ((43.,30.,0.,0.),
      (0.,17.,-65,60,-10,-20.),
      (0.,13.,-22.3,45,-22.5,-17),
@@ -1205,7 +1214,78 @@ LEFT_SHORT_STRAIGHT_KICK = (
      (0.0,0.0,-22.3,43.5,-21.2, 0.0),
      (90.,-10.,82.,13.2),
      1,0,stiff.NORMAL_STIFFNESSES),
-)
+    # arms back
+    ((98.4, 0.8, 74.6, -21.9),
+     (0.1, 0.0, -22.5, 55.1, -32.1, 0.0),
+     (0.1, 0.1, -22.5, 55.3, -32.4, -0.1),
+     (98.4, -0.7, -74.5, 21.8),
+     1,0,stiff.NORMAL_STIFFNESSES),
+
+  )
+
+RIGHT_MEDIUM_STRAIGHT_KICK = mirrorMove(LEFT_MEDIUM_STRAIGHT_KICK)
+
+# This is a relatively stable straight kick for arms back
+LEFT_SHORT_STRAIGHT_KICK = (
+    BRING_ARMS_FORWARD_SLOW,
+
+    #stand for a bit
+    ((90.,10.,-90.,-10.),
+     (-0.2,5,-25,43.5,-21.2, 0.0),
+     (-0.2,0.0,-22.3,43.5,-21.2, 0.0),
+     (90.,-10.,82.,13.2),
+     0.3,0,stiff.NORMAL_STIFFNESSES),
+
+    #lean right/lift leg
+    ((20.,30.,0.,0.),
+     (0.,20.,-30,70,-40,-25.),
+     (0.,20.,-22.3,50,-22.5,-17),
+     (100.,-30.,0.,0),
+     0.6,0, stiff.NORMAL_STIFFNESSES),
+
+    #kick
+    ((43.,30.,0.,0.),
+     (0.,19.,-60,50,3,-19.),
+     (0.,17,-22.3,43,-23,-17),
+     (40.,-30.,0.,0),
+     0.15,0, stiff.NORMAL_STIFFNESSES),
+
+    #recover
+    ((35.,30.,0.,0.),
+     (0.,25.,-35,65,-30,-25.),
+     (0.,10.,-22.3,45,-22.5,-17),
+     (90.,-30.,0.,0),
+     0.6,0, stiff.NORMAL_STIFFNESSES),
+
+    #back to normal
+    ((40, 9, -80, -9),
+     (0.0,0.0,-22.3,43.5,-21.2, 0.0),
+     (0.0,0.0,-22.3,43.5,-21.2, 0.0),
+     (40, -9, 80, -9),
+     .7,0,stiff.NORMAL_STIFFNESSES),
+
+    #stand for a bit
+    ((90.,10.,-90.,-10.),
+     (0.0,0.0,-22.3,43.5,-21.2, 0.0),
+     (0.0,0.0,-22.3,43.5,-21.2, 0.0),
+     (90.,-10.,82.,13.2),
+     1,0,stiff.NORMAL_STIFFNESSES),
+
+    # put arms back 
+    ((99.2, 1.4, 74.5, -21.3),
+     (-0.2, 0.0, -20.9, 51.6, -30.9, 0.1),
+     (-0.2, -0.1, -20.5, 51.3, -31.3, 0.1),
+     (98.5, -0.2, -74.7, 22.1),
+     1,0,stiff.NORMAL_STIFFNESSES),
+
+    # arms back position
+    ((98.9, 9.0, 74.8, -19.2),
+     (-0.3, 0.7, -22.5, 44.0, -22.1, -0.5),
+     (-0.3, -0.7, -23.0, 42.8, -21.2, -0.3),
+     (98.8, -9.2, -74.6, 19.0),
+     1,0,stiff.NORMAL_STIFFNESSES),
+
+    )
 
 RIGHT_SHORT_STRAIGHT_KICK = mirrorMove(LEFT_SHORT_STRAIGHT_KICK)
 

@@ -303,6 +303,7 @@ void BHWalkProvider::calculateNextJointsAndStiffnesses(
 
     bh_sensors.data[SensorDataBH::gyroX] = sensorInertials.gyr_x();
     bh_sensors.data[SensorDataBH::gyroY] = sensorInertials.gyr_y();
+    bh_sensors.data[SensorDataBH::gyroZ] = sensorInertials.gyr_z(); // NOTE not currently used by BH
 
     bh_sensors.data[SensorDataBH::accX] = sensorInertials.acc_x();
     bh_sensors.data[SensorDataBH::accY] = sensorInertials.acc_y();
@@ -310,6 +311,7 @@ void BHWalkProvider::calculateNextJointsAndStiffnesses(
 
     bh_sensors.data[SensorDataBH::angleX] = sensorInertials.angle_x();
     bh_sensors.data[SensorDataBH::angleY] = sensorInertials.angle_y();
+    bh_sensors.data[SensorDataBH::angleZ] = sensorInertials.angle_z();
 
     bh_sensors.data[SensorDataBH::fsrLFL] = sensorFSRs.lfl();
     bh_sensors.data[SensorDataBH::fsrLFR] = sensorFSRs.lfr();

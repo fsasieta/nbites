@@ -4,12 +4,12 @@ import RoleConstants as role
 import ChaseBallTransitions as chase
 import ChaseBallConstants as chaseConstants
 import ClaimTransitions as claims
-from SupporterConstants import getSupporterPosition, CHASER_DISTANCE
+from SupporterConstants import getSupporterPosition, CHASER_DISTANCE, findChaserHome, findDefenderHome
 import noggin_constants as NogginConstants
 from ..navigator import Navigator as nav
 from objects import Location, RobotLocation
 from ..util import *
-from math import hypot, fabs
+from math import hypot, fabs, atan2, degrees
 import random
 
 @defaultState('branchOnRole')
@@ -43,21 +43,35 @@ def positionAtHome(player):
     shared ball if it is on with reliability >= 2. Cherry pickers look in the direction
     of the shared ball if it is on with reliability >= 1.
     """
-    home = RobotLocation(player.homePosition.x, player.homePosition.y, player.homePosition.h)
-    # if (player.brain.sharedBall.ball_on and player.brain.sharedBall.reliability >= 2 and 
-    #     role.isDefender(player.role)):
-    #     sharedball = Location(player.brain.sharedBall.x, player.brain.sharedBall.y)
-    #     home.h = player.brain.loc.getRelativeBearing(sharedball)
-    # elif (player.brain.sharedBall.ball_on and player.brain.sharedBall.reliability >= 1 and 
-    #       role.isCherryPicker(player.role)):
-    #     sharedball = Location(player.brain.sharedBall.x, player.brain.sharedBall.y)
-    #     home.h = player.brain.loc.getRelativeBearing(sharedball)
+    if player.brain.ball.vis.frames_off < 10:
+        ball = player.brain.ball
+        bearing = ball.bearing_deg
+        # player.brain.tracker.trackBall()
+    elif player.brain.sharedBall.ball_on:
+        ball = player.brain.sharedBall
+        bearing = degrees(atan2(ball.y - player.brain.loc.y,
+                        ball.x - player.brain.loc.x)) - player.brain.loc.h
+        # player.brain.tracker.trackSharedBall()
+    else:
+        ball = None
+        # player.brain.tracker.repeatWidePan()
+        home = player.homePosition
+
+    if ball != None:
+        if role.isLeftDefender(player.role):
+            home = findDefenderHome(True, ball, bearing + player.brain.loc.h)
+        elif role.isRightDefender(player.role):
+            home = findDefenderHome(False, ball, bearing + player.brain.loc.h)
+        elif role.isSecondChaser(player.role):
+            home = findChaserHome(ball, bearing + player.brain.loc.h)
+        else:
+            home = player.homePosition
 
     if player.firstFrame():
         if role.isCherryPicker(player.role):
             player.brain.tracker.repeatWidePan()
-        else:
-            player.brain.tracker.trackBall()
+        # else:
+            # player.brain.tracker.trackBall()
         fastWalk = role.isCherryPicker(player.role)
         player.brain.nav.goTo(home, precision = nav.HOME,
                               speed = nav.QUICK_SPEED, avoidObstacles = True,
@@ -67,13 +81,15 @@ def positionAtHome(player):
 
 @superState('playOffBall')
 @stay
-@ifSwitchNow(transitions.tooFarFromHome(20), 'positionAtHome')
 def watchForBall(player):
     """
     The player is at home, waiting for the ball to be within it's box (range)
     """
     if player.firstFrame():
         player.brain.nav.stand()
+
+    if transitions.tooFarFromHome(20, player):
+        return player.goNow('positionAtHome')
 
 @superState('playOffBall')
 @stay
@@ -88,6 +104,11 @@ def positionAsSupporter(player):
     positionAsSupporter.position = getSupporterPosition(player, player.role)
 
     if player.firstFrame():
+        player.brain.nav.goTo(positionAsSupporter.position, precision = nav.GENERAL_AREA,
+                              speed = nav.QUICK_SPEED, avoidObstacles = True,
+                              fast = False, pb = False)
+
+    if positionAsSupporter.position.distTo(player.brain.loc) > 20:
         player.brain.nav.goTo(positionAsSupporter.position, precision = nav.GENERAL_AREA,
                               speed = nav.QUICK_SPEED, avoidObstacles = True,
                               fast = False, pb = False)
@@ -106,6 +127,7 @@ def searchFieldForSharedBall(player):
 
     if player.firstFrame():
         player.brain.tracker.trackBall()
+        player.brain.tracker.repeatWidePan()
         player.sharedBallCloseCount = 0
         player.sharedBallOffCount = 0
         player.brain.nav.goTo(sharedball, precision = nav.GENERAL_AREA,
@@ -136,6 +158,7 @@ def searchFieldForFlippedSharedBall(player):
 
     if player.firstFrame():
         player.brain.tracker.trackBall()
+        player.brain.tracker.repeatWidePan()
         player.sharedBallCloseCount = 0
         player.brain.nav.goTo(sharedball, precision = nav.GENERAL_AREA,
                               speed = nav.QUICK_SPEED, avoidObstacles = True,
@@ -162,6 +185,7 @@ def searchFieldByQuad(player):
     """
     if player.firstFrame():
         player.brain.tracker.trackBall()
+        player.brain.tracker.repeatWidePan()
         searchFieldByQuad.dest = min(points, key=lambda x:fabs(player.brain.loc.getRelativeBearing(x)))
         player.brain.nav.goTo(searchFieldByQuad.dest, precision = nav.GRAINY,
                           speed = nav.QUICK_SPEED, avoidObstacles = True,
