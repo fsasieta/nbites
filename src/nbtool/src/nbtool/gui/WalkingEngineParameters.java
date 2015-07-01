@@ -437,9 +437,20 @@ public class WalkingEngineParameters {
         dv5[36] = "22.f";
         dv5[47] = "0.07f";
 
-        //test
         //defaultValuesV5[55] = "false";
         return dv5;
+    }
+
+    public String[] updateCurrentValuesFromSExpr(SExpr values){
+        SExpr paramValuesSExpr = values.find("contents");
+        System.out.println("Printing values of SExpr: " );
+        String [] array = new String[getListOfParamsLength()];
+        assert( getListOfParamsLength() ==  paramValuesSExpr.get(2).count());
+        for( int i = 0; i < paramValuesSExpr.get(2).count(); i++){
+           //System.out.println(paramValuesSExpr.get(2).get(i).get(1).value()); 
+            array[i] = paramValuesSExpr.get(2).get(i).get(1).value();
+        }
+        return array;
     }
 
     public int getListOfParamsLength(){

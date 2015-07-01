@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import nbtool.data.*;
 import nbtool.data.Log;
 import nbtool.gui.WalkingEngineParameters.Parameter;
 import nbtool.util.Events;
@@ -32,6 +33,9 @@ public class EngineParametersPanel extends JPanel implements ActionListener,
 
     private WalkingEngineParameters engineStreamer;
     private Parameter[] parameters;
+
+    private String logCheck = "WalkEngineTool";
+    private SExpr currentValSExpr;
 
 	public EngineParametersPanel() {
 
@@ -101,7 +105,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener,
         getCurrentParamValues.addActionListener(this);
         buttonCanvas.add(getCurrentParamValues, BorderLayout.SOUTH);
 
-        //Center.listen(Events.LogsFound.class, this, true);
+        //Somehow listen for logs sent.
+        Center.listen(Events.LogsFound.class, this, true);
 
         //Initializing needed arrays
         //Number of params
@@ -122,10 +127,6 @@ public class EngineParametersPanel extends JPanel implements ActionListener,
         System.arraycopy(defaultValuesV4, 0, currentValues, 0, defaultValuesV4.length);
         //Get current information from the robot .txt file Information
         
-        
-
-        
-
         //Adding the labels and the text fields into the grid layout.
         //We always initialize with the default values for v4.
         //Up to the person using the tool to actively change the values for V5.
@@ -215,22 +216,27 @@ public class EngineParametersPanel extends JPanel implements ActionListener,
         }
 	}
 
+    //Called by the listen method located on the Center class
     @Override
-	public void logsFound(Object source, Log... found) {
+	public void logsFound(Object source, Log... found){
 		Log streamLog = null;
 
-		for (Log l : found) {
-			if (l.madeWhere() == "WalkEngineTool" && l.source == Log.SOURCE.NETWORK) {
+		for (Log l : found){
+			if (logCheck.equals(l.madeWhere()) && l.source == Log.SOURCE.NETWORK){
 				streamLog = l;
 				break;
 			}
 		}
-		
-		if (streamLog != null) {
-            System.out.println("[WALK ENGINE] Info received from robot");
+		if (streamLog != null){
+
+            System.out.println("[WALK ENGINE] Current Parameter Values received from robot");
             System.out.println(streamLog.tree().print());
-            System.out.println("[WALK ENGINE] End of info received from robot");
+            currentValSExpr = streamLog.tree();
+            currentValues = engineStreamer.updateCurrentValuesFromSExpr(currentValSExpr); //Is it ok to redirect pointers?
+            System.out.println("Parameters should be updated now.");
+            for(int i = 0; i < parameters.length; i++){
+                currentValuesLabels[i].setText(currentValues[i]);
+            }
 		}
 	}
-
 }
