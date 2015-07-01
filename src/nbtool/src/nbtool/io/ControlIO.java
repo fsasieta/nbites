@@ -61,6 +61,12 @@ public class ControlIO {
         Log cmnd = new Log(commandTree, serializedEngineParams);
 		return cmnd;
     }
+    
+    public static Log createCmndGetWalkingEngineParameters(){
+        SExpr commandTree = SExpr.newList(SExpr.newAtom("command"), SExpr.newAtom("getCurrentWalkEngineParameters"));
+        Log cmnd = new Log(commandTree, null);
+		return cmnd;
+    }
 	
 	private static final LinkedList<ControlInstance> instances = new LinkedList<>();
 

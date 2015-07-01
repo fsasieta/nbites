@@ -5,19 +5,23 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import nbtool.data.Log;
 import nbtool.gui.WalkingEngineParameters.Parameter;
+import nbtool.util.Events;
+import nbtool.util.Center;
 
 
 /* GUI for the Walking engine parameters streamer.
  * Shows buttons and basic labels, processing is done elsewhere
  */
-public class EngineParametersPanel extends JPanel implements ActionListener {
+public class EngineParametersPanel extends JPanel implements ActionListener,
+                                                             Events.LogsFound{
 
     private JScrollPane spCenter, spLeft;
     //private JPanel labelCanvas;
 	private JPanel canvas, buttonCanvas, backEndCanvas;
 	
-	private JButton saveParamsV4, saveParamsV5, useV4, useV5, setParams;
+	private JButton saveParamsV4, saveParamsV5, useV4, useV5, setParams, getCurrentParamValues;
     private JLabel currentValuesTopLabel;
     
     private JLabel[] fieldLabels, currentValuesLabels;
@@ -89,6 +93,15 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
         //Top JLabel
         currentValuesTopLabel = new JLabel("Current Value");
         buttonCanvas.add(currentValuesTopLabel, BorderLayout.EAST);
+        
+        //We add the get currentValues button next to it, since we expect to use this
+        //once at startup. This one is special, since it calls a method in controlIO and then
+        //the panel received data from the log system.
+        getCurrentParamValues = new JButton("Get Current Param Values");
+        getCurrentParamValues.addActionListener(this);
+        buttonCanvas.add(getCurrentParamValues, BorderLayout.SOUTH);
+
+        //Center.listen(Events.LogsFound.class, this, true);
 
         //Initializing needed arrays
         //Number of params
@@ -107,6 +120,11 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
 
         //Setting the arrays equal to each other will only redirect pointers, and we dont want that.
         System.arraycopy(defaultValuesV4, 0, currentValues, 0, defaultValuesV4.length);
+        //Get current information from the robot .txt file Information
+        
+        
+
+        
 
         //Adding the labels and the text fields into the grid layout.
         //We always initialize with the default values for v4.
@@ -117,20 +135,8 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             fieldLabels[i].setToolTipText("Default value is in parenthesis");
             canvas.add(fieldLabels[i]);
 
-            //paramFields[i] = new JTextField(defaultValuesV4[i], 8);
-            //paramFields[i] = Parameters[i].getDisplay(defaultValuesV4[i]);
-            //Dimension opt = parameters[i].getDisplay().getPreferredSize();
-            //parameters[i].getDisplay().setMaximumSize(new Dimension(opt.width, fieldLabels[i].getHeight()));
             canvas.add(parameters[i].getDisplay());
-
-            //if( i != 21 || i != 22 || i != 55){
-            //    sliderFields[i] = new JSlider(JSlider.HORIZONTAL, Float.parseFloat(defaultValuesV4[i]) - 200, Float.parseFloat(defaultValuesV4[i]) + 200); 
-            //}
-
             currentValuesLabels[i] = new JLabel(currentValues[i]);
-            //currentValuesLabels[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
-            //labelCanvas.add(currentValuesLabels[i], BorderLayout.EAST);
-           // labelCanvas.add(Box.createRigidArea(new Dimension(0,50)));
             canvas.add(currentValuesLabels[i]);
 
         }
@@ -198,5 +204,33 @@ public class EngineParametersPanel extends JPanel implements ActionListener {
             System.out.println("Sending data over network");
             engineStreamer.sendDataOverNetwork(currentValues);
         }
+        else if(e.getSource() == getCurrentParamValues){
+            
+            //start control.cpp function to read the file in the robot
+            //Sends the request. At some point we will receive it
+            engineStreamer.getDataFromNetwork();
+            System.out.println("Get current param values button pressed");
+
+
+        }
 	}
+
+    @Override
+	public void logsFound(Object source, Log... found) {
+		Log streamLog = null;
+
+		for (Log l : found) {
+			if (l.madeWhere() == "WalkEngineTool" && l.source == Log.SOURCE.NETWORK) {
+				streamLog = l;
+				break;
+			}
+		}
+		
+		if (streamLog != null) {
+            System.out.println("[WALK ENGINE] Info received from robot");
+            System.out.println(streamLog.tree().print());
+            System.out.println("[WALK ENGINE] End of info received from robot");
+		}
+	}
+
 }

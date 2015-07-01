@@ -31,6 +31,7 @@
 
 using nblog::SExpr;
 using nblog::Log;
+using nblog::NBLog;
 
 namespace control {
     
@@ -418,21 +419,6 @@ namespace control {
             file.close();
             std::cout << "[CONTROL] Saving Done" << std::endl;
 
-            /* Sanity Check on control thread writing capabilities.*/
-            //Notice the ifstream instaed of the ofstream
-            /*
-            std::ifstream file2("/home/nao/nbites/Config/V4WalkEngineParameters.txt");
-            std::cout << "[CONTROL] Managed to open the file just written to" << std::endl;
-            std::stringstream ssfile;
-            ssfile << file2.rdbuf();
-            std::string fileString = ssfile.str();
-            std::cout << "Printing filestring in control function thread of file just read:\n" << fileString << std::endl;
-            ssize_t i = 0;
-            std::cout << "Before calling read function in SExpr file" << std::endl; //Prints normally
-            SExpr params = *SExpr::read(fileString, i);        //gdb says segfault happens in this line
-            std::cout << "Printing parameters just written (hopefully) to robot .txt file\n" << params.print() << std::endl; //Doesn't print (and robot loses stiffneses and falls down)
-            */
-
         #endif
 
         //Setting flag for motion module run function.
@@ -440,6 +426,41 @@ namespace control {
         }
         return 0;
     }
+
+    /* Reads the current WalkEngine parameters from the robot's .txt file and shows them on the tool.
+     */
+    uint32_t cnc_getEngineParameters(Log * arg){
+
+        #ifdef NAOQI2
+        std::ifstream file2("/home/nao/nbites/Config/V5WalkEngineParameters.txt");
+        #else
+        std::ifstream file2("/home/nao/nbites/Config/V4WalkEngineParameters.txt");
+        #endif
+
+        std::cout << "[CONTROL] Retrieving current walk engine params for the tool" << std::endl;
+        std::stringstream ssfile;
+        ssfile << file2.rdbuf();
+        std::string fileString = ssfile.str();
+        //std::cout << "Printing filestring in control function thread of file just read:\n" << fileString << std::endl;
+        ssize_t i = 0;
+        //std::cout << "Before calling read function in SExpr file" << std::endl; 
+        SExpr * params = SExpr::read(fileString, i); 
+        //Log sexprLog(params);
+        
+        
+        //Log * sexpr = sexprLog;
+        std::vector<SExpr> contents = {SExpr("__NONE__", "franco's control", 0, 0, 0),
+            *params};
+        delete params;
+        NBLog(NBL_IMAGE_BUFFER, "WalkEngineTool", contents, "");
+        std::cout << "NBLog sent in control function" << std::endl;
+        
+        //Sends information to the Log part of the tool
+
+        return 0;
+    }
+
+
 
 
     /*
@@ -453,7 +474,8 @@ namespace control {
         ret["test"] = &cnc_test;
         ret["setFlag"] = &cnc_setFlag;
         ret["setCameraParams"] = &cnc_setCameraParams;
-        ret["walkingEngineParameterStream"] = &cnc_setEngineParameters;
+        ret["walkingEngineParameterStream"]   = &cnc_setEngineParameters;
+        ret["getCurrentWalkEngineParameters"] = &cnc_getEngineParameters;
         
         return ret;
     }

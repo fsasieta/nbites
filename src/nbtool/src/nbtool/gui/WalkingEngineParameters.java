@@ -606,6 +606,23 @@ public class WalkingEngineParameters {
 	    Logger.logf(Logger.INFO, "EngineParameterPanel: CommandIO.createCmdSendMotionCommands(%s) returned %B\n", packet, success);
     }
 
+    public void getDataFromNetwork(){
+
+        ControlInstance inst = ControlIO.getByIndex(0);
+
+        if (inst == null) {
+			Logger.log(Logger.WARN, "EngineParameterPanel clicked while no ControlInstance available");
+            //does not return anything
+			return;
+		}
+
+        boolean success = inst.tryAddCmnd(ControlIO.createCmndGetWalkingEngineParameters());
+        if(success){ System.out.println("Successfully got current walking engine parameters through the tool");}
+	    Logger.logf(Logger.INFO, "EngineParameterPanel: CommandIO.createCmdGetWalkingEngineParameters() returned %B\n", success);
+
+        //TODO get information from the logging part of the system and return it .
+
+    }
 
     void writeDataToFile(String[] params, int naoVersion){
 
@@ -717,7 +734,7 @@ public class WalkingEngineParameters {
                 SExpr.newKeyValue("minRotationToReduceStepSize",Params[81])
                 );
 		return s;                                                                     
-	}                          
+	}
 
     protected Parameter[] parameters = {
 			new FreeParameter(0),
