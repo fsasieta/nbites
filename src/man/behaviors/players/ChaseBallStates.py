@@ -260,6 +260,14 @@ def positionForKick(player):
     if transitions.shouldRedecideKick(player):
         return player.goLater('approachBall')
 
+    # "Executing motion kick, we've been in this state for too long"
+    if player.counter > 150:
+        if player.motionKick:
+           return player.goNow('executeMotionKick')
+        else:
+            player.brain.nav.stand()
+            return player.goNow('executeKick')
+
     ball = player.brain.ball
     positionForKick.kickPose = RelRobotLocation(ball.rel_x - player.kick.setupX,
                                                 ball.rel_y - player.kick.setupY,
