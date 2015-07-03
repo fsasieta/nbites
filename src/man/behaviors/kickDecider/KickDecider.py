@@ -5,6 +5,7 @@ from objects import Location
 import math
 import copy
 import itertools
+from random import randrange
 
 # TODO hierarchy of lower level planners
 # TODO actually use a true array of filters
@@ -503,6 +504,38 @@ class KickDecider(object):
                 return None
         else:
             return None
+
+    def scrumKick(self):
+        print "Entering Scrum kick"
+        self.brain.player.motionKick = True
+
+        self.kicks = []
+        self.kicks.append(kicks.M_LEFT_CHIP_SHOT)
+        self.kicks.append(kicks.M_RIGHT_CHIP_SHOT)
+
+        self.scoreKick = self.minimizeOrbitTime
+
+        self.filters = []
+        self.filters.append(self.inBoundsOrGoal)
+        self.filters.append(self.notTowardOurGoal)
+
+        self.clearPossibleKicks()
+        self.addFastestPossibleKicks()
+
+        kickChosen = (kick for kick in self.possibleKicks).next().next()
+
+        if kickChosen:
+            print "Found a kick that satisfies the filters"
+            print  kickChosen
+            return kickChosen 
+        else:
+            print "No kick satisfies the filters"
+            side = randrange(0, 1000)
+            if (int(side) % 2 == 0):
+                return kicks.M_LEFT_CHIP_SHOT
+            else:
+                return kicks.M_RIGHT_CHIP_SHOT
+        print "This line should never be printed"
 
     ### HIGH LEVEL PLANNERS ###
     def attacker(self):

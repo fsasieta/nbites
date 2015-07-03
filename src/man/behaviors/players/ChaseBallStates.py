@@ -261,12 +261,10 @@ def positionForKick(player):
         return player.goLater('approachBall')
 
     # "Executing motion kick, we've been in this state for too long"
-    if player.counter > 150:
-        if player.motionKick:
-           return player.goNow('executeMotionKick')
-        else:
-            player.brain.nav.stand()
-            return player.goNow('executeKick')
+    if player.counter > 90:
+        print "Doing Scrum Kick!"
+        player.kick = player.decider.scrumKick()
+        return player.goNow('executeMotionKick')
 
     ball = player.brain.ball
     positionForKick.kickPose = RelRobotLocation(ball.rel_x - player.kick.setupX,
