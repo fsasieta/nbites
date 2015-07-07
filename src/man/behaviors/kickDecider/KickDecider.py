@@ -585,7 +585,7 @@ class KickDecider(object):
 
     ### API ###
     def addShotsOnGoal(self):
-        x = nogginC.OPP_GOALBOX_RIGHT_X - self.brain.ball.x 
+        x = nogginC.OPP_GOALBOX_RIGHT_X - self.brain.ball.x + 50
         y1 = nogginC.OPP_GOALBOX_MIDDLE_Y - self.brain.ball.y
         y2 = nogginC.OPP_GOALBOX_MIDDLE_Y - constants.SHOT_PRECISION - self.brain.ball.y
         # Two vectors that share an x coordinate but have diff y coordinates
@@ -595,7 +595,7 @@ class KickDecider(object):
         theta = math.acos((x*x+y1*y2)/(toGoalCenterMagnitude*toGoalCenterMinusPrecisionMagnitude))
         precision = toGoalCenterMagnitude*math.tan(theta)
         self.possibleKicks = itertools.chain(self.possibleKicks,
-                                             self.generateKicksFromGoalDest(nogginC.OPP_GOALBOX_RIGHT_X,
+                                             self.generateKicksFromGoalDest(nogginC.OPP_GOALBOX_RIGHT_X + 50,
                                                                             nogginC.CENTER_FIELD_Y,
                                                                             precision))
 
