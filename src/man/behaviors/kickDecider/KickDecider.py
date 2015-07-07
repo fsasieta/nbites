@@ -421,7 +421,10 @@ class KickDecider(object):
         self.filters.append(self.crossesGoalLine)
 
         self.clearPossibleKicks()
-        self.addFastestPossibleKicks()
+        #For testing purposes of the strategy only, will use as default
+        #self.addFastestPossibleKicks()
+        print "Using AddShotsOnGoal in all kicks asap on Goal"
+        self.addShotsOnGoal
 
         try:
             k = (kick for kick in self.possibleKicks).next().next()
@@ -594,6 +597,7 @@ class KickDecider(object):
         # Formula for angle between two vectors, cos(theta) = a.b/||a||||b||
         theta = math.acos((x*x+y1*y2)/(toGoalCenterMagnitude*toGoalCenterMinusPrecisionMagnitude))
         precision = toGoalCenterMagnitude*math.tan(theta)
+        print "In shots on Goal, determining self.possibleKicks"
         self.possibleKicks = itertools.chain(self.possibleKicks,
                                              self.generateKicksFromGoalDest(nogginC.OPP_GOALBOX_RIGHT_X,
                                                                             nogginC.CENTER_FIELD_Y,
@@ -665,6 +669,7 @@ class KickDecider(object):
         yield self.filterAndScoreKicks(fastestKicks)
 
     def generateIdealKicks(self, x, y):
+        print "Generating Ideal kicks"
         for k in self.kicks:
             kick = copy.deepcopy(k)
             
@@ -684,12 +689,25 @@ class KickDecider(object):
             kick.destinationX = x
             kick.destinationY = y
 
+            #Calculating Global ball coordinates using our on loc estimate
+            ourX = self.brain.loc.x
+            ourY = self.brain.loc.y
+            ballGlobalX = ourX + self.brain.ball.x
+            ballGlobalY = ourY + self.brain.ball.y
+            if ((225 < ballGlobalY < 525) and ( ballGlobalX > 900)):
+                print "Ball Found inside goal. Kicking deep into goal"
+                #If the ball is in the goalbox, we kick directly in front
+                kick.DestinationX =  self.brain.ball.x + 50
+                kick.DestinationY =  self.brain.ball.y
+
             yield kick
 
     # NOTE N should be an odd number, so that a perfectly-aimed kick is chosen
     #      as one of the sampled kicks
     def sampleKicks(self, x, y, precision, N):
+        print "Sampling Kicks"
         if constants.NO_SAMPLING:
+            print "In if stmt of sample kicks fcn" 
             yield self.generateIdealKicks(x,y)
         else:
             r, thetaInitial = self.fromCartesianToPolarCoordinates(x-self.brain.ball.x,
@@ -704,6 +722,7 @@ class KickDecider(object):
                 theta += littleTheta
 
     def generateKicksFromGoalDest(self, x, y, precision):
+        print "In generateKicksFromGoalDest function"
         sampledKicks = itertools.chain.from_iterable(self.sampleKicks(x,y,precision,constants.NUM_OF_SAMPLES))
 
         yield self.filterAndScoreKicks(sampledKicks)
