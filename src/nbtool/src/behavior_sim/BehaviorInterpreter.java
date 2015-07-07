@@ -220,7 +220,6 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 ci.tryAddCall(is);
             }
         }
-
         this.sendMessagesInSeparateThread();
     }
 
@@ -247,15 +246,13 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 protobufs.add(Log.logWithType("RobotLocation", this.setLocalization(player).toByteArray()));
                 protobufs.add(Log.logWithType("FilteredBall", this.setFilteredBall(player, b).toByteArray()));
                 protobufs.add(Log.logWithType("GameState", this.setGameState(player).toByteArray()));
-                protobufs.add(Log.logWithType("VisionField", this.setVisionField().toByteArray()));
-                protobufs.add(Log.logWithType("VisionRobot", this.setVisionRobot().toByteArray()));
-                protobufs.add(Log.logWithType("VisionObstacle", this.setVisionObstacle().toByteArray()));
                 protobufs.add(Log.logWithType("FallStatus", this.setFallStatus().toByteArray()));
                 protobufs.add(Log.logWithType("MotionStatus", this.setMotionStatus().toByteArray()));
                 protobufs.add(Log.logWithType("RobotLocation", this.setOdometry().toByteArray()));
                 protobufs.add(Log.logWithType("Joints", this.setJoints().toByteArray()));
                 protobufs.add(Log.logWithType("StiffStatus", this.setStiffStatus().toByteArray()));
-                protobufs.add(Log.logWithType("Obstacle", this.setObstacle().toByteArray()));
+                protobufs.add(Log.logWithType("FieldLines", this.setFieldLines().toByteArray()));
+                protobufs.add(Log.logWithType("Corners", this.setCorners().toByteArray()));
                 protobufs.add(Log.logWithType("SharedBall", this.setSharedBall(b).toByteArray()));
                 protobufs.add(Log.logWithType("RobotLocation", this.setSharedFlip().toByteArray()));
 
@@ -454,7 +451,17 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         return ObstacleOuterClass.FieldObstacles.Obstacle.newBuilder().build();
     }
 
-        // TODO determine how this actually get calculated
+    private Vision.FieldLines setFieldLines()
+    {
+        return Vision.FieldLines.newBuilder().build();
+    }
+
+    private Vision.Corners setCorners()
+    {
+        return Vision.Corners.newBuilder().build();
+    }
+
+    // TODO determine how this actually get calculated
     private BallModel.SharedBall setSharedBall(Ball b)
     {
         // DONE

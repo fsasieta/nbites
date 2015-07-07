@@ -18,8 +18,8 @@ portals::Message<messages::WorldModel> comm[10];
 int Behaviors_func() {
     // std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
 
-    assert(args.size() == 14);
-    
+    assert(args.size() == 12);
+
     sim->setWorldModels(comm);
     sim->run(args);
 

@@ -10,7 +10,6 @@ Simulator::Simulator(int playerNum)
 void Simulator::run(std::vector<Log*> pbufs)
 {
     behaviors.reset();
-
     sendMessages(pbufs);
 
     behaviors.run();
@@ -31,15 +30,13 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     messages::RobotLocation localizationPB;
     messages::FilteredBall filteredBallPB;
     messages::GameState gameStatePB;
-    messages::VisionField visionFieldPB;
-    messages::VisionRobot visionRobotPB;
-    messages::VisionObstacle visionObstaclePB;
     messages::FallStatus fallStatusPB;
     messages::MotionStatus motionStatusPB;
     messages::RobotLocation odometryPB;
     messages::JointAngles jointsPB;
     messages::StiffStatus stiffStatusPB;
-    messages::FieldObstacles obstaclePB;
+    messages::FieldLines linesPB;
+    messages::Corners cornersPB;
     messages::SharedBall sharedBallPB;
     messages::RobotLocation sharedFlipPB;
 
@@ -47,17 +44,15 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     localizationPB.ParseFromString(pbufs[0]->data());
     filteredBallPB.ParseFromString(pbufs[1]->data());
     gameStatePB.ParseFromString(pbufs[2]->data());
-    visionFieldPB.ParseFromString(pbufs[3]->data());
-    visionRobotPB.ParseFromString(pbufs[4]->data());
-    visionObstaclePB.ParseFromString(pbufs[5]->data());
-    fallStatusPB.ParseFromString(pbufs[6]->data());
-    motionStatusPB.ParseFromString(pbufs[7]->data());
-    odometryPB.ParseFromString(pbufs[8]->data());
-    jointsPB.ParseFromString(pbufs[9]->data());
-    stiffStatusPB.ParseFromString(pbufs[10]->data());
-    obstaclePB.ParseFromString(pbufs[11]->data());
-    sharedBallPB.ParseFromString(pbufs[12]->data());
-    sharedFlipPB.ParseFromString(pbufs[13]->data());
+    fallStatusPB.ParseFromString(pbufs[3]->data());
+    motionStatusPB.ParseFromString(pbufs[4]->data());
+    odometryPB.ParseFromString(pbufs[5]->data());
+    jointsPB.ParseFromString(pbufs[6]->data());
+    stiffStatusPB.ParseFromString(pbufs[7]->data());
+    linesPB.ParseFromString(pbufs[8]->data());
+    cornersPB.ParseFromString(pbufs[9]->data());
+    sharedBallPB.ParseFromString(pbufs[10]->data());
+    sharedFlipPB.ParseFromString(pbufs[11]->data());
 
 
     // TODO TRYING TO FIX MESSAGE OVERFLOWS
@@ -73,15 +68,6 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     gameStateMg = portals::Message<messages::GameState>(&gameStatePB);
     behaviors.gameStateIn.setMessage(gameStateMg);
 
-    visionFieldMg = portals::Message<messages::VisionField>(&visionFieldPB);
-    behaviors.visionFieldIn.setMessage(visionFieldMg);
-
-    visionRobotMg = portals::Message<messages::VisionRobot>(&visionRobotPB);
-    behaviors.visionRobotIn.setMessage(visionRobotMg);
-
-    visionObstacleMg = portals::Message<messages::VisionObstacle>(&visionObstaclePB);
-    behaviors.visionObstacleIn.setMessage(visionObstacleMg);
-
     fallStatusMg = portals::Message<messages::FallStatus>(&fallStatusPB);
     behaviors.fallStatusIn.setMessage(fallStatusMg);
 
@@ -96,11 +82,14 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     jointsMg = portals::Message<messages::JointAngles>(&jointsPB);
     behaviors.jointsIn.setMessage(jointsMg);
 
+    linesMg = portals::Message<messages::FieldLines>(&linesPB);
+    behaviors.linesIn.setMessage(linesMg);
+
+    cornersMg = portals::Message<messages::Corners>(&cornersPB);
+    behaviors.cornersIn.setMessage(cornersMg);
+
     stiffStatusMg = portals::Message<messages::StiffStatus>(&stiffStatusPB);
     behaviors.stiffStatusIn.setMessage(stiffStatusMg);
-
-    obstacleMg = portals::Message<messages::FieldObstacles>(&obstaclePB);
-    behaviors.obstacleIn.setMessage(obstacleMg);
 
     sharedBallMg = portals::Message<messages::SharedBall>(&sharedBallPB);
     behaviors.sharedBallIn.setMessage(sharedBallMg);

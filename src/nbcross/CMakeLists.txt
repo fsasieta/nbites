@@ -146,7 +146,6 @@ target_link_libraries(
   portals
   messages
   behaviors
-  image # man image
   vision
   comm
   sharedball
