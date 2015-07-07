@@ -585,6 +585,7 @@ class KickDecider(object):
 
     ### API ###
     def addShotsOnGoal(self):
+        #We shoot to the far back of the goalbox to compensate for bad loc
         x = nogginC.OPP_GOALBOX_RIGHT_X - self.brain.ball.x + 50
         y1 = nogginC.OPP_GOALBOX_MIDDLE_Y - self.brain.ball.y
         y2 = nogginC.OPP_GOALBOX_MIDDLE_Y - constants.SHOT_PRECISION - self.brain.ball.y
