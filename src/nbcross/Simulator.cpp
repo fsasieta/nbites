@@ -35,10 +35,12 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     messages::RobotLocation odometryPB;
     messages::JointAngles jointsPB;
     messages::StiffStatus stiffStatusPB;
+    messages::FieldObstacles obstaclePB;
     messages::FieldLines linesPB;
     messages::Corners cornersPB;
     messages::SharedBall sharedBallPB;
     messages::RobotLocation sharedFlipPB;
+    messages::Toggle sitDownPB;
 
     // Parse the Protobufs
     localizationPB.ParseFromString(pbufs[0]->data());
@@ -49,10 +51,12 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     odometryPB.ParseFromString(pbufs[5]->data());
     jointsPB.ParseFromString(pbufs[6]->data());
     stiffStatusPB.ParseFromString(pbufs[7]->data());
-    linesPB.ParseFromString(pbufs[8]->data());
-    cornersPB.ParseFromString(pbufs[9]->data());
-    sharedBallPB.ParseFromString(pbufs[10]->data());
-    sharedFlipPB.ParseFromString(pbufs[11]->data());
+    obstaclePB.ParseFromString(pbufs[8]->data());
+    linesPB.ParseFromString(pbufs[9]->data());
+    cornersPB.ParseFromString(pbufs[10]->data());
+    sharedBallPB.ParseFromString(pbufs[11]->data());
+    sharedFlipPB.ParseFromString(pbufs[12]->data());
+    sitDownPB.ParseFromString(pbufs[13]->data());
 
 
     // TODO TRYING TO FIX MESSAGE OVERFLOWS
@@ -82,6 +86,9 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
     jointsMg = portals::Message<messages::JointAngles>(&jointsPB);
     behaviors.jointsIn.setMessage(jointsMg);
 
+    obstacleMg = portals::Message<messages::FieldObstacles>(&obstaclePB);
+    behaviors.obstacleIn.setMessage(obstacleMg);
+
     linesMg = portals::Message<messages::FieldLines>(&linesPB);
     behaviors.linesIn.setMessage(linesMg);
 
@@ -96,6 +103,9 @@ void Simulator::sendMessages(std::vector<Log*> pbufs)
 
     localizationMg = portals::Message<messages::RobotLocation>(&sharedFlipPB);
     behaviors.sharedFlipIn.setMessage(localizationMg);
+
+    sitDownMg = portals::Message<messages::Toggle>(&sitDownPB);
+    behaviors.sitDownIn.setMessage(sitDownMg);
 }
 
 void Simulator::getMotionCommandsAndComm()

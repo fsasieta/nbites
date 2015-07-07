@@ -251,10 +251,12 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
                 protobufs.add(Log.logWithType("RobotLocation", this.setOdometry().toByteArray()));
                 protobufs.add(Log.logWithType("Joints", this.setJoints().toByteArray()));
                 protobufs.add(Log.logWithType("StiffStatus", this.setStiffStatus().toByteArray()));
+                protobufs.add(Log.logWithType("FieldObstacles", this.setObstacle().toByteArray()));
                 protobufs.add(Log.logWithType("FieldLines", this.setFieldLines().toByteArray()));
                 protobufs.add(Log.logWithType("Corners", this.setCorners().toByteArray()));
                 protobufs.add(Log.logWithType("SharedBall", this.setSharedBall(b).toByteArray()));
                 protobufs.add(Log.logWithType("RobotLocation", this.setSharedFlip().toByteArray()));
+                protobufs.add(Log.logWithType("Toggle", this.setSitDown().toByteArray()));
 
                 CrossInstance ci = CrossIO.instanceByIndex(i);
                 CrossFunc cf = ci.functionWithName("Behaviors");
@@ -478,5 +480,10 @@ public class BehaviorInterpreter implements nbtool.io.CommonIO.IOFirstResponder
         return RobotLocationOuterClass.RobotLocation.newBuilder()
                                         .setTimestamp(0)    // means it never flips
                                         .build();
+    }
+
+    private ToggleOuterClass.Toggle setSitDown()
+    {
+        return ToggleOuterClass.Toggle.newBuilder().build();
     }
 }

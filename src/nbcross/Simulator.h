@@ -49,10 +49,12 @@ private:
     portals::Message<messages::RobotLocation> odometryMg;
     portals::Message<messages::JointAngles> jointsMg;
     portals::Message<messages::StiffStatus> stiffStatusMg;
+    portals::Message<messages::FieldObstacles> obstacleMg;
     portals::Message<messages::FieldLines> linesMg;
     portals::Message<messages::Corners> cornersMg;
     portals::Message<messages::SharedBall> sharedBallMg;
     portals::Message<messages::RobotLocation> sharedFlipMg;
+    portals::Message<messages::Toggle> sitDownMg;
     portals::Message<messages::WorldModel> model;
 
     messages::HeadMotionCommand hmc;
