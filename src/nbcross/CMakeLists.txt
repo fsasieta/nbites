@@ -96,6 +96,10 @@ if( BUILD_PROTOBUF )
 add_dependencies(messages protobuf_libs)
 endif()
 
+IF ( NOT DEFINED Boost_PYTHON_LIBRARY)
+  set(Boost_PYTHON_LIBRARY ${Boost_PYTHON_LIBRARY_RELEASE} )
+ENDIF ( NOT DEFINED Boost_PYTHON_LIBRARY)
+
 # Man modules that we need to use
 include_directories( ${MAN_DIR}/support )
 add_subdirectory( ${MAN_DIR}/support ${CMAKE_CURRENT_BINARY_DIR}/man/support)
@@ -140,10 +144,6 @@ install(
   DESTINATION ${NBITES_DIR}/build/nbcross/install/lib/python/players/
   CONFIGURATIONS "" Debug Release
 )
-
-IF ( NOT DEFINED Boost_PYTHON_LIBRARY)
-  set(Boost_PYTHON_LIBRARY ${Boost_PYTHON_LIBRARY_RELEASE} )
-ENDIF ( NOT DEFINED Boost_PYTHON_LIBRARY)
 
 target_link_libraries(
   nbcross_tool
