@@ -141,7 +141,11 @@ install(
   CONFIGURATIONS "" Debug Release
 )
 
-target_link_libraries( 
+IF ( NOT DEFINED Boost_PYTHON_LIBRARY)
+  set(Boost_PYTHON_LIBRARY ${Boost_PYTHON_LIBRARY_RELEASE} )
+ENDIF ( NOT DEFINED Boost_PYTHON_LIBRARY)
+
+target_link_libraries(
   nbcross_tool
   portals
   messages
