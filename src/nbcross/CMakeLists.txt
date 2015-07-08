@@ -12,6 +12,9 @@ set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${SHARE_DIR}/cmake/" )
 mark_as_advanced( CMAKE_INSTALL_PREFIX )
 mark_as_advanced( CMAKE_TOOLCHAIN_FILE )
 
+# Because cmake isn't manually setting this sometimes..
+set( Boost_PYTHON_LIBRARY ${Boost_PYTHON_LIBRARY_RELEASE} )
+
 set( CMAKE_CXX_FLAGS
   "${CMAKE_CXX_FLAGS} -pthread" )
 
@@ -153,4 +156,6 @@ target_link_libraries(
   support
   logshare
   control
+  ${PYTHON_LIBRARY}
+  ${Boost_PYTHON_LIBRARY}
   )
